@@ -73,12 +73,14 @@ export const fetchProfile = username => ({
 	username
 });
 
-export const loadReplay = summary => ({
+export const loadReplay = (summary, position) => ({
 	type: 'LOAD_REPLAY',
-	summary
+	summary,
+	position
 });
 
-export const fetchReplay = gameId => ({
+export const fetchReplay = (gameId, position) => ({
 	type: 'FETCH_REPLAY',
-	gameId
+	gameId,
+	position
 });

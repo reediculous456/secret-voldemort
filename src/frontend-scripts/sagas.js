@@ -3,6 +3,7 @@ import buildEnhancedGameSummary from '../../models/game-summary/buildEnhancedGam
 import buildReplay from './replay/buildReplay';
 import { updateMidsection } from './actions/actions';
 import socket from './socket';
+import { findTickPos } from './replay/utils'
 
 function* fetchProfile(action) {
 	const { username } = action;
@@ -25,18 +26,30 @@ function* closeReplay() {
 }
 
 function* loadReplay(action) {
-	const { summary } = action;
+	const { summary, position } = action;
 
 	const game = buildEnhancedGameSummary(summary);
 	const replay = buildReplay(game);
 
 	socket.emit('openReplay', game.id);
 	yield put({ type: 'RECEIVE_REPLAY', replay, game });
+
+	if (position) {
+		yield put({
+			type: 'REPLAY_TO',
+			position: findTickPos(
+				replay,
+				position.turn,
+				position.phase
+			).valueOrElse(0)
+		});
+	}
+
 	yield put(updateMidsection('replay'));
 }
 
 function* fetchReplay(action) {
-	const { gameId } = action;
+	const { gameId, position } = action;
 
 	yield put({ type: 'REQUEST_REPLAY' });
 	yield put(updateMidsection('replay'));
@@ -44,7 +57,7 @@ function* fetchReplay(action) {
 	try {
 		const response = yield call(fetch, `/gameSummary?id=${gameId}`);
 		const summary = yield call([ response, 'json' ]);
-		yield put({ type: 'LOAD_REPLAY', summary });
+		yield put({ type: 'LOAD_REPLAY', summary, position });
 	} catch (err) {
 		yield put({ type: 'REPLAY_NOT_FOUND' });
 	}

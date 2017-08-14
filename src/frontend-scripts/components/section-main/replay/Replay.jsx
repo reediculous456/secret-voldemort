@@ -3,6 +3,7 @@ import React from 'react'; // eslint-disable-line no-unused-vars
 import { connect } from 'react-redux';
 import toGameInfo from '../../../replay/toGameInfo';
 import toDescription from '../../../replay/toDescription';
+import { findTickPos as _findTickPos } from '../../../replay/utils';
 import classnames from 'classnames';
 import { Map, List } from 'immutable';
 import { some, none, fromNullable } from 'option';
@@ -32,15 +33,7 @@ const buildPlayback = (replay, to) => {
 	 * HELPERS *
 	 ***********/
 
-	// (turnNum: Int, [phases: List[String] | phase: String]) => Int
-	const findTickPos = (turnNum, _phases) => {
-		const phases = List.isList(_phases) ? _phases : List([ _phases ]);
-
-		const i = ticks.findLastIndex(t =>
-			t.turnNum === turnNum && phases.includes(t.phase));
-
-		return i > -1 ? some(i) : none;
-	};
+	const findTickPos = _findTickPos.bind(null, ticks);
 
 	const bindTo = position => to.bind(null, position);
 

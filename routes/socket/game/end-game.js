@@ -41,6 +41,7 @@ const {sendInProgressGameUpdate} = require('../util.js'),
 		debug('Saving game: %O', summary);
 
 		updateProfiles(enhanced, { cache: true });
+		detectCheat(enhanced);
 		summary.save();
 		gameToSave.save();
 	};

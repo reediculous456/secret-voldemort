@@ -1,5 +1,5 @@
 /* eslint-disable spaced-comment */
-const { none } = require('option');
+const { none, some } = require('option');
 const { Range, List } = require('immutable');
 
 /**************************
@@ -31,6 +31,11 @@ exports.mapOpt2 = f => {
 	return (x, y) => x.flatMap(xx => y.map(yy => f(xx, yy)));
 };
 
+// (xs: List[A], predicate: A => Boolean) => Option[Int]
+exports.findIndexOpt = (xs, predicate) => {
+	const i = xs.findIndex(predicate);
+	return i === -1 ? none : some(i);
+};
 
 /*****************
  * GAME ENTITIES *
@@ -110,4 +115,9 @@ exports.objectContains = (target, subset) => {
 	return Object.keys(subset).reduce((acc, key) => (
 		acc && target[key] === subset[key]
 	), true);
+};
+
+// Date => String
+exports.formatDateString = date => {
+
 };

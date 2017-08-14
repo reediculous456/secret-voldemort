@@ -4,8 +4,15 @@ import _ from 'lodash';
 import $ from 'jquery';
 import {ADMINS} from '../../constants';
 import PropTypes from 'prop-types';
+import Table from '../reusable/Table.jsx';
+import { fetchReplay } from '../../actions/actions';
+import { connect } from 'react-redux';
 
-export default class Moderation extends React.Component {
+const mapDispatchToProps = dispatch => ({
+	fetchReplay: (gameId, position) => dispatch(fetchReplay(gameId, position))
+});
+
+class Moderation extends React.Component {
 	constructor() {
 		super();
 		this.leaveModeration = this.leaveModeration.bind(this);
@@ -19,7 +26,14 @@ export default class Moderation extends React.Component {
 			log: [],
 			playerListShown: true,
 			broadcastText: '',
-			playerInputText: ''
+			playerInputText: '',
+			flaggedGames: [{
+				_id: 'generic-game',
+				date: new Date().toString(),
+				reason: 'badPresident',
+				turn: 3,
+				phase: 'presidentLegislation'
+			}]
 		};
 	}
 
@@ -115,6 +129,7 @@ export default class Moderation extends React.Component {
 	renderModLog() {
 		return (
 			<div>
+				<h3>Moderation log</h3>
 				<table className="ui celled table">
 					<thead>
 						<tr>
@@ -130,6 +145,35 @@ export default class Moderation extends React.Component {
 						{this.state.log.map((report, index) => <tr key={index}><td>{report.modUserName}</td><td>{moment(new Date(report.date)).format('l')}</td><td>{report.actionTaken}</td><td>{report.actionTaken === 'comment' ? '' : report.userActedOn}</td><td>{report.ip}</td><td>{report.modNotes}</td></tr>)}
 					</tbody>
 				</table>
+			</div>
+		);
+	}
+
+	renderFlaggedGamesLog() {
+		const reason = {
+			badPresident: 'Liberal president passed 2r1b => 2r',
+			badChancellor: 'Liberal chancellor passed 1r1b => 1r'
+		};
+
+		const rows = this.state.flaggedGames.map(game => ({
+			onClick: this.props.fetchReplay.bind(null, game._id, {
+				turn: game.turn,
+				phase: game.phase
+			}),
+			cells: [
+				game.date,
+				reason[game.reason]
+			]
+		}));
+
+		return (
+			<div>
+				<h3>Flagged games</h3>
+				<Table
+					uiTable="selectable"
+					headers={[ 'Date', 'Reason' ]}
+					rows={rows}
+				/>
 			</div>
 		);
 	}
@@ -199,8 +243,7 @@ export default class Moderation extends React.Component {
 						}
 					})()}
 					<div className="modlog" style={{maxWidth: this.state.playerListShown ? '60%' : '100%'}}>
-						<h3>Moderation log</h3>
-						{this.renderModLog()}
+						{this.renderFlaggedGamesLog()}
 					</div>
 				</div>
 				<div className="ui basic fullscreen modal broadcastmodal" ref={c => {
@@ -226,3 +269,8 @@ Moderation.propTypes = {
 	socket: PropTypes.object,
 	onLeaveModeration: PropTypes.func
 };
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(Moderation);
