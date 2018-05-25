@@ -20,9 +20,12 @@ export default class Game extends React.Component {
 			playSound('alarm', 2400);
 		}
 
-		if ((userInfo.gameSettings && !userInfo.gameSettings.disableSounds) || !userInfo.gameSettings) {
+		if ((userInfo.gameSettings && userInfo.gameSettings.soundStatus !== 'off') || !userInfo.gameSettings) {
+			// const { soundStatus } = userInfo.gameSettings;
+			// const randomPack = !soundStatus ? `pack${Math.ceil(Math.random() >= 0.5)}` : null;
+
 			if (gameInfo.general.status === 'Dealing roles..' && prevProps.gameInfo.general.status !== 'Dealing roles..') {
-				playSound('shuffle', 3000);
+				playSound('shuffle', 'pack1', 3000);
 			}
 
 			if (gameInfo.gameState.audioCue === 'enactPolicy' && prevProps.gameInfo.gameState.audioCue !== 'enactPolicy') {

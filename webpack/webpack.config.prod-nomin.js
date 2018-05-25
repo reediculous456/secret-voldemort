@@ -1,5 +1,4 @@
 const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractSass = new ExtractTextPlugin({
 	filename: '../styles/style-main.css',
@@ -12,7 +11,6 @@ module.exports = {
 		filename: `bundle.js`,
 		path: path.resolve(__dirname, '../public/scripts')
 	},
-	plugins: [new UglifyJSPlugin()],
 	module: {
 		rules: [
 			{

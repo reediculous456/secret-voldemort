@@ -1459,7 +1459,9 @@ module.exports.handleUpdatedGameSettings = (socket, passport, data) => {
 			}
 
 			const user = userList.find(u => u.userName === passport.user);
-			if (user) user.blacklist = account.gameSettings.blacklist;
+			if (user) {
+				user.blacklist = account.gameSettings.blacklist;
+			}
 
 			if (
 				((data.isPrivate && !currentPrivate) || (!data.isPrivate && currentPrivate)) &&

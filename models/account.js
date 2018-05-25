@@ -23,7 +23,7 @@ const Account = new Schema({
 		disableConfetti: Boolean,
 		disableCrowns: Boolean,
 		disableSeasonal: Boolean,
-		disableSounds: Boolean,
+		soundStatus: String,
 		unbanTime: Date,
 		unTimeoutTime: Date,
 		fontSize: Number,

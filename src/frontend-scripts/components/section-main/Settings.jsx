@@ -5,9 +5,11 @@ import Modal from 'semantic-ui-modal';
 import Checkbox from 'semantic-ui-checkbox';
 import Dropzone from 'react-dropzone';
 import PropTypes from 'prop-types';
+import Dropdown from 'semantic-ui-dropdown';
 
 $.fn.checkbox = Checkbox;
 $.fn.modal = Modal;
+$.fn.dropdown = Dropdown;
 
 class Settings extends React.Component {
 	constructor() {
@@ -39,7 +41,6 @@ class Settings extends React.Component {
 			disableCrowns: '',
 			disableSeasonal: '',
 			disableElo: '',
-			disableSounds: '',
 			isPrivate: '',
 			failedNameChangeMessage: ''
 		};
@@ -61,8 +62,19 @@ class Settings extends React.Component {
 			disableConfetti: gameSettings.disableConfetti,
 			disableSeasonal: gameSettings.disableSeasonal,
 			disableElo: gameSettings.disableElo,
-			disableSounds: gameSettings.disableSounds,
 			isPrivate: gameSettings.isPrivate
+		});
+	}
+
+	componentDidMount() {
+		const self = this;
+
+		$('.ui.selection.dropdown').dropdown({
+			onChange(soundStatus) {
+				self.props.socket.emit('updateGameSettings', {
+					soundStatus
+				});
+			}
 		});
 	}
 
@@ -389,10 +401,16 @@ class Settings extends React.Component {
 								/>
 								<label />
 							</div>
-							<h4 className="ui header">Disable sounds</h4>
-							<div className="ui fitted toggle checkbox">
-								<input type="checkbox" name="sounds" checked={this.state.disableSounds} onChange={() => this.toggleGameSettings('disableSounds')} />
-								<label />
+							<h4 className="ui header">In game sounds</h4>
+							<div className="ui selection dropdown">
+								<input type="hidden" name="sound" />
+								<i className="dropdown icon" />
+								<div className="default text">Sound setting</div>
+								<div className="menu">
+									<div className="item">Pack 1</div>
+									<div className="item">Pack 2</div>
+									<div className="item">Off</div>
+								</div>
 							</div>
 							<h4 className="ui header" style={{ color: 'red' }}>
 								Private-games-only (this action will log you out, 18 hour cooldown)
