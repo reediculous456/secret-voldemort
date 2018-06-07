@@ -16,7 +16,10 @@ const {
 	handlePlayerReportDismiss,
 	handleUpdatedBio,
 	handleUpdatedRemakeGame,
-	handleUpdatedPlayerNote
+	handleUpdatedPlayerNote,
+	getModChats,
+	sendModChat,
+	getSpecificModChat
 } = require('./user-events');
 const {
 	sendPlayerNotes,
@@ -102,12 +105,24 @@ module.exports = () => {
 		// Instantly sends the userlist as soon as the websocket is created.
 		// For some reason, sending the userlist before this happens actually doesn't work on the client. The event gets in, but is not used.
 		socket.conn.on('upgrade', () => {
-			sendUserList(socket);
+			if (authenticated) {
+				sendUserList(socket);
+				getModChats(socket, passport.user);
+			}
 		});
 
 		socket
 			// user-events
 
+			.on('getModChat', () => {
+				if (authenticated) getModChats(socket, passport.user);
+			})
+			.on('sendModChat', data => {
+				if (authenticated) sendModChat(socket, passport.user, data);
+			})
+			.on('getSpecificModChat', data => {
+				if (authenticated) getSpecificModChat(socket, passport.user, data);
+			})
 			.on('disconnect', () => {
 				handleSocketDisconnect(socket);
 			})

@@ -20,7 +20,111 @@ const adjectives = require('../../utils/adjectives');
 const version = require('../../version');
 const { generateCombination } = require('gfycat-style-urls');
 const { MODERATORS, ADMINS, EDITORS } = require('../../src/frontend-scripts/constants');
+const AEM = [...MODERATORS, ...ADMINS, ...EDITORS];
 const { obfIP, expandAndSimplify } = require('./ip-obf');
+const ModMessage = require('../../models/modMessage');
+
+/**
+ * @param {object} socket - user socket reference.
+ * @param {string} user - user that wants their chat.
+ */
+module.exports.getModChats = (socket, user) => {
+	// Pre-authenticated
+	ModMessage.find({ $or: [{ user: user }, { moderator: user }] }).then(chats => {
+		const chatData = {};
+		chats.forEach(chat => {
+			if (chat.user === user) {
+				if (!chatData[chat.moderator]) chatData[chat.moderator] = [[chat.date, chat.from, chat.chat]];
+				else if (chat.isTerminator) chatData[chat.moderator] = null;
+				else chatData[chat.moderator].push([chat.date, chat.from, chat.chat]);
+			} else {
+				if (!chatData[chat.user]) chatData[chat.user] = [[chat.date, chat.from, chat.chat]];
+				else if (chat.isTerminator) chatData[chat.user] = null;
+				else chatData[chat.user].push([chat.date, chat.from, chat.chat]);
+			}
+		});
+		socket.emit('modChat', chatData);
+	});
+};
+
+/**
+ * @param {object} socket - user socket reference.
+ * @param {string} user - user that wants their chat.
+ * @param {object} data - data of chat being sent.
+ */
+module.exports.getSpecificModChat = (socket, user, data) => {
+	// Pre-authenticated
+	if (!AEM.includes(user)) return;
+
+	ModMessage.find({ user: data.user, moderator: data.moderator }).then(chats => {
+		const chatData = {};
+		chats.forEach(chat => {
+			if (!chatData[chat.moderator]) chatData = [[chat.date, chat.from, chat.chat]];
+			else if (chat.isTerminator) chatData = null;
+			else chatData.push([chat.date, chat.from, chat.chat]);
+		});
+		if (chatData) socket.emit('modChatUpdate', { other: [data.user, data.moderator], list: chatData });
+	});
+};
+
+/**
+ * @param {object} socket - user socket reference.
+ * @param {string} user - user sending the chat.
+ * @param {object} data - data of chat being sent.
+ */
+module.exports.sendModChat = (socket, user, data) => {
+	// Pre-authenticated
+	if (data.otherUser === user) return;
+
+	ModMessage.find({ $or: [{ user: user }, { moderator: user }] }).then(chats => {
+		const chatData = null;
+		let modIsMe = false;
+		chats.forEach(chat => {
+			if (chat.user === user) {
+				if (chat.moderator === data.otherUser) {
+					modIsMe = false;
+					if (!chatData) chatData = [[chat.date, chat.from, chat.chat]];
+					else if (chat.isTerminator) chatData = null;
+					else chatData.push([chat.date, chat.from, chat.chat]);
+				}
+			} else {
+				if (chat.user === data.otherUser) {
+					modIsMe = true;
+					if (!chatData) chatData = [[chat.date, chat.from, chat.chat]];
+					else if (chat.isTerminator) chatData = null;
+					else chatData.push([chat.date, chat.from, chat.chat]);
+				}
+			}
+		});
+		if (chatData || AEM.includes(user)) {
+			const chat = new ModMessage({
+				date: Date,
+				user: modIsMe ? data.otherUser : user,
+				moderator: modIsMe ? user : data.otherUser,
+				from: user,
+				chat: data.chat,
+				isTerminator: AEM.includes(user) ? data.terminator : false
+			});
+
+			chat.save(err => {
+				if (err) {
+					console.log(err, 'Failed to save moderative chat message');
+				}
+				const onlineSocketId = Object.keys(io.sockets.sockets).find(
+					socketId => io.sockets.sockets[socketId].handshake.session.passport && io.sockets.sockets[socketId].handshake.session.passport.user === data.otherUser
+				);
+				const other = onlineSocketId ? io.sockets.sockets[onlineSocketId] : null;
+				if (chat.isTerminator) {
+					socket.emit('modChatUpdate', { other: data.otherUser });
+					if (other) other.emit('modChatUpdate', { other: user });
+				} else {
+					socket.emit('modChatUpdate', { other: data.otherUser, list: chatData });
+					if (other) other.emit('modChatUpdate', { other: user, list: chatData });
+				}
+			});
+		}
+	});
+};
 
 /**
  * @param {object} game - game to act on.
@@ -1308,7 +1412,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data) => {
 		return;
 	}
 
-	if (!(MODERATORS.includes(passport.user) || ADMINS.includes(passport.user) || EDITORS.includes(passport.user))) {
+	if (!AEM.includes(passport.user)) {
 		if (player) {
 			if ((player.isDead && !game.gameState.isCompleted) || player.leftGame) {
 				return;
@@ -1560,7 +1664,7 @@ module.exports.handleModerationAction = (socket, passport, data, skipCheck) => {
 		socketId => io.sockets.sockets[socketId].handshake.session.passport && io.sockets.sockets[socketId].handshake.session.passport.user === data.userName
 	);
 
-	if (MODERATORS.includes(passport.user) || ADMINS.includes(passport.user) || EDITORS.includes(passport.user)) {
+	if (AEM.includes(passport.user)) {
 		if (data.isReportResolveChange) {
 			PlayerReport.findOne({ _id: data._id })
 				.then(report => {
