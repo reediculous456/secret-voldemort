@@ -36,7 +36,8 @@ export class App extends React.Component {
 
 		this.state = {
 			notesValue: '',
-			playerNotesValue: ''
+			playerNotesValue: '',
+			floatChat: []
 		};
 
 		this.prevHash = '';
@@ -148,13 +149,14 @@ export class App extends React.Component {
 		});
 
 		socket.on('modChat', chatData => {
-			this.props.modChat = chatData.map(chat, other => {
-				return { list: chat.list, visible: (this.props.modChat[other] ? chat.visible : false), updated: (this.props.modChat[other] ? chat.updated : true) };
-			});
+			this.setState({ floatChat: Object.keys(chatData).map(other => {
+				const chat = chatData[other];
+				return { list: chat, visible: (this.props.floatChat[other] ? this.props.floatChat[other].visible : false), updated: (this.props.floatChat[other] ? this.props.floatChat[other].updated : true) };
+			})});
 		});
 
 		socket.on('modChatUpdate', chatData => {
-			this.props.modChat[chatData.other] = { list: chatData.list, visible: (this.props.modChat[chatData.other] ? this.props.modChat[chatData.other].visible : false), updated: true };
+			this.props.floatChat[chatData.other] = { list: chatData.list, visible: (this.props.floatChat[chatData.other] ? this.props.floatChat[chatData.other].visible : false), updated: true };
 		});
 	}
 
