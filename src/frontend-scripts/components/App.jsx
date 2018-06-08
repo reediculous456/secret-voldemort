@@ -146,6 +146,14 @@ export class App extends React.Component {
 			userInfo.gameSettings.newReport = reportStatus;
 			dispatch(updateUser(userInfo));
 		});
+
+		socket.on('modChat', chatData => {
+			this.props.modChat = chatData;
+		});
+
+		socket.on('modChatUpdate', chatData => {
+			this.props.modChat[chatData.other] = chatData.list;
+		});
 	}
 
 	router() {
@@ -342,6 +350,7 @@ export class App extends React.Component {
 						socket={socket}
 						version={this.props.version}
 						gameList={this.props.gameList}
+						floatChat={this.props.modChat, socket, this.props.userList}
 					/>
 
 					{(() => {
@@ -374,7 +383,8 @@ App.propTypes = {
 	gameInfo: PropTypes.object,
 	gameList: PropTypes.array,
 	generalChats: PropTypes.object,
-	userList: PropTypes.object
+	userList: PropTypes.object,
+	floatChat: PropTypes.object
 };
 
 export default connect(select)(App);
