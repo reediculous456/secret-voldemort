@@ -148,11 +148,13 @@ export class App extends React.Component {
 		});
 
 		socket.on('modChat', chatData => {
-			this.props.modChat = chatData;
+			this.props.modChat = chatData.map(chat, other => {
+				return { list: chat.list, visible: (this.props.modChat[other] ? chat.visible : false), updated: (this.props.modChat[other] ? chat.updated : true) };
+			});
 		});
 
 		socket.on('modChatUpdate', chatData => {
-			this.props.modChat[chatData.other] = chatData.list;
+			this.props.modChat[chatData.other] = { list: chatData.list, visible: (this.props.modChat[chatData.other] ? this.props.modChat[chatData.other].visible : false), updated: true };
 		});
 	}
 
@@ -350,7 +352,7 @@ export class App extends React.Component {
 						socket={socket}
 						version={this.props.version}
 						gameList={this.props.gameList}
-						floatChat={this.props.modChat, socket, this.props.userList}
+						floatChat={this.props.modChat, socket, this.props.userList, this.props.userInfo}
 					/>
 
 					{(() => {
