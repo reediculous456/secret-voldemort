@@ -113,11 +113,11 @@ class Tracks extends React.Component {
 		if (game.rebalance7p) rebal += '7';
 		if (game.rebalance9p) rebal += '9';
 		const rebalTooltip = {
-			R6: 'Rebalanced 6 player games'
-			R7: 'Rebalanced 7 player games'
-			R9: 'Rebalanced 9 player games'
-			R67: 'Rebalanced 6 & 7 player games'
-			R69: 'Rebalanced 6 & 9 player games'
+			R6: 'Rebalanced 6 player games',
+			R7: 'Rebalanced 7 player games',
+			R9: 'Rebalanced 9 player games',
+			R67: 'Rebalanced 6 & 7 player games',
+			R69: 'Rebalanced 6 & 9 player games',
 			R679: 'Rebalanced 6, 7, & 9 player games'
 		};
 		rebalance69p = rebal === 'R' ? '' : rebal;
