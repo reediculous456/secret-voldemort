@@ -108,21 +108,20 @@ class Tracks extends React.Component {
 		let isVerifiedOnly;
 		let isVerifiedOnlyTooltip;
 
-		{
-			game.rebalance6p && game.rebalance7p && game.rebalance9p
-				? ((rebalance69p = <div> R679 </div>), (rebalance69pTooltip = 'Rebalanced 6, 7, & 9 player games'))
-				: game.rebalance6p && game.rebalance7p
-					? ((rebalance69p = <div> R67 </div>), (rebalance69pTooltip = 'Rebalanced 6 & 7 player games'))
-					: game.rebalance6p && game.rebalance9p
-						? ((rebalance69p = <div> R69 </div>), (rebalance69pTooltip = 'Rebalanced 6 & 9 player games'))
-						: game.rebalance7p && game.rebalance9p
-							? ((rebalance69p = <div> R79 </div>), (rebalance69pTooltip = 'Rebalanced 7 & 9 player games'))
-							: game.rebalance6p
-								? ((rebalance69p = <div> R6 </div>), (rebalance69pTooltip = 'Rebalanced 6 player games'))
-								: game.rebalance7p
-									? ((rebalance69p = <div> R7 </div>), (rebalance69pTooltip = 'Rebalanced 7 player games'))
-									: ((rebalance69p = <div> R9 </div>), (rebalance69pTooltip = 'Rebalanced 9 player games'));
-		}
+		let rebal = 'R';
+		if (game.rebalance6p) rebal += '6';
+		if (game.rebalance7p) rebal += '7';
+		if (game.rebalance9p) rebal += '9';
+		const rebalTooltip = {
+			R6: 'Rebalanced 6 player games'
+			R7: 'Rebalanced 7 player games'
+			R9: 'Rebalanced 9 player games'
+			R67: 'Rebalanced 6 & 7 player games'
+			R69: 'Rebalanced 6 & 9 player games'
+			R679: 'Rebalanced 6, 7, & 9 player games'
+		};
+		rebalance69p = rebal === 'R' ? '' : rebal;
+		rebalance69pTooltip = rebalTooltip[rebal] || '';
 
 		if (game.disableChat) {
 			disableChat = (

@@ -49,6 +49,11 @@ const SidebarGame = ({ game, socket }) => {
 		return str;
 	};
 
+	let rebal = 'R';
+	if (game.rebalance6p) rebal += '6';
+	if (game.rebalance7p) rebal += '7';
+	if (game.rebalance9p) rebal += '9';
+
 	return (
 		<div
 			data-uid={game.uid}
@@ -69,19 +74,7 @@ const SidebarGame = ({ game, socket }) => {
 							className="rebalance-game"
 							title="This is a rebalanced game - 6 player games start with a fascist policy enacted, 7 & 9 player games start with one less fascist policy."
 						>
-							{game.rebalance6p && game.rebalance7p && game.rebalance9p
-								? 'R679'
-								: game.rebalance6p && game.rebalance7p
-									? 'R67'
-									: game.rebalance6p && game.rebalance9p
-										? 'R69'
-										: game.rebalance7p && game.rebalance9p
-											? 'R79'
-											: game.rebalance6p
-												? 'R6'
-												: game.rebalance7p
-													? 'R7'
-													: 'R9'}
+							{rebal === 'R' ? '' : rebal}
 						</div>
 					)}
 					<div
