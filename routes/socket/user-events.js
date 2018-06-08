@@ -97,13 +97,14 @@ module.exports.sendModChat = (socket, user, data) => {
 			}
 		});
 		if (chatData || AEM.includes(user)) {
+			if (!chatData) modIsMe = true;
 			const chat = new ModMessage({
 				date: Date,
 				user: modIsMe ? data.otherUser : user,
 				moderator: modIsMe ? user : data.otherUser,
 				from: user,
 				chat: data.chat,
-				isTerminator: AEM.includes(user) ? data.terminator : false
+				isTerminator: modIsMe ? data.terminator : false
 			});
 
 			chat.save(err => {
