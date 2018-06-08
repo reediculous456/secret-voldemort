@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = ({ notesActive }) => ({ notesActive });
 
-class Gamechat extends React.Component {
+class Floatchat extends React.Component {
 	constructor() {
 		super();
 
@@ -177,11 +177,11 @@ class Gamechat extends React.Component {
 	}
 }
 
-Gamechat.propTypes = {
+Floatchat.propTypes = {
 	chatList: PropTypes.object,
 	socket: PropTypes.object,
 	userList: PropTypes.object,
 	userInfo: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Gamechat);
+export default connect(mapStateToProps, mapDispatchToProps)(Floatchat);
