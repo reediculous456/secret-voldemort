@@ -75,6 +75,9 @@ module.exports.getSpecificModChat = (socket, user, data) => {
 module.exports.sendModChat = (socket, user, data) => {
 	// Pre-authenticated
 	if (data.otherUser === user) return;
+	if (!AEM.includes(user)) {
+		// TODO: block event if they are mid-game
+	}
 
 	ModMessage.find({ $or: [{ user: user }, { moderator: user }] }).then(chats => {
 		const chatData = null;
@@ -99,7 +102,7 @@ module.exports.sendModChat = (socket, user, data) => {
 		if (chatData || AEM.includes(user)) {
 			if (!chatData) modIsMe = true;
 			const chat = new ModMessage({
-				date: Date,
+				date: new Date(),
 				user: modIsMe ? data.otherUser : user,
 				moderator: modIsMe ? user : data.otherUser,
 				from: user,

@@ -84,11 +84,12 @@ class Gamechat extends React.Component {
 
 		if (currentValue.length < 300 && currentValue && !$('.expando-container + div').hasClass('disabled')) {
 			const chat = {
-				chat: currentValue,
-				uid: gameInfo.general.uid
+				otherUser: otherUser,
+				chat: text,
+				terminator: false
 			};
 
-			this.props.socket.emit('addNewGameChat', chat);
+			this.props.socket.emit('sendModChat', chat);
 
 			this.gameChatInput.value = '';
 
