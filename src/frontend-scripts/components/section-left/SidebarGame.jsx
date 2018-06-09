@@ -52,7 +52,7 @@ const SidebarGame = ({ game, socket }) => {
 	let rebal = 'R';
 	if (game.rebalance6p) rebal += '6';
 	if (game.rebalance7p) rebal += '7';
-	if (game.rebalance9p) rebal += '9';
+	if (game.rebalance9p2f) rebal += '9';
 
 	return (
 		<div

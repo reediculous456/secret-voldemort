@@ -111,7 +111,7 @@ class Tracks extends React.Component {
 		let rebal = 'R';
 		if (game.rebalance6p) rebal += '6';
 		if (game.rebalance7p) rebal += '7';
-		if (game.rebalance9p) rebal += '9';
+		if (game.rebalance9p2f) rebal += '9';
 		const rebalTooltip = {
 			R6: 'Rebalanced 6 player games',
 			R7: 'Rebalanced 7 player games',
@@ -120,8 +120,11 @@ class Tracks extends React.Component {
 			R69: 'Rebalanced 6 & 9 player games',
 			R679: 'Rebalanced 6, 7, & 9 player games'
 		};
-		rebalance69p = rebal === 'R' ? '' : rebal;
-		rebalance69pTooltip = rebalTooltip[rebal] || '';
+		rebalance69p = (rebal === 'R') ? '' : rebal;
+		rebalance69pTooltip = rebalTooltip[rebal] ? rebalTooltip[rebal] : '';
+		rebalance69p = (
+			<div> {rebalance69p} </div>
+		);
 
 		if (game.disableChat) {
 			disableChat = (
