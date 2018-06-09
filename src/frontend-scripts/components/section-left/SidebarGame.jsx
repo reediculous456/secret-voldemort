@@ -69,7 +69,7 @@ const SidebarGame = ({ game, socket }) => {
 							P
 						</div>
 					)}
-					{(game.rebalance6p || game.rebalance7p || game.rebalance9p) && (
+					{(game.rebalance6p || game.rebalance7p || game.rebalance9p2f) && (
 						<div
 							className="rebalance-game"
 							title="This is a rebalanced game - 6 player games start with a fascist policy enacted, 7 & 9 player games start with one less fascist policy."
