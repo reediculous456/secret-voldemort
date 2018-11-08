@@ -21,6 +21,13 @@ import RightSidebar from './section-right/RightSidebar.jsx';
 import Menu from './menu/Menu.jsx';
 import DevHelpers from './DevHelpers.jsx';
 import '../../scss/style-dark.scss';
+import { simpleFingerprint, dataFingerprint } from '../fingerprint.js';
+setTimeout(() => {
+	console.log(simpleFingerprint());
+}, 2000);
+setTimeout(() => {
+	console.log(dataFingerprint());
+}, 4000);
 
 const select = state => state;
 
