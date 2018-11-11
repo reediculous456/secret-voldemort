@@ -218,6 +218,7 @@ export default class Moderation extends React.Component {
 			.sort((a, b) =>
 				(() => {
 					const getAmt = (a, b) => {
+						if (user.sortType === 'FP' && a.fp != b.fp) return a.fp > b.fp ? 1 : -1;
 						if (userSort.type === 'IP' && a.ip != b.ip) return a.ip > b.ip ? 1 : -1;
 						if (userSort.type === 'email' && a.email.toLowerCase() != b.email.toLowerCase()) return a.email > b.email ? 1 : -1;
 						return a.userName.toLowerCase() > b.userName.toLowerCase() ? 1 : -1;
