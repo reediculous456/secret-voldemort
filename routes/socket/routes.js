@@ -34,7 +34,7 @@ const {
 const { selectVoting, selectPresidentPolicy, selectChancellorPolicy, selectChancellorVoteOnVeto, selectPresidentVoteOnVeto } = require('./game/election');
 const { selectChancellor } = require('./game/election-util');
 const { selectSpecialElection, selectPartyMembershipInvestigate, selectPolicies, selectPlayerToExecute } = require('./game/policy-powers');
-const { games, emoteList } = require('./models');
+const { games, emoteList, userList } = require('./models');
 const Account = require('../../models/account');
 const { TOU_CHANGES } = require('../../src/frontend-scripts/constants.js');
 const { AEM_ALTS } = require('./report.js');
@@ -109,9 +109,12 @@ module.exports = (modUserNames, editorUserNames, adminUserNames) => {
 		}
 
 		let isRestricted = true;
+		let fpData;
 
 		const checkRestriction = account => {
 			if (!account || !passport || !passport.user || !socket) return;
+
+			// Terms of Use
 			const parseVer = ver => {
 				let vals = ver.split('.');
 				vals.forEach((v, i) => (vals[i] = parseInt(v)));
@@ -140,6 +143,10 @@ module.exports = (modUserNames, editorUserNames, adminUserNames) => {
 				socket.emit('touChange', TOU_CHANGES);
 				return true;
 			}
+
+			// Fingerprint
+			if (!fpData) return true;
+
 			// implement other restrictions as needed
 			return false;
 		};
@@ -169,6 +176,18 @@ module.exports = (modUserNames, editorUserNames, adminUserNames) => {
 						account.save();
 						isRestricted = checkRestriction(account);
 					});
+				}
+			})
+			.on('fingerprint', data => {
+				if (authenticated && isRestricted) {
+					const user = userList.find(user => user.userName === passport.user);
+					if (user) {
+						Account.findOne({ username: passport.user }).then(account => {
+							user.fpData = data;
+							fpData = data;
+							isRestricted = checkRestriction(account);
+						});
+					}
 				}
 			})
 			.on('handleUpdatedPlayerNote', data => {

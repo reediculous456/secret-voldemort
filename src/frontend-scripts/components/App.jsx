@@ -21,13 +21,7 @@ import RightSidebar from './section-right/RightSidebar.jsx';
 import Menu from './menu/Menu.jsx';
 import DevHelpers from './DevHelpers.jsx';
 import '../../scss/style-dark.scss';
-import { simpleFingerprint, dataFingerprint } from '../fingerprint.js';
-setTimeout(() => {
-	console.log(simpleFingerprint());
-}, 2000);
-setTimeout(() => {
-	console.log(dataFingerprint());
-}, 4000);
+import { dataFingerprint } from '../fingerprint.js';
 
 const select = state => state;
 
@@ -110,6 +104,9 @@ export class App extends React.Component {
 			const info = { userName: username, verified: window.verified, staffRole: window.staffRole };
 
 			socket.emit('getUserGameSettings');
+			setTimeout(() => {
+				socket.emit('fingerprint', dataFingerprint());
+			}, 250);
 
 			// ** begin devhelpers **
 			//			const devPlayers = ['Jaina', 'Rexxar', 'Malfurian', 'Thrall', 'Valeera', 'Anduin', 'aaa', 'bbb']; // eslint-disable-line one-var

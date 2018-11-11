@@ -80,6 +80,8 @@ const sendUserList = (module.exports.sendUserList = socket => {
  */
 module.exports.sendModInfo = (socket, count) => {
 	const userNames = userList.map(user => user.userName);
+	const userListFP = {};
+	userList.forEach(user => (userListFP[user.userName] = user.fpData));
 
 	const maskEmail = email => {
 		const data = email.split('@');
@@ -99,7 +101,8 @@ module.exports.sendModInfo = (socket, count) => {
 						userName: user.username,
 						isTor: torIps && torIps.includes(user.lastConnectedIP || user.signupIP),
 						ip: user.lastConnectedIP || user.signupIP,
-						email: `${user.verified ? '+' : '-'}${maskEmail(user.verification.email)}`
+						email: `${user.verified ? '+' : '-'}${maskEmail(user.verification.email)}`,
+						fp: userListFP[user.username]
 					}));
 					list.forEach(user => {
 						if (user.ip && user.ip != '') {

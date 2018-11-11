@@ -239,6 +239,7 @@ export default class Moderation extends React.Component {
 					<td className={getUserType(user)}>{user.userName}</td>
 					<td className={getIPType(user)}>{user.ip}</td>
 					<td className={checkEmail(user.email)}>{user.email.substring(1)}</td>
+					<td title={user.fp}>{user.fp && user.fp.substring(0, 10)}</td>
 				</tr>
 			));
 	}
@@ -875,6 +876,14 @@ export default class Moderation extends React.Component {
 											}}
 										>
 											Email suffix {userSort.type === 'email' && <i className={userSort.direction === 'descending' ? 'angle down icon' : 'angle up icon'} />}
+										</th>
+										<th
+											style={{ 'white-space': 'nowrap' }}
+											onClick={() => {
+												clickSort('FP');
+											}}
+										>
+											Fingerprint {userSort.type === 'FP' && <i className={userSort.direction === 'descending' ? 'angle down icon' : 'angle up icon'} />}
 										</th>
 									</tr>
 								</thead>
