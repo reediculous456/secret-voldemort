@@ -1632,9 +1632,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, modUserNames, edi
 			sendPlayerChatUpdate(game, data);
 			return;
 		}
-	}
 
-	if (AEM) {
 		const aemSkip = /forceskip (\d{1,2})/i.exec(chat);
 		if (aemSkip) {
 			if (player) {
@@ -1654,15 +1652,11 @@ module.exports.handleAddNewGameChat = (socket, passport, data, modUserNames, edi
 			let chancellor = -1;
 			let currentPlayers = [];
 			for (let i = 0; i < game.private.seatedPlayers.length; i++) {
-				if (game.private.seatedPlayers[i].isDead) {
-					currentPlayers[i] = false;
-				} else if (i === game.gameState.previousElectedGovernment[0] && game.general.livingPlayerCount > 5) {
-					currentPlayers[i] = false;
-				} else if (i === game.gameState.previousElectedGovernment[1]) {
-					currentPlayers[i] = false;
-				} else {
-					currentPlayers[i] = true;
-				}
+				currentPlayers[i] = !(
+					game.private.seatedPlayers[i].isDead ||
+					(i === game.gameState.previousElectedGovernment[0] && game.general.livingPlayerCount > 5) ||
+					i === game.gameState.previousElectedGovernment[1]
+				);
 			}
 			currentPlayers[affectedPlayerNumber] = false;
 			let counter = affectedPlayerNumber + 1;
