@@ -174,16 +174,16 @@ class Gamechat extends React.Component {
 				});
 			}
 		}
-		const now = new Date().getTime();
+		// const now = new Date().getTime();
 
-		if (userInfo.isSeated && (now - isTyping[userInfo.userName] > 1000 || !isTyping[userInfo.userName])) {
-			updateIsTyping();
-			socket.emit('updateTyping', {
-				userName: userInfo.userName,
-				lastTypingTime: now,
-				uid: gameInfo.general.uid
-			});
-		}
+		// if (userInfo.isSeated && (now - isTyping[userInfo.userName] > 1000 || !isTyping[userInfo.userName])) {
+		// 	updateIsTyping();
+		// 	socket.emit('updateTyping', {
+		// 		userName: userInfo.userName,
+		// 		lastTypingTime: now,
+		// 		uid: gameInfo.general.uid
+		// 	});
+		// }
 	};
 
 	chatDisabled = () => {
@@ -311,7 +311,7 @@ class Gamechat extends React.Component {
 	}
 
 	isPlayerInGame(players, username) {
-		players.map( player => {
+		players.map(player => {
 			if (player.userName === username) {
 				return true;
 			}
@@ -564,9 +564,9 @@ class Gamechat extends React.Component {
 								chat.previousSeasonAward &&
 								!isBlind &&
 								renderPreviousSeasonAward(chat.previousSeasonAward)}
-							{!(gameSettings && Object.keys(gameSettings).length && gameSettings.disableCrowns) &&
-								chat.specialTournamentStatus &&
-								!isBlind && <span title="This player was in the top 3 of the winter 2019 tournament" className="crown-icon" />}
+							{!(gameSettings && Object.keys(gameSettings).length && gameSettings.disableCrowns) && chat.specialTournamentStatus && !isBlind && (
+								<span title="This player was in the top 3 of the winter 2019 tournament" className="crown-icon" />
+							)}
 							<span
 								className={
 									!playerListPlayer || (gameSettings && gameSettings.disablePlayerColorsInChat) || isBlind
@@ -762,7 +762,12 @@ class Gamechat extends React.Component {
 							style={{ color: showFullChat ? '#4169e1' : 'indianred' }}
 						/>
 					</a>
-					{!this.isPlayerInGame(gameInfo.publicPlayersState, userInfo.username) && isStaff && gameInfo && gameInfo.gameState && gameInfo.gameState.isStarted && this.renderModEndGameButtons()}
+					{!this.isPlayerInGame(gameInfo.publicPlayersState, userInfo.username) &&
+						isStaff &&
+						gameInfo &&
+						gameInfo.gameState &&
+						gameInfo.gameState.isStarted &&
+						this.renderModEndGameButtons()}
 					{!this.isPlayerInGame(gameInfo.publicPlayersState, userInfo.username) && isStaff && gameInfo && gameInfo.gameState && gameInfo.gameState.isStarted && (
 						<div>
 							<div className="ui button primary" onClick={() => modGetCurrentVotes()} style={{ width: '60px' }}>
@@ -1020,7 +1025,7 @@ class Gamechat extends React.Component {
 								) {
 									return (
 										<div className="claim-button" title="Click here to make a claim in chat" onClick={this.handleClickedClaimButton}>
-											<span style={{padding: '5px'}}>Claim</span>
+											<span style={{ padding: '5px' }}>Claim</span>
 										</div>
 									);
 								}
@@ -1148,7 +1153,7 @@ Gamechat.propTypes = {
 	allEmotes: PropTypes.array,
 	updateIsTyping: PropTypes.func,
 	notesActive: PropTypes.bool,
-	toggleNotes: PropTypes.func,
+	toggleNotes: PropTypes.func
 };
 
 const GamechatContainer = props => (
