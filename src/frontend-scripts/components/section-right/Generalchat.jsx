@@ -326,7 +326,7 @@ export default class Generalchat extends React.Component {
 				<section className="segment chats">
 					{!this.state.discordEnabled && this.renderSticky()}
 					{this.state.discordEnabled ? (
-						<embed height="100%" width="100%" src="https://discord.gg/secrethitlerio" />
+						<embed height="100%" width="100%" src="https://discord.gg/secretvoldemortio" />
 					) : (
 						<Scrollbars
 							ref={c => (this.scrollbar = c)}

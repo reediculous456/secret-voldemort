@@ -1,7 +1,7 @@
-// hitler elected
+// voldemort elected
 // also a top deck happens
 module.exports = {
-	_id: 'hitler-elected-5p',
+	_id: 'voldemort-elected-5p',
 	date: new Date(),
 	gameSetting: {
 		rebalance6p: false,
@@ -82,7 +82,7 @@ module.exports = {
 	players: [
 		{
 			username: 'Uther',
-			role: 'hitler'
+			role: 'voldemort'
 		},
 		{
 			username: 'Jaina',

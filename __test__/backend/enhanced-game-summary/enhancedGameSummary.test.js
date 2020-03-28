@@ -4,12 +4,12 @@ import '../../matchers';
 
 // mock game tests
 import testGenericGame from './testGenericGame';
-import testP5HitlerElected from './testP5HitlerElected';
-import testP7HitlerKilled from './testP7HitlerKilled';
+import testP5VoldemortElected from './testP5VoldemortElected';
+import testP7VoldemortKilled from './testP7VoldemortKilled';
 import testP7LiberalWin from './testP7LiberalWin';
 import testVeto from './testVeto';
 import testVeto2 from './testVeto2';
-import testHitlerKilledLiberalLoss from './testHitlerKilledLiberalLoss';
+import testVoldemortKilledLiberalLoss from './testVoldemortKilledLiberalLoss';
 
 describe('build enhanced game summary', () => {
 	const game = buildEnhancedGameSummary(mockGameSummary);
@@ -49,11 +49,11 @@ describe('build enhanced game summary', () => {
 
 	describe('it should work for', () => {
 		testGenericGame();
-		testP5HitlerElected();
-		testP7HitlerKilled();
+		testP5VoldemortElected();
+		testP7VoldemortKilled();
 		testP7LiberalWin();
 		testVeto();
 		testVeto2();
-		testHitlerKilledLiberalLoss();
+		testVoldemortKilledLiberalLoss();
 	});
 });

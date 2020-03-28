@@ -12,7 +12,7 @@ if (![2, 3, 5, 6].includes(process.argv.length)) {
 }
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://localhost:27017/secret-voldemort-app`, { useNewUrlParser: true });
 
 const now = new Date();
 console.log('Starting at', now);

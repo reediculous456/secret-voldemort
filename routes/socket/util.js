@@ -194,7 +194,7 @@ module.exports.destroySession = username => {
 			return;
 		}
 		mongoClient
-			.db('secret-hitler-app')
+			.db('secret-voldemort-app')
 			.collection('sessions')
 			.findOneAndDelete({ 'session.passport.user': username }, err => {
 				if (err) {

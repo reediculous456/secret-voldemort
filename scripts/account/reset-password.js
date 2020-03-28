@@ -3,7 +3,7 @@ const Account = require('../../models/account');
 
 if (process.argv.length === 3) {
 	mongoose.Promise = global.Promise;
-	mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`);
+	mongoose.connect(`mongodb://localhost:27017/secret-voldemort-app`);
 	const username = process.argv[2];
 	const user = Account.findOne({ username });
 	user.setPassword('ChangeMe123', () => {

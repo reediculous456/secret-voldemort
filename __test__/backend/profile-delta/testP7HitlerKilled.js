@@ -1,11 +1,11 @@
 import { profileDelta } from '../../../models/profile/utils';
 import buildEnhancedGameSummary from '../../../models/game-summary/buildEnhancedGameSummary';
-import { p7HitlerKilled } from '../../mocks';
+import { p7VoldemortKilled } from '../../mocks';
 
 export default () => {
-	const game = buildEnhancedGameSummary(p7HitlerKilled);
+	const game = buildEnhancedGameSummary(p7VoldemortKilled);
 
-	describe('hitler killed, 7p', () => {
+	describe('voldemort killed, 7p', () => {
 		it('Thrall', () => {
 			const delta = profileDelta('Thrall', game);
 

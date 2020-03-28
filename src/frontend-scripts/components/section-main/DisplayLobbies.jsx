@@ -191,7 +191,7 @@ const DisplayLobbies = props => {
 
 		if (game.flappyMode && !game.flappyOnlyMode) {
 			flappyMode = <i className="plane icon" />;
-			flappyModeTooltip = 'COMING SOON: Flappy Mode - sudden death games are resolved with a game of Flappy Hitler';
+			flappyModeTooltip = 'COMING SOON: Flappy Mode - sudden death games are resolved with a game of Flappy Voldemort';
 		}
 
 		if (game.flappyOnlyMode) {

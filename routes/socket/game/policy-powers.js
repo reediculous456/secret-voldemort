@@ -765,7 +765,7 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 					game.private.hiddenInfoChat.push(modOnlyChat);
 					sendInProgressModChatUpdate(game, modOnlyChat);
 
-					if (!game.general.disableGamechat && !(game.private.seatedPlayers[playerIndex].role.cardName === 'hitler' && president.role.team === 'fascist')) {
+					if (!game.general.disableGamechat && !(game.private.seatedPlayers[playerIndex].role.cardName === 'voldemort' && president.role.team === 'fascist')) {
 						president.playersState[playerIndex].nameStatus = playersTeam;
 					}
 					game.private.invIndex = playerIndex;
@@ -988,7 +988,7 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 
 					if (
 						!game.general.disableGamechat &&
-						!(game.private.seatedPlayers[presidentIndex].role.cardName === 'hitler' && targetPlayer.role.team === 'fascist')
+						!(game.private.seatedPlayers[presidentIndex].role.cardName === 'voldemort' && targetPlayer.role.team === 'fascist')
 					) {
 						targetPlayer.playersState[presidentIndex].nameStatus = playersTeam;
 					}
@@ -1176,9 +1176,9 @@ module.exports.executePlayer = game => {
 				(player, index) =>
 					index !== presidentIndex &&
 					!seatedPlayers[index].isDead &&
-					((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'hitler')) ||
-						(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'hitler')) ||
-						(game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'hitler'))
+					((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'voldemort'))
 			)
 			.forEach(player => {
 				player.notificationStatus = 'notification';
@@ -1191,9 +1191,9 @@ module.exports.executePlayer = game => {
 					(player, i) =>
 						i !== presidentIndex &&
 						!seatedPlayers[i].isDead &&
-						((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'hitler')) ||
-							(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'hitler')) ||
-							(game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'hitler'))
+						((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'voldemort'))
 				)
 				.map(player => seatedPlayers.indexOf(player))
 		];
@@ -1234,7 +1234,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 	if (
 		playerIndex === presidentIndex ||
 		selectedPlayer.isDead ||
-		(!game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[playerIndex].role.cardName === 'hitler')
+		(!game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
 	) {
 		return;
 	}
@@ -1318,14 +1318,14 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 				game.general.livingPlayerCount--;
 				sendInProgressGameUpdate(game, true);
 
-				if (selectedPlayer.role.cardName === 'hitler') {
+				if (selectedPlayer.role.cardName === 'voldemort') {
 					const chat = {
 						timestamp: new Date(),
 						gameChat: true,
 						chat: [
 							{
-								text: 'Hitler',
-								type: 'hitler'
+								text: 'Voldemort',
+								type: 'voldemort'
 							},
 							{ text: '  has been executed.' }
 						]
@@ -1347,7 +1347,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 								player.cardStatus.cardDisplayed = true;
 								player.cardStatus.cardBack = seatedPlayers[i].role;
 							});
-							game.gameState.audioCue = 'hitlerShot';
+							game.gameState.audioCue = 'voldemortShot';
 							sendInProgressGameUpdate(game);
 						},
 						process.env.NODE_ENV === 'development' ? 100 : 1000
@@ -1399,7 +1399,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 									player.cardStatus.cardDisplayed = true;
 									player.cardStatus.cardBack = seatedPlayers[i].role;
 								});
-								game.gameState.audioCue = 'hitlerShot';
+								game.gameState.audioCue = 'voldemortShot';
 								sendInProgressGameUpdate(game);
 							},
 							process.env.NODE_ENV === 'development' ? 100 : 1000
@@ -1427,8 +1427,8 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 								gameChat: true,
 								chat: [
 									{
-										text: 'Hitler',
-										type: 'hitler'
+										text: 'Voldemort',
+										type: 'voldemort'
 									},
 									{
 										text: ' and one '

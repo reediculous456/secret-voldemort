@@ -145,20 +145,20 @@ module.exports.setVerify = ({ username, email, res, isResetPassword }) => {
 		// console.log(`localhost:8080/${isResetPassword ? 'reset-password' : 'verify-account'}/${username}/${token}`);
 
 		nmMailgun.sendMail({
-			from: 'SH.io accounts <donotreply@secrethitler.io>',
+			from: 'SV.io accounts <donotreply@secretvoldemort.io>',
 			html: isResetPassword ? resetTemplate({ username, token }) : verifyTemplate({ username, token }),
 			text: isResetPassword
-				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://secrethitler.io/reset-password/${username}/${token}.`
-				: `Hello ${username}, a request has been made to verify your account - go to the address below to verify it. https://secrethitler.io/verify-account/${username}/${token}`,
+				? `Hello ${username}, a request has been made to change your password - go to the address below to change your password. https://secretvoldemort.io/reset-password/${username}/${token}.`
+				: `Hello ${username}, a request has been made to verify your account - go to the address below to verify it. https://secretvoldemort.io/verify-account/${username}/${token}`,
 			to: email,
 			subject: isResetPassword ? 'SH.io - reset your password' : 'SH.io - verify your account'
 		});
 
 		// nmMailgun.sendMail({
-		// 	from: 'Secret Hitler.io <donotreply@secrethitler.io>',
+		// 	from: 'Secret Voldemort.io <donotreply@secretvoldemort.io>',
 		// 	html: isResetPassword ? resetTemplate({ username, token }) : verifyTemplate({ username, token }),
 		// 	to: email,
-		// 	subject: 'Secret Hitler IO - verify your account',
+		// 	subject: 'Secret Voldemort IO - verify your account',
 		// 	'h:Reply-To': 'chris.v.ozols@gmail.com'
 		// });
 

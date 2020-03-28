@@ -11,7 +11,7 @@ module.exports.makeReport = (data, game, type = 'report') => {
 
 	if (type === 'ping') {
 		report = JSON.stringify({
-			content: `${process.env.DISCORDMODPING}\n__**Player**__: ${player} \n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secrethitler.io/game/#/table/${uid}>**`,
+			content: `${process.env.DISCORDMODPING}\n__**Player**__: ${player} \n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secretvoldemort.io/game/#/table/${uid}>**`,
 			username: '@Mod Ping',
 			avatar_url: 'https://cdn.discordapp.com/emojis/612042360318328842.png?v=1'
 		});
@@ -38,7 +38,7 @@ module.exports.makeReport = (data, game, type = 'report') => {
 
 	if (type === 'reportdelayed') {
 		report = JSON.stringify({
-			content: `${process.env.DISCORDMODPING} - **AEM DELAYED**\n__**Player**__: ${player} {${seat}}\n__**Role**__: ${role}\n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secrethitler.io/game/#/table/${uid}>**`,
+			content: `${process.env.DISCORDMODPING} - **AEM DELAYED**\n__**Player**__: ${player} {${seat}}\n__**Role**__: ${role}\n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secretvoldemort.io/game/#/table/${uid}>**`,
 			username: 'Auto Report',
 			avatar_url: 'https://cdn.discordapp.com/emojis/230161421336313857.png?v=1'
 		});
@@ -46,7 +46,7 @@ module.exports.makeReport = (data, game, type = 'report') => {
 
 	if (type === 'modchatdelayed') {
 		report = JSON.stringify({
-			content: `${process.env.DISCORDMODPING} - **AEM DELAYED**\n__**Member**__: ${player} \n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secrethitler.io/game/#/table/${uid}>**`,
+			content: `${process.env.DISCORDMODPING} - **AEM DELAYED**\n__**Member**__: ${player} \n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secretvoldemort.io/game/#/table/${uid}>**`,
 			username: 'Mod Chat',
 			avatar_url: 'https://cdn.discordapp.com/emojis/230161421311148043.png?v=1'
 		});
@@ -54,7 +54,7 @@ module.exports.makeReport = (data, game, type = 'report') => {
 
 	if (type === 'modchat') {
 		report = JSON.stringify({
-			content: `${process.env.DISCORDMODPING}\n__**Member**__: ${player} \n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secrethitler.io/game/#/table/${uid}>**`,
+			content: `${process.env.DISCORDMODPING}\n__**Member**__: ${player} \n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secretvoldemort.io/game/#/table/${uid}>**`,
 			username: 'Mod Chat',
 			avatar_url: 'https://cdn.discordapp.com/emojis/230161421311148043.png?v=1'
 		});
@@ -62,7 +62,7 @@ module.exports.makeReport = (data, game, type = 'report') => {
 
 	if (type === 'report') {
 		report = JSON.stringify({
-			content: `${process.env.DISCORDMODPING}\n__**Player**__: ${player} {${seat}}\n__**Role**__: ${role}\n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secrethitler.io/game/#/table/${uid}>**`,
+			content: `${process.env.DISCORDMODPING}\n__**Player**__: ${player} {${seat}}\n__**Role**__: ${role}\n__**Situation**__: ${situation}\n__**Election #**__: ${election}\n__**Game Type**__: ${gameType}\n**<https://secretvoldemort.io/game/#/table/${uid}>**`,
 			username: 'Auto Report',
 			avatar_url: 'https://cdn.discordapp.com/emojis/230161421336313857.png?v=1'
 		});

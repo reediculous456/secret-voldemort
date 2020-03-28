@@ -1,11 +1,11 @@
 /* eslint-disable */
 // ==UserScript==
-// @name         Socket Hitler
+// @name         Socket Voldemort
 // @namespace    http://tampermonkey.net/
 // @version      6.7
 // @description  This Machine Kills Fascists
 // @author       Bot
-// @match        https://secrethitler.io/*
+// @match        https://secretvoldemort.io/*
 // @match        http://localhost:8080/*
 // @grant        none
 // ==/UserScript==

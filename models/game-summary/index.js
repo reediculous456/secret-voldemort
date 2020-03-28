@@ -81,7 +81,7 @@ const gameSummary = new Schema({
 	customGameSettings: {
 		enabled: Boolean,
 		powers: Array, // [power x5, string or null]
-		hitlerZone: Number,
+		voldemortZone: Number,
 		vetoZone: Number,
 		fascistCount: Number,
 		hitKnowsFas: Boolean,

@@ -9,7 +9,7 @@ export default () => {
 		const game = buildEnhancedGameSummary(p7LiberalWin);
 		const { turns } = game;
 
-		it('last turn should have hitler elected', () => {
+		it('last turn should have voldemort elected', () => {
 			expect(turns.last().isGameEndingPolicyEnacted).toBe(true);
 			expect(game.winningTeam).toBe('liberal');
 		});

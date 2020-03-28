@@ -1,10 +1,8 @@
 /* TEAM */
-Author: Chris Ozols
-Design: Chris Ozols
-Contact: chris.v.ozols@gmail.com
+Author: Wesley Reed
+Design: Weslet Reed
 IDE: Visual Studio Code
-Twitter: https://twitter.com/cozuya
-Location: Minneapolis, MN, USA
+Location: Cincinnati, OH, USA
 
 /* SITE */
 Language: English
@@ -14,6 +12,6 @@ Back end: Node, Express, Pug, Passport, Mongodb with Mongoose, SocketIO, Lodash.
 Build: Babel, Webpack.
 
 /* ATTRIBUTION */
-Secret Hitler is designed by Max Temkin (Cards Against Humanity, Humans vs. Zombies) Mike Boxleiter (Solipskier, TouchTone), Tommy Maranges (Philosophy Bro) and illustrated by Mackenzie Schubert (Letter Tycoon, Penny Press).
+Secret Voldemort is designed by Max Temkin (Cards Against Humanity, Humans vs. Zombies) Mike Boxleiter (Solipskier, TouchTone), Tommy Maranges (Philosophy Bro) and illustrated by Mackenzie Schubert (Letter Tycoon, Penny Press).
 
 This game is attributed as per the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license - https://creativecommons.org/licenses/by-nc-sa/4.0/

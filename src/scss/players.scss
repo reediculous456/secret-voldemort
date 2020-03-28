@@ -247,11 +247,11 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 			.card.fascist5 {
 				background-image: url('../../public/images/cards/fascist5.png');
 			}
-			.card.hitler0 {
-				background-image: url('../../public/images/cards/hitler0.png');
+			.card.voldemort0 {
+				background-image: url('../../public/images/cards/voldemort0.png');
 			}
-			.card.hitler1 {
-				background-image: url('../../public/images/cards/hitler1.png');
+			.card.voldemort1 {
+				background-image: url('../../public/images/cards/voldemort1.png');
 			}
 			.card.ballot {
 				background-image: url('../../public/images/cards/ballot.png');
@@ -308,8 +308,8 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 		.player-number.fascist {
 			color: #c36563;
 		}
-		.player-name.hitler,
-		.player-number.hitler {
+		.player-name.voldemort,
+		.player-number.voldemort {
 			color: #be0804;
 		}
 	}
@@ -329,7 +329,7 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 	.player-container.fascist::after {
 		box-shadow: 0 0 4px 4px #c36563;
 	}
-	.player-container.hitler::after,
+	.player-container.voldemort::after,
 	.player-container.danger::after {
 		box-shadow: 0 0 4px 4px #be0804;
 	}

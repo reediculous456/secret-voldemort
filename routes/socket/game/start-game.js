@@ -17,7 +17,7 @@ const beginGame = game => {
 	const { customGameSettings } = game;
 	if (!customGameSettings.enabled) {
 		// Standard game, this object needs populating.
-		customGameSettings.hitlerZone = 3;
+		customGameSettings.voldemortZone = 3;
 		customGameSettings.vetoZone = 5;
 		customGameSettings.trackState = { lib: 0, fas: 0 };
 		customGameSettings.deckState = { lib: 6, fas: 11 };
@@ -45,7 +45,7 @@ const beginGame = game => {
 
 	const roles = [
 		{
-			cardName: 'hitler',
+			cardName: 'voldemort',
 			icon: 0,
 			team: 'fascist'
 		}
@@ -103,7 +103,7 @@ const beginGame = game => {
 						text: 'The game begins and you receive the '
 					},
 					{
-						text: player.role.cardName === 'hitler' ? 'hitler' : player.role.cardName,
+						text: player.role.cardName === 'voldemort' ? 'voldemort' : player.role.cardName,
 						type: player.role.cardName
 					},
 					{
@@ -139,7 +139,7 @@ const beginGame = game => {
 					text: ' is assigned the '
 				},
 				{
-					text: player.role.cardName === 'hitler' ? 'hitler' : player.role.cardName,
+					text: player.role.cardName === 'voldemort' ? 'voldemort' : player.role.cardName,
 					type: player.role.cardName
 				},
 				{
@@ -219,9 +219,9 @@ const beginGame = game => {
 	];
 
 	sendInProgressGameUpdate(game);
-	const hitlerPlayer = game.private.seatedPlayers.find(player => player.role.cardName === 'hitler');
+	const voldemortPlayer = game.private.seatedPlayers.find(player => player.role.cardName === 'voldemort');
 
-	if (!hitlerPlayer) {
+	if (!voldemortPlayer) {
 		return;
 	}
 
@@ -324,16 +324,16 @@ const beginGame = game => {
 								text: 'You see that '
 							},
 							{
-								text: 'hitler',
-								type: 'hitler'
+								text: 'voldemort',
+								type: 'voldemort'
 							},
 							{
 								text: ' in this game is '
 							},
 							{
 								text: game.general.blindMode
-									? `{${seatedPlayers.indexOf(hitlerPlayer) + 1}}`
-									: `${hitlerPlayer.userName} {${seatedPlayers.indexOf(hitlerPlayer) + 1}}`,
+									? `{${seatedPlayers.indexOf(voldemortPlayer) + 1}}`
+									: `${voldemortPlayer.userName} {${seatedPlayers.indexOf(voldemortPlayer) + 1}}`,
 								type: 'player'
 							}
 						]
@@ -362,10 +362,10 @@ const beginGame = game => {
 						player.gameChats.push(chat);
 					}
 
-					player.playersState[seatedPlayers.indexOf(hitlerPlayer)].notificationStatus = 'hitler';
-					player.playersState[seatedPlayers.indexOf(hitlerPlayer)].nameStatus = 'hitler';
-				} else if (cardName === 'hitler') {
-					player.playersState[seatedPlayers.indexOf(player)].nameStatus = 'hitler';
+					player.playersState[seatedPlayers.indexOf(voldemortPlayer)].notificationStatus = 'voldemort';
+					player.playersState[seatedPlayers.indexOf(voldemortPlayer)].nameStatus = 'voldemort';
+				} else if (cardName === 'voldemort') {
+					player.playersState[seatedPlayers.indexOf(player)].nameStatus = 'voldemort';
 
 					if (customGameSettings.hitKnowsFas) {
 						if (customGameSettings.fascistCount == 1) {
@@ -536,7 +536,7 @@ const beginGame = game => {
 			continue;
 		}
 		if (process.env.NODE_ENV !== 'development') {
-			io.sockets.sockets[affectedSocketId].emit('pingPlayer', 'Secret Hitler IO: The game has started!');
+			io.sockets.sockets[affectedSocketId].emit('pingPlayer', 'Secret Voldemort IO: The game has started!');
 		}
 	}
 };

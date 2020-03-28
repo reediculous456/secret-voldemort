@@ -48,7 +48,7 @@ export default class Creategame extends React.Component {
 				enabled: false,
 				// Valid powers: investigate, deckpeek, election, bullet; null for no power
 				powers: [null, null, null, null, null], // last "power" is always a fas victory
-				hitlerZone: 3, // 1-5
+				voldemortZone: 3, // 1-5
 				vetoZone: 5, // 1-5, must be larger than fas track state
 				fascistCount: 1, // 1-3, does not include hit
 				hitKnowsFas: false,
@@ -424,7 +424,7 @@ export default class Creategame extends React.Component {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
-						hitlerZone: 3, // 1-5
+						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
@@ -462,7 +462,7 @@ export default class Creategame extends React.Component {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
-						hitlerZone: 3, // 1-5
+						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
@@ -500,7 +500,7 @@ export default class Creategame extends React.Component {
 						enabled: true,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: ['bullet', 'bullet', 'bullet', 'bullet', 'bullet'], // last "power" is always a fas victory
-						hitlerZone: 4, // 1-5
+						voldemortZone: 4, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
@@ -512,7 +512,7 @@ export default class Creategame extends React.Component {
 				break;
 			case '2R1H':
 				this.setState({
-					gameName: '2 Rooms 1 Hitler',
+					gameName: '2 Rooms 1 Voldemort',
 					sliderValues: [7, 7],
 					experiencedmode: true,
 					disablechat: true,
@@ -539,7 +539,7 @@ export default class Creategame extends React.Component {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
-						hitlerZone: 3, // 1-5
+						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
@@ -578,7 +578,7 @@ export default class Creategame extends React.Component {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
-						hitlerZone: 3, // 1-5
+						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
@@ -617,7 +617,7 @@ export default class Creategame extends React.Component {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
-						hitlerZone: 3, // 1-5
+						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
@@ -656,7 +656,7 @@ export default class Creategame extends React.Component {
 						enabled: true,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: ['investigate', 'reverseinv', 'investigate', 'reverseinv', 'investigate'], // last "power" is always a fas victory
-						hitlerZone: 3, // 1-5
+						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
@@ -695,7 +695,7 @@ export default class Creategame extends React.Component {
 						enabled: true,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: ['bullet', 'bullet', 'bullet', 'bullet', 'bullet'], // last "power" is always a fas victory
-						hitlerZone: 4, // 1-5
+						voldemortZone: 4, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 2, // 1-3, does not include hit
 						hitKnowsFas: true,
@@ -734,7 +734,7 @@ export default class Creategame extends React.Component {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
-						hitlerZone: 3, // 1-5
+						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
 						fascistCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
@@ -754,9 +754,9 @@ export default class Creategame extends React.Component {
 		this.setState({ casualgame: true, customGameSettings });
 	};
 
-	sliderHitlerZone = val => {
+	sliderVoldemortZone = val => {
 		const { customGameSettings } = this.state;
-		customGameSettings.hitlerZone = val[0];
+		customGameSettings.voldemortZone = val[0];
 		customGameSettings.enabled = true;
 		this.setState({ casualgame: true, customGameSettings });
 	};
@@ -1111,7 +1111,7 @@ export default class Creategame extends React.Component {
 			return null;
 		});
 		const numFas = customGameSettings.fascistCount;
-		const hzStart = customGameSettings.hitlerZone;
+		const hzStart = customGameSettings.voldemortZone;
 		const vzPoint = customGameSettings.vetoZone;
 		const hitKnowsFas = customGameSettings.hitKnowsFas;
 		const getHZ = pos => {
@@ -1316,13 +1316,13 @@ export default class Creategame extends React.Component {
 				<div className="row">
 					<div className="seven wide column">
 						<div>
-							<h4 className="ui header">Hitler Zone</h4>
+							<h4 className="ui header">Voldemort Zone</h4>
 							<Range
 								min={1}
 								max={5}
 								defaultValue={[3]}
-								onChange={this.sliderHitlerZone}
-								value={[this.state.customGameSettings.hitlerZone]}
+								onChange={this.sliderVoldemortZone}
+								value={[this.state.customGameSettings.voldemortZone]}
 								marks={{ 1: '1', 2: '2', 3: '3', 4: '4', 5: '5' }}
 							/>
 						</div>
@@ -1359,7 +1359,7 @@ export default class Creategame extends React.Component {
 							</div>
 						</div>
 						<div className="five wide column">
-							<h4 className="ui header">Hitler sees fascists</h4>
+							<h4 className="ui header">Voldemort sees fascists</h4>
 							<Switch
 								className="create-game-switch"
 								onChange={checked => {
@@ -1376,7 +1376,7 @@ export default class Creategame extends React.Component {
 							/>
 						</div>
 						<div className="five wide column">
-							<h4 className="ui header">Fascists can shoot hitler</h4>
+							<h4 className="ui header">Fascists can shoot voldemort</h4>
 							<Switch
 								className="create-game-switch"
 								onChange={checked => {
@@ -1395,7 +1395,7 @@ export default class Creategame extends React.Component {
 					</div>
 					<div className="row">
 						<div style={{ display: 'flex', width: '100%', marginBottom: '6px' }}>
-							<div className="rolecard" style={{ backgroundImage: "url('../images/cards/hitler0.png')" }} /> {/* eslint-disable-line */}
+							<div className="rolecard" style={{ backgroundImage: "url('../images/cards/voldemort0.png')" }} /> {/* eslint-disable-line */}
 							{renderFas()}
 						</div>
 						<div style={{ display: 'flex', width: '100%' }}>{renderLib()}</div>
@@ -1682,9 +1682,9 @@ export default class Creategame extends React.Component {
 								<i
 									className="info circle icon"
 									style={{ color: 'red', cursor: 'help' }}
-									title="If active, when players are on the last policy, roles are revealed and a 1 on 1 game of Flappy Hitler commences with control of the 'flappy' passed between team members at intervals."
+									title="If active, when players are on the last policy, roles are revealed and a 1 on 1 game of Flappy Voldemort commences with control of the 'flappy' passed between team members at intervals."
 								/>
-								COMING SOON: Resolve sudden death games with Flappy Hitler
+								COMING SOON: Resolve sudden death games with Flappy Voldemort
 							</h4>
 							<Switch
 								className="create-game-switch"

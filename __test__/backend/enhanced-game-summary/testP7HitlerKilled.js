@@ -1,12 +1,12 @@
 import buildEnhancedGameSummary from '../../../models/game-summary/buildEnhancedGameSummary';
-import { p7HitlerKilled } from '../../mocks';
+import { p7VoldemortKilled } from '../../mocks';
 import { List, Range } from 'immutable';
 import { some, none } from 'option';
 import matches from '../../matchers';
 
 export default () => {
-	describe('Hitler killed: 7p', () => {
-		const game = buildEnhancedGameSummary(p7HitlerKilled);
+	describe('Voldemort killed: 7p', () => {
+		const game = buildEnhancedGameSummary(p7VoldemortKilled);
 		const { turns } = game;
 
 		it('should track special elections', () => {
@@ -17,8 +17,8 @@ export default () => {
 			expect(turns.get(4).isSpecialElection).toBe(false);
 		});
 
-		it('last turn should have hitler killed', () => {
-			expect(turns.last().isHitlerKilled).toBe(true);
+		it('last turn should have voldemort killed', () => {
+			expect(turns.last().isVoldemortKilled).toBe(true);
 			expect(game.winningTeam).toBe('liberal');
 		});
 

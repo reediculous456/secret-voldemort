@@ -12,14 +12,14 @@ function profileDelta(username, game) {
 	const loyalty = game.loyaltyOf(username).value();
 	const isLiberal = loyalty === 'liberal';
 	const isFascist = !isLiberal;
-	const votes = game.hitlerZone
+	const votes = game.voldemortZone
 		.map(hz =>
 			flattenListOpts(
 				game
 					.votesOf(username)
 					.value()
 					.slice(hz)
-			).filter(v => game.loyaltyOf(v.presidentId).value() === 'fascist' || game.roleOf(v.chancellorId).value() === 'hitler')
+			).filter(v => game.loyaltyOf(v.presidentId).value() === 'fascist' || game.roleOf(v.chancellorId).value() === 'voldemort')
 		)
 		.valueOrElse(List());
 	const accurateVotes = votes.filterNot(v => {
@@ -27,7 +27,7 @@ function profileDelta(username, game) {
 		const presidentLoyalty = game.loyaltyOf(presidentId).value();
 		const chancellorRole = game.roleOf(chancellorId).value();
 
-		return ja && (presidentLoyalty === 'fascist' || chancellorRole === 'hitler');
+		return ja && (presidentLoyalty === 'fascist' || chancellorRole === 'voldemort');
 	});
 	const shots = game.shotsOf(username).value();
 	const accurateShots = shots.filter(id => game.loyaltyOf(id).value() === 'fascist');

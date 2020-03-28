@@ -63,8 +63,8 @@ export default class Game extends React.Component {
 				playSound(pack === 'pack1' ? 'policyspecialelection' : 'policypeek', 'pack1', pack === 'pack1' ? 9000 : 3000);
 			}
 
-			if (gameInfo.gameState.audioCue === 'hitlerShot' && prevProps.gameInfo.gameState.audioCue !== 'hitlerShot') {
-				playSound(pack === 'pack1' ? 'liberalswinhitlershot' : 'liberalswin', pack, pack === 'pack1' ? 26000 : 8000);
+			if (gameInfo.gameState.audioCue === 'voldemortShot' && prevProps.gameInfo.gameState.audioCue !== 'voldemortShot') {
+				playSound(pack === 'pack1' ? 'liberalswinvoldemortshot' : 'liberalswin', pack, pack === 'pack1' ? 26000 : 8000);
 			}
 
 			if (gameInfo.gameState.audioCue === 'liberalsWin' && prevProps.gameInfo.gameState.audioCue !== 'liberalsWin') {
@@ -75,8 +75,8 @@ export default class Game extends React.Component {
 				playSound('fascistswin', pack, pack === 'pack1' ? 19000 : 13000);
 			}
 
-			if (gameInfo.gameState.audioCue === 'fascistsWinHitlerElected' && prevProps.gameInfo.gameState.audioCue !== 'fascistsWinHitlerElected') {
-				playSound('fascistswinhitlerelected', pack, pack === 'pack1' ? 11000 : 13000);
+			if (gameInfo.gameState.audioCue === 'fascistsWinVoldemortElected' && prevProps.gameInfo.gameState.audioCue !== 'fascistsWinVoldemortElected') {
+				playSound('fascistswinvoldemortelected', pack, pack === 'pack1' ? 11000 : 13000);
 			}
 
 			if (gameInfo.gameState.audioCue === 'passedVeto' && prevProps.gameInfo.gameState.audioCue !== 'passedVeto') {

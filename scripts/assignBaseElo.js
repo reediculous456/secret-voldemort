@@ -2,7 +2,7 @@ const Account = require('../models/account');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`);
+mongoose.connect(`mongodb://localhost:27017/secret-voldemort-app`);
 
 let count = 0;
 

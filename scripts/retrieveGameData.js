@@ -63,7 +63,7 @@ const tenPlayerGameData = {
 };
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`);
+mongoose.connect(`mongodb://localhost:27017/secret-voldemort-app`);
 
 Game.find({})
 	.cursor()
@@ -240,7 +240,7 @@ Game.find({})
 		data.eightPlayerGameData = eightPlayerGameData;
 		data.ninePlayerGameData = ninePlayerGameData;
 		data.tenPlayerGameData = tenPlayerGameData;
-		fs.writeFile('/var/www/secret-hitler/data/data.json', JSON.stringify(data), () => {
+		fs.writeFile('/var/www/secret-voldemort/data/data.json', JSON.stringify(data), () => {
 			console.log('Done.');
 			mongoose.connection.close();
 		});

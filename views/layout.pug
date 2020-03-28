@@ -4,10 +4,10 @@ html(lang="en")
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="theme-color", content="#c36563")
-    meta(name="description", content="A web adaptation of the social deduction board game Secret Hitler.  Always free and no ads.")
+    meta(name="description", content="A web adaptation of the social deduction board game Secret Hitler, rebranded to the Wizarding World of Harry Potter.  Always free and no ads.")
     meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
     link(rel="stylesheet", type="text/css", href="/styles/Semantic-UI-CSS-master/semantic.min.css")
-    
+
     if game
       if prodCacheBustToken
         link(rel="stylesheet", type="text/css", href=`/styles/style-main.css?${prodCacheBustToken}`)
@@ -25,16 +25,16 @@ html(lang="en")
     link(rel="apple-touch-icon", sizes="180x180", href="/apple-touch-icon.png")
     link(rel="mask-icon", href="/safari-pinned-tab.svg", color="#aaa")
     link(rel="manifest", href="/manifest.json")
-    meta(itemprop="name" content="Secret Hitler.io")
-    meta(itemprop="description" content="A web adaptation of the social deduction board game Secret Hitler.  Always free and no ads.")
-    meta(property="og:url" content="https://secrethitler.io")
+    meta(itemprop="name" content="Secret Voldemort.io")
+    meta(itemprop="description" content="A web adaptation of the social deduction board game Secret Hitler, rebranded to the Wizarding World of Harry Potter.  Always free and no ads.")
+    meta(property="og:url" content="https://secretvoldemort.io")
     meta(property="og:type" content="website")
-    meta(property="og:title" content="Secret Hitler.io")
-    meta(property="og:description" content="A web adaptation of the social deduction board game Secret Hitler.  Always free and no ads.")
+    meta(property="og:title" content="Secret Voldemort.io")
+    meta(property="og:description" content="A web adaptation of the social deduction board game Secret Hitler, rebranded to the Wizarding World of Harry Potter.  Always free and no ads.")
     meta(name="twitter:card" content="summary_large_image")
-    meta(name="twitter:title" content="Secret Hitler.io")
-    meta(name="twitter:description" content="A web adaptation of the social deduction board game Secret Hitler.  Always free and no ads.")
-    title Secret Hitler.io
+    meta(name="twitter:title" content="Secret Voldemort.io")
+    meta(name="twitter:description" content="A web adaptation of the social deduction board game Secret Hitler, rebranded to the Wizarding World of Harry Potter.  Always free and no ads.")
+    title Secret Voldemort.io
   body
     #main
       block content
@@ -70,17 +70,17 @@ html(lang="en")
       if wiki
         a.active.item Wiki
       else
-        a.item(href="https://github.com/cozuya/secret-hitler/wiki") Wiki
+        a.item(href="https://github.com/reediculous456/secret-voldemort/wiki") Wiki
 
       if discord
         a.active.item Discord
       else
-        a.item(href="https://discord.gg/secrethitlerio") Discord
+        a.item(href="https://discord.gg/secretvoldemortio") Discord
 
       if github
         a.active.item GitHub
       else
-        a.item(href="https://github.com/cozuya/secret-hitler") GitHub
+        a.item(href="https://github.com/reediculous456/secret-voldemort") GitHub
 
       if tou
         a.active.item Terms of Use
@@ -125,17 +125,17 @@ html(lang="en")
           if wiki
             a.active.item Wiki
           else
-            a.item(href="https://github.com/cozuya/secret-hitler/wiki") Wiki
+            a.item(href="https://github.com/reediculous456/secret-voldemort/wiki") Wiki
 
           if discord
             a.active.item Discord
           else
-            a.item(href="https://discord.gg/secrethitlerio") Discord
+            a.item(href="https://discord.gg/secretvoldemortio") Discord
 
           if github
             a.active.item GitHub
           else
-            a.item(href="https://github.com/cozuya/secret-hitler") GitHub
+            a.item(href="https://github.com/reediculous456/secret-voldemort") GitHub
 
           if tou
             a.active.item Terms of Use
@@ -272,7 +272,7 @@ html(lang="en")
         .field
           label
             input#private-player(type="checkbox", style="margin-right: 5px", name="privateWarning")
-            span(style="color: #aaa") READ CAREFULLY BEFORE CHECKING: Private game player only option - your name will not be visible in the sidebar, you can't chat in general chat, 
+            span(style="color: #aaa") READ CAREFULLY BEFORE CHECKING: Private game player only option - your name will not be visible in the sidebar, you can't chat in general chat,
             b(style="color: #555") you can't play in public games.
         .field
           label
@@ -290,14 +290,14 @@ html(lang="en")
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-105770066-1', 'auto');
-      ga('send', 'pageview');			
+      ga('send', 'pageview');
 
       var privateWarning = document.querySelector("input[name=privateWarning]");
 
       privateWarning.addEventListener(  'change', function() {
         if (this.checked) {
           var confirmPrompt = prompt("Are you sure you want to only be able to play private games? If so type OK and click OK. If not click cancel.", "");
-        
+
           if (confirmPrompt == "ok" || confirmPrompt == "OK" || confirmPrompt == "Ok" || confirmPrompt == "oK") {
             document.getElementById("private-player").checked = true;
           } else {

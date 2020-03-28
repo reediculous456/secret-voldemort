@@ -267,7 +267,7 @@ const enactPolicy = (game, team, socket) => {
 										break;
 									case 'The president must select a player for execution.':
 										if (president.role.cardName === 'fascist') {
-											list = list.filter(player => player.role.cardName !== 'hitler');
+											list = list.filter(player => player.role.cardName !== 'voldemort');
 										}
 										selectPlayerToExecute({ user: president.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
 										break;
@@ -1597,8 +1597,8 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					}
 
 					if (
-						game.trackState.fascistPolicyCount >= game.customGameSettings.hitlerZone &&
-						game.private.seatedPlayers[chancellorIndex].role.cardName === 'hitler'
+						game.trackState.fascistPolicyCount >= game.customGameSettings.voldemortZone &&
+						game.private.seatedPlayers[chancellorIndex].role.cardName === 'voldemort'
 					) {
 						const getNumberText = val => {
 							if (val == 1) return '1st';
@@ -1611,11 +1611,11 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 							gameChat: true,
 							chat: [
 								{
-									text: 'Hitler',
-									type: 'hitler'
+									text: 'Voldemort',
+									type: 'voldemort'
 								},
 								{
-									text: ` has been elected chancellor after the ${getNumberText(game.customGameSettings.hitlerZone)} fascist policy has been enacted.`
+									text: ` has been elected chancellor after the ${getNumberText(game.customGameSettings.voldemortZone)} fascist policy has been enacted.`
 								}
 							]
 						};
@@ -1633,7 +1633,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 										player.gameChats.push(chat);
 									});
 
-									game.gameState.audioCue = 'fascistsWinHitlerElected';
+									game.gameState.audioCue = 'fascistsWinVoldemortElected';
 									game.private.unSeatedGameChats.push(chat);
 								}
 								sendInProgressGameUpdate(game);

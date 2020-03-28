@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>SH.io account verification</title>
+<title>SV.io account verification</title>
 <style>
 /* -------------------------------------
     GLOBAL
@@ -36,12 +36,12 @@ a {
   width: auto !important;
 }
 .btn-primary td {
-  background-color: #348eda; 
+  background-color: #348eda;
   border-radius: 25px;
-  font-family: Verdana, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-  font-size: 14px; 
+  font-family: Verdana, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 14px;
   text-align: center;
-  vertical-align: top; 
+  vertical-align: top;
 }
 .btn-primary td a {
   background-color: #348eda;
@@ -79,12 +79,12 @@ table.body-wrap .container {
 ------------------------------------- */
 table.footer-wrap {
   clear: both !important;
-  width: 100%;  
+  width: 100%;
 }
 .footer-wrap .container p {
   color: #666666;
   font-size: 12px;
-  
+
 }
 table.footer-wrap a {
   color: #999999;
@@ -92,8 +92,8 @@ table.footer-wrap a {
 /* -------------------------------------
     TYPOGRAPHY
 ------------------------------------- */
-h1, 
-h2, 
+h1,
+h2,
 h3 {
   color: #111111;
   font-family: Verdana, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -110,14 +110,14 @@ h2 {
 h3 {
   font-size: 22px;
 }
-p, 
-ul, 
+p,
+ul,
 ol {
   font-size: 14px;
   font-weight: normal;
   margin-bottom: 10px;
 }
-ul li, 
+ul li,
 ol li {
   margin-left: 5px;
   list-style-position: inside;
@@ -167,7 +167,7 @@ ol li {
             <table class="btn-primary" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td>
-                  <a href="https://secrethitler.io/verify-account/<%= username %>/<%= token %>">Click here to get verified!</a>
+                  <a href="https://secretvoldemort.io/verify-account/<%= username %>/<%= token %>">Click here to get verified!</a>
                 </td>
               </tr>
             </table>
@@ -176,7 +176,7 @@ ol li {
       </table>
       </div>
       <!-- /content -->
-      
+
     </td>
     <td></td>
   </tr>
@@ -188,7 +188,7 @@ ol li {
   <tr>
     <td></td>
     <td class="container">
-      
+
       <!-- content -->
       <div class="content">
         <table>
@@ -205,7 +205,7 @@ ol li {
         </table>
       </div>
       <!-- /content -->
-      
+
     </td>
     <td></td>
   </tr>

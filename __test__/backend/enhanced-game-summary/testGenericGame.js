@@ -283,17 +283,17 @@ export default () => {
 			expect(investigation(7)).toBe(false);
 		});
 
-		it('should track if hitler is killed', () => {
-			const isHitlerKilled = turnNum => turns.get(turnNum).isHitlerKilled;
+		it('should track if voldemort is killed', () => {
+			const isVoldemortKilled = turnNum => turns.get(turnNum).isVoldemortKilled;
 
-			expect(isHitlerKilled(0)).toBe(false);
-			expect(isHitlerKilled(1)).toBe(false);
-			expect(isHitlerKilled(2)).toBe(false);
-			expect(isHitlerKilled(3)).toBe(false);
-			expect(isHitlerKilled(4)).toBe(false);
-			expect(isHitlerKilled(5)).toBe(false);
-			expect(isHitlerKilled(6)).toBe(false);
-			expect(isHitlerKilled(7)).toBe(false);
+			expect(isVoldemortKilled(0)).toBe(false);
+			expect(isVoldemortKilled(1)).toBe(false);
+			expect(isVoldemortKilled(2)).toBe(false);
+			expect(isVoldemortKilled(3)).toBe(false);
+			expect(isVoldemortKilled(4)).toBe(false);
+			expect(isVoldemortKilled(5)).toBe(false);
+			expect(isVoldemortKilled(6)).toBe(false);
+			expect(isVoldemortKilled(7)).toBe(false);
 		});
 
 		it('should track player indexes', () => {
@@ -342,7 +342,7 @@ export default () => {
 			expect(game.roleOf('Rexxar')).toEqual(some('liberal'));
 			expect(game.roleOf('Anduin')).toEqual(some('liberal'));
 			expect(game.roleOf('Malfurian')).toEqual(some('fascist'));
-			expect(game.roleOf('Thrall')).toEqual(some('hitler'));
+			expect(game.roleOf('Thrall')).toEqual(some('voldemort'));
 			expect(game.roleOf('Valeera')).toEqual(some('fascist'));
 		});
 
@@ -382,8 +382,8 @@ export default () => {
 			).toEqual(none);
 		});
 
-		it('should track hitler zone', () => {
-			expect(game.hitlerZone).toEqual(some(3));
+		it('should track voldemort zone', () => {
+			expect(game.voldemortZone).toEqual(some(3));
 		});
 
 		it('should track player size', () => {

@@ -14,7 +14,7 @@ const GameSummary = require('../models/game-summary');
 // Ideally we'd take this via command line arguments, but it's already
 // getting a bit unwieldy.  For local testing, either create this directory
 // or change it to something different.
-const OUTPUT_DIR = '/var/www/secret-hitler/public/profile-dumps';
+const OUTPUT_DIR = '/var/www/secret-voldemort/public/profile-dumps';
 
 // Determine the date for which we want to dump game summaries
 //
@@ -49,7 +49,7 @@ dumpDateTo = `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDa
 
 // Connect to mongo
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`);
+mongoose.connect(`mongodb://localhost:27017/secret-voldemort-app`);
 
 // Dump summaries for the day
 const summaries = [];

@@ -55,7 +55,7 @@ function buildEnhancedGameSummary(_summary) {
 		const roleToLoyalty = Map({
 			liberal: 'liberal',
 			fascist: 'fascist',
-			hitler: 'fascist'
+			voldemort: 'fascist'
 		});
 
 		return summary.players.map((p, i) => {
@@ -83,9 +83,9 @@ function buildEnhancedGameSummary(_summary) {
 	const winningTeam = (() => {
 		const lastTurn = turns.last();
 
-		if (lastTurn.isHitlerElected) {
+		if (lastTurn.isVoldemortElected) {
 			return 'fascist';
-		} else if (lastTurn.isHitlerKilled) {
+		} else if (lastTurn.isVoldemortKilled) {
 			return 'liberal';
 		} else {
 			if (!lastTurn.enactedPolicy) {
@@ -97,7 +97,7 @@ function buildEnhancedGameSummary(_summary) {
 	})();
 
 	// Option[Int]
-	const hitlerZone = (() => {
+	const voldemortZone = (() => {
 		const i = turns.findIndex(t => t.beforeTrack.reds === 3);
 		return i > -1 ? some(i) : none;
 	})();
@@ -162,7 +162,7 @@ function buildEnhancedGameSummary(_summary) {
 		players,
 		turns,
 		playerSize,
-		hitlerZone,
+		voldemortZone,
 		winningTeam,
 		isRebalanced,
 		casualGame,

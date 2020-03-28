@@ -1,7 +1,7 @@
 exports.mockGameSummary = require('./mockGameSummary');
-exports.p5HitlerElected = require('./p5HitlerElected');
-exports.p7HitlerKilled = require('./p7HitlerKilled');
+exports.p5VoldemortElected = require('./p5VoldemortElected');
+exports.p7VoldemortKilled = require('./p7VoldemortKilled');
 exports.p7LiberalWin = require('./p7LiberalWin');
 exports.veto = require('./veto');
 exports.veto2 = require('./veto2');
-exports.hitlerKilledLiberalLoss = require('./hitlerKilledLiberalLoss');
+exports.voldemortKilledLiberalLoss = require('./voldemortKilledLiberalLoss');

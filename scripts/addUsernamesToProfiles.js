@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Profile = require('../models/profile');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`);
+mongoose.connect(`mongodb://localhost:27017/secret-voldemort-app`);
 
 Profile.find({})
 	.cursor()

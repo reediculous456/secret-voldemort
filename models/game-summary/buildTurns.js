@@ -158,17 +158,17 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	const isGameEndingPolicyEnacted = afterTrack.reds === 6 || afterTrack.blues === 5;
 
 	// Boolean
-	const isHitlerElected = (() => {
-		const hitlerIndex = players.findIndex(p => p.role === 'hitler');
+	const isVoldemortElected = (() => {
+		const voldemortIndex = players.findIndex(p => p.role === 'voldemort');
 
-		return beforeTrack.reds >= 3 && log.chancellorId === hitlerIndex && isVotePassed;
+		return beforeTrack.reds >= 3 && log.chancellorId === voldemortIndex && isVotePassed;
 	})();
 
 	// Boolean
-	const isHitlerKilled = (() => {
-		const hitlerIndex = players.findIndex(p => p.role === 'hitler');
+	const isVoldemortKilled = (() => {
+		const voldemortIndex = players.findIndex(p => p.role === 'voldemort');
 
-		return log.execution.map(e => e === hitlerIndex).valueOrElse(false);
+		return log.execution.map(e => e === voldemortIndex).valueOrElse(false);
 	})();
 
 	// Option[String]
@@ -232,8 +232,8 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 		isElectionTrackerMaxed,
 		isInvestigation,
 		isExecution,
-		isHitlerKilled,
-		isHitlerElected,
+		isVoldemortKilled,
+		isVoldemortElected,
 		presidentDiscard,
 		chancellorDiscard,
 		isSpecialElection,

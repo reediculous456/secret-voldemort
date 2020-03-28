@@ -4,7 +4,7 @@ gameState
 	isVetoEnabled bool
 	isTracksFlipped bool
 	isGameFrozen bool
-	pendingChancellorIndex number 
+	pendingChancellorIndex number
 	timedModeEnabled bool
 	phase string ?
 	previousElectedGovernment array of numbers, 1st is pres 2nd is chanc,
@@ -136,7 +136,7 @@ private
 			obj
 				cardBack object
 				notificationStatus string outline around player
-				nameStatus string fascist hitler disabled liberal
+				nameStatus string fascist voldemort disabled liberal
 				hasVoted bool
 				policyNotification bool
 		cardFlingerState array

@@ -32,7 +32,7 @@ export function processEmotes(input, isMod, allEmotes) {
 	const formatedMsg = [];
 
 	message.forEach((word, index) => {
-		const validSiteURL = /^http[s]?:\/\/(secrethitler\.io|localhost:8080|github\.com\/cozuya\/secret-hitler)\/([a-zA-Z0-9#?=&\/\._]*)$/i;
+		const validSiteURL = /^http[s]?:\/\/(secretvoldemort\.io|localhost:8080|github\.com\/reediculous456\/secret-voldemort)\/([a-zA-Z0-9#?=&\/\._]*)$/i;
 		if (mapping[word]) {
 			formatedMsg.push(
 				<span key={index} data-tooltip={word} data-inverted>
@@ -49,13 +49,13 @@ export function processEmotes(input, isMod, allEmotes) {
 			);
 		} else if (validSiteURL.test(word)) {
 			const data = validSiteURL.exec(word);
-			const isGithub = data[1] == 'github.com/cozuya/secret-hitler';
+			const isGithub = data[1] == 'github.com/reediculous456/secret-voldemort';
 			const gameURL = data[2].startsWith('game/');
 			/* eslint-disable */
 			formatedMsg.push(
 				<a
 					key={index}
-					href={isGithub ? 'https://github.com/cozuya/secret-hitler/' + data[2] : gameURL ? '/game/' + data[2].substring(5) : '/' + data[2]}
+					href={isGithub ? 'https://github.com/reediculous456/secret-voldemort/' + data[2] : gameURL ? '/game/' + data[2].substring(5) : '/' + data[2]}
 					className="shio-link"
 					title={isGithub ? "link to sh.io's github page" : 'link to something inside of sh.io'}
 				>

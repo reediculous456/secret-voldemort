@@ -7,7 +7,7 @@ const data = {
 };
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`);
+mongoose.connect(`mongodb://localhost:27017/secret-voldemort-app`);
 
 Account.find({ lastCompletedGame: { $gte: new Date(Date.now() - 86400000) } })
 	.cursor()
@@ -33,7 +33,7 @@ Account.find({ lastCompletedGame: { $gte: new Date(Date.now() - 86400000) } })
 			.then(() => {
 				data.dailyLeaderboard = data.dailyLeaderboard.sort((a, b) => b.dailyEloDifference - a.dailyEloDifference).slice(0, 20);
 				data.seasonalLeaderboard = data.seasonalLeaderboard.sort((a, b) => b.elo - a.elo).slice(0, 20);
-				fs.writeFile('/var/www/secret-hitler/public/leaderboardData.json', JSON.stringify(data), () => {
+				fs.writeFile('/var/www/secret-voldemort/public/leaderboardData.json', JSON.stringify(data), () => {
 					mongoose.connection.close();
 				});
 			});

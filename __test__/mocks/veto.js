@@ -280,7 +280,7 @@ module.exports = {
 	players: [
 		{
 			username: 'Crazyuncle',
-			role: 'hitler',
+			role: 'voldemort',
 			_id: '595052626419ea7a9b545b5b'
 		},
 		{

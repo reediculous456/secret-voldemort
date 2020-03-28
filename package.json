@@ -1,13 +1,16 @@
 {
 	"name": "secret-voldemort",
-	"description": "A web adaptation of the social deduction board game Secret Hitler.",
+	"description": "A web adaptation of the social deduction board game Secret Hitler, rebranded to the Wizarding World of Harry Potter",
 	"version": "1.0.0",
 	"license": "CC-BY-NC-SA-4.0",
 	"keywords": [
+		"game",
 		"boardgame",
 		"social deduction",
 		"hidden roles",
-		"secret hitler"
+		"secret hitler",
+		"harry potter",
+		"secret voldemort"
 	],
 	"repository": "https://github.com/reediculous456/secret-voldemort.git",
 	"author": "Wesley Reed",
@@ -24,7 +27,7 @@
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
 		"db": "mongod --dbpath data",
-		"db-docker": "docker run -it --rm -p 27017:27017 -v \"$(PWD)/data\":/data/db --name Secret-Hitler-Dev-MongoDB mongo:latest --port 27017",
+		"db-docker": "docker run -it --rm -p 27017:27017 -v \"$(PWD)/data\":/data/db --name Secret-Voldemort-Dev-MongoDB mongo:latest --port 27017",
 		"build": "node scripts/processEmotes && webpack --config webpack/webpack.config.prod --mode production",
 		"inspect": "cross-env NODE_ENV=development nodemon --inspect=9137 bin/dev.js",
 		"server": "cross-env NODE_ENV=development nodemon bin/dev.js",

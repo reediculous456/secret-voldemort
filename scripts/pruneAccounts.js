@@ -2,7 +2,7 @@ const Account = require('../models/account');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(`mongodb://localhost:27017/secret-hitler-app`, { useNewUrlParser: true });
+mongoose.connect(`mongodb://localhost:27017/secret-voldemort-app`, { useNewUrlParser: true });
 
 let count = 0;
 

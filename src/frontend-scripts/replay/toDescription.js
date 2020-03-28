@@ -19,7 +19,7 @@ export default function(snapshot, game) {
 			];
 		case 'election':
 			if (snapshot.gameOver) {
-				return gameOverText([text('hitler', 'Hitler'), text('normal', 'is elected.')]);
+				return gameOverText([text('voldemort', 'Voldemort'), text('normal', 'is elected.')]);
 			} else {
 				return [
 					text('normal', 'The vote'),
@@ -70,7 +70,7 @@ export default function(snapshot, game) {
 			return [text('player', usernameOf(snapshot.presidentId)), text('normal', 'special elects'), text('player', usernameOf(snapshot.specialElection))];
 		case 'execution':
 			if (snapshot.gameOver) {
-				return gameOverText([text('hitler', 'Hitler'), text('normal', 'is killed.')]);
+				return gameOverText([text('voldemort', 'Voldemort'), text('normal', 'is killed.')]);
 			} else {
 				return [text('player', usernameOf(snapshot.presidentId)), text('normal', 'executes'), text('player', usernameOf(snapshot.execution))];
 			}

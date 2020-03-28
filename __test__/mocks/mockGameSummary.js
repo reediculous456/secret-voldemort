@@ -150,7 +150,7 @@ module.exports = {
 		},
 		{
 			username: 'Thrall',
-			role: 'hitler'
+			role: 'voldemort'
 		},
 		{
 			username: 'Valeera',

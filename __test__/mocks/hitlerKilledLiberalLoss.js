@@ -1,5 +1,5 @@
 module.exports = {
-	_id: 'hitler-killed-liberal-loss',
+	_id: 'voldemort-killed-liberal-loss',
 	date: '2017-06-26T20:26:04.058Z',
 	gameSetting: {
 		rebalance6p: false,
@@ -197,7 +197,7 @@ module.exports = {
 	players: [
 		{
 			username: 'cbell',
-			role: 'hitler',
+			role: 'voldemort',
 			_id: '595170616419ea7a9b54842f'
 		},
 		{

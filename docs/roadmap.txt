@@ -78,7 +78,7 @@ retheme colors/remove teal
 update vetoing for custom games
 passing unit tests
 
-flappy hitler todos:
+flappy voldemort todos:
 	get both normal "sudden death last policy enacted" and "flappy only" states to start flappy
 	player control, and control transfer when current control player passes the control pylon
 	state change pylon pass function (currently thinking density * 0.8, control pylon change--, flappy bounce * 1.2)
