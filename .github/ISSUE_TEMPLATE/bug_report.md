@@ -1,5 +1,5 @@
 ---
-name: 🐛 Bug report
+name: Bug report
 about: Create a bug report to help us fix an issue.
 title: ''
 labels: bug

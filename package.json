@@ -1,7 +1,7 @@
 {
-	"name": "secret-hitler",
+	"name": "secret-voldemort",
 	"description": "A web adaptation of the social deduction board game Secret Hitler.",
-	"version": "1.6.7",
+	"version": "1.0.0",
 	"license": "CC-BY-NC-SA-4.0",
 	"keywords": [
 		"boardgame",
@@ -9,12 +9,33 @@
 		"hidden roles",
 		"secret hitler"
 	],
-	"repository": "https://github.com/cozuya/secret-hitler.git",
-	"author": "Chris Ozols <chris.v.ozols@gmail.com> (http://twolongos.com)",
-	"homepage": "https://secrethitler.io",
-	"bugs": "https://github.com/cozuya/secret-hitler/issues",
+	"repository": "https://github.com/reediculous456/secret-voldemort.git",
+	"author": "Wesley Reed",
+	"bugs": "https://github.com/reediculous456/secret-voldemort/issues",
+	"scripts": {
+		"format": "prettier --write \"**/*.js\" && prettier --write \"**/*.jsx\"",
+		"dev": "node scripts/processEmotes && concurrently --names \"SERVER,MONGO,WEBPACK\" -c \"bgCyanBright.black,bgYellowBright.black,bgMagentaBright.whiteBright\" --handle-input \"yarn:inspect\" \"yarn:db\" \"yarn:start\"",
+		"dev-no-server": "npm-run-all --parallel db start",
+		"dev-packed": "npm-run-all --parallel db inspect build",
+		"dev-docker": "npm-run-all --parallel db-docker server start",
+		"create-accounts": "node scripts/createAccounts.js",
+		"assign-local-mod": "node scripts/assignLocalMod.js",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"test:coverage": "jest --coverage",
+		"db": "mongod --dbpath data",
+		"db-docker": "docker run -it --rm -p 27017:27017 -v \"$(PWD)/data\":/data/db --name Secret-Hitler-Dev-MongoDB mongo:latest --port 27017",
+		"build": "node scripts/processEmotes && webpack --config webpack/webpack.config.prod --mode production",
+		"inspect": "cross-env NODE_ENV=development nodemon --inspect=9137 bin/dev.js",
+		"server": "cross-env NODE_ENV=development nodemon bin/dev.js",
+		"start": "webpack --watch --config webpack/webpack.config.dev --mode development",
+		"lint": "esw src/**/*.jsx scripts/ routes/ webpack/ models/ iso/",
+		"build-css:web": "node-sass --include-path src/scss src/scss/style-web.scss public/styles/style-web.css",
+		"build-css:dark": "node-sass --include-path src/scss src/scss/style-dark.scss public/styles/style-dark.css"
+	},
 	"engines": {
-		"node": ">=12.0"
+		"node": ">=12.0",
+		"yarn": "YARN NO LONGER USED - use npm instead."
 	},
 	"dependencies": {
 		"compression": "^1.6.2",
@@ -128,27 +149,6 @@
 		"webpack-cli": "^3.1.1",
 		"webpack-livereload-plugin": "^2.1.1"
 	},
-	"scripts": {
-		"format": "prettier --write \"**/*.js\" && prettier --write \"**/*.jsx\"",
-		"dev": "node scripts/processEmotes && concurrently --names \"SERVER,MONGO,WEBPACK\" -c \"bgCyanBright.black,bgYellowBright.black,bgMagentaBright.whiteBright\" --handle-input \"yarn:inspect\" \"yarn:db\" \"yarn:start\"",
-		"dev-no-server": "npm-run-all --parallel db start",
-		"dev-packed": "npm-run-all --parallel db inspect build",
-		"dev-docker": "npm-run-all --parallel db-docker server start",
-		"create-accounts": "node scripts/createAccounts.js",
-		"assign-local-mod": "node scripts/assignLocalMod.js",
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"test:coverage": "jest --coverage",
-		"db": "mongod --dbpath data",
-		"db-docker": "docker run -it --rm -p 27017:27017 -v \"$(PWD)/data\":/data/db --name Secret-Hitler-Dev-MongoDB mongo:latest --port 27017",
-		"build": "node scripts/processEmotes && webpack --config webpack/webpack.config.prod --mode production",
-		"inspect": "cross-env NODE_ENV=development nodemon --inspect=9137 bin/dev.js",
-		"server": "cross-env NODE_ENV=development nodemon bin/dev.js",
-		"start": "webpack --watch --config webpack/webpack.config.dev --mode development",
-		"lint": "esw src/**/*.jsx scripts/ routes/ webpack/ models/ iso/",
-		"build-css:web": "node-sass --include-path src/scss src/scss/style-web.scss public/styles/style-web.css",
-		"build-css:dark": "node-sass --include-path src/scss src/scss/style-dark.scss public/styles/style-dark.css"
-	},
 	"jest": {
 		"setupFilesAfterEnv": [
 			"<rootDir>/__test__/test-setup.js"
@@ -157,14 +157,9 @@
 			"\\.(css|scss)$": "<rootDir>/__test__/mocks/styleMock.js"
 		}
 	},
-	"resolutions": {
-		"**/event-stream": "^4.0.1",
-		"tunnel-agent": "^0.6.0",
-		"braces": "^2.3.1"
-	},
 	"husky": {
 		"hooks": {
-			"pre-commit": "yarn lint && pretty-quick --staged"
+			"pre-commit": "npm run lint && pretty-quick --staged"
 		}
 	}
 }
