@@ -1,5 +1,5 @@
 const { sendInProgressGameUpdate, sendInProgressModChatUpdate } = require('../util');
-const { startElection, shufflePolicies } = require('./common');
+const { startElection, shuffleProclamations } = require('./common');
 const { sendGameList } = require('../user-requests');
 const { selectChancellor } = require('./election-util');
 const {
@@ -7,7 +7,7 @@ const {
 	proclamationPeek,
 	investigateLoyalty,
 	executePlayer,
-	selectPolicies,
+	selectProclamations,
 	selectPlayerToExecute,
 	selectPartyMembershipInvestigate,
 	selectSpecialElection,
@@ -20,7 +20,7 @@ const { makeReport } = require('../report.js');
 
 const powerMapping = {
 	investigate: [investigateLoyalty, 'The president must investigate the party membership of another player.'],
-	deckpeek: [proclamationPeek, 'The president must examine the top 3 policies.'],
+	deckpeek: [proclamationPeek, 'The president must examine the top 3 proclamations.'],
 	election: [specialElection, 'The president must select a player for a special election.'],
 	bullet: [executePlayer, 'The president must select a player for execution.'],
 	reverseinv: [showPlayerLoyalty, 'The president must reveal their party membership to another player.'],
@@ -57,7 +57,7 @@ const presidentPowers = [
  * @param {object} socket - socket
  */
 const enactProclamation = (game, team, socket) => {
-	const index = game.trackState.enactedPolicies.length;
+	const index = game.trackState.enactedProclamations.length;
 	const { experiencedMode } = game.general;
 
 	if (game.private.lock.selectChancellor) {
@@ -112,8 +112,8 @@ const enactProclamation = (game, team, socket) => {
 		game.private.lock.selectPartyMembershipInvestigateReverse = false;
 	}
 
-	if (game.private.lock.selectPolicies) {
-		game.private.lock.selectPolicies = false;
+	if (game.private.lock.selectProclamations) {
+		game.private.lock.selectProclamations = false;
 	}
 
 	if (game.private.lock.selectOneProclamation) {
@@ -134,7 +134,7 @@ const enactProclamation = (game, team, socket) => {
 	game.trackState[`${team}ProclamationCount`]++;
 	sendGameList();
 
-	game.trackState.enactedPolicies.push({
+	game.trackState.enactedProclamations.push({
 		position: 'middle',
 		cardBack: team,
 		isFlipped: false
@@ -144,7 +144,7 @@ const enactProclamation = (game, team, socket) => {
 
 	setTimeout(
 		() => {
-			game.trackState.enactedPolicies[index].isFlipped = true;
+			game.trackState.enactedProclamations[index].isFlipped = true;
 			game.gameState.audioCue = team === 'order' ? 'enactProclamationO' : 'enactProclamationD';
 			sendInProgressGameUpdate(game, true);
 		},
@@ -190,7 +190,7 @@ const enactProclamation = (game, team, socket) => {
 						: presidentPowers[game.general.type][game.trackState.deathEaterProclamationCount - 1]
 					: null;
 
-			game.trackState.enactedPolicies[index].position =
+			game.trackState.enactedProclamations[index].position =
 				team === 'order' ? `order${game.trackState.orderProclamationCount}` : `death eater${game.trackState.deathEaterProclamationCount}`;
 
 			if (!game.general.disableGamechat) {
@@ -262,8 +262,8 @@ const enactProclamation = (game, team, socket) => {
 								game.gameState.timedModeEnabled = false;
 
 								switch (powerToEnact[1]) {
-									case 'The president must examine the top 3 policies.':
-										selectPolicies({ user: president.userName }, game, socket);
+									case 'The president must examine the top 3 proclamations.':
+										selectProclamations({ user: president.userName }, game, socket);
 										break;
 									case 'The president must select a player for execution.':
 										if (president.role.cardName === 'death eater') {
@@ -432,13 +432,13 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 							}
 							if (game.trackState.electionTrackerCount >= 3) {
 								if (!game.gameState.undrawnProclamationCount) {
-									shufflePolicies(game);
+									shuffleProclamations(game);
 								}
 
-								enactProclamation(game, game.private.policies.shift(), socket);
+								enactProclamation(game, game.private.proclamations.shift(), socket);
 								game.gameState.undrawnProclamationCount--;
 								if (game.gameState.undrawnProclamationCount < 3) {
-									shufflePolicies(game);
+									shuffleProclamations(game);
 								}
 							} else {
 								startElection(game);
@@ -455,7 +455,7 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 							publicPresident.cardStatus.cardDisplayed = false;
 							publicChancellor.cardStatus.cardDisplayed = false;
 							president.cardFlingerState = [];
-							enactProclamation(game, game.private.currentElectionPolicies[0], socket);
+							enactProclamation(game, game.private.currentElectionProclamations[0], socket);
 							setTimeout(() => {
 								publicChancellor.cardStatus.isFlipped = publicPresident.cardStatus.isFlipped = false;
 							}, 1000);
@@ -599,7 +599,7 @@ const selectChancellorVoteOnVeto = (passport, game, data, socket) => {
 							chat: [
 								{
 									text:
-										'You must vote whether or not to veto these policies.  Select Ja to veto the policies you passed to the Chancellor or select Nein to enact the proclamation the Chancellor has chosen in secret.'
+										'You must vote whether or not to veto these proclamations.  Select Ja to veto the proclamations you passed to the Chancellor or select Nein to enact the proclamation the Chancellor has chosen in secret.'
 								}
 							]
 						});
@@ -646,7 +646,7 @@ const selectChancellorVoteOnVeto = (passport, game, data, socket) => {
 							setTimeout(() => {
 								publicChancellor.cardStatus.isFlipped = false;
 							}, 1000);
-							enactProclamation(game, game.private.currentElectionPolicies[0], socket);
+							enactProclamation(game, game.private.currentElectionProclamations[0], socket);
 						},
 						process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 500 : 2000
 					);
@@ -803,7 +803,7 @@ const selectChancellorProclamation = (passport, game, data, wasTimer, socket) =>
 		chancellor.cardFlingerState[0].cardStatus.isFlipped = chancellor.cardFlingerState[1].cardStatus.isFlipped = false;
 
 		if (game.gameState.isVetoEnabled) {
-			game.private.currentElectionPolicies = [enactedProclamation];
+			game.private.currentElectionProclamations = [enactedProclamation];
 			game.general.status = 'Chancellor to vote on proclamation veto.';
 			sendInProgressGameUpdate(game);
 
@@ -815,7 +815,7 @@ const selectChancellorProclamation = (passport, game, data, wasTimer, socket) =>
 						chat: [
 							{
 								text:
-									'You must vote whether or not to veto these policies.  Select Ja to veto the your chosen proclamation or select Nein to enact your chosen proclamation.'
+									'You must vote whether or not to veto these proclamations.  Select Ja to veto the your chosen proclamation or select Nein to enact your chosen proclamation.'
 							}
 						]
 					};
@@ -883,7 +883,7 @@ const selectChancellorProclamation = (passport, game, data, wasTimer, socket) =>
 				process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 1000 : 2000
 			);
 		} else {
-			game.private.currentElectionPolicies = [];
+			game.private.currentElectionProclamations = [];
 			game.gameState.phase = 'enactProclamation';
 			sendInProgressGameUpdate(game);
 			setTimeout(
@@ -921,7 +921,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 	const president = game.private.seatedPlayers[presidentIndex];
 	const chancellorIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isChancellor');
 	const chancellor = game.private.seatedPlayers[chancellorIndex];
-	const nonDiscardedPolicies = _.range(0, 3).filter(num => num !== data.selection);
+	const nonDiscardedProclamations = _.range(0, 3).filter(num => num !== data.selection);
 
 	if (game.gameState.isGameFrozen) {
 		if (socket) {
@@ -937,7 +937,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 		return;
 	}
 
-	if (!president || president.userName !== passport.user || nonDiscardedPolicies.length !== 2) {
+	if (!president || president.userName !== passport.user || nonDiscardedProclamations.length !== 2) {
 		return;
 	}
 
@@ -956,7 +956,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 			game.gameState.timedModeEnabled = false;
 		}
 
-		const discarded = game.private.currentElectionPolicies[data.selection];
+		const discarded = game.private.currentElectionProclamations[data.selection];
 
 		const modOnlyChat = {
 			timestamp: new Date(),
@@ -989,7 +989,10 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 			const track4blue = game.trackState.orderProclamationCount >= 4;
 			const trackReds = game.trackState.deathEaterProclamationCount;
 
-			const passed = [game.private.currentElectionPolicies[nonDiscardedPolicies[0]], game.private.currentElectionPolicies[nonDiscardedPolicies[1]]];
+			const passed = [
+				game.private.currentElectionProclamations[nonDiscardedProclamations[0]],
+				game.private.currentElectionProclamations[nonDiscardedProclamations[1]]
+			];
 			let passedNicer = '';
 			if (passed[0] === 'order') {
 				if (passed[1] === 'order') passedNicer = 'BB';
@@ -1185,11 +1188,11 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 		}
 
 		game.private.summary = game.private.summary.updateLog({
-			chancellorHand: handToLog(game.private.currentElectionPolicies.filter((p, i) => i !== data.selection))
+			chancellorHand: handToLog(game.private.currentElectionProclamations.filter((p, i) => i !== data.selection))
 		});
 		game.private.currentChancellorOptions = [
-			game.private.currentElectionPolicies[nonDiscardedPolicies[0]],
-			game.private.currentElectionPolicies[nonDiscardedPolicies[1]]
+			game.private.currentElectionProclamations[nonDiscardedProclamations[0]],
+			game.private.currentElectionProclamations[nonDiscardedProclamations[1]]
 		];
 
 		president.cardFlingerState[0].action = president.cardFlingerState[1].action = president.cardFlingerState[2].action = '';
@@ -1202,7 +1205,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 				cardStatus: {
 					isFlipped: false,
 					cardFront: 'proclamation',
-					cardBack: `${game.private.currentElectionPolicies[nonDiscardedPolicies[0]]}p`
+					cardBack: `${game.private.currentElectionProclamations[nonDiscardedProclamations[0]]}p`
 				}
 			},
 			{
@@ -1211,7 +1214,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 				cardStatus: {
 					isFlipped: false,
 					cardFront: 'proclamation',
-					cardBack: `${game.private.currentElectionPolicies[nonDiscardedPolicies[1]]}p`
+					cardBack: `${game.private.currentElectionProclamations[nonDiscardedProclamations[1]]}p`
 				}
 			}
 		];
@@ -1332,27 +1335,27 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 		}
 
 		if (gameState.undrawnProclamationCount < 3) {
-			shufflePolicies(game);
+			shuffleProclamations(game);
 		}
 
 		gameState.undrawnProclamationCount--;
-		game.private.currentElectionPolicies = [game.private.policies.shift(), game.private.policies.shift(), game.private.policies.shift()];
+		game.private.currentElectionProclamations = [game.private.proclamations.shift(), game.private.proclamations.shift(), game.private.proclamations.shift()];
 		const verifyCorrect = proclamation => {
 			if (proclamation === 'order') return true;
 			if (proclamation === 'death eater') return true;
 			return false;
 		};
 		if (
-			!verifyCorrect(game.private.currentElectionPolicies[0]) ||
-			!verifyCorrect(game.private.currentElectionPolicies[1]) ||
-			!verifyCorrect(game.private.currentElectionPolicies[2])
+			!verifyCorrect(game.private.currentElectionProclamations[0]) ||
+			!verifyCorrect(game.private.currentElectionProclamations[1]) ||
+			!verifyCorrect(game.private.currentElectionProclamations[2])
 		) {
 			makeReport(
 				{
 					player: 'A Player',
 					seat: presidentIndex + 1,
 					role: 'Order',
-					situation: `has just received an invalid hand!\n${JSON.stringify(game.private.currentElectionPolicies)}`,
+					situation: `has just received an invalid hand!\n${JSON.stringify(game.private.currentElectionProclamations)}`,
 					election: game.general.electionCount,
 					title: game.general.name,
 					uid: game.general.uid,
@@ -1378,16 +1381,16 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					text: ' received '
 				},
 				{
-					text: game.private.currentElectionPolicies[0] === 'order' ? 'B' : 'R',
-					type: game.private.currentElectionPolicies[0]
+					text: game.private.currentElectionProclamations[0] === 'order' ? 'B' : 'R',
+					type: game.private.currentElectionProclamations[0]
 				},
 				{
-					text: game.private.currentElectionPolicies[1] === 'order' ? 'B' : 'R',
-					type: game.private.currentElectionPolicies[1]
+					text: game.private.currentElectionProclamations[1] === 'order' ? 'B' : 'R',
+					type: game.private.currentElectionProclamations[1]
 				},
 				{
-					text: game.private.currentElectionPolicies[2] === 'order' ? 'B' : 'R',
-					type: game.private.currentElectionPolicies[2]
+					text: game.private.currentElectionProclamations[2] === 'order' ? 'B' : 'R',
+					type: game.private.currentElectionProclamations[2]
 				},
 				{
 					text: '.'
@@ -1398,7 +1401,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 		sendInProgressModChatUpdate(game, modOnlyChat);
 
 		game.private.summary = game.private.summary.updateLog({
-			presidentHand: handToLog(game.private.currentElectionPolicies)
+			presidentHand: handToLog(game.private.currentElectionProclamations)
 		});
 
 		seatedPlayers[presidentIndex].cardFlingerState = [
@@ -1408,7 +1411,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				cardStatus: {
 					isFlipped: false,
 					cardFront: 'proclamation',
-					cardBack: `${game.private.currentElectionPolicies[0]}p`
+					cardBack: `${game.private.currentElectionProclamations[0]}p`
 				}
 			},
 			{
@@ -1417,7 +1420,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				cardStatus: {
 					isFlipped: false,
 					cardFront: 'proclamation',
-					cardBack: `${game.private.currentElectionPolicies[1]}p`
+					cardBack: `${game.private.currentElectionProclamations[1]}p`
 				}
 			},
 			{
@@ -1426,7 +1429,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				cardStatus: {
 					isFlipped: false,
 					cardFront: 'proclamation',
-					cardBack: `${game.private.currentElectionPolicies[2]}p`
+					cardBack: `${game.private.currentElectionProclamations[2]}p`
 				}
 			}
 		];
@@ -1497,13 +1500,13 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 			}
 
 			if (!game.gameState.undrawnProclamationCount) {
-				shufflePolicies(game);
+				shuffleProclamations(game);
 			}
 
 			game.gameState.undrawnProclamationCount--;
 			setTimeout(
 				() => {
-					enactProclamation(game, game.private.policies.shift(), socket);
+					enactProclamation(game, game.private.proclamations.shift(), socket);
 				},
 				process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 500 : 2000
 			);

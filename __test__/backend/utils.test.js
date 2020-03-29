@@ -5,7 +5,7 @@ import {
 	mapOpt2,
 	handDiff,
 	handToProclamation,
-	handToPolicies,
+	handToProclamations,
 	proclamationToHand,
 	text,
 	handToText,
@@ -90,14 +90,14 @@ describe('handToProclamation', () => {
 	expect(handToProclamation({ reds: 0, blues: 1 })).toBe('order');
 });
 
-describe('handToPolicies', () => {
-	expect(handToPolicies({ reds: 3, blues: 0 })).toImmutableEqual(List(['death eater', 'death eater', 'death eater']));
-	expect(handToPolicies({ reds: 2, blues: 1 })).toImmutableEqual(List(['death eater', 'death eater', 'order']));
-	expect(handToPolicies({ reds: 1, blues: 2 })).toImmutableEqual(List(['death eater', 'order', 'order']));
-	expect(handToPolicies({ reds: 0, blues: 3 })).toImmutableEqual(List(['order', 'order', 'order']));
-	expect(handToPolicies({ reds: 2, blues: 0 })).toImmutableEqual(List(['death eater', 'death eater']));
-	expect(handToPolicies({ reds: 1, blues: 1 })).toImmutableEqual(List(['death eater', 'order']));
-	expect(handToPolicies({ reds: 0, blues: 2 })).toImmutableEqual(List(['order', 'order']));
+describe('handToProclamations', () => {
+	expect(handToProclamations({ reds: 3, blues: 0 })).toImmutableEqual(List(['death eater', 'death eater', 'death eater']));
+	expect(handToProclamations({ reds: 2, blues: 1 })).toImmutableEqual(List(['death eater', 'death eater', 'order']));
+	expect(handToProclamations({ reds: 1, blues: 2 })).toImmutableEqual(List(['death eater', 'order', 'order']));
+	expect(handToProclamations({ reds: 0, blues: 3 })).toImmutableEqual(List(['order', 'order', 'order']));
+	expect(handToProclamations({ reds: 2, blues: 0 })).toImmutableEqual(List(['death eater', 'death eater']));
+	expect(handToProclamations({ reds: 1, blues: 1 })).toImmutableEqual(List(['death eater', 'order']));
+	expect(handToProclamations({ reds: 0, blues: 2 })).toImmutableEqual(List(['order', 'order']));
 });
 
 describe('proclamationToHand', () => {

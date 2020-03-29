@@ -2,8 +2,8 @@ import React from 'react'; // eslint-disable-line
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
-const EnactedPolicies = props => {
-	let classes = 'enactedpolicies-container';
+const EnactedProclamations = props => {
+	let classes = 'enactedproclamations-container';
 
 	const { gameInfo } = props;
 
@@ -14,11 +14,11 @@ const EnactedPolicies = props => {
 	return (
 		<section className={classes}>
 			{_.range(1, 12).map((num, i) => {
-				const stateObj = props.gameInfo.trackState.enactedPolicies[i];
+				const stateObj = props.gameInfo.trackState.enactedProclamations[i];
 
-				const frontClasses = 'enactedpolicies-card front';
-				let backClasses = 'enactedpolicies-card back';
-				let containerClasses = `enactedpolicies-card-container`;
+				const frontClasses = 'enactedproclamations-card front';
+				let backClasses = 'enactedproclamations-card back';
+				let containerClasses = `enactedproclamations-card-container`;
 
 				if (stateObj && Object.keys(stateObj).length) {
 					if (stateObj.isFlipped) {
@@ -45,8 +45,8 @@ const EnactedPolicies = props => {
 	);
 };
 
-EnactedPolicies.propTypes = {
+EnactedProclamations.propTypes = {
 	gameInfo: PropTypes.object
 };
 
-export default EnactedPolicies;
+export default EnactedProclamations;

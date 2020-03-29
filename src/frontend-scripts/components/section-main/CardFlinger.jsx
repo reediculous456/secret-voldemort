@@ -123,7 +123,7 @@ class CardFlinger extends React.Component {
 			) {
 				return (
 					<div className="help-message veto">
-						Would you like to <span>VETO</span> both of these policies?
+						Would you like to <span>VETO</span> both of these proclamations?
 					</div>
 				);
 			} else if (phase === 'presidentVoteOnBurn' && currentPlayerStatus === 'isPresident') {
@@ -132,8 +132,8 @@ class CardFlinger extends React.Component {
 						Would you like to <span>DISCARD</span> the top proclamation?
 					</div>
 				);
-			} else if (status === 'President to peek at policies.' && currentPlayerStatus === 'isPresident') {
-				return <div className="help-message proclamation-peak">Click on the draw deck to peek at the top 3 policies.</div>;
+			} else if (status === 'President to peek at proclamations.' && currentPlayerStatus === 'isPresident') {
+				return <div className="help-message proclamation-peak">Click on the draw deck to peek at the top 3 proclamations.</div>;
 			}
 		};
 

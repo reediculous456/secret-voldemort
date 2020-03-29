@@ -41,11 +41,11 @@ export default class Game extends React.Component {
 			}
 
 			if (gameInfo.general.status === 'Waiting on presidential discard.' && prevProps.gameInfo.general.status !== 'Waiting on presidential discard.') {
-				playSound('presidentreceivespolicies', 'pack1', 3000);
+				playSound('presidentreceivesproclamations', 'pack1', 3000);
 			}
 
 			if (gameInfo.general.status === 'Waiting on chancellor enactment.' && prevProps.gameInfo.general.status !== 'Waiting on chancellor enactment.') {
-				playSound('chancellorreceivespolicies', 'pack1', 2000);
+				playSound('chancellorreceivesproclamations', 'pack1', 2000);
 			}
 
 			if (gameInfo.gameState.audioCue === 'proclamationPeek' && prevProps.gameInfo.gameState.audioCue !== 'proclamationPeek') {

@@ -1,15 +1,15 @@
 import React from 'react'; // eslint-disable-line
-import { handToPolicies } from '../../../../../utils';
+import { handToProclamations } from '../../../../../utils';
 import { fromNullable } from 'option';
 import Card from '../../reusable/Card.jsx';
 
 export const handToCards = (hand, _discard) => {
 	const discard = fromNullable(_discard);
 
-	const policies = handToPolicies(hand);
-	const discardIndex = discard.map(d => policies.findLastIndex(p => p === d)).valueOrElse(-1);
+	const proclamations = handToProclamations(hand);
+	const discardIndex = discard.map(d => proclamations.findLastIndex(p => p === d)).valueOrElse(-1);
 
-	return policies.map((proclamation, i) =>
+	return proclamations.map((proclamation, i) =>
 		i === discardIndex ? <Card key={i} type={proclamation} icon={'huge red ban'} /> : <Card key={i} type={proclamation} />
 	);
 };

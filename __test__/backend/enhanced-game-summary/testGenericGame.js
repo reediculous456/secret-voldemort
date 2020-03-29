@@ -169,7 +169,7 @@ export default () => {
 			expect(afterDeckSize(7)).toBe(9);
 		});
 
-		it('should track enacted policies', () => {
+		it('should track enacted proclamations', () => {
 			const getEnactedProclamation = turnNum => turns.get(turnNum).enactedProclamation;
 
 			expect(getEnactedProclamation(0)).toEqual(some('death eater'));

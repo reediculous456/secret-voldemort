@@ -186,12 +186,12 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 
 	// Int
 	const { beforeDeckSize, afterDeckSize } = (() => {
-		const numPoliciesInGame = 17;
+		const numProclamationsInGame = 17;
 
 		const beforeDeckSize = (() => {
 			if (prevTurn.afterDeckSize < 3) {
-				const numPoliciesOnTrack = beforeTrack.reds + beforeTrack.blues;
-				return numPoliciesInGame - numPoliciesOnTrack;
+				const numProclamationsOnTrack = beforeTrack.reds + beforeTrack.blues;
+				return numProclamationsInGame - numProclamationsOnTrack;
 			} else {
 				return prevTurn.afterDeckSize;
 			}

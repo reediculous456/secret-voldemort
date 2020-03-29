@@ -4,7 +4,7 @@ import Dropdown from 'semantic-ui-dropdown';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Policies from './Policies.jsx';
+import Proclamations from './Proclamations.jsx';
 import { togglePlayerNotes } from '../../actions/actions';
 import { PLAYERCOLORS } from '../../constants';
 
@@ -616,7 +616,7 @@ class Players extends React.Component {
 						</form>
 					</div>
 				</div>
-				<Policies gameInfo={this.props.gameInfo} userInfo={this.props.userInfo} socket={this.props.socket} />
+				<Proclamations gameInfo={this.props.gameInfo} userInfo={this.props.userInfo} socket={this.props.socket} />
 			</section>
 		);
 	}

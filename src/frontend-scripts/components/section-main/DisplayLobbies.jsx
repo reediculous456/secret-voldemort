@@ -196,7 +196,7 @@ const DisplayLobbies = props => {
 
 		if (game.flappyOnlyMode) {
 			flappyOnlyMode = <i className="plane icon flappyonly" />;
-			flappyOnlyModeTooltip = 'Flappy Only Mode: no policies, just play flappy';
+			flappyOnlyModeTooltip = 'Flappy Only Mode: no proclamations, just play flappy';
 		}
 
 		if (game.isUnlisted) {

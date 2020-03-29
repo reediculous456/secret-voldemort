@@ -1,10 +1,10 @@
 import React from 'react'; // eslint-disable-line
 import { shallow } from 'enzyme';
-import EnactedPolicies from './EnactedPolicies';
+import EnactedProclamations from './EnactedProclamations';
 
-describe('EnactedPolicies', () => {
+describe('EnactedProclamations', () => {
 	it('should initialize correctly', () => {
-		const component = shallow(<EnactedPolicies gameInfo={{ cardFlingerState: [], trackState: { enactedPolicies: [{}] } }} />);
+		const component = shallow(<EnactedProclamations gameInfo={{ cardFlingerState: [], trackState: { enactedProclamations: [{}] } }} />);
 
 		expect(component).toHaveLength(1);
 	});

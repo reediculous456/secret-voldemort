@@ -724,7 +724,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 			orderProclamationCount: 0,
 			deathEaterProclamationCount: 0,
 			electionTrackerCount: 0,
-			enactedPolicies: []
+			enactedProclamations: []
 		}
 	};
 
@@ -748,7 +748,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 					type: 'death eater'
 				},
 				{
-					text: ' policies in the deck.'
+					text: ' proclamations in the deck.'
 				}
 			]
 		};
@@ -773,7 +773,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 					type: 'death eater'
 				},
 				{
-					text: ' policies.'
+					text: ' proclamations.'
 				}
 			]
 		};
@@ -1550,7 +1550,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 						type: 'death eater'
 					},
 					{
-						text: ' policies in the deck.'
+						text: ' proclamations in the deck.'
 					}
 				]
 			};
@@ -1575,7 +1575,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 						type: 'death eater'
 					},
 					{
-						text: ' policies.'
+						text: ' proclamations.'
 					}
 				]
 			};
@@ -1620,7 +1620,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 			orderProclamationCount: 0,
 			deathEaterProclamationCount: 0,
 			electionTrackerCount: 0,
-			enactedPolicies: []
+			enactedProclamations: []
 		};
 		newGame.private = {
 			reports: {},
@@ -2659,7 +2659,7 @@ module.exports.handleSubscribeModChat = (socket, passport, game) => {
 		gameChat: true,
 		chat: [{ text: `${passport.user} has subscribed to mod chat. Current deck: ` }]
 	};
-	game.private.policies.forEach(proclamation => {
+	game.private.proclamations.forEach(proclamation => {
 		modOnlyChat.chat.push({
 			text: proclamation === 'order' ? 'B' : 'R',
 			type: proclamation

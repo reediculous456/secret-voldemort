@@ -51,7 +51,7 @@ const { selectChancellor } = require('./game/election-util');
 const {
 	selectSpecialElection,
 	selectPartyMembershipInvestigate,
-	selectPolicies,
+	selectProclamations,
 	selectPlayerToExecute,
 	selectPartyMembershipInvestigateReverse,
 	selectOneProclamation,
@@ -602,12 +602,12 @@ module.exports.socketRoutes = () => {
 					selectPartyMembershipInvestigateReverse(passport, game, data, socket);
 				}
 			});
-			socket.on('selectedPolicies', data => {
+			socket.on('selectedProclamations', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
 					if (game.private.lock.proclamationPeekAndDrop) selectOneProclamation(passport, game);
-					else selectPolicies(passport, game, socket);
+					else selectProclamations(passport, game, socket);
 				}
 			});
 			socket.on('selectedPresidentVoteOnBurn', data => {

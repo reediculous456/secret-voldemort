@@ -2,14 +2,14 @@ import React from 'react'; // eslint-disable-line
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 
-const Policies = props => {
+const Proclamations = props => {
 	const { gameInfo, userInfo, socket } = props;
 	const clickedDraw = () => {
 		if (
 			userInfo.userName &&
 			gameInfo.playersState[gameInfo.publicPlayersState.findIndex(player => player.userName === userInfo.userName)].proclamationNotification
 		) {
-			socket.emit('selectedPolicies', { uid: gameInfo.general.uid });
+			socket.emit('selectedProclamations', { uid: gameInfo.general.uid });
 		}
 	};
 	const renderUndrawn = () => {
@@ -60,7 +60,7 @@ const Policies = props => {
 		(gameInfo.gameState.undrawnProclamationCount + gameInfo.trackState.orderProclamationCount + gameInfo.trackState.deathEaterProclamationCount);
 
 	return (
-		<section className="policies-container">
+		<section className="proclamations-container">
 			<div
 				className={(() => {
 					let classes = 'draw';
@@ -96,15 +96,15 @@ const Policies = props => {
 	);
 };
 
-Policies.defaultProps = {
+Proclamations.defaultProps = {
 	gameInfo: {},
 	userInfo: {}
 };
 
-Policies.propTypes = {
+Proclamations.propTypes = {
 	gameInfo: PropTypes.object,
 	userInfo: PropTypes.object,
 	socket: PropTypes.object
 };
 
-export default Policies;
+export default Proclamations;

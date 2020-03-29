@@ -1,6 +1,6 @@
 import React from 'react';
 import CardFlinger from './CardFlinger.jsx';
-import EnactedPolicies from './EnactedPolicies.jsx';
+import EnactedProclamations from './EnactedProclamations.jsx';
 import PropTypes from 'prop-types';
 import { Popup } from 'semantic-ui-react';
 
@@ -221,7 +221,7 @@ class Tracks extends React.Component {
 
 		if (game.flappyOnlyMode) {
 			flappyOnlyMode = <i className="plane icon flappyonly" />;
-			flappyOnlyModeTooltip = 'Flappy Only Mode: no policies, just play flappy';
+			flappyOnlyModeTooltip = 'Flappy Only Mode: no proclamations, just play flappy';
 		}
 
 		if (game.unlisted) {
@@ -564,7 +564,7 @@ class Tracks extends React.Component {
 		return (
 			<section className="tracks-container">
 				<CardFlinger userInfo={userInfo} gameInfo={gameInfo} socket={socket} />
-				<EnactedPolicies gameInfo={gameInfo} />
+				<EnactedProclamations gameInfo={gameInfo} />
 				<div>
 					<div className="game-name">
 						{gameInfo.general.flag !== 'none' && <i className={`ui flag ${gameInfo.general.flag}`} />}

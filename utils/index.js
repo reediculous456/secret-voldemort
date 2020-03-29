@@ -59,15 +59,15 @@ exports.handToProclamation = hand => {
 
 // consistently ordered 'death eater' first, followed by 'order'
 // (hand: Hand) => List[Proclamation]
-const handToPolicies = (exports.handToPolicies = hand => {
-	const toPolicies = (count, type) => {
+const handToProclamations = (exports.handToProclamations = hand => {
+	const toProclamations = (count, type) => {
 		return Range(0, count)
 			.map(i => type)
 			.toList();
 	};
 
-	const reds = toPolicies(hand.reds, 'death eater');
-	const blues = toPolicies(hand.blues, 'order');
+	const reds = toProclamations(hand.reds, 'death eater');
+	const blues = toProclamations(hand.blues, 'order');
 
 	return reds.concat(blues).toList();
 });
@@ -88,7 +88,7 @@ const text = (exports.text = (type, text, space) => ({ type, text, space }));
 exports.handToText = hand => {
 	const proclamationToString = proclamation => (proclamation === 'death eater' ? 'R' : 'B');
 
-	return handToPolicies(hand)
+	return handToProclamations(hand)
 		.map(proclamation => text(proclamation, proclamationToString(proclamation), false))
 		.concat(text('normal', ''))
 		.toArray();

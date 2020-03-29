@@ -7,17 +7,17 @@ const _ = require('lodash');
  * @param {object} game - game to act on.
  * @param {boolean} isStart - true if this is the initial shuffle.
  */
-const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
+const shuffleProclamations = (module.exports.shuffleProclamations = (game, isStart) => {
 	if (!game) {
 		return;
 	}
 
 	if (isStart) {
-		game.trackState.enactedPolicies = [];
+		game.trackState.enactedProclamations = [];
 		if (game.customGameSettings.trackState.lib > 0) {
 			game.trackState.orderProclamationCount = game.customGameSettings.trackState.lib;
 			_.range(0, game.customGameSettings.trackState.lib).forEach(num => {
-				game.trackState.enactedPolicies.push({
+				game.trackState.enactedProclamations.push({
 					cardBack: 'order',
 					isFlipped: true,
 					position: `order${num + 1}`
@@ -27,7 +27,7 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 		if (game.customGameSettings.trackState.fas > 0) {
 			game.trackState.deathEaterProclamationCount = game.customGameSettings.trackState.fas;
 			_.range(0, game.customGameSettings.trackState.fas).forEach(num => {
-				game.trackState.enactedPolicies.push({
+				game.trackState.enactedProclamations.push({
 					cardBack: 'death eater',
 					isFlipped: true,
 					position: `death eater${num + 1}`
@@ -38,13 +38,13 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 
 	const libCount = game.customGameSettings.deckState.lib - game.trackState.orderProclamationCount;
 	const fasCount = game.customGameSettings.deckState.fas - game.trackState.deathEaterProclamationCount;
-	game.private.policies = _.shuffle(
+	game.private.proclamations = _.shuffle(
 		_.range(0, libCount)
 			.map(num => 'order')
 			.concat(_.range(0, fasCount).map(num => 'death eater'))
 	);
 
-	game.gameState.undrawnProclamationCount = game.private.policies.length;
+	game.gameState.undrawnProclamationCount = game.private.proclamations.length;
 
 	if (!game.general.disableGamechat) {
 		const chat = {
@@ -66,7 +66,7 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 					type: 'death eater'
 				},
 				{
-					text: ' policies.'
+					text: ' proclamations.'
 				}
 			]
 		};
@@ -81,7 +81,7 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 		gameChat: true,
 		chat: [{ text: 'The deck has been shuffled: ' }]
 	};
-	game.private.policies.forEach(proclamation => {
+	game.private.proclamations.forEach(proclamation => {
 		modOnlyChat.chat.push({
 			text: proclamation === 'order' ? 'B' : 'R',
 			type: proclamation
@@ -102,7 +102,7 @@ module.exports.startElection = (game, specialElectionPresidentIndex) => {
 	}
 
 	if (game.gameState.undrawnProclamationCount < 3) {
-		shufflePolicies(game);
+		shuffleProclamations(game);
 	}
 
 	/**

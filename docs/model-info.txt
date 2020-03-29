@@ -74,7 +74,7 @@ trackState
 	orderProclamationCount number
 	electionTrackerCount number
 	deathEaterProclamationCount number
-	enactedPolicies array
+	enactedProclamations array
 		location string offscreen center order0 ... deathEater0 ...
 remakeData array
 	obj
@@ -108,8 +108,8 @@ private
 	reports object
 	_chancellorPlayerName string (bug resolution)
 	timeout object
-	policies array
-	currentElectionPolicies array
+	proclamations array
+	currentElectionProclamations array
   privatePassword string
 	unSeatedGameChats array
 		chat string

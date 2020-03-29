@@ -124,15 +124,15 @@ module.exports.completeGame = (game, winningTeamName) => {
 			{ text: ' win the game.' }
 		]
 	};
-	const remainingPoliciesChat = {
+	const remainingProclamationsChat = {
 		gameChat: true,
 		timestamp: new Date(),
 		chat: [
 			{
-				text: 'The remaining policies are '
+				text: 'The remaining proclamations are '
 			}
 		].concat(
-			game.private.policies
+			game.private.proclamations
 				.map(proclamationName => ({
 					text: proclamationName === 'order' ? 'B' : 'R',
 					type: proclamationName === 'order' ? 'order' : 'death eater'
@@ -167,10 +167,10 @@ module.exports.completeGame = (game, winningTeamName) => {
 	});
 
 	seatedPlayers.forEach(player => {
-		player.gameChats.push(chat, remainingPoliciesChat);
+		player.gameChats.push(chat, remainingProclamationsChat);
 	});
 
-	game.private.unSeatedGameChats.push(chat, remainingPoliciesChat);
+	game.private.unSeatedGameChats.push(chat, remainingProclamationsChat);
 
 	game.summary = game.private.summary;
 	debug('Final game summary: %O', game.summary.publish().toObject());
@@ -350,7 +350,7 @@ module.exports.completeGame = (game, winningTeamName) => {
 					orderProclamationCount: 0,
 					deathEaterProclamationCount: 0,
 					electionTrackerCount: 0,
-					enactedPolicies: []
+					enactedProclamations: []
 				};
 
 				const countDown = setInterval(() => {

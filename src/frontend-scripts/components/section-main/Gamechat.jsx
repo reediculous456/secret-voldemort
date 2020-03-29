@@ -987,7 +987,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button threedeatheater"
 											>
-												3 Death Eater policies
+												3 Death Eater proclamations
 											</button>
 											<button
 												onClick={e => {
@@ -1011,7 +1011,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button threeorder"
 											>
-												3 Order policies
+												3 Order proclamations
 											</button>
 										</div>
 									);
@@ -1025,7 +1025,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button threedeatheater"
 											>
-												2 Death Eater policies
+												2 Death Eater proclamations
 											</button>
 											<button
 												onClick={e => {
@@ -1041,7 +1041,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button threeorder"
 											>
-												2 Order policies
+												2 Order proclamations
 											</button>
 										</div>
 									);
@@ -1099,7 +1099,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button threedeatheater"
 											>
-												3 Death Eater policies
+												3 Death Eater proclamations
 											</button>
 											<button
 												onClick={e => {
@@ -1123,7 +1123,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button threeorder"
 											>
-												3 Order policies
+												3 Order proclamations
 											</button>
 										</div>
 									);

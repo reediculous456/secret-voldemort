@@ -1404,7 +1404,7 @@ export default class Creategame extends React.Component {
 				<div className="eight wide column ui grid" style={{ marginTop: '-1rem', marginLeft: '3rem', marginBottom: '3rem' }}>
 					<div className="row">
 						<div className="eight wide column">
-							<h4 className="ui header">Order policies</h4>
+							<h4 className="ui header">Order proclamations</h4>
 							<Range
 								min={5}
 								max={8}
@@ -1415,7 +1415,7 @@ export default class Creategame extends React.Component {
 							/>
 						</div>
 						<div className="eight wide column">
-							<h4 className="ui header">Death Eater policies</h4>
+							<h4 className="ui header">Death Eater proclamations</h4>
 							<Range
 								min={10}
 								max={19}
@@ -1428,7 +1428,7 @@ export default class Creategame extends React.Component {
 					</div>
 					<div className="row">
 						<div className="eight wide column">
-							<h4 className="ui header">Starting lib policies</h4>
+							<h4 className="ui header">Starting lib proclamations</h4>
 							<Range
 								min={0}
 								max={2}
@@ -1439,7 +1439,7 @@ export default class Creategame extends React.Component {
 							/>
 						</div>
 						<div className="eight wide column">
-							<h4 className="ui header">Starting fas policies</h4>
+							<h4 className="ui header">Starting fas proclamations</h4>
 							<Range
 								min={0}
 								max={2}
@@ -1708,7 +1708,7 @@ export default class Creategame extends React.Component {
 							<div className="sixteen wide column">
 								<i className="big plane icon" style={{ color: 'darkred' }} />
 								<h4 className="ui header" style={{ color: 'darkred' }}>
-									Forget the policies, just play a flappy-only game
+									Forget the proclamations, just play a flappy-only game
 								</h4>
 								<Switch
 									className="create-game-switch"

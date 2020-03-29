@@ -1,7 +1,7 @@
 const { sendInProgressGameUpdate, sendInProgressModChatUpdate } = require('../util.js');
 const _ = require('lodash');
 const { startElection } = require('./election.js');
-const { shufflePolicies } = require('./common.js');
+const { shuffleProclamations } = require('./common.js');
 const GameSummaryBuilder = require('../../../models/game-summary/GameSummaryBuilder');
 const Account = require('../../../models/account.js');
 
@@ -41,7 +41,7 @@ const beginGame = game => {
 			if (game.general.rebalance9p2f && game.publicPlayersState.length == 9) customGameSettings.deckState.fas = 10;
 		}
 	}
-	shufflePolicies(game, true);
+	shuffleProclamations(game, true);
 
 	const roles = [
 		{
@@ -574,5 +574,5 @@ module.exports = game => {
 		player.wasInvestigated = false;
 	});
 	game.gameState.audioCue = '';
-	game.private.policies = [];
+	game.private.proclamations = [];
 };

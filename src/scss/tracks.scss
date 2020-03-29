@@ -188,7 +188,7 @@
 }
 
 .tracks.blurred,
-.enactedpolicies-container.blurred {
+.enactedproclamations-container.blurred {
 	//filter: blur(5px) saturate(60%);
 	opacity: 0.3;
 }
@@ -350,7 +350,7 @@
 		color: red;
 	}
 }
-.enactedpolicies-card-container {
+.enactedproclamations-card-container {
 	position: absolute;
 	top: 130px;
 	left: -140px;
@@ -363,7 +363,7 @@
 	transform-style: preserve-3d;
 	box-shadow: 0px 0px 4px 3px var(--theme-text-3);
 }
-.enactedpolicies-card {
+.enactedproclamations-card {
 	background-size: contain;
 	background-repeat: no-repeat;
 	height: 100%;
@@ -374,71 +374,71 @@
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 }
-.enactedpolicies-card.back {
+.enactedproclamations-card.back {
 	transform: rotateY(180deg);
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	cursor: pointer;
 }
-.enactedpolicies-card.front {
+.enactedproclamations-card.front {
 	background-image: url('../../public/images/cards/proclamation-l.png');
 }
-.enactedpolicies-card.back.order {
+.enactedproclamations-card.back.order {
 	background-image: url('../../public/images/cards/orderp-l.png');
 }
-.enactedpolicies-card.back.death-eater {
+.enactedproclamations-card.back.death-eater {
 	background-image: url('../../public/images/cards/death-eaterp-l.png');
 }
-.enactedpolicies-card-container.middle {
+.enactedproclamations-card-container.middle {
 	left: 40%;
 	top: 30%;
 }
-.enactedpolicies-card-container.inplace {
+.enactedproclamations-card-container.inplace {
 	width: 13.85%;
 	background-size: contain;
 	//height: 23.8%;
 }
-.enactedpolicies-card-container.order1 {
+.enactedproclamations-card-container.order1 {
 	left: 14.15%; //95px
 	top: 10.91%; //48px
 }
-.enactedpolicies-card-container.order2 {
+.enactedproclamations-card-container.order2 {
 	left: 28.5%;
 	top: 10.91%;
 }
-.enactedpolicies-card-container.order3 {
+.enactedproclamations-card-container.order3 {
 	left: 42.85%;
 	top: 10.91%;
 }
-.enactedpolicies-card-container.order4 {
+.enactedproclamations-card-container.order4 {
 	left: 57.5%;
 	top: 10.91%;
 }
-.enactedpolicies-card-container.order5 {
+.enactedproclamations-card-container.order5 {
 	left: 71.85%;
 	top: 10.91%;
 }
-.enactedpolicies-card-container.death-eater1 {
+.enactedproclamations-card-container.death-eater1 {
 	left: 7.1%;
 	top: 61%;
 }
-.enactedpolicies-card-container.death-eater2 {
+.enactedproclamations-card-container.death-eater2 {
 	left: 21.5%;
 	top: 61%;
 }
-.enactedpolicies-card-container.death-eater3 {
+.enactedproclamations-card-container.death-eater3 {
 	left: 35.9%;
 	top: 61%;
 }
-.enactedpolicies-card-container.death-eater4 {
+.enactedproclamations-card-container.death-eater4 {
 	left: 50.3%;
 	top: 61%;
 }
-.enactedpolicies-card-container.death-eater5 {
+.enactedproclamations-card-container.death-eater5 {
 	left: 64.7%;
 	top: 61%;
 }
-.enactedpolicies-card-container.death-eater6 {
+.enactedproclamations-card-container.death-eater6 {
 	left: 79.1%;
 	top: 61%;
 }
@@ -494,7 +494,7 @@
 		transition-delay: 0.1s;
 		transition-duration: 0.2s;
 	}
-	.enactedpolicies-card-container {
+	.enactedproclamations-card-container {
 		transition-delay: 0.5s, 0.5s, 1s, 1s, 0.5s;
 		transition-duration: 0.5s, 0.5s, 1s, 1s, 1s;
 	}
