@@ -7,8 +7,8 @@ const { sendInProgressGameUpdate } = require('../util');
  * @param {object} data - from socket emit.
  * @param {bool} force - whether or not this action was forced.
  */
-module.exports.selectChancellor = (socket, passport, game, data, force = false) => {
-	if ((game.general.isTourny && game.general.tournyInfo.isCancelled) || data.chancellorIndex >= game.general.playerCount || data.chancellorIndex < 0) {
+module.exports.selectHeadmaster = (socket, passport, game, data, force = false) => {
+	if ((game.general.isTourny && game.general.tournyInfo.isCancelled) || data.headmasterIndex >= game.general.playerCount || data.headmasterIndex < 0) {
 		return;
 	}
 
@@ -19,19 +19,19 @@ module.exports.selectChancellor = (socket, passport, game, data, force = false) 
 		return;
 	}
 
-	const { chancellorIndex } = data;
+	const { headmasterIndex } = data;
 	const { presidentIndex } = game.gameState;
 	const { experiencedMode } = game.general;
 	const seatedPlayers = game.private.seatedPlayers.filter(player => !player.isDead);
 	const presidentPlayer = game.private.seatedPlayers[presidentIndex];
-	const chancellorPlayer = game.private.seatedPlayers[chancellorIndex];
+	const headmasterPlayer = game.private.seatedPlayers[headmasterIndex];
 
 	// Make sure the pick is valid
 	if (
-		game.publicPlayersState[chancellorIndex].isDead ||
-		chancellorIndex === presidentIndex ||
-		chancellorIndex === game.gameState.previousElectedGovernment[1] ||
-		(chancellorIndex === game.gameState.previousElectedGovernment[0] && game.general.livingPlayerCount > 5)
+		game.publicPlayersState[headmasterIndex].isDead ||
+		headmasterIndex === presidentIndex ||
+		headmasterIndex === game.gameState.previousElectedGovernment[1] ||
+		(headmasterIndex === game.gameState.previousElectedGovernment[0] && game.general.livingPlayerCount > 5)
 	) {
 		return;
 	}
@@ -46,20 +46,20 @@ module.exports.selectChancellor = (socket, passport, game, data, force = false) 
 		game.gameState.timedModeEnabled = false;
 	}
 
-	if (!game.private.lock.selectChancellor && !Number.isInteger(game.gameState.pendingChancellorIndex) && game.gameState.phase !== 'voting') {
-		game.private.lock.selectChancellor = true;
+	if (!game.private.lock.selectHeadmaster && !Number.isInteger(game.gameState.pendingHeadmasterIndex) && game.gameState.phase !== 'voting') {
+		game.private.lock.selectHeadmaster = true;
 		game.publicPlayersState[presidentIndex].isLoader = false;
 
 		game.private.summary = game.private.summary.updateLog({
-			chancellorId: chancellorIndex
+			headmasterId: headmasterIndex
 		});
 
 		presidentPlayer.playersState.forEach(player => {
 			player.notificationStatus = '';
 		});
 
-		game.publicPlayersState[chancellorIndex].governmentStatus = 'isPendingChancellor';
-		game.gameState.pendingChancellorIndex = chancellorIndex;
+		game.publicPlayersState[headmasterIndex].governmentStatus = 'isPendingHeadmaster';
+		game.gameState.pendingHeadmasterIndex = headmasterIndex;
 		game.general.status = `Vote on election #${game.general.electionCount} now.`;
 
 		game.publicPlayersState
@@ -90,10 +90,10 @@ module.exports.selectChancellor = (socket, passport, game, data, force = false) 
 							type: 'player'
 						},
 						{
-							text: ' and chancellor '
+							text: ' and headmaster '
 						},
 						{
-							text: game.general.blindMode ? `{${chancellorIndex + 1}}` : `${chancellorPlayer.userName} {${chancellorIndex + 1}}`,
+							text: game.general.blindMode ? `{${headmasterIndex + 1}}` : `${headmasterPlayer.userName} {${headmasterIndex + 1}}`,
 							type: 'player'
 						},
 						{
@@ -142,11 +142,11 @@ module.exports.selectChancellor = (socket, passport, game, data, force = false) 
 					text: ' nominates '
 				},
 				{
-					text: game.general.blindMode ? `{${chancellorIndex + 1}}` : `${chancellorPlayer.userName} {${chancellorIndex + 1}}`,
+					text: game.general.blindMode ? `{${headmasterIndex + 1}}` : `${headmasterPlayer.userName} {${headmasterIndex + 1}}`,
 					type: 'player'
 				},
 				{
-					text: ' as chancellor.'
+					text: ' as headmaster.'
 				}
 			]
 		};

@@ -10,9 +10,9 @@ module.exports = {
 	logs: [
 		{
 			presidentId: 0,
-			chancellorId: 2,
+			headmasterId: 2,
 			enactedProclamation: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -24,14 +24,14 @@ module.exports = {
 		},
 		{
 			presidentId: 1,
-			chancellorId: 3,
+			headmasterId: 3,
 			enactedProclamation: 'death eater',
 			investigationId: 2,
 			presidentClaim: {
 				reds: 0,
 				blues: 3
 			},
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -43,15 +43,15 @@ module.exports = {
 		},
 		{
 			presidentId: 2,
-			chancellorId: 4,
+			headmasterId: 4,
 			votes: [false, false, false, false, false, true, true]
 		},
 		{
 			presidentId: 3,
-			chancellorId: 4,
+			headmasterId: 4,
 			enactedProclamation: 'death eater',
 			specialElection: 4,
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -63,10 +63,10 @@ module.exports = {
 		},
 		{
 			presidentId: 4,
-			chancellorId: 5,
+			headmasterId: 5,
 			enactedProclamation: 'death eater',
 			execution: 2,
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},

@@ -13,9 +13,9 @@ module.exports = {
 		// turn 0
 		{
 			presidentId: 0,
-			chancellorId: 4,
+			headmasterId: 4,
 			enactedProclamation: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -28,26 +28,26 @@ module.exports = {
 		// turn 1
 		{
 			presidentId: 1,
-			chancellorId: 3,
+			headmasterId: 3,
 			votes: [false, false, false, false, false]
 		},
 		// turn 2
 		{
 			presidentId: 2,
-			chancellorId: 1,
+			headmasterId: 1,
 			votes: [false, false, false, false, false]
 		},
 		// turn 3
 		{
 			presidentId: 3,
-			chancellorId: 2,
+			headmasterId: 2,
 			enactedProclamation: 'death eater',
 			votes: [false, false, false, false, false]
 		},
 		// turn 4
 		{
 			presidentId: 4,
-			chancellorId: 1,
+			headmasterId: 1,
 			enactedProclamation: 'death eater',
 			proclamationPeek: {
 				reds: 2,
@@ -57,7 +57,7 @@ module.exports = {
 				reds: 3,
 				blues: 0
 			},
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -70,12 +70,12 @@ module.exports = {
 		// turn 5
 		{
 			presidentId: 0,
-			chancellorId: 3,
+			headmasterId: 3,
 			votes: [false, false, false, false, false]
 		},
 		{
 			presidentId: 1,
-			chancellorId: 0,
+			headmasterId: 0,
 			votes: [true, true, true, true, false]
 		}
 	],

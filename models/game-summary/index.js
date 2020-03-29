@@ -37,7 +37,7 @@ const gameSummary = new Schema({
 		{
 			// election
 			presidentId: Number,
-			chancellorId: Number,
+			headmasterId: Number,
 			votes: Array, // [Boolean]
 
 			// proclamation enaction
@@ -45,7 +45,7 @@ const gameSummary = new Schema({
 				reds: Number,
 				blues: Number
 			},
-			chancellorHand: {
+			headmasterHand: {
 				reds: Number,
 				blues: Number
 			},
@@ -55,13 +55,13 @@ const gameSummary = new Schema({
 				reds: Number,
 				blues: Number
 			},
-			chancellorClaim: {
+			headmasterClaim: {
 				reds: Number,
 				blues: Number
 			},
 
 			presidentVeto: Boolean,
-			chancellorVeto: Boolean,
+			headmasterVeto: Boolean,
 
 			// actions
 			proclamationPeek: {

@@ -10,9 +10,9 @@ module.exports = {
 	logs: [
 		{
 			presidentId: 0,
-			chancellorId: 3,
+			headmasterId: 3,
 			enactedProclamation: 'order',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -24,9 +24,9 @@ module.exports = {
 		},
 		{
 			presidentId: 1,
-			chancellorId: 6,
+			headmasterId: 6,
 			enactedProclamation: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -38,9 +38,9 @@ module.exports = {
 		},
 		{
 			presidentId: 2,
-			chancellorId: 5,
+			headmasterId: 5,
 			enactedProclamation: 'order',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -52,9 +52,9 @@ module.exports = {
 		},
 		{
 			presidentId: 3,
-			chancellorId: 4,
+			headmasterId: 4,
 			enactedProclamation: 'order',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -66,9 +66,9 @@ module.exports = {
 		},
 		{
 			presidentId: 4,
-			chancellorId: 2,
+			headmasterId: 2,
 			enactedProclamation: 'order',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -80,14 +80,14 @@ module.exports = {
 		},
 		{
 			presidentId: 5,
-			chancellorId: 3,
+			headmasterId: 3,
 			votes: [false, false, true, true, true, false, false]
 		},
 		{
 			presidentId: 6,
-			chancellorId: 5,
+			headmasterId: 5,
 			enactedProclamation: 'order',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 0,
 				blues: 2
 			},

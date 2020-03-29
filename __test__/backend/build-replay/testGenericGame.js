@@ -34,10 +34,10 @@ export default () => {
 			expect(snapshot.presidentId).toBe(presidentId);
 		};
 
-		const testNomination = (turnNum, presidentId, chancellorId) => {
+		const testNomination = (turnNum, presidentId, headmasterId) => {
 			const snapshot = findPhase('nomination', turnNum);
 			expect(snapshot.presidentId).toBe(presidentId);
-			expect(snapshot.chancellorId).toBe(chancellorId);
+			expect(snapshot.headmasterId).toBe(headmasterId);
 		};
 
 		const testElection = (turnNum, votes) => {
@@ -60,7 +60,7 @@ export default () => {
 
 		const testPresidentLegislation = testLegislation.bind(null, 'president');
 
-		const testChancellorLegislation = testLegislation.bind(null, 'chancellor');
+		const testHeadmasterLegislation = testLegislation.bind(null, 'headmaster');
 
 		const testProclamationEnaction = (turnNum, proclamation) => {
 			if (!proclamation) {
@@ -125,7 +125,7 @@ export default () => {
 
 				testPresidentLegislation(0, { reds: 2, blues: 1 }, 'order', some({ reds: 2, blues: 1 }));
 
-				testChancellorLegislation(0, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
+				testHeadmasterLegislation(0, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
 
 				testProclamationEnaction(0, 'death eater');
 
@@ -157,7 +157,7 @@ export default () => {
 
 				testPresidentLegislation(1, { reds: 2, blues: 1 }, 'death eater', some({ reds: 2, blues: 1 }));
 
-				testChancellorLegislation(1, { reds: 1, blues: 1 }, some('order'), some({ reds: 2, blues: 0 }));
+				testHeadmasterLegislation(1, { reds: 1, blues: 1 }, some('order'), some({ reds: 2, blues: 0 }));
 
 				testProclamationEnaction(1, 'death eater');
 
@@ -195,7 +195,7 @@ export default () => {
 
 				testPresidentLegislation(5, null, none);
 
-				testChancellorLegislation(5, null, none);
+				testHeadmasterLegislation(5, null, none);
 
 				testProclamationEnaction(5, null);
 
@@ -227,7 +227,7 @@ export default () => {
 
 				testPresidentLegislation(6, { reds: 2, blues: 1 }, 'order', some({ reds: 2, blues: 1 }));
 
-				testChancellorLegislation(6, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
+				testHeadmasterLegislation(6, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
 
 				testProclamationEnaction(6, 'death eater');
 
@@ -254,7 +254,7 @@ export default () => {
 
 				testPresidentLegislation(7, { reds: 2, blues: 1 }, 'order', none);
 
-				testChancellorLegislation(7, { reds: 2, blues: 0 }, some('death eater'), none);
+				testHeadmasterLegislation(7, { reds: 2, blues: 0 }, some('death eater'), none);
 
 				testElection(
 					7,

@@ -19,15 +19,15 @@ function profileDelta(username, game) {
 					.votesOf(username)
 					.value()
 					.slice(hz)
-			).filter(v => game.loyaltyOf(v.presidentId).value() === 'death eater' || game.roleOf(v.chancellorId).value() === 'voldemort')
+			).filter(v => game.loyaltyOf(v.presidentId).value() === 'death eater' || game.roleOf(v.headmasterId).value() === 'voldemort')
 		)
 		.valueOrElse(List());
 	const accurateVotes = votes.filterNot(v => {
-		const { presidentId, chancellorId, ja } = v;
+		const { presidentId, headmasterId, ja } = v;
 		const presidentLoyalty = game.loyaltyOf(presidentId).value();
-		const chancellorRole = game.roleOf(chancellorId).value();
+		const headmasterRole = game.roleOf(headmasterId).value();
 
-		return ja && (presidentLoyalty === 'death eater' || chancellorRole === 'voldemort');
+		return ja && (presidentLoyalty === 'death eater' || headmasterRole === 'voldemort');
 	});
 	const shots = game.shotsOf(username).value();
 	const accurateShots = shots.filter(id => game.loyaltyOf(id).value() === 'death eater');

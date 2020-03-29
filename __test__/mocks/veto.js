@@ -12,10 +12,10 @@ module.exports = {
 		// turn 0
 		{
 			presidentId: 0,
-			chancellorId: 7,
+			headmasterId: 7,
 			enactedProclamation: 'death eater',
 			_id: '595052626419ea7a9b545b53',
-			chancellorClaim: {
+			headmasterClaim: {
 				reds: 2,
 				blues: 0
 			},
@@ -23,7 +23,7 @@ module.exports = {
 				reds: 3,
 				blues: 0
 			},
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -36,10 +36,10 @@ module.exports = {
 		// turn 1
 		{
 			presidentId: 1,
-			chancellorId: 6,
+			headmasterId: 6,
 			enactedProclamation: 'order',
 			_id: '595052626419ea7a9b545b52',
-			chancellorClaim: {
+			headmasterClaim: {
 				reds: 2,
 				blues: 0
 			},
@@ -47,7 +47,7 @@ module.exports = {
 				reds: 3,
 				blues: 0
 			},
-			chancellorHand: {
+			headmasterHand: {
 				reds: 0,
 				blues: 2
 			},
@@ -60,12 +60,12 @@ module.exports = {
 		// turn 2
 		{
 			presidentId: 2,
-			chancellorId: 5,
+			headmasterId: 5,
 			enactedProclamation: 'death eater',
 			investigationId: 3,
 			investigationClaim: 'death eater',
 			_id: '595052626419ea7a9b545b51',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -78,9 +78,9 @@ module.exports = {
 		// turn 3
 		{
 			presidentId: 3,
-			chancellorId: 1,
+			headmasterId: 1,
 			_id: '595052626419ea7a9b545b50',
-			chancellorClaim: {
+			headmasterClaim: {
 				reds: 2,
 				blues: 0
 			},
@@ -93,11 +93,11 @@ module.exports = {
 		// turn 4
 		{
 			presidentId: 4,
-			chancellorId: 1,
+			headmasterId: 1,
 			enactedProclamation: 'death eater',
 			specialElection: 6,
 			_id: '595052626419ea7a9b545b4f',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -110,17 +110,17 @@ module.exports = {
 		// turn 5
 		{
 			presidentId: 6,
-			chancellorId: 1,
+			headmasterId: 1,
 			_id: '595052626419ea7a9b545b4e',
 			votes: [false, false, false, true, false, true, true, false]
 		},
 		// turn 6
 		{
 			presidentId: 5,
-			chancellorId: 6,
+			headmasterId: 6,
 			enactedProclamation: 'order',
 			_id: '595052626419ea7a9b545b4d',
-			chancellorClaim: {
+			headmasterClaim: {
 				reds: 0,
 				blues: 2
 			},
@@ -128,7 +128,7 @@ module.exports = {
 				reds: 2,
 				blues: 1
 			},
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -141,24 +141,24 @@ module.exports = {
 		// turn 7
 		{
 			presidentId: 6,
-			chancellorId: 1,
+			headmasterId: 1,
 			_id: '595052626419ea7a9b545b4c',
 			votes: [false, false, false, true, false, true, true, false]
 		},
 		// turn 8
 		{
 			presidentId: 7,
-			chancellorId: 3,
+			headmasterId: 3,
 			_id: '595052626419ea7a9b545b4b',
 			votes: [true, false, false, false, true, true, false, true]
 		},
 		// turn 9
 		{
 			presidentId: 0,
-			chancellorId: 4,
+			headmasterId: 4,
 			enactedProclamation: 'order',
 			_id: '595052626419ea7a9b545b4a',
-			chancellorClaim: {
+			headmasterClaim: {
 				reds: 0,
 				blues: 2
 			},
@@ -166,7 +166,7 @@ module.exports = {
 				reds: 1,
 				blues: 2
 			},
-			chancellorHand: {
+			headmasterHand: {
 				reds: 0,
 				blues: 2
 			},
@@ -179,24 +179,24 @@ module.exports = {
 		// turn 10
 		{
 			presidentId: 1,
-			chancellorId: 6,
+			headmasterId: 6,
 			_id: '595052626419ea7a9b545b49',
 			votes: [false, true, false, false, true, false, true, false]
 		},
 		// turn 11
 		{
 			presidentId: 2,
-			chancellorId: 5,
+			headmasterId: 5,
 			_id: '595052626419ea7a9b545b48',
 			votes: [false, false, true, false, false, false, false, false]
 		},
 		// turn 12
 		{
 			presidentId: 3,
-			chancellorId: 6,
+			headmasterId: 6,
 			enactedProclamation: 'death eater',
 			_id: '595052626419ea7a9b545b47',
-			chancellorClaim: {
+			headmasterClaim: {
 				reds: 2,
 				blues: 0
 			},
@@ -209,11 +209,11 @@ module.exports = {
 		// turn 13
 		{
 			presidentId: 4,
-			chancellorId: 6,
+			headmasterId: 6,
 			enactedProclamation: 'death eater',
 			execution: 7,
 			_id: '595052626419ea7a9b545b46',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -226,17 +226,17 @@ module.exports = {
 		// turn 14
 		{
 			presidentId: 5,
-			chancellorId: 2,
+			headmasterId: 2,
 			_id: '595052626419ea7a9b545b45',
 			votes: [false, false, true, false, false, true, false, false]
 		},
 		// turn 15
 		{
 			presidentId: 6,
-			chancellorId: 1,
+			headmasterId: 1,
 			enactedProclamation: 'order',
 			_id: '595052626419ea7a9b545b44',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -249,16 +249,16 @@ module.exports = {
 		// turn 16
 		{
 			presidentId: 0,
-			chancellorId: 4,
+			headmasterId: 4,
 			_id: '595052626419ea7a9b545b43',
 			votes: [true, false, true, false, false, false, false, false]
 		},
 		// turn 17
 		{
 			presidentId: 1,
-			chancellorId: 3,
+			headmasterId: 3,
 			_id: '595052626419ea7a9b545b42',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -271,7 +271,7 @@ module.exports = {
 		// turn 18
 		{
 			presidentId: 2,
-			chancellorId: 6,
+			headmasterId: 6,
 			enactedProclamation: 'death eater',
 			_id: '595052626419ea7a9b545b41',
 			votes: [false, false, true, false, false, false, false, false]

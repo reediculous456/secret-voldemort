@@ -16,9 +16,9 @@ module.exports = {
 		// turn 0
 		{
 			presidentId: 0,
-			chancellorId: 1,
+			headmasterId: 1,
 			enactedProclamation: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -28,16 +28,16 @@ module.exports = {
 			},
 			votes: [true, true, true, true, true, true, true],
 			presidentClaim: { reds: 2, blues: 1 },
-			chancellorClaim: { reds: 2, blues: 0 }
+			headmasterClaim: { reds: 2, blues: 0 }
 		},
 		// turn 1
 		{
 			presidentId: 1,
-			chancellorId: 3,
+			headmasterId: 3,
 			enactedProclamation: 'death eater',
 			investigationId: 4,
 			investigationClaim: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -47,15 +47,15 @@ module.exports = {
 			},
 			votes: [true, true, true, true, true, true, true],
 			presidentClaim: { reds: 2, blues: 1 },
-			chancellorClaim: { reds: 2, blues: 0 }
+			headmasterClaim: { reds: 2, blues: 0 }
 		},
 		// turn 2
 		{
 			presidentId: 2,
-			chancellorId: 0,
+			headmasterId: 0,
 			enactedProclamation: 'death eater',
 			specialElection: 1,
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -65,15 +65,15 @@ module.exports = {
 			},
 			votes: [true, true, true, true, true, true, true],
 			presidentClaim: { reds: 2, blues: 1 },
-			chancellorClaim: { reds: 2, blues: 0 }
+			headmasterClaim: { reds: 2, blues: 0 }
 		},
 		// turn 3
 		{
 			presidentId: 1,
-			chancellorId: 6,
+			headmasterId: 6,
 			enactedProclamation: 'death eater',
 			execution: 3,
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -83,27 +83,27 @@ module.exports = {
 			},
 			votes: [true, false, true, true, true, true, false],
 			presidentClaim: { reds: 2, blues: 1 },
-			chancellorClaim: { reds: 2, blues: 0 }
+			headmasterClaim: { reds: 2, blues: 0 }
 		},
 		// turn 4
 		{
 			presidentId: 4,
-			chancellorId: 2,
+			headmasterId: 2,
 			votes: [true, false, false, true, false, true, false]
 		},
 		// turn 5
 		{
 			presidentId: 5,
-			chancellorId: 4,
+			headmasterId: 4,
 			votes: [true, false, false, true, false, false, false]
 		},
 		// turn 6
 		{
 			presidentId: 6,
-			chancellorId: 2,
+			headmasterId: 2,
 			enactedProclamation: 'death eater',
 			execution: 2,
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -113,14 +113,14 @@ module.exports = {
 			},
 			votes: [true, true, true, true, true, true, true],
 			presidentClaim: { reds: 2, blues: 1 },
-			chancellorClaim: { reds: 2, blues: 0 }
+			headmasterClaim: { reds: 2, blues: 0 }
 		},
 		// turn 7
 		{
 			presidentId: 0,
-			chancellorId: 5,
+			headmasterId: 5,
 			enactedProclamation: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},

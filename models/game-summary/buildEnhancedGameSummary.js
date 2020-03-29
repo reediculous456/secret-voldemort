@@ -13,12 +13,12 @@ function buildEnhancedGameSummary(_summary) {
 	const summary = fromJS(_summary, (key, value, path) => {
 		const options = [
 			'presidentHand',
-			'chancellorHand',
+			'headmasterHand',
 			'enactedProclamation',
 			'presidentClaim',
-			'chancellorClaim',
+			'headmasterClaim',
 			'presidentVeto',
-			'chancellorVeto',
+			'headmasterVeto',
 			'proclamationPeek',
 			'proclamationPeekClaim',
 			'investigationId',
@@ -132,14 +132,14 @@ function buildEnhancedGameSummary(_summary) {
 		return playerOf(id).map(p => p.role);
 	};
 
-	// Option[List[Option[{ ja: Boolean, presidentId: Int, chancellorId: Int }]]]
+	// Option[List[Option[{ ja: Boolean, presidentId: Int, headmasterId: Int }]]]
 	const votesOf = username => {
 		return indexOf(username).map(i =>
 			turns.map(t =>
 				t.votes.get(i).map(v => ({
 					ja: v,
 					presidentId: t.presidentId,
-					chancellorId: t.chancellorId
+					headmasterId: t.headmasterId
 				}))
 			)
 		);

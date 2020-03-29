@@ -1,6 +1,6 @@
 const { sendInProgressGameUpdate } = require('../util');
 const { sendGameList } = require('../user-requests');
-const { selectChancellor } = require('./election-util');
+const { selectHeadmaster } = require('./election-util');
 const _ = require('lodash');
 
 /**
@@ -143,14 +143,14 @@ module.exports.startElection = (game, specialElectionPresidentIndex) => {
 
 	game.general.electionCount++;
 	sendGameList();
-	game.general.status = `Election #${game.general.electionCount}: president to select chancellor.`;
+	game.general.status = `Election #${game.general.electionCount}: president to select headmaster.`;
 	if (!experiencedMode && !game.general.disableGamechat) {
 		pendingPresidentPlayer.gameChats.push({
 			gameChat: true,
 			timestamp: new Date(),
 			chat: [
 				{
-					text: 'You are president and must select a chancellor.'
+					text: 'You are president and must select a headmaster.'
 				}
 			]
 		});
@@ -175,7 +175,7 @@ module.exports.startElection = (game, specialElectionPresidentIndex) => {
 
 	game.publicPlayersState[presidentIndex].governmentStatus = 'isPendingPresident';
 	game.publicPlayersState[presidentIndex].isLoader = true;
-	game.gameState.phase = 'selectingChancellor';
+	game.gameState.phase = 'selectingHeadmaster';
 
 	if (game.general.timedMode) {
 		if (game.private.timerId) {
@@ -186,9 +186,9 @@ module.exports.startElection = (game, specialElectionPresidentIndex) => {
 		game.private.timerId = setTimeout(
 			() => {
 				if (game.gameState.timedModeEnabled) {
-					const chancellorIndex = _.shuffle(game.gameState.clickActionInfo[1])[0];
+					const headmasterIndex = _.shuffle(game.gameState.clickActionInfo[1])[0];
 
-					selectChancellor(null, { user: pendingPresidentPlayer.userName }, game, { chancellorIndex });
+					selectHeadmaster(null, { user: pendingPresidentPlayer.userName }, game, { headmasterIndex });
 				}
 			},
 			process.env.DEVTIMEDDELAY ? process.env.DEVTIMEDDELAY : game.general.timedMode * 1000

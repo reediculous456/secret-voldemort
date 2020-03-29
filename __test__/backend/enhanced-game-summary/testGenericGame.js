@@ -218,43 +218,43 @@ export default () => {
 			expect(presidentDiscard(7)).toEqual(some('order'));
 		});
 
-		it('should track chancellor hands', () => {
-			const chancellorHand = turnNum => turns.get(turnNum).chancellorHand;
+		it('should track headmaster hands', () => {
+			const headmasterHand = turnNum => turns.get(turnNum).headmasterHand;
 
-			expect(chancellorHand(0)).toEqual(some({ reds: 2, blues: 0 }));
-			expect(chancellorHand(1)).toEqual(some({ reds: 1, blues: 1 }));
-			expect(chancellorHand(2)).toEqual(some({ reds: 1, blues: 1 }));
-			expect(chancellorHand(3)).toEqual(some({ reds: 1, blues: 1 }));
-			expect(chancellorHand(4)).toEqual(none);
-			expect(chancellorHand(5)).toEqual(none);
-			expect(chancellorHand(6)).toEqual(some({ reds: 2, blues: 0 }));
-			expect(chancellorHand(7)).toEqual(some({ reds: 2, blues: 0 }));
+			expect(headmasterHand(0)).toEqual(some({ reds: 2, blues: 0 }));
+			expect(headmasterHand(1)).toEqual(some({ reds: 1, blues: 1 }));
+			expect(headmasterHand(2)).toEqual(some({ reds: 1, blues: 1 }));
+			expect(headmasterHand(3)).toEqual(some({ reds: 1, blues: 1 }));
+			expect(headmasterHand(4)).toEqual(none);
+			expect(headmasterHand(5)).toEqual(none);
+			expect(headmasterHand(6)).toEqual(some({ reds: 2, blues: 0 }));
+			expect(headmasterHand(7)).toEqual(some({ reds: 2, blues: 0 }));
 		});
 
-		it('should track chancellor claims', () => {
-			const chancellorClaim = turnNum => turns.get(turnNum).chancellorClaim;
+		it('should track headmaster claims', () => {
+			const headmasterClaim = turnNum => turns.get(turnNum).headmasterClaim;
 
-			expect(chancellorClaim(0)).toEqual(some({ reds: 2, blues: 0 }));
-			expect(chancellorClaim(1)).toEqual(some({ reds: 2, blues: 0 }));
-			expect(chancellorClaim(2)).toEqual(some({ reds: 2, blues: 0 }));
-			expect(chancellorClaim(3)).toEqual(some({ reds: 2, blues: 0 }));
-			expect(chancellorClaim(4)).toEqual(none);
-			expect(chancellorClaim(5)).toEqual(none);
-			expect(chancellorClaim(6)).toEqual(some({ reds: 2, blues: 0 }));
-			expect(chancellorClaim(7)).toEqual(none);
+			expect(headmasterClaim(0)).toEqual(some({ reds: 2, blues: 0 }));
+			expect(headmasterClaim(1)).toEqual(some({ reds: 2, blues: 0 }));
+			expect(headmasterClaim(2)).toEqual(some({ reds: 2, blues: 0 }));
+			expect(headmasterClaim(3)).toEqual(some({ reds: 2, blues: 0 }));
+			expect(headmasterClaim(4)).toEqual(none);
+			expect(headmasterClaim(5)).toEqual(none);
+			expect(headmasterClaim(6)).toEqual(some({ reds: 2, blues: 0 }));
+			expect(headmasterClaim(7)).toEqual(none);
 		});
 
-		it('should track chancellor discard', () => {
-			const chancellorDiscard = turnNum => turns.get(turnNum).chancellorDiscard;
+		it('should track headmaster discard', () => {
+			const headmasterDiscard = turnNum => turns.get(turnNum).headmasterDiscard;
 
-			expect(chancellorDiscard(0)).toEqual(some('death eater'));
-			expect(chancellorDiscard(1)).toEqual(some('order'));
-			expect(chancellorDiscard(2)).toEqual(some('order'));
-			expect(chancellorDiscard(3)).toEqual(some('order'));
-			expect(chancellorDiscard(4)).toEqual(none);
-			expect(chancellorDiscard(5)).toEqual(none);
-			expect(chancellorDiscard(6)).toEqual(some('death eater'));
-			expect(chancellorDiscard(7)).toEqual(some('death eater'));
+			expect(headmasterDiscard(0)).toEqual(some('death eater'));
+			expect(headmasterDiscard(1)).toEqual(some('order'));
+			expect(headmasterDiscard(2)).toEqual(some('order'));
+			expect(headmasterDiscard(3)).toEqual(some('order'));
+			expect(headmasterDiscard(4)).toEqual(none);
+			expect(headmasterDiscard(5)).toEqual(none);
+			expect(headmasterDiscard(6)).toEqual(some('death eater'));
+			expect(headmasterDiscard(7)).toEqual(some('death eater'));
 		});
 
 		it('should track executions', () => {
@@ -370,7 +370,7 @@ export default () => {
 				some({
 					ja: true,
 					presidentId: 4,
-					chancellorId: 2
+					headmasterId: 2
 				})
 			);
 

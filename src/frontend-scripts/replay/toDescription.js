@@ -14,8 +14,8 @@ export default function(snapshot, game) {
 			return [
 				text('player', usernameOf(snapshot.presidentId)),
 				text('normal', 'nominates'),
-				text('player', usernameOf(snapshot.chancellorId)),
-				text('normal', 'as Chancellor')
+				text('player', usernameOf(snapshot.headmasterId)),
+				text('normal', 'as Headmaster')
 			];
 		case 'election':
 			if (snapshot.gameOver) {
@@ -36,11 +36,11 @@ export default function(snapshot, game) {
 				.concat(handToText(snapshot.presidentHand))
 				.concat([text('normal', 'and claims')])
 				.concat(claimHandToText(snapshot.presidentClaim));
-		case 'chancellorLegislation':
-			return [text('player', usernameOf(snapshot.chancellorId)), text('normal', 'receives')]
-				.concat(handToText(snapshot.chancellorHand))
+		case 'headmasterLegislation':
+			return [text('player', usernameOf(snapshot.headmasterId)), text('normal', 'receives')]
+				.concat(handToText(snapshot.headmasterHand))
 				.concat([text('normal', 'and claims')])
-				.concat(claimHandToText(snapshot.chancellorClaim));
+				.concat(claimHandToText(snapshot.headmasterClaim));
 		case 'veto':
 			return [text('normal', 'The veto'), text('player', snapshot.isVetoSuccessful ? 'succeeds' : 'fails')];
 		case 'proclamationEnaction':

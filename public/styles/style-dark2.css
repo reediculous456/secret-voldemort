@@ -585,7 +585,7 @@
 	opacity: 0.2;
 }
 .players-container .players .player-container .government-token.isPendingPresident,
-.players-container .players .player-container .government-token.isPendingChancellor {
+.players-container .players .player-container .government-token.isPendingHeadmaster {
 	animation: fadeIn 1.5s infinite alternate;
 }
 .players-container .players .player-container .government-token.isPendingPresident,
@@ -593,10 +593,10 @@
 .players-container .players .player-container .government-token.wasPresident {
 	background-image: url('../images/president-token.png');
 }
-.players-container .players .player-container .government-token.isPendingChancellor,
-.players-container .players .player-container .government-token.isChancellor,
-.players-container .players .player-container .government-token.wasChancellor {
-	background-image: url('../images/chancellor-token.png');
+.players-container .players .player-container .government-token.isPendingHeadmaster,
+.players-container .players .player-container .government-token.isHeadmaster,
+.players-container .players .player-container .government-token.wasHeadmaster {
+	background-image: url('../images/headmaster-token.png');
 }
 .players-container .players .player-container .card-container {
 	width: 70px;
@@ -2222,7 +2222,7 @@
 #replay .replay-controls .phase-nav .overlay-container .overlay.presidentLegislation {
 	width: 44.44%;
 }
-#replay .replay-controls .phase-nav .overlay-container .overlay.chancellorLegislation {
+#replay .replay-controls .phase-nav .overlay-container .overlay.headmasterLegislation {
 	width: 55.55%;
 }
 #replay .replay-controls .phase-nav .overlay-container .overlay.topDeck {

@@ -4,7 +4,7 @@ gameState
 	isVetoEnabled bool
 	isTracksFlipped bool
 	isGameFrozen bool
-	pendingChancellorIndex number
+	pendingHeadmasterIndex number
 	timedModeEnabled bool
 	phase string ?
 	previousElectedGovernment array of numbers, 1st is pres 2nd is chanc,
@@ -84,14 +84,14 @@ remakeData array
 publicPlayersState array
 	obj
 		pingTime number using getTime()
-		governmentStatus string isPendingPresident isPendingChancellor
+		governmentStatus string isPendingPresident isPendingHeadmaster
 		isDead bool
 		isConfetti bool
 		connected bool
 		isLoader bool
 		leftGame bool
 		userName string
-		previousGovernmentStatus string wasPresident wasChancellor
+		previousGovernmentStatus string wasPresident wasHeadmaster
 		cardStatus
 			cardDisplayed bool
 			isFlipped bool
@@ -106,7 +106,7 @@ cardflingerState (see private)
 private
 	timerId number
 	reports object
-	_chancellorPlayerName string (bug resolution)
+	_headmasterPlayerName string (bug resolution)
 	timeout object
 	proclamations array
 	currentElectionProclamations array
@@ -126,7 +126,7 @@ private
 			cardName string
 			team string
 		gameChats array of chat objects
-		governmentStatus string isPresident isChancellor isSelectingChancellor isSelectingPresidentDiscard isSelectingChancellorDiscard
+		governmentStatus string isPresident isHeadmaster isSelectingHeadmaster isSelectingPresidentDiscard isSelectingHeadmasterDiscard
 		voteStatus
 			hasVoted bool
 			didVoteYes bool

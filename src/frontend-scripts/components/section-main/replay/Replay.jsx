@@ -63,7 +63,7 @@ const buildPlayback = (replay, to) => {
 		const toTurnWithPhaseElseFallback = (targetTurn, end) => {
 			const fallbacks = Map({
 				presidentLegislation: List(['topDeck', 'election']),
-				chancellorLegislation: List(['topDeck', 'election']),
+				headmasterLegislation: List(['topDeck', 'election']),
 				topDeck: List(['presidentLegislation', 'election']),
 				veto: List(['presidentLegislation', 'election']),
 				proclamationEnaction: List(['election']),
@@ -107,8 +107,8 @@ const buildPlayback = (replay, to) => {
 
 		const legislationPos = rotate(
 			Map({
-				presidentLegislation: List(['chancellorLegislation']),
-				chancellorLegislation: List(['veto', 'proclamationEnaction']),
+				presidentLegislation: List(['headmasterLegislation']),
+				headmasterLegislation: List(['veto', 'proclamationEnaction']),
 				topDeck: List(['proclamationEnaction']),
 				veto: List(['proclamationEnaction', 'topDeck', 'presidentLegislation']),
 				proclamationEnaction: List(['presidentLegislation', 'topDeck'])

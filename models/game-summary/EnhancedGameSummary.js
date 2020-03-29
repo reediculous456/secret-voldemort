@@ -70,7 +70,7 @@ module.exports = class EnhancedGameSummary {
 	isWinner(identifier) {
 		if (this.lastTurn.execution === this.voldemortIndex) {
 			return this.loyaltyOf(identifier) === 'order';
-		} else if (this.lastTurn.chancellorId === this.voldemortIndex && this.lastTurn.votes.filter(v => v).length > this.playerSize / 2) {
+		} else if (this.lastTurn.headmasterId === this.voldemortIndex && this.lastTurn.votes.filter(v => v).length > this.playerSize / 2) {
 			return this.loyaltyOf(identifier) === 'death eater';
 		} else {
 			return this.loyaltyOf(identifier) === this.lastTurn.enactedProclamation;
@@ -98,11 +98,11 @@ module.exports = class EnhancedGameSummary {
 		const playerIndex = this.indexOf(identifier);
 
 		return this.logs.map(log => {
-			const { presidentId, chancellorId, votes } = log;
+			const { presidentId, headmasterId, votes } = log;
 
 			return {
 				presidentId,
-				chancellorId,
+				headmasterId,
 				vote: votes[playerIndex]
 			};
 		});

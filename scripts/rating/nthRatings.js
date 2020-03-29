@@ -47,7 +47,7 @@ async function influence(game) {
 		if (await p) {
 			// In government influence
 			weighting[turn.presidentId]++;
-			weighting[turn.chancellorId]++;
+			weighting[turn.headmasterId]++;
 			if (red > 3 && turn.enactedProclamation._value === 'death eater') {
 				// President powers influence
 				weighting[turn.presidentId]++;

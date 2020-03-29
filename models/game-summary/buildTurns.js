@@ -115,13 +115,13 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	const presidentVeto = poorMansVeto ? some(true) : log.presidentVeto;
 
 	// Option[Boolean]
-	const chancellorVeto = poorMansVeto ? some(true) : log.chancellorVeto;
+	const headmasterVeto = poorMansVeto ? some(true) : log.headmasterVeto;
 
 	// Boolean
-	const isVeto = chancellorVeto.isSome();
+	const isVeto = headmasterVeto.isSome();
 
 	// Boolean
-	const isVetoSuccessful = chancellorVeto.valueOrElse(false) && presidentVeto.valueOrElse(false);
+	const isVetoSuccessful = headmasterVeto.valueOrElse(false) && presidentVeto.valueOrElse(false);
 
 	// Int
 	const { beforeElectionTracker, afterElectionTracker } = (() => {
@@ -161,7 +161,7 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	const isVoldemortElected = (() => {
 		const voldemortIndex = players.findIndex(p => p.role === 'voldemort');
 
-		return beforeTrack.reds >= 3 && log.chancellorId === voldemortIndex && isVotePassed;
+		return beforeTrack.reds >= 3 && log.headmasterId === voldemortIndex && isVotePassed;
 	})();
 
 	// Boolean
@@ -172,16 +172,16 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	})();
 
 	// Option[String]
-	const { presidentDiscard, chancellorDiscard } = (() => {
+	const { presidentDiscard, headmasterDiscard } = (() => {
 		const handDiffOpt = mapOpt2(handDiff);
 		const proclamationToHandOpt = mapOpt1(proclamationToHand);
 		const handToProclamationOpt = mapOpt1(handToProclamation);
 
-		const presidentDiscard = handToProclamationOpt(handDiffOpt(log.presidentHand, log.chancellorHand));
+		const presidentDiscard = handToProclamationOpt(handDiffOpt(log.presidentHand, log.headmasterHand));
 
-		const chancellorDiscard = handToProclamationOpt(handDiffOpt(log.chancellorHand, proclamationToHandOpt(log.enactedProclamation)));
+		const headmasterDiscard = handToProclamationOpt(handDiffOpt(log.headmasterHand, proclamationToHandOpt(log.enactedProclamation)));
 
-		return { presidentDiscard, chancellorDiscard };
+		return { presidentDiscard, headmasterDiscard };
 	})();
 
 	// Int
@@ -235,12 +235,12 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 		isVoldemortKilled,
 		isVoldemortElected,
 		presidentDiscard,
-		chancellorDiscard,
+		headmasterDiscard,
 		isSpecialElection,
 		isProclamationPeek,
 		isVeto,
 		isVetoSuccessful,
 		presidentVeto,
-		chancellorVeto
+		headmasterVeto
 	});
 };

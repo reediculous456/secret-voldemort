@@ -43,11 +43,11 @@ const {
 const {
 	selectVoting,
 	selectPresidentProclamation,
-	selectChancellorProclamation,
-	selectChancellorVoteOnVeto,
+	selectHeadmasterProclamation,
+	selectHeadmasterVoteOnVeto,
 	selectPresidentVoteOnVeto
 } = require('./game/election');
-const { selectChancellor } = require('./game/election-util');
+const { selectHeadmaster } = require('./game/election-util');
 const {
 	selectSpecialElection,
 	selectPartyMembershipInvestigate,
@@ -480,11 +480,11 @@ module.exports.socketRoutes = () => {
 			socket.on('getUserGameSettings', () => {
 				sendUserGameSettings(socket);
 			});
-			socket.on('selectedChancellorVoteOnVeto', data => {
+			socket.on('selectedHeadmasterVoteOnVeto', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
-					selectChancellorVoteOnVeto(passport, game, data);
+					selectHeadmasterVoteOnVeto(passport, game, data);
 				}
 			});
 			socket.on('getModInfo', count => {
@@ -552,11 +552,11 @@ module.exports.socketRoutes = () => {
 			});
 			// election
 
-			socket.on('presidentSelectedChancellor', data => {
+			socket.on('presidentSelectedHeadmaster', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
-					selectChancellor(socket, passport, game, data);
+					selectHeadmaster(socket, passport, game, data);
 				}
 			});
 			socket.on('selectedVoting', data => {
@@ -573,11 +573,11 @@ module.exports.socketRoutes = () => {
 					selectPresidentProclamation(passport, game, data, false, socket);
 				}
 			});
-			socket.on('selectedChancellorProclamation', data => {
+			socket.on('selectedHeadmasterProclamation', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
-					selectChancellorProclamation(passport, game, data, false, socket);
+					selectHeadmasterProclamation(passport, game, data, false, socket);
 				}
 			});
 			socket.on('selectedPresidentVoteOnVeto', data => {

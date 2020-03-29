@@ -175,7 +175,7 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 			opacity: 0.2;
 		}
 		.government-token.isPendingPresident,
-		.government-token.isPendingChancellor {
+		.government-token.isPendingHeadmaster {
 			animation: fadeIn 1.5s infinite alternate;
 		}
 		.government-token.isPendingPresident,
@@ -183,10 +183,10 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 		.government-token.wasPresident {
 			background-image: url('../../public/images/president-token.png');
 		}
-		.government-token.isPendingChancellor,
-		.government-token.isChancellor,
-		.government-token.wasChancellor {
-			background-image: url('../../public/images/chancellor-token.png');
+		.government-token.isPendingHeadmaster,
+		.government-token.isHeadmaster,
+		.government-token.wasHeadmaster {
+			background-image: url('../../public/images/headmaster-token.png');
 		}
 		.card-container {
 			width: 100%;

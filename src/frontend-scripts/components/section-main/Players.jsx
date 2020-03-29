@@ -83,10 +83,10 @@ class Players extends React.Component {
 		const { phase, clickActionInfo } = gameState;
 		const index = parseInt($(e.currentTarget).attr('data-index'), 10);
 
-		if (phase === 'selectingChancellor' && userInfo.userName) {
+		if (phase === 'selectingHeadmaster' && userInfo.userName) {
 			if (clickActionInfo[0] === userInfo.userName && clickActionInfo[1].includes(index)) {
-				socket.emit('presidentSelectedChancellor', {
-					chancellorIndex: index,
+				socket.emit('presidentSelectedHeadmaster', {
+					headmasterIndex: index,
 					uid: gameInfo.general.uid
 				});
 			}

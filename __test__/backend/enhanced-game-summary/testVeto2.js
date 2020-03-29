@@ -12,7 +12,7 @@ export default () => {
 		it('should have attempted veto on turn 5', () => {
 			const turn = turns.get(5);
 			expect(turn.isVeto).toBe(true);
-			expect(turn.chancellorVeto).toEqual(some(true));
+			expect(turn.headmasterVeto).toEqual(some(true));
 			expect(turn.presidentVeto).toEqual(some(false));
 			expect(turn.isVetoSuccessful).toBe(false);
 			expect(turn.enactedProclamation).toEqual(some('order'));
@@ -21,7 +21,7 @@ export default () => {
 		it('should have rejected veto on turn 6', () => {
 			const turn = turns.get(6);
 			expect(turn.isVeto).toBe(true);
-			expect(turn.chancellorVeto).toEqual(some(false));
+			expect(turn.headmasterVeto).toEqual(some(false));
 			expect(turn.isVetoSuccessful).toBe(false);
 			expect(turn.presidentVeto).toEqual(none);
 		});
@@ -29,7 +29,7 @@ export default () => {
 		it('should have successful veto on turn 9', () => {
 			const turn = turns.get(9);
 			expect(turn.isVeto).toBe(true);
-			expect(turn.chancellorVeto).toEqual(some(true));
+			expect(turn.headmasterVeto).toEqual(some(true));
 			expect(turn.presidentVeto).toEqual(some(true));
 			expect(turn.isVetoSuccessful).toBe(true);
 		});

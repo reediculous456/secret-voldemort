@@ -15,7 +15,7 @@ const {
 } = require('./models');
 const { getModInfo, sendGameList, sendUserList, updateUserStatus, sendGameInfo, sendUserReports, sendPlayerNotes } = require('./user-requests');
 const { selectVoting } = require('./game/election.js');
-const { selectChancellor } = require('./game/election-util.js');
+const { selectHeadmaster } = require('./game/election-util.js');
 const Account = require('../../models/account');
 const ModAction = require('../../models/modAction');
 const PlayerReport = require('../../models/playerReport');
@@ -888,7 +888,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 		game.private.seatedPlayers[playerIndex] &&
 		game.private.seatedPlayers[playerIndex].playersState &&
 		game.private.seatedPlayers[playerIndex].playersState[playerIndex] &&
-		!/^(wasPresident|wasChancellor|didSingleProclamationPeek|didProclamationPeek|didInvestigateLoyalty)$/.exec(
+		!/^(wasPresident|wasHeadmaster|didSingleProclamationPeek|didProclamationPeek|didInvestigateLoyalty)$/.exec(
 			game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim
 		)
 	) {
@@ -1013,10 +1013,10 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						return text;
 				}
 
-			case 'wasChancellor':
+			case 'wasHeadmaster':
 				text = [
 					{
-						text: 'Chancellor '
+						text: 'Headmaster '
 					},
 					{
 						text: blindMode ? `${replacementNames[playerIndex]} {${playerIndex + 1}} ` : `${passport.user} {${playerIndex + 1}} `,
@@ -1027,9 +1027,9 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rr':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								chancellorClaim: { reds: 2, blues: 0 }
+								headmasterClaim: { reds: 2, blues: 0 }
 							},
-							{ chancellorId: playerIndex }
+							{ headmasterId: playerIndex }
 						);
 
 						text.push(
@@ -1049,9 +1049,9 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								chancellorClaim: { reds: 1, blues: 1 }
+								headmasterClaim: { reds: 1, blues: 1 }
 							},
-							{ chancellorId: playerIndex }
+							{ headmasterId: playerIndex }
 						);
 
 						text.push(
@@ -1075,9 +1075,9 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'bb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								chancellorClaim: { reds: 0, blues: 2 }
+								headmasterClaim: { reds: 0, blues: 2 }
 							},
-							{ chancellorId: playerIndex }
+							{ headmasterId: playerIndex }
 						);
 
 						text.push(
@@ -1851,7 +1851,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 				if (addNewClaim(socket, passport, game, claimData)) return;
 			}
 
-			if (chat.length === 2 && 0 <= playerIndex <= 9 && game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'wasChancellor') {
+			if (chat.length === 2 && 0 <= playerIndex <= 9 && game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'wasHeadmaster') {
 				const claimData = {
 					userName: user.userName,
 					claimState: formattedChat,
@@ -1926,9 +1926,9 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 
 	if (
 		player &&
-		(gameState.phase === 'presidentSelectingProclamation' || gameState.phase === 'chancellorSelectingProclamation') &&
+		(gameState.phase === 'presidentSelectingProclamation' || gameState.phase === 'headmasterSelectingProclamation') &&
 		(publicPlayersState.find(play => play.userName === player.userName).governmentStatus === 'isPresident' ||
-			publicPlayersState.find(play => play.userName === player.userName).governmentStatus === 'isChancellor')
+			publicPlayersState.find(play => play.userName === player.userName).governmentStatus === 'isHeadmaster')
 	) {
 		return;
 	}
@@ -2071,7 +2071,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 					socket.emit('sendAlert', `The player in seat ${affectedPlayerNumber + 1} is not president.`);
 					return;
 				}
-				let chancellor = -1;
+				let headmaster = -1;
 				const currentPlayers = [];
 				for (let i = 0; i < game.private.seatedPlayers.length; i++) {
 					currentPlayers[i] = !(
@@ -2082,12 +2082,12 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 				}
 				currentPlayers[affectedPlayerNumber] = false;
 				let counter = affectedPlayerNumber + 1;
-				while (chancellor === -1) {
+				while (headmaster === -1) {
 					if (counter >= currentPlayers.length) {
 						counter = 0;
 					}
 					if (currentPlayers[counter]) {
-						chancellor = counter;
+						headmaster = counter;
 					}
 					counter++;
 				}
@@ -2110,7 +2110,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 						}
 					]
 				});
-				selectChancellor(null, { user: affectedPlayer.userName }, game, { chancellorIndex: chancellor }, true);
+				selectHeadmaster(null, { user: affectedPlayer.userName }, game, { headmasterIndex: headmaster }, true);
 				setTimeout(() => {
 					for (const p of game.private.seatedPlayers.filter(player => !player.isDead)) {
 						selectVoting({ user: p.userName }, game, { vote: false }, null, true);
@@ -2135,16 +2135,16 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 				return;
 			}
 			const affectedPlayerNumber = parseInt(aemPick[1]) - 1;
-			const chancellorPick = aemPick[2];
+			const headmasterPick = aemPick[2];
 			if (game && game.private && game.private.seatedPlayers) {
 				const affectedPlayer = game.private.seatedPlayers[affectedPlayerNumber];
-				const affectedChancellor = game.private.seatedPlayers[chancellorPick - 1];
+				const affectedHeadmaster = game.private.seatedPlayers[headmasterPick - 1];
 				if (!affectedPlayer) {
 					socket.emit('sendAlert', `There is no seat ${affectedPlayerNumber + 1}.`);
 					return;
 				}
-				if (!affectedChancellor) {
-					socket.emit('sendAlert', `There is no seat ${chancellorPick}.`);
+				if (!affectedHeadmaster) {
+					socket.emit('sendAlert', `There is no seat ${headmasterPick}.`);
 					return;
 				}
 				if (affectedPlayerNumber !== game.gameState.presidentIndex) {
@@ -2152,12 +2152,12 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 					return;
 				}
 				if (
-					game.publicPlayersState[chancellorPick - 1].isDead ||
-					chancellorPick - 1 === affectedPlayerNumber ||
-					chancellorPick - 1 === game.gameState.previousElectedGovernment[1] ||
-					(chancellorPick - 1 === game.gameState.previousElectedGovernment[0] && game.general.livingPlayerCount > 5)
+					game.publicPlayersState[headmasterPick - 1].isDead ||
+					headmasterPick - 1 === affectedPlayerNumber ||
+					headmasterPick - 1 === game.gameState.previousElectedGovernment[1] ||
+					(headmasterPick - 1 === game.gameState.previousElectedGovernment[0] && game.general.livingPlayerCount > 5)
 				) {
-					socket.emit('sendAlert', `The player in seat ${chancellorPick} is not a valid chancellor. (Dead or TL)`);
+					socket.emit('sendAlert', `The player in seat ${headmasterPick} is not a valid headmaster. (Dead or TL)`);
 					return;
 				}
 
@@ -2178,15 +2178,15 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 							text: ' to pick '
 						},
 						{
-							text: blindMode ? `${replacementNames[chancellorPick - 1]} {${chancellorPick}} ` : `${affectedChancellor.userName} {${chancellorPick}}`,
+							text: blindMode ? `${replacementNames[headmasterPick - 1]} {${headmasterPick}} ` : `${affectedHeadmaster.userName} {${headmasterPick}}`,
 							type: 'player'
 						},
 						{
-							text: ' as chancellor.'
+							text: ' as headmaster.'
 						}
 					]
 				});
-				selectChancellor(null, { user: affectedPlayer.userName }, game, { chancellorIndex: chancellorPick - 1 }, true);
+				selectHeadmaster(null, { user: affectedPlayer.userName }, game, { headmasterIndex: headmasterPick - 1 }, true);
 				sendPlayerChatUpdate(game, data);
 				sendInProgressGameUpdate(game, false);
 			} else {

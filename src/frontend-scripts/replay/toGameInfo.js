@@ -25,7 +25,7 @@ export default function toGameInfo(snapshot) {
 				'isPresident'
 			);
 
-			const maybeChancellor = maybe(!isSpecialElection && snapshot.chancellorId === i, 'governmentStatus', 'isChancellor');
+			const maybeHeadmaster = maybe(!isSpecialElection && snapshot.headmasterId === i, 'governmentStatus', 'isHeadmaster');
 
 			const cardStatus = (() => {
 				const f = (cardDisplayed, isFlipped, cardFront, cardBack) => ({
@@ -61,8 +61,8 @@ export default function toGameInfo(snapshot) {
 					case 'veto':
 						const vetoCard = vote => f(true, true, 'ballot', { cardName: vote ? 'ja' : 'nein' });
 
-						if (i === snapshot.chancellorId) {
-							return vetoCard(snapshot.chancellorVeto);
+						if (i === snapshot.headmasterId) {
+							return vetoCard(snapshot.headmasterVeto);
 						} else if (i === snapshot.presidentId) {
 							return mapOpt1(vetoCard)(snapshot.presidentVeto).valueOrElse(blank);
 						} else {
@@ -81,7 +81,7 @@ export default function toGameInfo(snapshot) {
 				cardStatus
 			};
 
-			return Object.assign({}, base, maybePresident, maybeChancellor);
+			return Object.assign({}, base, maybePresident, maybeHeadmaster);
 		})
 		.toArray();
 
@@ -89,7 +89,7 @@ export default function toGameInfo(snapshot) {
 		deathEaterProclamationCount: snapshot.track.reds,
 		orderProclamationCount: snapshot.track.blues,
 		enactedProclamations: [],
-		isBlurred: ['presidentLegislation', 'chancellorLegislation', 'proclamationPeek'].includes(snapshot.phase),
+		isBlurred: ['presidentLegislation', 'headmasterLegislation', 'proclamationPeek'].includes(snapshot.phase),
 		isHidden: true
 	};
 	return {

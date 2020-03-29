@@ -31,7 +31,7 @@ module.exports.chatReplacements = [
 		id: 4,
 		regex: /^v.eto/i,
 		replacement:
-			'Veto is unlocked after the 5th death eater card is played. This power allows for the resulting proclamation to be played to be nullified- but only if both the president and chancellor vote "ja". If either votes "nein", the resulting proclamation will be enacted as usual.',
+			'Veto is unlocked after the 5th death eater card is played. This power allows for the resulting proclamation to be played to be nullified- but only if both the president and headmaster vote "ja". If either votes "nein", the resulting proclamation will be enacted as usual.',
 		aemCooldown: 15,
 		normalCooldown: 180,
 		normalGames: 50
@@ -49,7 +49,7 @@ module.exports.chatReplacements = [
 		id: 6,
 		regex: /^d.iscard/i,
 		replacement:
-			'When you are in a government you can either be the president or the chancellor. As the president, you receive 3 cards and select a card you do NOT want to be played. As a chancellor, you get 2 cards and select the one you WANT to play.',
+			'When you are in a government you can either be the president or the headmaster. As the president, you receive 3 cards and select a card you do NOT want to be played. As a headmaster, you get 2 cards and select the one you WANT to play.',
 		aemCooldown: 15,
 		normalCooldown: 180,
 		normalGames: 50

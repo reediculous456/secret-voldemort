@@ -78,7 +78,7 @@ class Gamechat extends React.Component {
 				((gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName) &&
 					gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).governmentStatus === 'isPresident') ||
 					(gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName) &&
-						gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).governmentStatus === 'isChancellor')) &&
+						gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).governmentStatus === 'isHeadmaster')) &&
 				prevProps.gameInfo.gameState.phase !== 'presidentSelectingProclamation')
 		) {
 			this.setState({ inputValue: '' });
@@ -331,12 +331,12 @@ class Gamechat extends React.Component {
 		const isGovernmentDuringProclamationSelection = (() => {
 			if (
 				gameState &&
-				(gameState.phase === 'presidentSelectingProclamation' || gameState.phase === 'chancellorSelectingProclamation') &&
+				(gameState.phase === 'presidentSelectingProclamation' || gameState.phase === 'headmasterSelectingProclamation') &&
 				userName &&
 				isSeated
 			) {
 				const player = publicPlayersState.find(p => p.userName === userName);
-				return player && (player.governmentStatus === 'isPresident' || player.governmentStatus === 'isChancellor');
+				return player && (player.governmentStatus === 'isPresident' || player.governmentStatus === 'isHeadmaster');
 			}
 		})();
 		const isStaff = Boolean(
@@ -1015,10 +1015,10 @@ class Gamechat extends React.Component {
 											</button>
 										</div>
 									);
-								case 'wasChancellor':
+								case 'wasHeadmaster':
 									return (
 										<div>
-											<p> As chancellor, I received...</p>
+											<p> As headmaster, I received...</p>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rr');

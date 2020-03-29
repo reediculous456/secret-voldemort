@@ -44,8 +44,8 @@ export default class Game extends React.Component {
 				playSound('presidentreceivesproclamations', 'pack1', 3000);
 			}
 
-			if (gameInfo.general.status === 'Waiting on chancellor enactment.' && prevProps.gameInfo.general.status !== 'Waiting on chancellor enactment.') {
-				playSound('chancellorreceivesproclamations', 'pack1', 2000);
+			if (gameInfo.general.status === 'Waiting on headmaster enactment.' && prevProps.gameInfo.general.status !== 'Waiting on headmaster enactment.') {
+				playSound('headmasterreceivesproclamations', 'pack1', 2000);
 			}
 
 			if (gameInfo.gameState.audioCue === 'proclamationPeek' && prevProps.gameInfo.gameState.audioCue !== 'proclamationPeek') {

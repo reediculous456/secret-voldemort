@@ -36,7 +36,7 @@ describe('build enhanced game summary', () => {
 		expect(logs).toBeAList();
 		expect(log).toBeTypeOf('object');
 		expect(log.presidentId).toBeTypeOf('number');
-		expect(log.chancellorId).toBeTypeOf('number');
+		expect(log.headmasterId).toBeTypeOf('number');
 		expect(log.votes).toBeAList();
 		expect(log.presidentHand).toBeAnOption();
 		expect(log.presidentHand.value()).toBeTypeOf('object');

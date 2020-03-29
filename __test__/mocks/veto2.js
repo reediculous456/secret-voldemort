@@ -11,9 +11,9 @@ module.exports = {
 		// turn 0
 		{
 			presidentId: 0,
-			chancellorId: 1,
+			headmasterId: 1,
 			enactedProclamation: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -26,9 +26,9 @@ module.exports = {
 		// turn 1
 		{
 			presidentId: 1,
-			chancellorId: 2,
+			headmasterId: 2,
 			enactedProclamation: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -41,13 +41,13 @@ module.exports = {
 		// turn 2
 		{
 			presidentId: 2,
-			chancellorId: 1,
+			headmasterId: 1,
 			enactedProclamation: 'death eater',
 			proclamationPeek: {
 				reds: 2,
 				blues: 1
 			},
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -60,10 +60,10 @@ module.exports = {
 		// turn 3
 		{
 			presidentId: 3,
-			chancellorId: 2,
+			headmasterId: 2,
 			enactedProclamation: 'death eater',
 			execution: 4,
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -76,10 +76,10 @@ module.exports = {
 		// turn 4
 		{
 			presidentId: 0,
-			chancellorId: 1,
+			headmasterId: 1,
 			enactedProclamation: 'death eater',
 			execution: 1,
-			chancellorHand: {
+			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
@@ -92,11 +92,11 @@ module.exports = {
 		// turn 5
 		{
 			presidentId: 2,
-			chancellorId: 0,
-			chancellorVeto: true,
+			headmasterId: 0,
+			headmasterVeto: true,
 			presidentVeto: false,
 			enactedProclamation: 'order',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -109,10 +109,10 @@ module.exports = {
 		// turn 6
 		{
 			presidentId: 3,
-			chancellorId: 2,
-			chancellorVeto: false,
+			headmasterId: 2,
+			headmasterVeto: false,
 			enactedProclamation: 'order',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
@@ -125,23 +125,23 @@ module.exports = {
 		// turn 7
 		{
 			presidentId: 0,
-			chancellorId: 3,
+			headmasterId: 3,
 			votes: [false, true, false, false, true]
 		},
 		// turn 8
 		{
 			presidentId: 2,
-			chancellorId: 3,
+			headmasterId: 3,
 			votes: [false, true, false, false, true]
 		},
 		// turn 9
 		{
 			presidentId: 3,
-			chancellorId: 0,
-			chancellorVeto: true,
+			headmasterId: 0,
+			headmasterVeto: true,
 			presidentVeto: true,
 			enactedProclamation: 'death eater',
-			chancellorHand: {
+			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
