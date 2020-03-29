@@ -23,7 +23,7 @@ export default function buildReplay(game) {
 			presidentId,
 			chancellorId,
 			votes,
-			enactedPolicy,
+			enactedProclamation,
 			presidentHand,
 			chancellorHand,
 			presidentClaim,
@@ -36,8 +36,8 @@ export default function buildReplay(game) {
 			execution,
 			investigationId,
 			investigationClaim,
-			policyPeek,
-			policyPeekClaim,
+			proclamationPeek,
+			proclamationPeekClaim,
 			specialElection
 		} = game.turns.get(turnNum);
 
@@ -110,20 +110,20 @@ export default function buildReplay(game) {
 					presidentVeto,
 					chancellorVeto: chancellorVeto.value()
 				});
-			case 'policyEnaction':
+			case 'proclamationEnaction':
 				return postEnactionAdd({
 					players: beforePlayers,
-					enactedPolicy: enactedPolicy.value()
+					enactedProclamation: enactedProclamation.value()
 				});
 			case 'investigation':
 				return postEnactionAdd({
 					investigationId: investigationId.value(),
 					investigationClaim: investigationClaim
 				});
-			case 'policyPeek':
+			case 'proclamationPeek':
 				return postEnactionAdd({
-					policyPeek: policyPeek.value(),
-					policyPeekClaim: policyPeekClaim
+					proclamationPeek: proclamationPeek.value(),
+					proclamationPeekClaim: proclamationPeekClaim
 				});
 			case 'specialElection':
 				return postEnactionAdd({
@@ -142,11 +142,11 @@ export default function buildReplay(game) {
 
 		const {
 			isVotePassed,
-			isGameEndingPolicyEnacted,
+			isGameEndingProclamationEnacted,
 			isVoldemortElected,
 			isElectionTrackerMaxed,
 			isInvestigation,
-			isPolicyPeek,
+			isProclamationPeek,
 			isSpecialElection,
 			isExecution,
 			isVoldemortKilled,
@@ -177,28 +177,28 @@ export default function buildReplay(game) {
 				else if (isElectionTrackerMaxed) return next('topDeck');
 				else return jump();
 			case 'topDeck':
-				return next('policyEnaction');
+				return next('proclamationEnaction');
 			case 'presidentLegislation':
 				return next('chancellorLegislation');
 			case 'chancellorLegislation':
 				if (isVeto) return next('veto');
-				else return next('policyEnaction');
+				else return next('proclamationEnaction');
 			case 'veto':
 				if (isVetoSuccessful) {
 					if (isElectionTrackerMaxed) return next('topDeck');
 					else return jump();
 				} else {
-					return next('policyEnaction');
+					return next('proclamationEnaction');
 				}
-			case 'policyEnaction':
-				if (isGameEndingPolicyEnacted) return gameOver();
+			case 'proclamationEnaction':
+				if (isGameEndingProclamationEnacted) return gameOver();
 				else if (isInvestigation) return next('investigation');
-				else if (isPolicyPeek) return next('policyPeek');
+				else if (isProclamationPeek) return next('proclamationPeek');
 				else if (isSpecialElection) return next('specialElection');
 				else if (isExecution) return next('execution');
 				else return jump();
 			case 'investigation':
-			case 'policyPeek':
+			case 'proclamationPeek':
 			case 'specialElection':
 				return jump();
 			case 'execution':

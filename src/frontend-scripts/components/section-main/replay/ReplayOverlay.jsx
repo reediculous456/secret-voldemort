@@ -20,8 +20,8 @@ const ChancellorLegislation = ({ hand, discard, claim }) => (
 	<Legislation type="chancellor" handTitle={'Chancellor Hand'} claimTitle={'Chancellor Claim'} hand={hand} discard={discard} claim={claim} />
 );
 
-const PolicyPeek = ({ peek, claim }) => (
-	<Legislation type="policy-peek" handTitle={'Policy Peek'} claimTitle={'Claim'} hand={peek} claim={claim} discard={none} />
+const ProclamationPeek = ({ peek, claim }) => (
+	<Legislation type="proclamation-peek" handTitle={'Proclamation Peek'} claimTitle={'Claim'} hand={peek} claim={claim} discard={none} />
 );
 
 const ReplayOverlay = ({ snapshot }) => {
@@ -31,8 +31,8 @@ const ReplayOverlay = ({ snapshot }) => {
 				return <PresidentLegislation hand={snapshot.presidentHand} discard={snapshot.presidentDiscard} claim={snapshot.presidentClaim} />;
 			case 'chancellorLegislation':
 				return <ChancellorLegislation hand={snapshot.chancellorHand} discard={snapshot.chancellorDiscard} claim={snapshot.chancellorClaim} />;
-			case 'policyPeek':
-				return <PolicyPeek peek={snapshot.policyPeek} claim={snapshot.policyPeekClaim} />;
+			case 'proclamationPeek':
+				return <ProclamationPeek peek={snapshot.proclamationPeek} claim={snapshot.proclamationPeekClaim} />;
 			default:
 				return null;
 		}

@@ -9,5 +9,7 @@ export const handToCards = (hand, _discard) => {
 	const policies = handToPolicies(hand);
 	const discardIndex = discard.map(d => policies.findLastIndex(p => p === d)).valueOrElse(-1);
 
-	return policies.map((policy, i) => (i === discardIndex ? <Card key={i} type={policy} icon={'huge red ban'} /> : <Card key={i} type={policy} />));
+	return policies.map((proclamation, i) =>
+		i === discardIndex ? <Card key={i} type={proclamation} icon={'huge red ban'} /> : <Card key={i} type={proclamation} />
+	);
 };

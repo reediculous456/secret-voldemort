@@ -11,7 +11,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 3,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -25,7 +25,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 6,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			chancellorHand: {
 				reds: 2,
 				blues: 0
@@ -39,7 +39,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 5,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -53,7 +53,7 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 4,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -67,7 +67,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 2,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -86,7 +86,7 @@ module.exports = {
 		{
 			presidentId: 6,
 			chancellorId: 5,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			chancellorHand: {
 				reds: 0,
 				blues: 2

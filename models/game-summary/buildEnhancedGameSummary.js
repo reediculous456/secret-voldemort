@@ -14,13 +14,13 @@ function buildEnhancedGameSummary(_summary) {
 		const options = [
 			'presidentHand',
 			'chancellorHand',
-			'enactedPolicy',
+			'enactedProclamation',
 			'presidentClaim',
 			'chancellorClaim',
 			'presidentVeto',
 			'chancellorVeto',
-			'policyPeek',
-			'policyPeekClaim',
+			'proclamationPeek',
+			'proclamationPeekClaim',
 			'investigationId',
 			'investigationClaim',
 			'specialElection',
@@ -88,11 +88,11 @@ function buildEnhancedGameSummary(_summary) {
 		} else if (lastTurn.isVoldemortKilled) {
 			return 'order';
 		} else {
-			if (!lastTurn.enactedPolicy) {
-				console.log('no lastturn enacted policy @ buildenhancedgamesummary');
+			if (!lastTurn.enactedProclamation) {
+				console.log('no lastturn enacted proclamation @ buildenhancedgamesummary');
 				return null;
 			}
-			return lastTurn.enactedPolicy.value();
+			return lastTurn.enactedProclamation.value();
 		}
 	})();
 

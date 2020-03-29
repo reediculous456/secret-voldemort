@@ -5,13 +5,16 @@ import PropTypes from 'prop-types';
 const Policies = props => {
 	const { gameInfo, userInfo, socket } = props;
 	const clickedDraw = () => {
-		if (userInfo.userName && gameInfo.playersState[gameInfo.publicPlayersState.findIndex(player => player.userName === userInfo.userName)].policyNotification) {
+		if (
+			userInfo.userName &&
+			gameInfo.playersState[gameInfo.publicPlayersState.findIndex(player => player.userName === userInfo.userName)].proclamationNotification
+		) {
 			socket.emit('selectedPolicies', { uid: gameInfo.general.uid });
 		}
 	};
 	const renderUndrawn = () => {
 		const { playersState } = gameInfo;
-		const count = gameInfo.gameState.undrawnPolicyCount;
+		const count = gameInfo.gameState.undrawnProclamationCount;
 
 		let playerIndex;
 
@@ -20,13 +23,13 @@ const Policies = props => {
 		}
 
 		return _.range(1, 18).map(num => {
-			let classes = `policy-card policy-draw policy-card-${num}`;
+			let classes = `proclamation-card proclamation-draw proclamation-card-${num}`;
 
 			if (num > count || !gameInfo.gameState.isStarted) {
 				classes += ' offscreen';
 			}
 
-			if (playerIndex && playersState[playerIndex].policyNotification) {
+			if (playerIndex && playersState[playerIndex].proclamationNotification) {
 				classes += ' notification';
 			}
 
@@ -38,10 +41,10 @@ const Policies = props => {
 			(gameInfo.customGameSettings && gameInfo.customGameSettings.deckState
 				? gameInfo.customGameSettings.deckState.lib + gameInfo.customGameSettings.deckState.fas
 				: 17) -
-			(gameInfo.gameState.undrawnPolicyCount + gameInfo.trackState.orderPolicyCount + gameInfo.trackState.deathEaterPolicyCount);
+			(gameInfo.gameState.undrawnProclamationCount + gameInfo.trackState.orderProclamationCount + gameInfo.trackState.deathEaterProclamationCount);
 
 		return _.range(1, 10).map(num => {
-			let classes = `policy-card policy-discard policy-card-${num}`;
+			let classes = `proclamation-card proclamation-discard proclamation-card-${num}`;
 
 			if (num > count) {
 				classes += ' offscreen';
@@ -50,11 +53,11 @@ const Policies = props => {
 			return <div className={classes} key={num} />;
 		});
 	};
-	const discardedPolicyCount =
+	const discardedProclamationCount =
 		(gameInfo.customGameSettings && gameInfo.customGameSettings.deckState
 			? gameInfo.customGameSettings.deckState.lib + gameInfo.customGameSettings.deckState.fas
 			: 17) -
-		(gameInfo.gameState.undrawnPolicyCount + gameInfo.trackState.orderPolicyCount + gameInfo.trackState.deathEaterPolicyCount);
+		(gameInfo.gameState.undrawnProclamationCount + gameInfo.trackState.orderProclamationCount + gameInfo.trackState.deathEaterProclamationCount);
 
 	return (
 		<section className="policies-container">
@@ -68,25 +71,25 @@ const Policies = props => {
 						gameInfo.gameState.isStarted &&
 						gameInfo.playersState &&
 						gameInfo.playersState[gameInfo.publicPlayersState.findIndex(player => player.userName === userInfo.userName)] &&
-						gameInfo.playersState[gameInfo.publicPlayersState.findIndex(player => player.userName === userInfo.userName)].policyNotification
+						gameInfo.playersState[gameInfo.publicPlayersState.findIndex(player => player.userName === userInfo.userName)].proclamationNotification
 					) {
 						classes += ' notifier';
 					}
 
 					return classes;
 				})()}
-				title={`${gameInfo.gameState.undrawnPolicyCount} policy cards remain`}
+				title={`${gameInfo.gameState.undrawnProclamationCount} proclamation cards remain`}
 				onClick={clickedDraw}
 			>
 				{(() => {
-					if (gameInfo.gameState.isTracksFlipped && gameInfo.gameState.undrawnPolicyCount) {
-						return <div className="card-count">{gameInfo.gameState.undrawnPolicyCount}</div>;
+					if (gameInfo.gameState.isTracksFlipped && gameInfo.gameState.undrawnProclamationCount) {
+						return <div className="card-count">{gameInfo.gameState.undrawnProclamationCount}</div>;
 					}
 				})()}
 				{renderUndrawn()}
 			</div>
-			<div className="discard" title={`${discardedPolicyCount} policy cards discarded`}>
-				{gameInfo.gameState.isTracksFlipped && Number.isInteger(discardedPolicyCount) && <div className="card-count">{discardedPolicyCount}</div>}
+			<div className="discard" title={`${discardedProclamationCount} proclamation cards discarded`}>
+				{gameInfo.gameState.isTracksFlipped && Number.isInteger(discardedProclamationCount) && <div className="card-count">{discardedProclamationCount}</div>}
 				{renderDiscard()}
 			</div>
 		</section>

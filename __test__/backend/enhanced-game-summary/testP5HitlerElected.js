@@ -41,13 +41,13 @@ export default () => {
 			expect(afterDeckSize(5)).toBe(10);
 		});
 
-		it('should track policy peek', () => {
-			expect(turns.get(0).isPolicyPeek).toBe(false);
-			expect(turns.get(1).isPolicyPeek).toBe(false);
-			expect(turns.get(2).isPolicyPeek).toBe(false);
-			expect(turns.get(3).isPolicyPeek).toBe(false);
-			expect(turns.get(4).isPolicyPeek).toBe(true);
-			expect(turns.get(5).isPolicyPeek).toBe(false);
+		it('should track proclamation peek', () => {
+			expect(turns.get(0).isProclamationPeek).toBe(false);
+			expect(turns.get(1).isProclamationPeek).toBe(false);
+			expect(turns.get(2).isProclamationPeek).toBe(false);
+			expect(turns.get(3).isProclamationPeek).toBe(false);
+			expect(turns.get(4).isProclamationPeek).toBe(true);
+			expect(turns.get(5).isProclamationPeek).toBe(false);
 		});
 	});
 };

@@ -4,9 +4,9 @@ import {
 	mapOpt1,
 	mapOpt2,
 	handDiff,
-	handToPolicy,
+	handToProclamation,
 	handToPolicies,
-	policyToHand,
+	proclamationToHand,
 	text,
 	handToText,
 	capitalize,
@@ -85,9 +85,9 @@ describe('handDiff', () => {
 	expect(diff).toEqual({ reds: 1, blues: 0 });
 });
 
-describe('handToPolicy', () => {
-	expect(handToPolicy({ reds: 1, blues: 0 })).toBe('death eater');
-	expect(handToPolicy({ reds: 0, blues: 1 })).toBe('order');
+describe('handToProclamation', () => {
+	expect(handToProclamation({ reds: 1, blues: 0 })).toBe('death eater');
+	expect(handToProclamation({ reds: 0, blues: 1 })).toBe('order');
 });
 
 describe('handToPolicies', () => {
@@ -100,9 +100,9 @@ describe('handToPolicies', () => {
 	expect(handToPolicies({ reds: 0, blues: 2 })).toImmutableEqual(List(['order', 'order']));
 });
 
-describe('policyToHand', () => {
-	expect(policyToHand('order')).toEqual({ reds: 0, blues: 1 });
-	expect(policyToHand('death eater')).toEqual({ reds: 1, blues: 0 });
+describe('proclamationToHand', () => {
+	expect(proclamationToHand('order')).toEqual({ reds: 0, blues: 1 });
+	expect(proclamationToHand('death eater')).toEqual({ reds: 1, blues: 0 });
 });
 
 describe('handToText', () => {

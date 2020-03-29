@@ -762,17 +762,17 @@
 	top: 0;
 	left: 0;
 }
-.players-container .policies-container .policy-card {
+.players-container .policies-container .proclamation-card {
 	width: 70px;
 	height: 95px;
-	background: url('../images/cards/policy.png') no-repeat;
+	background: url('../images/cards/proclamation.png') no-repeat;
 	position: absolute;
 	top: 5px;
 	left: 6px;
 	transition: 1s all;
 	box-shadow: 0px 0px 1px 0px #d7d7d7;
 }
-.players-container .policies-container .policy-card.offscreen {
+.players-container .policies-container .proclamation-card.offscreen {
 	top: 120px;
 }
 .players-container .policies-container .draw {
@@ -798,7 +798,7 @@
 .experienced .players-container .players .card-container {
 	transition-duration: 0.2s;
 }
-.experienced .players-container .policies-container .policy-card {
+.experienced .players-container .policies-container .proclamation-card {
 	transition: 0.2s all;
 }
 .reportmodal {
@@ -1209,8 +1209,8 @@
 .cardflinger-card.ja {
 	background-image: url('../images/cards/ja-l.png');
 }
-.cardflinger-card.policy {
-	background-image: url('../images/cards/policy-l.png');
+.cardflinger-card.proclamation {
+	background-image: url('../images/cards/proclamation-l.png');
 }
 .cardflinger-card.orderp {
 	background-image: url('../images/cards/orderp-l.png');
@@ -1281,7 +1281,7 @@
 	cursor: pointer;
 }
 .enactedpolicies-card.front {
-	background-image: url('../images/cards/policy-l.png');
+	background-image: url('../images/cards/proclamation-l.png');
 }
 .enactedpolicies-card.back.order {
 	background-image: url('../images/cards/orderp-l.png');
@@ -2231,7 +2231,7 @@
 #replay .replay-controls .phase-nav .overlay-container .overlay.veto {
 	width: 66.66%;
 }
-#replay .replay-controls .phase-nav .overlay-container .overlay.policyEnaction {
+#replay .replay-controls .phase-nav .overlay-container .overlay.proclamationEnaction {
 	width: 66.66%;
 }
 #replay .replay-controls .phase-nav .overlay-container .overlay.investigation,

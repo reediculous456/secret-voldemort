@@ -962,7 +962,7 @@ export default class Creategame extends React.Component {
 
 		return (
 			<div className={this.state.isTourny ? 'rebalance-container isTourny' : 'rebalance-container'}>
-				<span title="When enabled, 6p games have a death eater policy already enacted, and 7p and 9p games start with one less death eater policy in the deck.">
+				<span title="When enabled, 6p games have a death eater proclamation already enacted, and 7p and 9p games start with one less death eater proclamation in the deck.">
 					<i className="info circle icon" />
 					Rebalance:
 				</span>
@@ -1682,7 +1682,7 @@ export default class Creategame extends React.Component {
 								<i
 									className="info circle icon"
 									style={{ color: 'red', cursor: 'help' }}
-									title="If active, when players are on the last policy, roles are revealed and a 1 on 1 game of Flappy Voldemort commences with control of the 'flappy' passed between team members at intervals."
+									title="If active, when players are on the last proclamation, roles are revealed and a 1 on 1 game of Flappy Voldemort commences with control of the 'flappy' passed between team members at intervals."
 								/>
 								COMING SOON: Resolve sudden death games with Flappy Voldemort
 							</h4>

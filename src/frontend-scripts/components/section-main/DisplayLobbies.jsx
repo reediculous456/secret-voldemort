@@ -396,14 +396,19 @@ const DisplayLobbies = props => {
 					<div className="progress-icons">
 						<div className="order-count">
 							{_.range(1, 6).map(num => (
-								<div key={num} className={num <= game.enactedOrderPolicyCount ? 'leftsidebar box order-box filled' : 'leftsidebar box order-box unfilled'} />
+								<div
+									key={num}
+									className={num <= game.enactedOrderProclamationCount ? 'leftsidebar box order-box filled' : 'leftsidebar box order-box unfilled'}
+								/>
 							))}
 						</div>
 						<div className="death-eater-count">
 							{_.range(1, 7).map(num => (
 								<div
 									key={num}
-									className={num <= game.enactedDeathEaterPolicyCount ? 'leftsidebar box death-eater-box filled' : ' leftsidebar box death-eater-box unfilled'}
+									className={
+										num <= game.enactedDeathEaterProclamationCount ? 'leftsidebar box death-eater-box filled' : ' leftsidebar box death-eater-box unfilled'
+									}
 								/>
 							))}
 						</div>

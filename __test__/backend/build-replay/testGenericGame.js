@@ -62,14 +62,14 @@ export default () => {
 
 		const testChancellorLegislation = testLegislation.bind(null, 'chancellor');
 
-		const testPolicyEnaction = (turnNum, policy) => {
-			if (!policy) {
-				expect(findPhase('policyEnaction', turnNum)).toBeUndefined();
+		const testProclamationEnaction = (turnNum, proclamation) => {
+			if (!proclamation) {
+				expect(findPhase('proclamationEnaction', turnNum)).toBeUndefined();
 				return;
 			}
 
-			const snapshot = findPhase('policyEnaction', turnNum);
-			expect(snapshot.enactedPolicy).toEqual(policy);
+			const snapshot = findPhase('proclamationEnaction', turnNum);
+			expect(snapshot.enactedProclamation).toEqual(proclamation);
 		};
 
 		const testInvestigation = (turnNum, investigation, claim) => {
@@ -127,7 +127,7 @@ export default () => {
 
 				testChancellorLegislation(0, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
 
-				testPolicyEnaction(0, 'death eater');
+				testProclamationEnaction(0, 'death eater');
 
 				testExecution(0, null);
 
@@ -159,7 +159,7 @@ export default () => {
 
 				testChancellorLegislation(1, { reds: 1, blues: 1 }, some('order'), some({ reds: 2, blues: 0 }));
 
-				testPolicyEnaction(1, 'death eater');
+				testProclamationEnaction(1, 'death eater');
 
 				testExecution(1, null);
 
@@ -197,7 +197,7 @@ export default () => {
 
 				testChancellorLegislation(5, null, none);
 
-				testPolicyEnaction(5, null);
+				testProclamationEnaction(5, null);
 
 				testExecution(5, null);
 
@@ -229,7 +229,7 @@ export default () => {
 
 				testChancellorLegislation(6, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
 
-				testPolicyEnaction(6, 'death eater');
+				testProclamationEnaction(6, 'death eater');
 
 				testExecution(6, 2);
 
@@ -261,7 +261,7 @@ export default () => {
 					List([true, false, null, null, true, true, true]).map(x => fromNullable(x))
 				);
 
-				testPolicyEnaction(7, 'death eater');
+				testProclamationEnaction(7, 'death eater');
 
 				testExecution(7, null);
 

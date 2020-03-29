@@ -170,13 +170,13 @@ export default () => {
 		});
 
 		it('should track enacted policies', () => {
-			const getEnactedPolicy = turnNum => turns.get(turnNum).enactedPolicy;
+			const getEnactedProclamation = turnNum => turns.get(turnNum).enactedProclamation;
 
-			expect(getEnactedPolicy(0)).toEqual(some('death eater'));
-			expect(getEnactedPolicy(1)).toEqual(some('death eater'));
-			expect(getEnactedPolicy(3)).toEqual(some('death eater'));
-			expect(getEnactedPolicy(5)).toEqual(none);
-			expect(getEnactedPolicy(7)).toEqual(some('death eater'));
+			expect(getEnactedProclamation(0)).toEqual(some('death eater'));
+			expect(getEnactedProclamation(1)).toEqual(some('death eater'));
+			expect(getEnactedProclamation(3)).toEqual(some('death eater'));
+			expect(getEnactedProclamation(5)).toEqual(none);
+			expect(getEnactedProclamation(7)).toEqual(some('death eater'));
 		});
 
 		it('should track president hands', () => {

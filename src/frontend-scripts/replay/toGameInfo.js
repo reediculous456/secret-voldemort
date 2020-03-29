@@ -3,7 +3,7 @@ import { mapOpt1 } from '../../../utils';
 export default function toGameInfo(snapshot) {
 	const gameState = {
 		isTracksFlipped: true,
-		undrawnPolicyCount: snapshot.deckSize
+		undrawnProclamationCount: snapshot.deckSize
 	};
 
 	const general = {
@@ -86,10 +86,10 @@ export default function toGameInfo(snapshot) {
 		.toArray();
 
 	const trackState = {
-		deathEaterPolicyCount: snapshot.track.reds,
-		orderPolicyCount: snapshot.track.blues,
+		deathEaterProclamationCount: snapshot.track.reds,
+		orderProclamationCount: snapshot.track.blues,
 		enactedPolicies: [],
-		isBlurred: ['presidentLegislation', 'chancellorLegislation', 'policyPeek'].includes(snapshot.phase),
+		isBlurred: ['presidentLegislation', 'chancellorLegislation', 'proclamationPeek'].includes(snapshot.phase),
 		isHidden: true
 	};
 	return {

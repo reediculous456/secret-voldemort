@@ -40,7 +40,13 @@ const {
 	sendPrivateSignups,
 	updateUserStatus
 } = require('./user-requests');
-const { selectVoting, selectPresidentPolicy, selectChancellorPolicy, selectChancellorVoteOnVeto, selectPresidentVoteOnVeto } = require('./game/election');
+const {
+	selectVoting,
+	selectPresidentProclamation,
+	selectChancellorProclamation,
+	selectChancellorVoteOnVeto,
+	selectPresidentVoteOnVeto
+} = require('./game/election');
 const { selectChancellor } = require('./game/election-util');
 const {
 	selectSpecialElection,
@@ -48,9 +54,9 @@ const {
 	selectPolicies,
 	selectPlayerToExecute,
 	selectPartyMembershipInvestigateReverse,
-	selectOnePolicy,
+	selectOneProclamation,
 	selectBurnCard
-} = require('./game/policy-powers');
+} = require('./game/proclamation-powers');
 const { games, emoteList } = require('./models');
 const Account = require('../../models/account');
 const { TOU_CHANGES } = require('../../src/frontend-scripts/node-constants.js');
@@ -560,18 +566,18 @@ module.exports.socketRoutes = () => {
 					selectVoting(passport, game, data, socket);
 				}
 			});
-			socket.on('selectedPresidentPolicy', data => {
+			socket.on('selectedPresidentProclamation', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
-					selectPresidentPolicy(passport, game, data, false, socket);
+					selectPresidentProclamation(passport, game, data, false, socket);
 				}
 			});
-			socket.on('selectedChancellorPolicy', data => {
+			socket.on('selectedChancellorProclamation', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
-					selectChancellorPolicy(passport, game, data, false, socket);
+					selectChancellorProclamation(passport, game, data, false, socket);
 				}
 			});
 			socket.on('selectedPresidentVoteOnVeto', data => {
@@ -581,7 +587,7 @@ module.exports.socketRoutes = () => {
 					selectPresidentVoteOnVeto(passport, game, data, socket);
 				}
 			});
-			// policy-powers
+			// proclamation-powers
 			socket.on('selectPartyMembershipInvestigate', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
@@ -600,7 +606,7 @@ module.exports.socketRoutes = () => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
-					if (game.private.lock.policyPeekAndDrop) selectOnePolicy(passport, game);
+					if (game.private.lock.proclamationPeekAndDrop) selectOneProclamation(passport, game);
 					else selectPolicies(passport, game, socket);
 				}
 			});

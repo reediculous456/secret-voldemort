@@ -6,21 +6,21 @@ const { completeGame } = require('./end-game.js');
 /**
  * @param {object} game - game to act on.
  */
-module.exports.policyPeek = game => {
+module.exports.proclamationPeek = game => {
 	const { seatedPlayers } = game.private;
 	const { presidentIndex } = game.gameState;
 	const president = seatedPlayers[presidentIndex];
 
-	if (!game.private.lock.policyPeek && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
-		game.private.lock.policyPeek = true;
+	if (!game.private.lock.proclamationPeek && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
+		game.private.lock.proclamationPeek = true;
 
-		if (game.gameState.undrawnPolicyCount < 3) {
+		if (game.gameState.undrawnProclamationCount < 3) {
 			shufflePolicies(game);
 		}
 
 		game.general.status = 'President to peek at policies.';
 		game.publicPlayersState[presidentIndex].isLoader = true;
-		president.playersState[presidentIndex].policyNotification = true;
+		president.playersState[presidentIndex].proclamationNotification = true;
 		sendInProgressGameUpdate(game, true);
 	}
 };
@@ -63,9 +63,9 @@ module.exports.selectPolicies = (passport, game, socket) => {
 		}
 
 		game.private.summary = game.private.summary.updateLog({
-			policyPeek: game.private.policies.slice(0, 3).reduce(
-				(peek, policy) => {
-					if (policy === 'death eater') {
+			proclamationPeek: game.private.policies.slice(0, 3).reduce(
+				(peek, proclamation) => {
+					if (proclamation === 'death eater') {
 						return Object.assign({}, peek, { reds: peek.reds + 1 });
 					} else {
 						return Object.assign({}, peek, { blues: peek.blues + 1 });
@@ -81,7 +81,7 @@ module.exports.selectPolicies = (passport, game, socket) => {
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
+					cardFront: 'proclamation',
 					cardBack: `${game.private.policies[0]}p`
 				}
 			},
@@ -90,7 +90,7 @@ module.exports.selectPolicies = (passport, game, socket) => {
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
+					cardFront: 'proclamation',
 					cardBack: `${game.private.policies[1]}p`
 				}
 			},
@@ -99,14 +99,14 @@ module.exports.selectPolicies = (passport, game, socket) => {
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
+					cardFront: 'proclamation',
 					cardBack: `${game.private.policies[2]}p`
 				}
 			}
 		];
 
-		game.gameState.audioCue = 'policyPeek';
-		president.playersState[presidentIndex].policyNotification = false;
+		game.gameState.audioCue = 'proclamationPeek';
+		president.playersState[presidentIndex].proclamationNotification = false;
 		sendInProgressGameUpdate(game, true);
 
 		setTimeout(
@@ -185,14 +185,14 @@ module.exports.selectPolicies = (passport, game, socket) => {
 								text: game.private.policies[2],
 								type: game.private.policies[2]
 							},
-							{ text: ' policy.' }
+							{ text: ' proclamation.' }
 						]
 					});
 				}
 
 				sendInProgressGameUpdate(game);
 				game.trackState.electionTrackerCount = 0;
-				president.playersState[presidentIndex].claim = 'didPolicyPeek';
+				president.playersState[presidentIndex].claim = 'didProclamationPeek';
 				startElection(game);
 			},
 			process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 4500 : 7000
@@ -203,21 +203,21 @@ module.exports.selectPolicies = (passport, game, socket) => {
 /**
  * @param {object} game - game to act on.
  */
-module.exports.policyPeekAndDrop = game => {
+module.exports.proclamationPeekAndDrop = game => {
 	const { seatedPlayers } = game.private;
 	const { presidentIndex } = game.gameState;
 	const president = seatedPlayers[presidentIndex];
 
-	if (!game.private.lock.policyPeekAndDrop && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
-		game.private.lock.policyPeekAndDrop = true;
+	if (!game.private.lock.proclamationPeekAndDrop && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
+		game.private.lock.proclamationPeekAndDrop = true;
 
-		if (game.gameState.undrawnPolicyCount < 3) {
+		if (game.gameState.undrawnProclamationCount < 3) {
 			shufflePolicies(game);
 		}
 
-		game.general.status = 'President to peek at one policy.';
+		game.general.status = 'President to peek at one proclamation.';
 		game.publicPlayersState[presidentIndex].isLoader = true;
-		president.playersState[presidentIndex].policyNotification = true;
+		president.playersState[presidentIndex].proclamationNotification = true;
 		sendInProgressGameUpdate(game, true);
 	}
 };
@@ -226,7 +226,7 @@ module.exports.policyPeekAndDrop = game => {
  * @param {object} passport - socket authentication.
  * @param {object} game - target game.
  */
-module.exports.selectOnePolicy = (passport, game) => {
+module.exports.selectOneProclamation = (passport, game) => {
 	const { presidentIndex } = game.gameState;
 	const { experiencedMode } = game.general;
 	const { seatedPlayers } = game.private;
@@ -256,8 +256,8 @@ module.exports.selectOnePolicy = (passport, game) => {
 		game.gameState.timedModeEnabled = false;
 	}
 
-	if (!game.private.lock.selectOnePolicy && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
-		game.private.lock.selectOnePolicy = true;
+	if (!game.private.lock.selectOneProclamation && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
+		game.private.lock.selectOneProclamation = true;
 		game.publicPlayersState[presidentIndex].isLoader = false;
 
 		if (game.private.policies.length < 3) {
@@ -265,9 +265,9 @@ module.exports.selectOnePolicy = (passport, game) => {
 		}
 
 		game.private.summary = game.private.summary.updateLog({
-			policyPeek: game.private.policies.slice(0, 1).reduce(
-				(peek, policy) => {
-					if (policy === 'death eater') {
+			proclamationPeek: game.private.policies.slice(0, 1).reduce(
+				(peek, proclamation) => {
+					if (proclamation === 'death eater') {
 						return Object.assign({}, peek, { reds: peek.reds + 1 });
 					} else {
 						return Object.assign({}, peek, { blues: peek.blues + 1 });
@@ -277,21 +277,21 @@ module.exports.selectOnePolicy = (passport, game) => {
 			)
 		});
 
-		const policy = game.private.policies[0];
+		const proclamation = game.private.policies[0];
 		president.cardFlingerState = [
 			{
 				position: 'middle-center',
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
-					cardBack: `${policy}p`
+					cardFront: 'proclamation',
+					cardBack: `${proclamation}p`
 				}
 			}
 		];
 
-		game.gameState.audioCue = 'policyPeek';
-		president.playersState[presidentIndex].policyNotification = false;
+		game.gameState.audioCue = 'proclamationPeek';
+		president.playersState[presidentIndex].proclamationNotification = false;
 		sendInProgressGameUpdate(game, true);
 
 		setTimeout(
@@ -347,19 +347,19 @@ module.exports.selectOnePolicy = (passport, game) => {
 						gameChat: true,
 						timestamp: new Date(),
 						chat: [
-							{ text: 'You peek at the top policy and see that it is a ' },
+							{ text: 'You peek at the top proclamation and see that it is a ' },
 							{
-								text: policy,
-								type: policy
+								text: proclamation,
+								type: proclamation
 							},
-							{ text: ' policy.' }
+							{ text: ' proclamation.' }
 						]
 					});
 				}
 
 				sendInProgressGameUpdate(game);
 				game.trackState.electionTrackerCount = 0;
-				president.playersState[presidentIndex].claim = 'didSinglePolicyPeek';
+				president.playersState[presidentIndex].claim = 'didSingleProclamationPeek';
 				setTimeout(
 					() => {
 						const chat = {
@@ -368,7 +368,7 @@ module.exports.selectOnePolicy = (passport, game) => {
 							chat: [
 								{
 									text:
-										'You must vote whether or not to discard this policy.  Select Ja to discard the peeked policy or select Nein to put it back on the deck.'
+										'You must vote whether or not to discard this proclamation.  Select Ja to discard the peeked proclamation or select Nein to put it back on the deck.'
 								}
 							]
 						};
@@ -535,8 +535,8 @@ module.exports.selectBurnCard = (passport, game, data, socket) => {
 				president.cardFlingerState = [];
 				if (data.vote) {
 					game.private.policies.shift();
-					game.gameState.undrawnPolicyCount--;
-					if (game.gameState.undrawnPolicyCount < 3) {
+					game.gameState.undrawnProclamationCount--;
+					if (game.gameState.undrawnProclamationCount < 3) {
 						shufflePolicies(game);
 					}
 				}
@@ -1457,12 +1457,12 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 							const playCard = () => {
 								if (game.private.policies.length < 3) shufflePolicies(game);
 								const index = game.trackState.enactedPolicies.length;
-								const policy = game.private.policies.shift();
-								game.trackState[`${policy}PolicyCount`]++;
+								const proclamation = game.private.policies.shift();
+								game.trackState[`${proclamation}ProclamationCount`]++;
 								sendGameList();
 								game.trackState.enactedPolicies.push({
 									position: 'middle',
-									cardBack: policy,
+									cardBack: proclamation,
 									isFlipped: false
 								});
 								game.trackState.enactedPolicies[index].isFlipped = true;
@@ -1472,18 +1472,18 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 									chat: [
 										{ text: 'A ' },
 										{
-											text: policy === 'order' ? 'order' : 'death eater',
-											type: policy === 'order' ? 'order' : 'death eater'
+											text: proclamation === 'order' ? 'order' : 'death eater',
+											type: proclamation === 'order' ? 'order' : 'death eater'
 										},
 										{
-											text: ` policy has been enacted. (${
-												policy === 'order' ? game.trackState.orderPolicyCount.toString() : game.trackState.deathEaterPolicyCount.toString()
-											}/${policy === 'order' ? '5' : '6'})`
+											text: ` proclamation has been enacted. (${
+												proclamation === 'order' ? game.trackState.orderProclamationCount.toString() : game.trackState.deathEaterProclamationCount.toString()
+											}/${proclamation === 'order' ? '5' : '6'})`
 										}
 									]
 								};
 								game.trackState.enactedPolicies[index].position =
-									policy === 'order' ? `order${game.trackState.orderPolicyCount}` : `death eater${game.trackState.deathEaterPolicyCount}`;
+									proclamation === 'order' ? `order${game.trackState.orderProclamationCount}` : `death eater${game.trackState.deathEaterProclamationCount}`;
 
 								if (!game.general.disableGamechat) {
 									game.private.seatedPlayers.forEach(player => {
@@ -1492,14 +1492,14 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 
 									game.private.unSeatedGameChats.push(chat);
 								}
-								if (game.trackState.orderPolicyCount === 5 || game.trackState.deathEaterPolicyCount === 6) {
+								if (game.trackState.orderProclamationCount === 5 || game.trackState.deathEaterProclamationCount === 6) {
 									game.publicPlayersState.forEach((player, i) => {
 										player.cardStatus.cardFront = 'secretrole';
 										player.cardStatus.cardBack = game.private.seatedPlayers[i].role;
 										player.cardStatus.cardDisplayed = true;
 										player.cardStatus.isFlipped = false;
 									});
-									game.gameState.audioCue = game.trackState.orderPolicyCount === 5 ? 'ordersWin' : 'death eatersWin';
+									game.gameState.audioCue = game.trackState.orderProclamationCount === 5 ? 'ordersWin' : 'death eatersWin';
 									setTimeout(
 										() => {
 											game.publicPlayersState.forEach((player, i) => {
@@ -1507,9 +1507,9 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 											});
 											game.gameState.audioCue = '';
 											if (process.env.NODE_ENV === 'development') {
-												completeGame(game, game.trackState.orderPolicyCount === 1 ? 'order' : 'death eater');
+												completeGame(game, game.trackState.orderProclamationCount === 1 ? 'order' : 'death eater');
 											} else {
-												completeGame(game, game.trackState.orderPolicyCount === 5 ? 'order' : 'death eater');
+												completeGame(game, game.trackState.orderProclamationCount === 5 ? 'order' : 'death eater');
 											}
 										},
 										process.env.NODE_ENV === 'development' ? 100 : 2000

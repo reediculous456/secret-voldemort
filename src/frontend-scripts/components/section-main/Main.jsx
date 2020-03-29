@@ -154,7 +154,7 @@ export class Main extends React.Component {
 										<p>
 											As per our{' '}
 											<a href="/about" target="_blank" rel="noopener noreferrer">
-												Privacy Policy
+												Privacy Proclamation
 											</a>{' '}
 											your password is securely encrypted per industry standards and your email address will never be used for anything other than password
 											resets and verification. Verifying your account is strongly recommended. Accounts that were created by signing up/in with discord or

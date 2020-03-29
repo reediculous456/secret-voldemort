@@ -1,4 +1,4 @@
-/*!
+/* !
  * # Semantic UI 2.4.1 - API
  * http://github.com/semantic-org/semantic-ui/
  *
@@ -22,7 +22,7 @@ var
 
 $.api = $.fn.api = function(parameters) {
 
-  var
+  let
     // use window context if none specified
     $allModules     = $.isFunction(this)
         ? $(window)
@@ -40,7 +40,7 @@ $.api = $.fn.api = function(parameters) {
 
   $allModules
     .each(function() {
-      var
+      let
         settings          = ( $.isPlainObject(parameters) )
           ? $.extend(true, {}, $.fn.api.settings, parameters)
           : $.extend({}, $.fn.api.settings),
@@ -106,7 +106,7 @@ $.api = $.fn.api = function(parameters) {
 
         bind: {
           events: function() {
-            var
+            const
               triggerEvent = module.get.event()
             ;
             if( triggerEvent ) {
@@ -138,7 +138,7 @@ $.api = $.fn.api = function(parameters) {
 
         read: {
           cachedResponse: function(url) {
-            var
+            let
               response
             ;
             if(window.Storage === undefined) {
@@ -344,7 +344,7 @@ $.api = $.fn.api = function(parameters) {
 
         add: {
           urlData: function(url, urlData) {
-            var
+            let
               requiredVariables,
               optionalVariables
             ;
@@ -355,7 +355,7 @@ $.api = $.fn.api = function(parameters) {
               if(requiredVariables) {
                 module.debug('Looking for required URL variables', requiredVariables);
                 $.each(requiredVariables, function(index, templatedString) {
-                  var
+                  let
                     // allow legacy {$var} style
                     variable = (templatedString.indexOf('$') !== -1)
                       ? templatedString.substr(2, templatedString.length - 3)
@@ -387,7 +387,7 @@ $.api = $.fn.api = function(parameters) {
               if(optionalVariables) {
                 module.debug('Looking for optional URL variables', requiredVariables);
                 $.each(optionalVariables, function(index, templatedString) {
-                  var
+                  const
                     // allow legacy {/$var} style
                     variable = (templatedString.indexOf('$') !== -1)
                       ? templatedString.substr(3, templatedString.length - 4)
@@ -421,7 +421,7 @@ $.api = $.fn.api = function(parameters) {
             return url;
           },
           formData: function(data) {
-            var
+            let
               canSerialize = ($.fn.serializeObject !== undefined),
               formData     = (canSerialize)
                 ? $form.serializeObject()
@@ -476,7 +476,7 @@ $.api = $.fn.api = function(parameters) {
               // nothing special
             },
             done: function(response, textStatus, xhr) {
-              var
+              let
                 context            = this,
                 elapsedTime        = (new Date().getTime() - requestStartTime),
                 timeLeft           = (settings.loadingDuration - elapsedTime),
@@ -507,7 +507,7 @@ $.api = $.fn.api = function(parameters) {
               }, timeLeft);
             },
             fail: function(xhr, status, httpMessage) {
-              var
+              let
                 context     = this,
                 elapsedTime = (new Date().getTime() - requestStartTime),
                 timeLeft    = (settings.loadingDuration - elapsedTime)
@@ -539,7 +539,7 @@ $.api = $.fn.api = function(parameters) {
               settings.onSuccess.call(context, response, $module, xhr);
             },
             complete: function(firstParameter, secondParameter) {
-              var
+              let
                 xhr,
                 response
               ;
@@ -556,13 +556,13 @@ $.api = $.fn.api = function(parameters) {
               settings.onComplete.call(context, response, $module, xhr);
             },
             fail: function(xhr, status, httpMessage) {
-              var
+              const
                 // pull response from xhr if available
                 response     = module.get.responseFromXHR(xhr),
                 errorMessage = module.get.errorFromRequest(response, status, httpMessage)
               ;
               if(status == 'aborted') {
-                module.debug('XHR Aborted (Most likely caused by page navigation or CORS Policy)', status, httpMessage);
+                module.debug('XHR Aborted (Most likely caused by page navigation or CORS Proclamation)', status, httpMessage);
                 settings.onAbort.call(context, status, $module, xhr);
                 return true;
               }
@@ -605,7 +605,7 @@ $.api = $.fn.api = function(parameters) {
           },
 
           mockedXHR: function () {
-            var
+            let
               // xhr does not simulate these properties of xhr but must return them
               textStatus     = false,
               status         = false,
@@ -653,7 +653,7 @@ $.api = $.fn.api = function(parameters) {
           },
 
           xhr: function() {
-            var
+            let
               xhr
             ;
             // ajax request promise
@@ -714,7 +714,7 @@ $.api = $.fn.api = function(parameters) {
             return module.xhr || false;
           },
           settings: function() {
-            var
+            let
               runSettings
             ;
             runSettings = settings.beforeSend.call(context, settings);
@@ -747,7 +747,7 @@ $.api = $.fn.api = function(parameters) {
             ;
           },
           urlEncodedValue: function(value) {
-            var
+            const
               decodedValue   = window.decodeURIComponent(value),
               encodedValue   = window.encodeURIComponent(value),
               alreadyEncoded = (decodedValue !== value)
@@ -760,7 +760,7 @@ $.api = $.fn.api = function(parameters) {
             return encodedValue;
           },
           defaultData: function() {
-            var
+            const
               data = {}
             ;
             if( !$.isWindow(element) ) {
@@ -825,7 +825,7 @@ $.api = $.fn.api = function(parameters) {
         },
 
         abort: function() {
-          var
+          const
             xhr = module.get.xhr()
           ;
           if( xhr && xhr.state() !== 'resolved') {
@@ -898,7 +898,7 @@ $.api = $.fn.api = function(parameters) {
         },
         performance: {
           log: function(message) {
-            var
+            let
               currentTime,
               executionTime,
               previousTime
@@ -911,7 +911,7 @@ $.api = $.fn.api = function(parameters) {
               performance.push({
                 'Name'           : message[0],
                 'Arguments'      : [].slice.call(message, 1) || '',
-                //'Element'        : element,
+                // 'Element'        : element,
                 'Execution Time' : executionTime
               });
             }
@@ -919,7 +919,7 @@ $.api = $.fn.api = function(parameters) {
             module.performance.timer = setTimeout(module.performance.display, 500);
           },
           display: function() {
-            var
+            let
               title = settings.name + ':',
               totalTime = 0
             ;
@@ -948,7 +948,7 @@ $.api = $.fn.api = function(parameters) {
           }
         },
         invoke: function(query, passedArguments, context) {
-          var
+          let
             object = instance,
             maxDepth,
             found,
@@ -960,7 +960,7 @@ $.api = $.fn.api = function(parameters) {
             query    = query.split(/[\. ]/);
             maxDepth = query.length - 1;
             $.each(query, function(depth, value) {
-              var camelCaseValue = (depth != maxDepth)
+              const camelCaseValue = (depth != maxDepth)
                 ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
                 : query
               ;

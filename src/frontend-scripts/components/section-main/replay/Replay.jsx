@@ -66,11 +66,11 @@ const buildPlayback = (replay, to) => {
 				chancellorLegislation: List(['topDeck', 'election']),
 				topDeck: List(['presidentLegislation', 'election']),
 				veto: List(['presidentLegislation', 'election']),
-				policyEnaction: List(['election']),
-				investigation: List(['policyEnaction', 'election']),
-				policyPeek: List(['policyEnaction', 'election']),
-				specialElection: List(['policyEnaction', 'election']),
-				execution: List(['policyEnaction', 'election'])
+				proclamationEnaction: List(['election']),
+				investigation: List(['proclamationEnaction', 'election']),
+				proclamationPeek: List(['proclamationEnaction', 'election']),
+				specialElection: List(['proclamationEnaction', 'election']),
+				execution: List(['proclamationEnaction', 'election'])
 			});
 
 			const ideal = findTickPos(targetTurn, phase).map(pos => bindTo(pos));
@@ -108,15 +108,15 @@ const buildPlayback = (replay, to) => {
 		const legislationPos = rotate(
 			Map({
 				presidentLegislation: List(['chancellorLegislation']),
-				chancellorLegislation: List(['veto', 'policyEnaction']),
-				topDeck: List(['policyEnaction']),
-				veto: List(['policyEnaction', 'topDeck', 'presidentLegislation']),
-				policyEnaction: List(['presidentLegislation', 'topDeck'])
+				chancellorLegislation: List(['veto', 'proclamationEnaction']),
+				topDeck: List(['proclamationEnaction']),
+				veto: List(['proclamationEnaction', 'topDeck', 'presidentLegislation']),
+				proclamationEnaction: List(['presidentLegislation', 'topDeck'])
 			}),
 			List(['presidentLegislation', 'topDeck'])
 		);
 
-		const actionPos = findTickPos(turnNum, List(['investigation', 'policyPeek', 'specialElection', 'execution']));
+		const actionPos = findTickPos(turnNum, List(['investigation', 'proclamationPeek', 'specialElection', 'execution']));
 
 		return {
 			hasLegislation: legislationPos.isSome(),

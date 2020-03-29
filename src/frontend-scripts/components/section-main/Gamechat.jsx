@@ -74,12 +74,12 @@ class Gamechat extends React.Component {
 				gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).isDead) ||
 			(prevProps &&
 				userInfo.userName &&
-				gameInfo.gameState.phase === 'presidentSelectingPolicy' &&
+				gameInfo.gameState.phase === 'presidentSelectingProclamation' &&
 				((gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName) &&
 					gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).governmentStatus === 'isPresident') ||
 					(gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName) &&
 						gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).governmentStatus === 'isChancellor')) &&
-				prevProps.gameInfo.gameState.phase !== 'presidentSelectingPolicy')
+				prevProps.gameInfo.gameState.phase !== 'presidentSelectingProclamation')
 		) {
 			this.setState({ inputValue: '' });
 			$(this.gameChatInput).blur();
@@ -328,8 +328,13 @@ class Gamechat extends React.Component {
 				return publicPlayersState.find(player => userName === player.userName).isDead;
 			}
 		})();
-		const isGovernmentDuringPolicySelection = (() => {
-			if (gameState && (gameState.phase === 'presidentSelectingPolicy' || gameState.phase === 'chancellorSelectingPolicy') && userName && isSeated) {
+		const isGovernmentDuringProclamationSelection = (() => {
+			if (
+				gameState &&
+				(gameState.phase === 'presidentSelectingProclamation' || gameState.phase === 'chancellorSelectingProclamation') &&
+				userName &&
+				isSeated
+			) {
 				const player = publicPlayersState.find(p => p.userName === userName);
 				return player && (player.governmentStatus === 'isPresident' || player.governmentStatus === 'isChancellor');
 			}
@@ -372,7 +377,7 @@ class Gamechat extends React.Component {
 				};
 			}
 
-			if (isGovernmentDuringPolicySelection) {
+			if (isGovernmentDuringProclamationSelection) {
 				return {
 					isDisabled: true,
 					placeholder: 'Chat disabled for card selection'
@@ -990,7 +995,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button twodeatheateroneorder"
 											>
-												2 Death Eater and a Order policy
+												2 Death Eater and a Order proclamation
 											</button>
 											<button
 												onClick={e => {
@@ -998,7 +1003,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button twoorderonedeatheater"
 											>
-												2 Order and a Death Eater policy
+												2 Order and a Death Eater proclamation
 											</button>
 											<button
 												onClick={e => {
@@ -1028,7 +1033,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button onedeatheateroneorder"
 											>
-												A Death Eater and a Order policy
+												A Death Eater and a Order proclamation
 											</button>
 											<button
 												onClick={e => {
@@ -1062,7 +1067,7 @@ class Gamechat extends React.Component {
 											</button>
 										</div>
 									);
-								case 'didSinglePolicyPeek':
+								case 'didSingleProclamationPeek':
 									return (
 										<div>
 											<p> As president, when I looked at the top card I saw a...</p>
@@ -1072,7 +1077,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button threedeatheater"
 											>
-												Death Eater policy
+												Death Eater proclamation
 											</button>
 											<button
 												onClick={e => {
@@ -1080,11 +1085,11 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button threeorder"
 											>
-												Order policy
+												Order proclamation
 											</button>
 										</div>
 									);
-								case 'didPolicyPeek':
+								case 'didProclamationPeek':
 									return (
 										<div>
 											<p> As president, I peeked and saw... </p>
@@ -1102,7 +1107,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button twodeatheateroneorder"
 											>
-												2 Death Eater and a Order policy
+												2 Death Eater and a Order proclamation
 											</button>
 											<button
 												onClick={e => {
@@ -1110,7 +1115,7 @@ class Gamechat extends React.Component {
 												}}
 												className="ui button twoorderonedeatheater"
 											>
-												2 Order and a Death Eater policy
+												2 Order and a Death Eater proclamation
 											</button>
 											<button
 												onClick={e => {

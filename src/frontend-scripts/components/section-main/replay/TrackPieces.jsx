@@ -21,7 +21,7 @@ const TrackPieces = ({ phase, track, electionTracker }) => {
 	const redCards = cards.slice(0, track.reds);
 	const blueCards = cards.slice(track.reds);
 	const classes = classnames('track-pieces', {
-		blurred: ['presidentLegislation', 'chancellorLegislation', 'policyPeek'].includes(phase)
+		blurred: ['presidentLegislation', 'chancellorLegislation', 'proclamationPeek'].includes(phase)
 	});
 
 	return (

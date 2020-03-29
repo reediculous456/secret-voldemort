@@ -4,7 +4,7 @@ const { sendGameList } = require('../user-requests');
 const { selectChancellor } = require('./election-util');
 const {
 	specialElection,
-	policyPeek,
+	proclamationPeek,
 	investigateLoyalty,
 	executePlayer,
 	selectPolicies,
@@ -12,19 +12,19 @@ const {
 	selectPartyMembershipInvestigate,
 	selectSpecialElection,
 	showPlayerLoyalty,
-	policyPeekAndDrop
-} = require('./policy-powers');
+	proclamationPeekAndDrop
+} = require('./proclamation-powers');
 const { completeGame } = require('./end-game');
 const _ = require('lodash');
 const { makeReport } = require('../report.js');
 
 const powerMapping = {
 	investigate: [investigateLoyalty, 'The president must investigate the party membership of another player.'],
-	deckpeek: [policyPeek, 'The president must examine the top 3 policies.'],
+	deckpeek: [proclamationPeek, 'The president must examine the top 3 policies.'],
 	election: [specialElection, 'The president must select a player for a special election.'],
 	bullet: [executePlayer, 'The president must select a player for execution.'],
 	reverseinv: [showPlayerLoyalty, 'The president must reveal their party membership to another player.'],
-	peekdrop: [policyPeekAndDrop, 'The president must examine the top policy, and may discard it.']
+	peekdrop: [proclamationPeekAndDrop, 'The president must examine the top proclamation, and may discard it.']
 };
 
 const presidentPowers = [
@@ -53,10 +53,10 @@ const presidentPowers = [
 
 /**
  * @param {object} game - game to act on.
- * @param {string} team - name of team that is enacting policy.
+ * @param {string} team - name of team that is enacting proclamation.
  * @param {object} socket - socket
  */
-const enactPolicy = (game, team, socket) => {
+const enactProclamation = (game, team, socket) => {
 	const index = game.trackState.enactedPolicies.length;
 	const { experiencedMode } = game.general;
 
@@ -68,16 +68,16 @@ const enactPolicy = (game, team, socket) => {
 		game.private.lock.selectChancellorVoteOnVeto = false;
 	}
 
-	if (game.private.lock.selectChancellorPolicy) {
-		game.private.lock.selectChancellorPolicy = false;
+	if (game.private.lock.selectChancellorProclamation) {
+		game.private.lock.selectChancellorProclamation = false;
 	}
 
-	if (game.private.lock.policyPeek) {
-		game.private.lock.policyPeek = false;
+	if (game.private.lock.proclamationPeek) {
+		game.private.lock.proclamationPeek = false;
 	}
 
-	if (game.private.lock.policyPeekAndDrop) {
-		game.private.lock.policyPeekAndDrop = false;
+	if (game.private.lock.proclamationPeekAndDrop) {
+		game.private.lock.proclamationPeekAndDrop = false;
 	}
 
 	if (game.private.lock.selectPlayerToExecute) {
@@ -116,8 +116,8 @@ const enactPolicy = (game, team, socket) => {
 		game.private.lock.selectPolicies = false;
 	}
 
-	if (game.private.lock.selectOnePolicy) {
-		game.private.lock.selectOnePolicy = false;
+	if (game.private.lock.selectOneProclamation) {
+		game.private.lock.selectOneProclamation = false;
 	}
 
 	if (game.private.lock.selectBurnCard) {
@@ -127,11 +127,11 @@ const enactPolicy = (game, team, socket) => {
 	game.gameState.pendingChancellorIndex = null;
 
 	game.private.summary = game.private.summary.updateLog({
-		enactedPolicy: team
+		enactedProclamation: team
 	});
 
-	game.general.status = 'A policy is being enacted.';
-	game.trackState[`${team}PolicyCount`]++;
+	game.general.status = 'A proclamation is being enacted.';
+	game.trackState[`${team}ProclamationCount`]++;
 	sendGameList();
 
 	game.trackState.enactedPolicies.push({
@@ -145,7 +145,7 @@ const enactPolicy = (game, team, socket) => {
 	setTimeout(
 		() => {
 			game.trackState.enactedPolicies[index].isFlipped = true;
-			game.gameState.audioCue = team === 'order' ? 'enactPolicyO' : 'enactPolicyD';
+			game.gameState.audioCue = team === 'order' ? 'enactProclamationO' : 'enactProclamationD';
 			sendInProgressGameUpdate(game, true);
 		},
 		process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 300 : 2000
@@ -164,8 +164,8 @@ const enactPolicy = (game, team, socket) => {
 						type: team === 'order' ? 'order' : 'death eater'
 					},
 					{
-						text: ` policy has been enacted. (${
-							team === 'order' ? game.trackState.orderPolicyCount.toString() : game.trackState.deathEaterPolicyCount.toString()
+						text: ` proclamation has been enacted. (${
+							team === 'order' ? game.trackState.orderProclamationCount.toString() : game.trackState.deathEaterProclamationCount.toString()
 						}/${team === 'order' ? '5' : '6'})`
 					}
 				]
@@ -186,12 +186,12 @@ const enactPolicy = (game, team, socket) => {
 			const powerToEnact =
 				team === 'death eater'
 					? game.customGameSettings.enabled
-						? powerMapping[game.customGameSettings.powers[game.trackState.deathEaterPolicyCount - 1]]
-						: presidentPowers[game.general.type][game.trackState.deathEaterPolicyCount - 1]
+						? powerMapping[game.customGameSettings.powers[game.trackState.deathEaterProclamationCount - 1]]
+						: presidentPowers[game.general.type][game.trackState.deathEaterProclamationCount - 1]
 					: null;
 
 			game.trackState.enactedPolicies[index].position =
-				team === 'order' ? `order${game.trackState.orderPolicyCount}` : `death eater${game.trackState.deathEaterPolicyCount}`;
+				team === 'order' ? `order${game.trackState.orderProclamationCount}` : `death eater${game.trackState.deathEaterProclamationCount}`;
 
 			if (!game.general.disableGamechat) {
 				game.private.seatedPlayers.forEach(player => {
@@ -201,7 +201,7 @@ const enactPolicy = (game, team, socket) => {
 				game.private.unSeatedGameChats.push(chat);
 			}
 
-			if (game.trackState.orderPolicyCount === 5 || game.trackState.deathEaterPolicyCount === 6) {
+			if (game.trackState.orderProclamationCount === 5 || game.trackState.deathEaterProclamationCount === 6) {
 				game.publicPlayersState.forEach((player, i) => {
 					player.cardStatus.cardFront = 'secretrole';
 					player.cardStatus.cardBack = game.private.seatedPlayers[i].role;
@@ -211,7 +211,7 @@ const enactPolicy = (game, team, socket) => {
 
 				sendInProgressGameUpdate(game);
 
-				game.gameState.audioCue = game.trackState.orderPolicyCount === 5 ? 'ordersWin' : 'deathEatersWin';
+				game.gameState.audioCue = game.trackState.orderProclamationCount === 5 ? 'ordersWin' : 'deathEatersWin';
 				setTimeout(
 					() => {
 						game.publicPlayersState.forEach((player, i) => {
@@ -219,9 +219,9 @@ const enactPolicy = (game, team, socket) => {
 						});
 						game.gameState.audioCue = '';
 						if (process.env.NODE_ENV === 'development') {
-							completeGame(game, game.trackState.orderPolicyCount === 1 ? 'order' : 'death eater');
+							completeGame(game, game.trackState.orderProclamationCount === 1 ? 'order' : 'death eater');
 						} else {
-							completeGame(game, game.trackState.orderPolicyCount === 5 ? 'order' : 'death eater');
+							completeGame(game, game.trackState.orderProclamationCount === 5 ? 'order' : 'death eater');
 						}
 					},
 					process.env.NODE_ENV === 'development' ? 100 : 2000
@@ -407,7 +407,7 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 					};
 
 					game.gameState.pendingChancellorIndex = null;
-					game.private.lock.selectChancellorPolicy = game.private.lock.selectPresidentVoteOnVeto = game.private.lock.selectChancellorVoteOnVeto = false;
+					game.private.lock.selectChancellorProclamation = game.private.lock.selectPresidentVoteOnVeto = game.private.lock.selectChancellorVoteOnVeto = false;
 
 					if (!game.general.disableGamechat) {
 						game.private.seatedPlayers.forEach(player => {
@@ -431,13 +431,13 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 								game.publicPlayersState[chancellorIndex].previousGovernmentStatus = 'wasChancellor';
 							}
 							if (game.trackState.electionTrackerCount >= 3) {
-								if (!game.gameState.undrawnPolicyCount) {
+								if (!game.gameState.undrawnProclamationCount) {
 									shufflePolicies(game);
 								}
 
-								enactPolicy(game, game.private.policies.shift(), socket);
-								game.gameState.undrawnPolicyCount--;
-								if (game.gameState.undrawnPolicyCount < 3) {
+								enactProclamation(game, game.private.policies.shift(), socket);
+								game.gameState.undrawnProclamationCount--;
+								if (game.gameState.undrawnProclamationCount < 3) {
 									shufflePolicies(game);
 								}
 							} else {
@@ -455,7 +455,7 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 							publicPresident.cardStatus.cardDisplayed = false;
 							publicChancellor.cardStatus.cardDisplayed = false;
 							president.cardFlingerState = [];
-							enactPolicy(game, game.private.currentElectionPolicies[0], socket);
+							enactProclamation(game, game.private.currentElectionPolicies[0], socket);
 							setTimeout(() => {
 								publicChancellor.cardStatus.isFlipped = publicPresident.cardStatus.isFlipped = false;
 							}, 1000);
@@ -599,13 +599,13 @@ const selectChancellorVoteOnVeto = (passport, game, data, socket) => {
 							chat: [
 								{
 									text:
-										'You must vote whether or not to veto these policies.  Select Ja to veto the policies you passed to the Chancellor or select Nein to enact the policy the Chancellor has chosen in secret.'
+										'You must vote whether or not to veto these policies.  Select Ja to veto the policies you passed to the Chancellor or select Nein to enact the proclamation the Chancellor has chosen in secret.'
 								}
 							]
 						});
 					}
 
-					game.general.status = 'President to vote on policy veto.';
+					game.general.status = 'President to vote on proclamation veto.';
 					sendInProgressGameUpdate(game);
 					setTimeout(
 						() => {
@@ -646,7 +646,7 @@ const selectChancellorVoteOnVeto = (passport, game, data, socket) => {
 							setTimeout(() => {
 								publicChancellor.cardStatus.isFlipped = false;
 							}, 1000);
-							enactPolicy(game, game.private.currentElectionPolicies[0], socket);
+							enactProclamation(game, game.private.currentElectionPolicies[0], socket);
 						},
 						process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 500 : 2000
 					);
@@ -662,8 +662,8 @@ module.exports.selectChancellorVoteOnVeto = selectChancellorVoteOnVeto;
 // todo check this argument for jsdoc
 const handToLog = hand =>
 	hand.reduce(
-		(hand, policy) => {
-			return policy === 'death eater' ? Object.assign({}, hand, { reds: hand.reds + 1 }) : Object.assign({}, hand, { blues: hand.blues + 1 });
+		(hand, proclamation) => {
+			return proclamation === 'death eater' ? Object.assign({}, hand, { reds: hand.reds + 1 }) : Object.assign({}, hand, { blues: hand.blues + 1 });
 		},
 		{ reds: 0, blues: 0 }
 	);
@@ -675,13 +675,13 @@ const handToLog = hand =>
  * @param {boolean} wasTimer - came from timer
  * @param {object} socket - socket
  */
-const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
+const selectChancellorProclamation = (passport, game, data, wasTimer, socket) => {
 	const { experiencedMode } = game.general;
 	const presidentIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isPresident');
 	const president = game.private.seatedPlayers[presidentIndex];
 	const chancellorIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isChancellor');
 	const chancellor = game.private.seatedPlayers[chancellorIndex];
-	const enactedPolicy = game.private.currentChancellorOptions[data.selection === 3 ? 1 : 0];
+	const enactedProclamation = game.private.currentChancellorOptions[data.selection === 3 ? 1 : 0];
 
 	if (game.gameState.isGameFrozen) {
 		if (socket) {
@@ -702,7 +702,7 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 	}
 
 	if (
-		!game.private.lock.selectChancellorPolicy &&
+		!game.private.lock.selectChancellorProclamation &&
 		chancellor &&
 		chancellor.cardFlingerState &&
 		chancellor.cardFlingerState.length &&
@@ -711,7 +711,7 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 		if (!wasTimer && !game.general.private) {
 			if (
 				chancellor.role.team === 'order' &&
-				enactedPolicy === 'death eater' &&
+				enactedProclamation === 'death eater' &&
 				(game.private.currentChancellorOptions[0] === 'order' || game.private.currentChancellorOptions[1] === 'order')
 			) {
 				// Order chancellor chose to play death eater, probably throwing.
@@ -732,8 +732,8 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 			}
 			if (
 				chancellor.role.team === 'death eater' &&
-				enactedPolicy === 'order' &&
-				game.trackState.orderPolicyCount >= 4 &&
+				enactedProclamation === 'order' &&
+				game.trackState.orderProclamationCount >= 4 &&
 				(game.private.currentChancellorOptions[0] === 'death eater' || game.private.currentChancellorOptions[1] === 'death eater')
 			) {
 				// Death Eater chancellor chose to play 5th order member.
@@ -769,18 +769,18 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 					text: wasTimer ? ' has automatically chosen to play a ' : ' has chosen to play a '
 				},
 				{
-					text: enactedPolicy,
-					type: enactedPolicy
+					text: enactedProclamation,
+					type: enactedProclamation
 				},
 				{
-					text: wasTimer ? 'policy due to the timer expiring.' : ' policy.'
+					text: wasTimer ? 'proclamation due to the timer expiring.' : ' proclamation.'
 				}
 			]
 		};
 		game.private.hiddenInfoChat.push(modOnlyChat);
 		sendInProgressModChatUpdate(game, modOnlyChat);
 
-		game.private.lock.selectPresidentPolicy = false;
+		game.private.lock.selectPresidentProclamation = false;
 
 		if (game.general.timedMode && game.private.timerId) {
 			clearTimeout(game.private.timerId);
@@ -788,7 +788,7 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 			game.gameState.timedModeEnabled = false;
 		}
 
-		game.private.lock.selectChancellorPolicy = true;
+		game.private.lock.selectChancellorProclamation = true;
 
 		if (data.selection === 3) {
 			chancellor.cardFlingerState[0].notificationStatus = '';
@@ -803,8 +803,8 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 		chancellor.cardFlingerState[0].cardStatus.isFlipped = chancellor.cardFlingerState[1].cardStatus.isFlipped = false;
 
 		if (game.gameState.isVetoEnabled) {
-			game.private.currentElectionPolicies = [enactedPolicy];
-			game.general.status = 'Chancellor to vote on policy veto.';
+			game.private.currentElectionPolicies = [enactedProclamation];
+			game.general.status = 'Chancellor to vote on proclamation veto.';
 			sendInProgressGameUpdate(game);
 
 			setTimeout(
@@ -815,7 +815,7 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 						chat: [
 							{
 								text:
-									'You must vote whether or not to veto these policies.  Select Ja to veto the your chosen policy or select Nein to enact your chosen policy.'
+									'You must vote whether or not to veto these policies.  Select Ja to veto the your chosen proclamation or select Nein to enact your chosen proclamation.'
 							}
 						]
 					};
@@ -884,12 +884,12 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 			);
 		} else {
 			game.private.currentElectionPolicies = [];
-			game.gameState.phase = 'enactPolicy';
+			game.gameState.phase = 'enactProclamation';
 			sendInProgressGameUpdate(game);
 			setTimeout(
 				() => {
 					chancellor.cardFlingerState = [];
-					enactPolicy(game, enactedPolicy, socket);
+					enactProclamation(game, enactedProclamation, socket);
 				},
 				experiencedMode ? 200 : 2000
 			);
@@ -907,7 +907,7 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 	}
 };
 
-module.exports.selectChancellorPolicy = selectChancellorPolicy;
+module.exports.selectChancellorProclamation = selectChancellorProclamation;
 
 /**
  * @param {object} passport - socket authentication.
@@ -916,7 +916,7 @@ module.exports.selectChancellorPolicy = selectChancellorPolicy;
  * @param {boolean} wasTimer - came from timer
  * @param {object} socket - socket
  */
-const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
+const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => {
 	const { presidentIndex } = game.gameState;
 	const president = game.private.seatedPlayers[presidentIndex];
 	const chancellorIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isChancellor');
@@ -942,7 +942,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 	}
 
 	if (
-		!game.private.lock.selectPresidentPolicy &&
+		!game.private.lock.selectPresidentProclamation &&
 		president &&
 		president.cardFlingerState &&
 		president.cardFlingerState.length &&
@@ -977,7 +977,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 					type: discarded
 				},
 				{
-					text: wasTimer ? 'policy due to the timer expiring.' : ' policy.'
+					text: wasTimer ? 'proclamation due to the timer expiring.' : ' proclamation.'
 				}
 			]
 		};
@@ -985,9 +985,9 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 		sendInProgressModChatUpdate(game, modOnlyChat);
 
 		if (!wasTimer && !game.general.private) {
-			// const presGetsPower = presidentPowers[game.general.type][game.trackState.death eaterPolicyCount] ? true : false;
-			const track4blue = game.trackState.orderPolicyCount >= 4;
-			const trackReds = game.trackState.deathEaterPolicyCount;
+			// const presGetsPower = presidentPowers[game.general.type][game.trackState.death eaterProclamationCount] ? true : false;
+			const track4blue = game.trackState.orderProclamationCount >= 4;
+			const trackReds = game.trackState.deathEaterProclamationCount;
 
 			const passed = [game.private.currentElectionPolicies[nonDiscardedPolicies[0]], game.private.currentElectionPolicies[nonDiscardedPolicies[1]]];
 			let passedNicer = '';
@@ -1164,7 +1164,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 			}
 		}
 
-		game.private.lock.selectPresidentPolicy = true;
+		game.private.lock.selectPresidentProclamation = true;
 		game.publicPlayersState[presidentIndex].isLoader = false;
 		game.publicPlayersState[chancellorIndex].isLoader = true;
 
@@ -1201,7 +1201,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
+					cardFront: 'proclamation',
 					cardBack: `${game.private.currentElectionPolicies[nonDiscardedPolicies[0]]}p`
 				}
 			},
@@ -1210,20 +1210,20 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
+					cardFront: 'proclamation',
 					cardBack: `${game.private.currentElectionPolicies[nonDiscardedPolicies[1]]}p`
 				}
 			}
 		];
 
 		game.general.status = 'Waiting on chancellor enactment.';
-		game.gameState.phase = 'chancellorSelectingPolicy';
+		game.gameState.phase = 'chancellorSelectingProclamation';
 
 		if (!game.general.experiencedMode && !game.general.disableGamechat) {
 			chancellor.gameChats.push({
 				timestamp: new Date(),
 				gameChat: true,
-				chat: [{ text: 'As chancellor, you must select a policy to enact.' }]
+				chat: [{ text: 'As chancellor, you must select a proclamation to enact.' }]
 			});
 		}
 
@@ -1248,9 +1248,9 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 					game.private.timerId = setTimeout(
 						() => {
 							if (game.gameState.timedModeEnabled) {
-								const isRightPolicy = Boolean(Math.floor(Math.random() * 2));
+								const isRightProclamation = Boolean(Math.floor(Math.random() * 2));
 
-								selectChancellorPolicy({ user: chancellor.userName }, game, { selection: isRightPolicy ? 3 : 1 }, true, socket);
+								selectChancellorProclamation({ user: chancellor.userName }, game, { selection: isRightProclamation ? 3 : 1 }, true, socket);
 							}
 						},
 						process.env.DEVTIMEDDELAY ? process.env.DEVTIMEDDELAY : game.general.timedMode * 1000
@@ -1264,7 +1264,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 	}
 };
 
-module.exports.selectPresidentPolicy = selectPresidentPolicy;
+module.exports.selectPresidentProclamation = selectPresidentProclamation;
 
 /**
  * @param {object} passport - socket authentication.
@@ -1327,19 +1327,19 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 			seatedPlayers[presidentIndex].gameChats.push({
 				timestamp: new Date(),
 				gameChat: true,
-				chat: [{ text: 'As president, you must select one policy to discard.' }]
+				chat: [{ text: 'As president, you must select one proclamation to discard.' }]
 			});
 		}
 
-		if (gameState.undrawnPolicyCount < 3) {
+		if (gameState.undrawnProclamationCount < 3) {
 			shufflePolicies(game);
 		}
 
-		gameState.undrawnPolicyCount--;
+		gameState.undrawnProclamationCount--;
 		game.private.currentElectionPolicies = [game.private.policies.shift(), game.private.policies.shift(), game.private.policies.shift()];
-		const verifyCorrect = policy => {
-			if (policy === 'order') return true;
-			if (policy === 'death eater') return true;
+		const verifyCorrect = proclamation => {
+			if (proclamation === 'order') return true;
+			if (proclamation === 'death eater') return true;
 			return false;
 		};
 		if (
@@ -1407,7 +1407,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
+					cardFront: 'proclamation',
 					cardBack: `${game.private.currentElectionPolicies[0]}p`
 				}
 			},
@@ -1416,7 +1416,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
+					cardFront: 'proclamation',
 					cardBack: `${game.private.currentElectionPolicies[1]}p`
 				}
 			},
@@ -1425,18 +1425,18 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				action: 'active',
 				cardStatus: {
 					isFlipped: false,
-					cardFront: 'policy',
+					cardFront: 'proclamation',
 					cardBack: `${game.private.currentElectionPolicies[2]}p`
 				}
 			}
 		];
 		sendInProgressGameUpdate(game);
 		setTimeout(() => {
-			gameState.undrawnPolicyCount--;
+			gameState.undrawnProclamationCount--;
 			sendInProgressGameUpdate(game);
 		}, 200);
 		setTimeout(() => {
-			gameState.undrawnPolicyCount--;
+			gameState.undrawnProclamationCount--;
 			sendInProgressGameUpdate(game);
 		}, 400);
 		setTimeout(
@@ -1447,7 +1447,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				seatedPlayers[presidentIndex].cardFlingerState[0].notificationStatus = seatedPlayers[
 					presidentIndex
 				].cardFlingerState[1].notificationStatus = seatedPlayers[presidentIndex].cardFlingerState[2].notificationStatus = 'notification';
-				gameState.phase = 'presidentSelectingPolicy';
+				gameState.phase = 'presidentSelectingProclamation';
 
 				game.gameState.previousElectedGovernment = [presidentIndex, chancellorIndex];
 
@@ -1461,7 +1461,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 						() => {
 							if (game.gameState.timedModeEnabled) {
 								game.gameState.timedModeEnabled = false;
-								selectPresidentPolicy({ user: seatedPlayers[presidentIndex].userName }, game, { selection: Math.floor(Math.random() * 3) }, true, socket);
+								selectPresidentProclamation({ user: seatedPlayers[presidentIndex].userName }, game, { selection: Math.floor(Math.random() * 3) }, true, socket);
 							}
 						},
 						process.env.DEVTIMEDDELAY ? process.env.DEVTIMEDDELAY : game.general.timedMode * 1000
@@ -1481,7 +1481,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				gameChat: true,
 				chat: [
 					{
-						text: 'The third consecutive election has failed and the top policy is enacted.'
+						text: 'The third consecutive election has failed and the top proclamation is enacted.'
 					}
 				]
 			};
@@ -1496,14 +1496,14 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				game.private.unSeatedGameChats.push(chat);
 			}
 
-			if (!game.gameState.undrawnPolicyCount) {
+			if (!game.gameState.undrawnProclamationCount) {
 				shufflePolicies(game);
 			}
 
-			game.gameState.undrawnPolicyCount--;
+			game.gameState.undrawnProclamationCount--;
 			setTimeout(
 				() => {
-					enactPolicy(game, game.private.policies.shift(), socket);
+					enactProclamation(game, game.private.policies.shift(), socket);
 				},
 				process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 500 : 2000
 			);
@@ -1597,7 +1597,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					}
 
 					if (
-						game.trackState.deathEaterPolicyCount >= game.customGameSettings.voldemortZone &&
+						game.trackState.deathEaterProclamationCount >= game.customGameSettings.voldemortZone &&
 						game.private.seatedPlayers[chancellorIndex].role.cardName === 'voldemort'
 					) {
 						const getNumberText = val => {
@@ -1615,7 +1615,9 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 									type: 'voldemort'
 								},
 								{
-									text: ` has been elected chancellor after the ${getNumberText(game.customGameSettings.voldemortZone)} death eater policy has been enacted.`
+									text: ` has been elected chancellor after the ${getNumberText(
+										game.customGameSettings.voldemortZone
+									)} death eater proclamation has been enacted.`
 								}
 							]
 						};

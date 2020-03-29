@@ -15,7 +15,7 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 	if (isStart) {
 		game.trackState.enactedPolicies = [];
 		if (game.customGameSettings.trackState.lib > 0) {
-			game.trackState.orderPolicyCount = game.customGameSettings.trackState.lib;
+			game.trackState.orderProclamationCount = game.customGameSettings.trackState.lib;
 			_.range(0, game.customGameSettings.trackState.lib).forEach(num => {
 				game.trackState.enactedPolicies.push({
 					cardBack: 'order',
@@ -25,7 +25,7 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 			});
 		}
 		if (game.customGameSettings.trackState.fas > 0) {
-			game.trackState.deathEaterPolicyCount = game.customGameSettings.trackState.fas;
+			game.trackState.deathEaterProclamationCount = game.customGameSettings.trackState.fas;
 			_.range(0, game.customGameSettings.trackState.fas).forEach(num => {
 				game.trackState.enactedPolicies.push({
 					cardBack: 'death eater',
@@ -36,15 +36,15 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 		}
 	}
 
-	const libCount = game.customGameSettings.deckState.lib - game.trackState.orderPolicyCount;
-	const fasCount = game.customGameSettings.deckState.fas - game.trackState.deathEaterPolicyCount;
+	const libCount = game.customGameSettings.deckState.lib - game.trackState.orderProclamationCount;
+	const fasCount = game.customGameSettings.deckState.fas - game.trackState.deathEaterProclamationCount;
 	game.private.policies = _.shuffle(
 		_.range(0, libCount)
 			.map(num => 'order')
 			.concat(_.range(0, fasCount).map(num => 'death eater'))
 	);
 
-	game.gameState.undrawnPolicyCount = game.private.policies.length;
+	game.gameState.undrawnProclamationCount = game.private.policies.length;
 
 	if (!game.general.disableGamechat) {
 		const chat = {
@@ -81,10 +81,10 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 		gameChat: true,
 		chat: [{ text: 'The deck has been shuffled: ' }]
 	};
-	game.private.policies.forEach(policy => {
+	game.private.policies.forEach(proclamation => {
 		modOnlyChat.chat.push({
-			text: policy === 'order' ? 'B' : 'R',
-			type: policy
+			text: proclamation === 'order' ? 'B' : 'R',
+			type: proclamation
 		});
 	});
 	game.private.hiddenInfoChat.push(modOnlyChat);
@@ -97,11 +97,11 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 module.exports.startElection = (game, specialElectionPresidentIndex) => {
 	const { experiencedMode } = game.general;
 
-	if (game.trackState.deathEaterPolicyCount >= game.customGameSettings.vetoZone) {
+	if (game.trackState.deathEaterProclamationCount >= game.customGameSettings.vetoZone) {
 		game.gameState.isVetoEnabled = true;
 	}
 
-	if (game.gameState.undrawnPolicyCount < 3) {
+	if (game.gameState.undrawnProclamationCount < 3) {
 		shufflePolicies(game);
 	}
 

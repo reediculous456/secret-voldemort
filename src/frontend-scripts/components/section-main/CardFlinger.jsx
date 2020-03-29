@@ -29,15 +29,15 @@ class CardFlinger extends React.Component {
 				});
 			}
 
-			if (phase === 'presidentSelectingPolicy' && gameInfo.cardFlingerState[0].action === 'active') {
-				socket.emit('selectedPresidentPolicy', {
+			if (phase === 'presidentSelectingProclamation' && gameInfo.cardFlingerState[0].action === 'active') {
+				socket.emit('selectedPresidentProclamation', {
 					uid: gameInfo.general.uid,
 					selection: index ? (index === 2 ? 1 : 2) : 0
 				});
 			}
 
-			if (phase === 'chancellorSelectingPolicy' && gameInfo.cardFlingerState[0].action === 'active') {
-				socket.emit('selectedChancellorPolicy', {
+			if (phase === 'chancellorSelectingProclamation' && gameInfo.cardFlingerState[0].action === 'active') {
+				socket.emit('selectedChancellorProclamation', {
 					uid: gameInfo.general.uid,
 					selection: index
 				});
@@ -94,19 +94,19 @@ class CardFlinger extends React.Component {
 				);
 			} else if (phase === 'selectingChancellor' && currentPlayerStatus === 'isPendingPresident') {
 				return <div className="help-message nominate-chanc">You must select a player to be your Chancellor</div>;
-			} else if (phase === 'presidentSelectingPolicy' && currentPlayerStatus === 'isPresident') {
+			} else if (phase === 'presidentSelectingProclamation' && currentPlayerStatus === 'isPresident') {
 				return (
 					<div className="help-message pres-select">
-						Choose 1 policy to <span>DISCARD</span>.
+						Choose 1 proclamation to <span>DISCARD</span>.
 						<div className="secondary-message">
 							The other 2 will be <span>PASSED</span> to your Chancellor.
 						</div>
 					</div>
 				);
-			} else if (phase === 'chancellorSelectingPolicy' && currentPlayerStatus === 'isChancellor') {
+			} else if (phase === 'chancellorSelectingProclamation' && currentPlayerStatus === 'isChancellor') {
 				return (
 					<div className="help-message chanc-select">
-						Choose 1 policy to <span>PLAY</span>.
+						Choose 1 proclamation to <span>PLAY</span>.
 					</div>
 				);
 			} else if (phase === 'selectPartyMembershipInvestigate' && currentPlayerStatus === 'isPresident') {
@@ -129,11 +129,11 @@ class CardFlinger extends React.Component {
 			} else if (phase === 'presidentVoteOnBurn' && currentPlayerStatus === 'isPresident') {
 				return (
 					<div className="help-message veto">
-						Would you like to <span>DISCARD</span> the top policy?
+						Would you like to <span>DISCARD</span> the top proclamation?
 					</div>
 				);
 			} else if (status === 'President to peek at policies.' && currentPlayerStatus === 'isPresident') {
-				return <div className="help-message policy-peak">Click on the draw deck to peek at the top 3 policies.</div>;
+				return <div className="help-message proclamation-peak">Click on the draw deck to peek at the top 3 policies.</div>;
 			}
 		};
 

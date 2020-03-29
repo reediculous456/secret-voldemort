@@ -676,8 +676,8 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 	const newGame = {
 		gameState: {
 			previousElectedGovernment: [],
-			undrawnPolicyCount: 17,
-			discardedPolicyCount: 0,
+			undrawnProclamationCount: 17,
+			discardedProclamationCount: 0,
 			presidentIndex: -1
 		},
 		chats: [],
@@ -721,8 +721,8 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 		playersState: [],
 		cardFlingerState: [],
 		trackState: {
-			orderPolicyCount: 0,
-			deathEaterPolicyCount: 0,
+			orderProclamationCount: 0,
+			deathEaterProclamationCount: 0,
 			electionTrackerCount: 0,
 			enactedPolicies: []
 		}
@@ -888,7 +888,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 		game.private.seatedPlayers[playerIndex] &&
 		game.private.seatedPlayers[playerIndex].playersState &&
 		game.private.seatedPlayers[playerIndex].playersState[playerIndex] &&
-		!/^(wasPresident|wasChancellor|didSinglePolicyPeek|didPolicyPeek|didInvestigateLoyalty)$/.exec(
+		!/^(wasPresident|wasChancellor|didSingleProclamationPeek|didProclamationPeek|didInvestigateLoyalty)$/.exec(
 			game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim
 		)
 	) {
@@ -1095,7 +1095,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 
 						return text;
 				}
-			case 'didSinglePolicyPeek':
+			case 'didSingleProclamationPeek':
 				if (data.claimState === 'order' || data.claimState === 'death eater') {
 					text = [
 						{
@@ -1113,12 +1113,12 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							type: data.claimState
 						},
 						{
-							text: ' policy.'
+							text: ' proclamation.'
 						}
 					];
 					return text;
 				}
-			case 'didPolicyPeek':
+			case 'didProclamationPeek':
 				text = [
 					{
 						text: 'President '
@@ -1132,7 +1132,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rrr':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								policyPeekClaim: { reds: 3, blues: 0 }
+								proclamationPeekClaim: { reds: 3, blues: 0 }
 							},
 							{ presidentId: playerIndex }
 						);
@@ -1154,7 +1154,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rbr':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								policyPeekClaim: { reds: 2, blues: 1 }
+								proclamationPeekClaim: { reds: 2, blues: 1 }
 							},
 							{ presidentId: playerIndex }
 						);
@@ -1184,7 +1184,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'brr':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								policyPeekClaim: { reds: 2, blues: 1 }
+								proclamationPeekClaim: { reds: 2, blues: 1 }
 							},
 							{ presidentId: playerIndex }
 						);
@@ -1215,7 +1215,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rrb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								policyPeekClaim: { reds: 2, blues: 1 }
+								proclamationPeekClaim: { reds: 2, blues: 1 }
 							},
 							{ presidentId: playerIndex }
 						);
@@ -1246,7 +1246,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rbb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								policyPeekClaim: { reds: 1, blues: 2 }
+								proclamationPeekClaim: { reds: 1, blues: 2 }
 							},
 							{ presidentId: playerIndex }
 						);
@@ -1272,7 +1272,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'bbr':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								policyPeekClaim: { reds: 1, blues: 2 }
+								proclamationPeekClaim: { reds: 1, blues: 2 }
 							},
 							{ presidentId: playerIndex }
 						);
@@ -1298,7 +1298,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'brb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								policyPeekClaim: { reds: 1, blues: 2 }
+								proclamationPeekClaim: { reds: 1, blues: 2 }
 							},
 							{ presidentId: playerIndex }
 						);
@@ -1328,7 +1328,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'bbb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								policyPeekClaim: { reds: 0, blues: 3 }
+								proclamationPeekClaim: { reds: 0, blues: 3 }
 							},
 							{ presidentId: playerIndex }
 						);
@@ -1524,8 +1524,8 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 
 		newGame.gameState = {
 			previousElectedGovernment: [],
-			undrawnPolicyCount: 17,
-			discardedPolicyCount: 0,
+			undrawnProclamationCount: 17,
+			discardedProclamationCount: 0,
 			presidentIndex: -1
 		};
 
@@ -1617,8 +1617,8 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 		newGame.playersState = [];
 		newGame.cardFlingerState = [];
 		newGame.trackState = {
-			orderPolicyCount: 0,
-			deathEaterPolicyCount: 0,
+			orderProclamationCount: 0,
+			deathEaterProclamationCount: 0,
 			electionTrackerCount: 0,
 			enactedPolicies: []
 		};
@@ -1861,7 +1861,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 				if (addNewClaim(socket, passport, game, claimData)) return;
 			}
 
-			if (chat.length === 3 && 0 <= playerIndex <= 9 && game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didPolicyPeek') {
+			if (chat.length === 3 && 0 <= playerIndex <= 9 && game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didProclamationPeek') {
 				const claimData = {
 					userName: user.userName,
 					claimState: chat,
@@ -1876,7 +1876,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			// console.log(chat, ' - ', 'order', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
 			if (
 				0 <= playerIndex <= 9 &&
-				(game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didSinglePolicyPeek' ||
+				(game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didSingleProclamationPeek' ||
 					game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didInvestigateLoyalty')
 			) {
 				const claimData = {
@@ -1893,7 +1893,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			// console.log(chat, ' - ', 'death eater', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
 			if (
 				0 <= playerIndex <= 9 &&
-				(game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didSinglePolicyPeek' ||
+				(game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didSingleProclamationPeek' ||
 					game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didInvestigateLoyalty')
 			) {
 				const claimData = {
@@ -1926,7 +1926,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 
 	if (
 		player &&
-		(gameState.phase === 'presidentSelectingPolicy' || gameState.phase === 'chancellorSelectingPolicy') &&
+		(gameState.phase === 'presidentSelectingProclamation' || gameState.phase === 'chancellorSelectingProclamation') &&
 		(publicPlayersState.find(play => play.userName === player.userName).governmentStatus === 'isPresident' ||
 			publicPlayersState.find(play => play.userName === player.userName).governmentStatus === 'isChancellor')
 	) {
@@ -2659,10 +2659,10 @@ module.exports.handleSubscribeModChat = (socket, passport, game) => {
 		gameChat: true,
 		chat: [{ text: `${passport.user} has subscribed to mod chat. Current deck: ` }]
 	};
-	game.private.policies.forEach(policy => {
+	game.private.policies.forEach(proclamation => {
 		modOnlyChat.chat.push({
-			text: policy === 'order' ? 'B' : 'R',
-			type: policy
+			text: proclamation === 'order' ? 'B' : 'R',
+			type: proclamation
 		});
 	});
 	game.private.hiddenInfoChat.push(modOnlyChat);

@@ -14,7 +14,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 4,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -41,19 +41,19 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 2,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			votes: [false, false, false, false, false]
 		},
 		// turn 4
 		{
 			presidentId: 4,
 			chancellorId: 1,
-			enactedPolicy: 'death eater',
-			policyPeek: {
+			enactedProclamation: 'death eater',
+			proclamationPeek: {
 				reds: 2,
 				blues: 1
 			},
-			policyPeekClaim: {
+			proclamationPeekClaim: {
 				reds: 3,
 				blues: 0
 			},

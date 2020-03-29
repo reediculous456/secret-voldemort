@@ -24,13 +24,13 @@ module.exports = class EnhancedGameSummary {
 		this.voldemortZone = (() => {
 			const step = (turn, reds) => {
 				const log = this.logs[turn],
-					enactedPolicy = log && log.enactedPolicy;
+					enactedProclamation = log && log.enactedProclamation;
 
 				if (!log) {
 					return -1;
 				} else if (reds === 3) {
 					return turn;
-				} else if (enactedPolicy === 'death eater') {
+				} else if (enactedProclamation === 'death eater') {
 					return step(turn + 1, reds + 1);
 				} else {
 					return step(turn + 1, reds);
@@ -73,7 +73,7 @@ module.exports = class EnhancedGameSummary {
 		} else if (this.lastTurn.chancellorId === this.voldemortIndex && this.lastTurn.votes.filter(v => v).length > this.playerSize / 2) {
 			return this.loyaltyOf(identifier) === 'death eater';
 		} else {
-			return this.loyaltyOf(identifier) === this.lastTurn.enactedPolicy;
+			return this.loyaltyOf(identifier) === this.lastTurn.enactedProclamation;
 		}
 	}
 

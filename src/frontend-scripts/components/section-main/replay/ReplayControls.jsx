@@ -28,8 +28,8 @@ const TurnNav = ({ position, size, toTurn }) => {
 const PhaseNav = ({ phase, hasLegislation, hasAction, toElection, toLegislation, toAction }) => {
 	const nav = OrderedMap({
 		election: List(['candidacy', 'nomination', 'election']),
-		legislation: List(['presidentLegislation', 'chancellorLegislation', 'topDeck', 'veto', 'policyEnaction']),
-		action: List(['investigation', 'policyPeek', 'specialElection', 'execution'])
+		legislation: List(['presidentLegislation', 'chancellorLegislation', 'topDeck', 'veto', 'proclamationEnaction']),
+		action: List(['investigation', 'proclamationPeek', 'specialElection', 'execution'])
 	});
 
 	const localize = s => {
@@ -37,8 +37,8 @@ const PhaseNav = ({ phase, hasLegislation, hasAction, toElection, toLegislation,
 			presidentLegislation: 'President',
 			chancellorLegislation: 'Chancellor',
 			topDeck: 'Top Deck',
-			policyEnaction: 'Policy Enaction',
-			policyPeek: 'Policy Peek',
+			proclamationEnaction: 'Proclamation Enaction',
+			proclamationPeek: 'Proclamation Peek',
 			specialElection: 'Special Election'
 		});
 

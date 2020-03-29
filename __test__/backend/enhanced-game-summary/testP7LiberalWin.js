@@ -10,7 +10,7 @@ export default () => {
 		const { turns } = game;
 
 		it('last turn should have voldemort elected', () => {
-			expect(turns.last().isGameEndingPolicyEnacted).toBe(true);
+			expect(turns.last().isGameEndingProclamationEnacted).toBe(true);
 			expect(game.winningTeam).toBe('order');
 		});
 	});

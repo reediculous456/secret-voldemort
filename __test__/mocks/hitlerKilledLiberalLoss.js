@@ -11,7 +11,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 5,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			_id: '595170616419ea7a9b548429',
 			chancellorClaim: {
 				reds: 2,
@@ -34,7 +34,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 4,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			_id: '595170616419ea7a9b548428',
 			chancellorClaim: {
 				reds: 1,
@@ -57,7 +57,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 5,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			_id: '595170616419ea7a9b548427',
 			chancellorClaim: {
 				reds: 2,
@@ -80,7 +80,7 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 1,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			_id: '595170616419ea7a9b548426',
 			chancellorClaim: {
 				reds: 2,
@@ -103,13 +103,13 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 2,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			_id: '595170616419ea7a9b548425',
-			policyPeekClaim: {
+			proclamationPeekClaim: {
 				reds: 1,
 				blues: 2
 			},
-			policyPeek: {
+			proclamationPeek: {
 				reds: 1,
 				blues: 2
 			},
@@ -138,7 +138,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 5,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			_id: '595170616419ea7a9b548422',
 			votes: [false, false, false, false, false, false]
 		},
@@ -157,7 +157,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 2,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			_id: '595170616419ea7a9b54841f',
 			votes: [false, false, false, false, false, false]
 		},
@@ -180,7 +180,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 3,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			execution: 0,
 			_id: '595170616419ea7a9b54841c',
 			chancellorHand: {

@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 const { List, Range } = require('immutable');
 const { some, none, fromNullable } = require('option');
-const { filterOpt, flattenListOpts, pushOpt, mapOpt1, mapOpt2, handDiff, policyToHand, handToPolicy } = require('../../utils');
+const { filterOpt, flattenListOpts, pushOpt, mapOpt1, mapOpt2, handDiff, proclamationToHand, handToProclamation } = require('../../utils');
 
 module.exports = (
 	logs,
@@ -57,7 +57,7 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 		afterDeckSize: initialDeckSize(gameSetting),
 		afterTrack: initialTrack(gameSetting),
 		afterElectionTracker: 0,
-		enactedPolicy: none
+		enactedProclamation: none
 	});
 
 	// List[Int]
@@ -103,13 +103,13 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	const isInvestigation = log.investigationId.isSome();
 
 	// Boolean
-	const isPolicyPeek = log.policyPeek.isSome();
+	const isProclamationPeek = log.proclamationPeek.isSome();
 
 	// Boolean
 	const isSpecialElection = log.specialElection.isSome();
 
 	// Boolean
-	const poorMansVeto = isVotePassed && log.enactedPolicy.isNone(); // backwards compatability before veto was tracked
+	const poorMansVeto = isVotePassed && log.enactedProclamation.isNone(); // backwards compatability before veto was tracked
 
 	// Option[Boolean]
 	const presidentVeto = poorMansVeto ? some(true) : log.presidentVeto;
@@ -137,8 +137,8 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 
 	// { reds: Int, blues: Int }
 	const { beforeTrack, afterTrack } = (() => {
-		const f = (count, policy, type) => {
-			const inc = filterOpt(policy, x => x === type)
+		const f = (count, proclamation, type) => {
+			const inc = filterOpt(proclamation, x => x === type)
 				.map(x => 1)
 				.valueOrElse(0);
 
@@ -147,15 +147,15 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 
 		const beforeTrack = prevTurn.afterTrack;
 		const afterTrack = {
-			reds: f(beforeTrack.reds, log.enactedPolicy, 'death eater'),
-			blues: f(beforeTrack.blues, log.enactedPolicy, 'order')
+			reds: f(beforeTrack.reds, log.enactedProclamation, 'death eater'),
+			blues: f(beforeTrack.blues, log.enactedProclamation, 'order')
 		};
 
 		return { beforeTrack, afterTrack };
 	})();
 
 	// Boolean
-	const isGameEndingPolicyEnacted = afterTrack.reds === 6 || afterTrack.blues === 5;
+	const isGameEndingProclamationEnacted = afterTrack.reds === 6 || afterTrack.blues === 5;
 
 	// Boolean
 	const isVoldemortElected = (() => {
@@ -174,12 +174,12 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	// Option[String]
 	const { presidentDiscard, chancellorDiscard } = (() => {
 		const handDiffOpt = mapOpt2(handDiff);
-		const policyToHandOpt = mapOpt1(policyToHand);
-		const handToPolicyOpt = mapOpt1(handToPolicy);
+		const proclamationToHandOpt = mapOpt1(proclamationToHand);
+		const handToProclamationOpt = mapOpt1(handToProclamation);
 
-		const presidentDiscard = handToPolicyOpt(handDiffOpt(log.presidentHand, log.chancellorHand));
+		const presidentDiscard = handToProclamationOpt(handDiffOpt(log.presidentHand, log.chancellorHand));
 
-		const chancellorDiscard = handToPolicyOpt(handDiffOpt(log.chancellorHand, policyToHandOpt(log.enactedPolicy)));
+		const chancellorDiscard = handToProclamationOpt(handDiffOpt(log.chancellorHand, proclamationToHandOpt(log.enactedProclamation)));
 
 		return { presidentDiscard, chancellorDiscard };
 	})();
@@ -215,7 +215,7 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 		afterTrack,
 		beforeDeckSize,
 		afterDeckSize,
-		isGameEndingPolicyEnacted,
+		isGameEndingProclamationEnacted,
 		beforeDeadPlayers,
 		afterDeadPlayers,
 		beforePlayers,
@@ -237,7 +237,7 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 		presidentDiscard,
 		chancellorDiscard,
 		isSpecialElection,
-		isPolicyPeek,
+		isProclamationPeek,
 		isVeto,
 		isVetoSuccessful,
 		presidentVeto,

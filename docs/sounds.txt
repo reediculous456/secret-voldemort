@@ -1,9 +1,9 @@
 All Sound Effects & Links:
 Deck Shuffle - https://freesound.org/people/f4ngy/sounds/240778/
-Policy Enacted - https://freesound.org/people/Daphne_in_Wonderland/sounds/127157/
+Proclamation Enacted - https://freesound.org/people/Daphne_in_Wonderland/sounds/127157/
 President Drawing - https://freesound.org/people/hmilleo/sounds/412550/
 Chancellor Receiving - https://freesound.org/people/simosco/sounds/235556/
-Policy Peek - https://freesound.org/people/themfish/sounds/45813/
+Proclamation Peek - https://freesound.org/people/themfish/sounds/45813/
 Player Shot - https://freesound.org/people/Jaturo/sounds/196361/
 Investigation - https://freesound.org/people/emitex/sounds/213378/
 Special Election Given - https://freesound.org/people/Dublie/sounds/170255/
@@ -15,11 +15,11 @@ Veto Succeeds - https://freesound.org/people/the_very_Real_Horst/sounds/239040/
 Veto Fails - https://freesound.org/people/InspectorJ/sounds/411729/
 
 All Sound Effects in terms of legal use/status:
-Policy Enacted - zero(cc0)
+Proclamation Enacted - zero(cc0)
 Deck Shuffle - attribution (by)
 President Drawing - zero(cc0)
 Chancellor Receiving - zero(cc0)
-Policy Peek - attribution (by)
+Proclamation Peek - attribution (by)
 Player Shot - zero(cc0)
 Investigation - attribution (by)
 Special Election - zero(cc0)
@@ -40,10 +40,10 @@ Loops_Hero.aif by SamWelkerTV (https://freesound.org/people/SamWelkerTV/sounds/1
 Wind Chime, Tolling, A.wav by InspectorJ (https://freesound.org/people/InspectorJ/sounds/411729/)
 
 Sound for specific people/timing:
-- Policy enaction sound effect does not play during veto stage, and is overtake by the veto sound effects
+- Proclamation enaction sound effect does not play during veto stage, and is overtake by the veto sound effects
 - Observers are unable to hear sound from in game
 - Investigation sound effect is only heard by investigator and player investigated
-- Policy peek sound effect is only heard by player peeking
+- Proclamation peek sound effect is only heard by player peeking
 - President drawing sound effect is only heard by current President
 - Chancellor receiving sound effect is only heard by current chancellor
 - Special Election sound effect is only heard by player who has been given the Special Election

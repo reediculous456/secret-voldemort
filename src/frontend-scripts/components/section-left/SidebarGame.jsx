@@ -67,7 +67,7 @@ const SidebarGame = ({ game, socket }) => {
 					{(game.rebalance6p || game.rebalance7p || game.rebalance9p) && (
 						<div
 							className="rebalance-game"
-							title="This is a rebalanced game - 6 player games start with a death eater policy enacted, 7 & 9 player games start with one less death eater policy."
+							title="This is a rebalanced game - 6 player games start with a death eater proclamation enacted, 7 & 9 player games start with one less death eater proclamation."
 						>
 							{game.rebalance6p && game.rebalance7p && game.rebalance9p
 								? 'R679'
@@ -140,7 +140,7 @@ const SidebarGame = ({ game, socket }) => {
 					{game.rebalance69p && (
 						<div
 							className="rebalance-game"
-							title="This is a rebalanced game - 6 player games start with a death eater policy enacted, 7 & 9 player games start with one less death eater policy."
+							title="This is a rebalanced game - 6 player games start with a death eater proclamation enacted, 7 & 9 player games start with one less death eater proclamation."
 						>
 							R
 						</div>
@@ -150,12 +150,12 @@ const SidebarGame = ({ game, socket }) => {
 					</div>
 					<div className="order-count">
 						{_.range(1, 6).map(num => (
-							<div key={num} className={num <= game.enactedOrderPolicyCount ? 'box order-box filled' : 'box order-box unfilled'} />
+							<div key={num} className={num <= game.enactedOrderProclamationCount ? 'box order-box filled' : 'box order-box unfilled'} />
 						))}
 					</div>
 					<div className="death-eater-count">
 						{_.range(1, 7).map(num => (
-							<div key={num} className={num <= game.enactedDeathEaterPolicyCount ? 'box death eater-box filled' : 'box death-eater-box unfilled'} />
+							<div key={num} className={num <= game.enactedDeathEaterProclamationCount ? 'box death eater-box filled' : 'box death-eater-box unfilled'} />
 						))}
 					</div>
 					<div className="lower-row">

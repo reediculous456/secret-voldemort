@@ -133,9 +133,9 @@ module.exports.completeGame = (game, winningTeamName) => {
 			}
 		].concat(
 			game.private.policies
-				.map(policyName => ({
-					text: policyName === 'order' ? 'B' : 'R',
-					type: policyName === 'order' ? 'order' : 'death eater'
+				.map(proclamationName => ({
+					text: proclamationName === 'order' ? 'B' : 'R',
+					type: proclamationName === 'order' ? 'order' : 'death eater'
 				}))
 				.concat({
 					text: '.'
@@ -341,14 +341,14 @@ module.exports.completeGame = (game, winningTeamName) => {
 				finalGame.general.timeCreated = new Date();
 				finalGame.gameState = {
 					previousElectedGovernment: [],
-					undrawnPolicyCount: 17,
-					discardedPolicyCount: 0,
+					undrawnProclamationCount: 17,
+					discardedProclamationCount: 0,
 					presidentIndex: -1,
 					isStarted: true
 				};
 				finalGame.trackState = {
-					orderPolicyCount: 0,
-					deathEaterPolicyCount: 0,
+					orderProclamationCount: 0,
+					deathEaterProclamationCount: 0,
 					electionTrackerCount: 0,
 					enactedPolicies: []
 				};

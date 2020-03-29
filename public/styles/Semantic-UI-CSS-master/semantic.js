@@ -20598,7 +20598,7 @@ $.api = $.fn.api = function(parameters) {
                 errorMessage = module.get.errorFromRequest(response, status, httpMessage)
               ;
               if(status == 'aborted') {
-                module.debug('XHR Aborted (Most likely caused by page navigation or CORS Policy)', status, httpMessage);
+                module.debug('XHR Aborted (Most likely caused by page navigation or CORS Proclamation)', status, httpMessage);
                 settings.onAbort.call(context, status, $module, xhr);
                 return true;
               }

@@ -17,7 +17,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 1,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			chancellorHand: {
 				reds: 2,
 				blues: 0
@@ -34,7 +34,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 3,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			investigationId: 4,
 			investigationClaim: 'death eater',
 			chancellorHand: {
@@ -53,7 +53,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 0,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			specialElection: 1,
 			chancellorHand: {
 				reds: 1,
@@ -71,7 +71,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 6,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			execution: 3,
 			chancellorHand: {
 				reds: 1,
@@ -101,7 +101,7 @@ module.exports = {
 		{
 			presidentId: 6,
 			chancellorId: 2,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			execution: 2,
 			chancellorHand: {
 				reds: 2,
@@ -119,7 +119,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 5,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			chancellorHand: {
 				reds: 2,
 				blues: 0

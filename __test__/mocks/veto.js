@@ -13,7 +13,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 7,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			_id: '595052626419ea7a9b545b53',
 			chancellorClaim: {
 				reds: 2,
@@ -37,7 +37,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 6,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			_id: '595052626419ea7a9b545b52',
 			chancellorClaim: {
 				reds: 2,
@@ -61,7 +61,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 5,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			investigationId: 3,
 			investigationClaim: 'death eater',
 			_id: '595052626419ea7a9b545b51',
@@ -94,7 +94,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 1,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			specialElection: 6,
 			_id: '595052626419ea7a9b545b4f',
 			chancellorHand: {
@@ -118,7 +118,7 @@ module.exports = {
 		{
 			presidentId: 5,
 			chancellorId: 6,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			_id: '595052626419ea7a9b545b4d',
 			chancellorClaim: {
 				reds: 0,
@@ -156,7 +156,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 4,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			_id: '595052626419ea7a9b545b4a',
 			chancellorClaim: {
 				reds: 0,
@@ -194,7 +194,7 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 6,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			_id: '595052626419ea7a9b545b47',
 			chancellorClaim: {
 				reds: 2,
@@ -210,7 +210,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 6,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			execution: 7,
 			_id: '595052626419ea7a9b545b46',
 			chancellorHand: {
@@ -234,7 +234,7 @@ module.exports = {
 		{
 			presidentId: 6,
 			chancellorId: 1,
-			enactedPolicy: 'order',
+			enactedProclamation: 'order',
 			_id: '595052626419ea7a9b545b44',
 			chancellorHand: {
 				reds: 1,
@@ -272,7 +272,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 6,
-			enactedPolicy: 'death eater',
+			enactedProclamation: 'death eater',
 			_id: '595052626419ea7a9b545b41',
 			votes: [false, false, true, false, false, false, false, false]
 		}

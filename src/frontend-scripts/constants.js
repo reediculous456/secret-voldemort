@@ -9,7 +9,7 @@ export const TOU_CHANGES = [
 	{
 		changeVer: '1.3',
 		changeDesc:
-			'Adds specified punishments for ragequits and multi-accounting/colluding.\nRevises rules regarding sub-optimal play.\nSpecifies rules regarding unfair outside influences on games (blacklist threats, report threats, etc.).\nAdds rules regarding spoilers for TV shows, movies, etc.\nAdds general punishment timeline and protocol.\nAdds AFK policy and its specific punishments.\n'
+			'Adds specified punishments for ragequits and multi-accounting/colluding.\nRevises rules regarding sub-optimal play.\nSpecifies rules regarding unfair outside influences on games (blacklist threats, report threats, etc.).\nAdds rules regarding spoilers for TV shows, movies, etc.\nAdds general punishment timeline and protocol.\nAdds AFK proclamation and its specific punishments.\n'
 	},
 	{
 		changeVer: '1.2',

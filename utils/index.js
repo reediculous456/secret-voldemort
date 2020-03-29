@@ -37,7 +37,7 @@ exports.mapOpt2 = f => {
  * ALIASES:
  *
  * Hand: { reds: Int, blues: Int }
- * Policy: String ('death eater' | 'order')
+ * Proclamation: String ('death eater' | 'order')
  */
 
 // (handX: Hand, handY: Hand) => Hand
@@ -49,8 +49,8 @@ exports.handDiff = (handX, handY) => {
 };
 
 // expects hand to contain only a single card
-// (hand: Hand) => Policy
-exports.handToPolicy = hand => {
+// (hand: Hand) => Proclamation
+exports.handToProclamation = hand => {
 	if (hand.reds > 0 && hand.blues > 0) {
 		throw new Error('Expected hand to contain only a single card');
 	}
@@ -58,7 +58,7 @@ exports.handToPolicy = hand => {
 };
 
 // consistently ordered 'death eater' first, followed by 'order'
-// (hand: Hand) => List[Policy]
+// (hand: Hand) => List[Proclamation]
 const handToPolicies = (exports.handToPolicies = hand => {
 	const toPolicies = (count, type) => {
 		return Range(0, count)
@@ -72,24 +72,24 @@ const handToPolicies = (exports.handToPolicies = hand => {
 	return reds.concat(blues).toList();
 });
 
-// (policy: Policy) => Hand
-exports.policyToHand = policy => {
-	return policy === 'death eater' ? { reds: 1, blues: 0 } : { reds: 0, blues: 1 };
+// (proclamation: Proclamation) => Hand
+exports.proclamationToHand = proclamation => {
+	return proclamation === 'death eater' ? { reds: 1, blues: 0 } : { reds: 0, blues: 1 };
 };
 
-// (policy: Policy) => String ('R' | 'B')
-exports.policyToString = policy => {
-	return policy === 'death eater' ? 'R' : 'B';
+// (proclamation: Proclamation) => String ('R' | 'B')
+exports.proclamationToString = proclamation => {
+	return proclamation === 'death eater' ? 'R' : 'B';
 };
 
 const text = (exports.text = (type, text, space) => ({ type, text, space }));
 
 // (hand: Hand) => String ('R*B*')
 exports.handToText = hand => {
-	const policyToString = policy => (policy === 'death eater' ? 'R' : 'B');
+	const proclamationToString = proclamation => (proclamation === 'death eater' ? 'R' : 'B');
 
 	return handToPolicies(hand)
-		.map(policy => text(policy, policyToString(policy), false))
+		.map(proclamation => text(proclamation, proclamationToString(proclamation), false))
 		.concat(text('normal', ''))
 		.toArray();
 };
