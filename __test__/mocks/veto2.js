@@ -10,14 +10,14 @@ module.exports = {
 	logs: [
 		// turn 0
 		{
-			presidentId: 0,
+			ministerId: 0,
 			headmasterId: 1,
 			enactedProclamation: 'death eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
@@ -25,14 +25,14 @@ module.exports = {
 		},
 		// turn 1
 		{
-			presidentId: 1,
+			ministerId: 1,
 			headmasterId: 2,
 			enactedProclamation: 'death eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
@@ -40,7 +40,7 @@ module.exports = {
 		},
 		// turn 2
 		{
-			presidentId: 2,
+			ministerId: 2,
 			headmasterId: 1,
 			enactedProclamation: 'death eater',
 			proclamationPeek: {
@@ -51,7 +51,7 @@ module.exports = {
 				reds: 2,
 				blues: 0
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 3,
 				blues: 0
 			},
@@ -59,7 +59,7 @@ module.exports = {
 		},
 		// turn 3
 		{
-			presidentId: 3,
+			ministerId: 3,
 			headmasterId: 2,
 			enactedProclamation: 'death eater',
 			execution: 4,
@@ -67,7 +67,7 @@ module.exports = {
 				reds: 2,
 				blues: 0
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
@@ -75,7 +75,7 @@ module.exports = {
 		},
 		// turn 4
 		{
-			presidentId: 0,
+			ministerId: 0,
 			headmasterId: 1,
 			enactedProclamation: 'death eater',
 			execution: 1,
@@ -83,7 +83,7 @@ module.exports = {
 				reds: 2,
 				blues: 0
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
@@ -91,16 +91,16 @@ module.exports = {
 		},
 		// turn 5
 		{
-			presidentId: 2,
+			ministerId: 2,
 			headmasterId: 0,
 			headmasterVeto: true,
-			presidentVeto: false,
+			ministerVeto: false,
 			enactedProclamation: 'order',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 1,
 				blues: 2
 			},
@@ -108,7 +108,7 @@ module.exports = {
 		},
 		// turn 6
 		{
-			presidentId: 3,
+			ministerId: 3,
 			headmasterId: 2,
 			headmasterVeto: false,
 			enactedProclamation: 'order',
@@ -116,7 +116,7 @@ module.exports = {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 1,
 				blues: 2
 			},
@@ -124,28 +124,28 @@ module.exports = {
 		},
 		// turn 7
 		{
-			presidentId: 0,
+			ministerId: 0,
 			headmasterId: 3,
 			votes: [false, true, false, false, true]
 		},
 		// turn 8
 		{
-			presidentId: 2,
+			ministerId: 2,
 			headmasterId: 3,
 			votes: [false, true, false, false, true]
 		},
 		// turn 9
 		{
-			presidentId: 3,
+			ministerId: 3,
 			headmasterId: 0,
 			headmasterVeto: true,
-			presidentVeto: true,
+			ministerVeto: true,
 			enactedProclamation: 'death eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},

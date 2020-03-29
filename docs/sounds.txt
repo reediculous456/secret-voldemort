@@ -1,7 +1,7 @@
 All Sound Effects & Links:
 Deck Shuffle - https://freesound.org/people/f4ngy/sounds/240778/
 Proclamation Enacted - https://freesound.org/people/Daphne_in_Wonderland/sounds/127157/
-President Drawing - https://freesound.org/people/hmilleo/sounds/412550/
+Minister Drawing - https://freesound.org/people/hmilleo/sounds/412550/
 Headmaster Receiving - https://freesound.org/people/simosco/sounds/235556/
 Proclamation Peek - https://freesound.org/people/themfish/sounds/45813/
 Player Shot - https://freesound.org/people/Jaturo/sounds/196361/
@@ -17,7 +17,7 @@ Veto Fails - https://freesound.org/people/InspectorJ/sounds/411729/
 All Sound Effects in terms of legal use/status:
 Proclamation Enacted - zero(cc0)
 Deck Shuffle - attribution (by)
-President Drawing - zero(cc0)
+Minister Drawing - zero(cc0)
 Headmaster Receiving - zero(cc0)
 Proclamation Peek - attribution (by)
 Player Shot - zero(cc0)
@@ -44,7 +44,7 @@ Sound for specific people/timing:
 - Observers are unable to hear sound from in game
 - Investigation sound effect is only heard by investigator and player investigated
 - Proclamation peek sound effect is only heard by player peeking
-- President drawing sound effect is only heard by current President
+- Minister drawing sound effect is only heard by current Minister
 - Headmaster receiving sound effect is only heard by current headmaster
 - Special Election sound effect is only heard by player who has been given the Special Election
 - Every other sound effect runs normally throughout the game and is heard by every player

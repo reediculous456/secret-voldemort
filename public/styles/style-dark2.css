@@ -584,14 +584,14 @@
 	top: 0;
 	opacity: 0.2;
 }
-.players-container .players .player-container .government-token.isPendingPresident,
+.players-container .players .player-container .government-token.isPendingMinister,
 .players-container .players .player-container .government-token.isPendingHeadmaster {
 	animation: fadeIn 1.5s infinite alternate;
 }
-.players-container .players .player-container .government-token.isPendingPresident,
-.players-container .players .player-container .government-token.isPresident,
-.players-container .players .player-container .government-token.wasPresident {
-	background-image: url('../images/president-token.png');
+.players-container .players .player-container .government-token.isPendingMinister,
+.players-container .players .player-container .government-token.isMinister,
+.players-container .players .player-container .government-token.wasMinister {
+	background-image: url('../images/minister-token.png');
 }
 .players-container .players .player-container .government-token.isPendingHeadmaster,
 .players-container .players .player-container .government-token.isHeadmaster,
@@ -2219,7 +2219,7 @@
 #replay .replay-controls .phase-nav .overlay-container .overlay.election {
 	width: 33.33%;
 }
-#replay .replay-controls .phase-nav .overlay-container .overlay.presidentLegislation {
+#replay .replay-controls .phase-nav .overlay-container .overlay.ministerLegislation {
 	width: 44.44%;
 }
 #replay .replay-controls .phase-nav .overlay-container .overlay.headmasterLegislation {

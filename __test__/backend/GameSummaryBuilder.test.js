@@ -30,27 +30,27 @@ describe('GameSummaryBuilder', () => {
 	});
 
 	it('should update log', () => {
-		gsb = gsb.updateLog({ presidentId: 0 });
+		gsb = gsb.updateLog({ ministerId: 0 });
 
-		expect(gsb.logs.get(0).presidentId).toBe(0);
+		expect(gsb.logs.get(0).ministerId).toBe(0);
 	});
 
 	it('should snap to log', () => {
-		const presidentClaim = { reds: 2, blues: 1 };
+		const ministerClaim = { reds: 2, blues: 1 };
 
 		gsb = gsb
 			.nextTurn()
-			.updateLog({ presidentId: 1 })
-			.updateLog({ presidentClaim }, { presidentId: 0 });
+			.updateLog({ ministerId: 1 })
+			.updateLog({ ministerClaim }, { ministerId: 0 });
 
-		expect(gsb.logs.get(1).presidentClaim).toBeUndefined();
-		expect(gsb.logs.get(0).presidentClaim).toEqual(presidentClaim);
+		expect(gsb.logs.get(1).ministerClaim).toBeUndefined();
+		expect(gsb.logs.get(0).ministerClaim).toEqual(ministerClaim);
 	});
 
 	it('should publish a GameSummary', () => {
 		const gs = gsb.publish();
 
 		expect(gs).toBeInstanceOf(GameSummary);
-		expect(gs.logs[0].presidentId).toBe(0);
+		expect(gs.logs[0].ministerId).toBe(0);
 	});
 });

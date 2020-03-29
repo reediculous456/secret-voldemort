@@ -85,7 +85,7 @@ class Players extends React.Component {
 
 		if (phase === 'selectingHeadmaster' && userInfo.userName) {
 			if (clickActionInfo[0] === userInfo.userName && clickActionInfo[1].includes(index)) {
-				socket.emit('presidentSelectedHeadmaster', {
+				socket.emit('ministerSelectedHeadmaster', {
 					headmasterIndex: index,
 					uid: gameInfo.general.uid
 				});

@@ -9,25 +9,25 @@ module.exports = {
 	},
 	logs: [
 		{
-			presidentId: 0,
+			ministerId: 0,
 			headmasterId: 2,
 			enactedProclamation: 'death eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 1,
 				blues: 2
 			},
 			votes: [true, true, true, true, true, true, true]
 		},
 		{
-			presidentId: 1,
+			ministerId: 1,
 			headmasterId: 3,
 			enactedProclamation: 'death eater',
 			investigationId: 2,
-			presidentClaim: {
+			ministerClaim: {
 				reds: 0,
 				blues: 3
 			},
@@ -35,19 +35,19 @@ module.exports = {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 1,
 				blues: 2
 			},
 			votes: [false, true, false, true, true, true, true]
 		},
 		{
-			presidentId: 2,
+			ministerId: 2,
 			headmasterId: 4,
 			votes: [false, false, false, false, false, true, true]
 		},
 		{
-			presidentId: 3,
+			ministerId: 3,
 			headmasterId: 4,
 			enactedProclamation: 'death eater',
 			specialElection: 4,
@@ -55,14 +55,14 @@ module.exports = {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
 			votes: [true, true, true, false, true, false, false]
 		},
 		{
-			presidentId: 4,
+			ministerId: 4,
 			headmasterId: 5,
 			enactedProclamation: 'death eater',
 			execution: 2,
@@ -70,7 +70,7 @@ module.exports = {
 				reds: 2,
 				blues: 0
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 3,
 				blues: 0
 			},

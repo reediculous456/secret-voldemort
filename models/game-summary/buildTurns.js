@@ -112,7 +112,7 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	const poorMansVeto = isVotePassed && log.enactedProclamation.isNone(); // backwards compatability before veto was tracked
 
 	// Option[Boolean]
-	const presidentVeto = poorMansVeto ? some(true) : log.presidentVeto;
+	const ministerVeto = poorMansVeto ? some(true) : log.ministerVeto;
 
 	// Option[Boolean]
 	const headmasterVeto = poorMansVeto ? some(true) : log.headmasterVeto;
@@ -121,7 +121,7 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	const isVeto = headmasterVeto.isSome();
 
 	// Boolean
-	const isVetoSuccessful = headmasterVeto.valueOrElse(false) && presidentVeto.valueOrElse(false);
+	const isVetoSuccessful = headmasterVeto.valueOrElse(false) && ministerVeto.valueOrElse(false);
 
 	// Int
 	const { beforeElectionTracker, afterElectionTracker } = (() => {
@@ -172,16 +172,16 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	})();
 
 	// Option[String]
-	const { presidentDiscard, headmasterDiscard } = (() => {
+	const { ministerDiscard, headmasterDiscard } = (() => {
 		const handDiffOpt = mapOpt2(handDiff);
 		const proclamationToHandOpt = mapOpt1(proclamationToHand);
 		const handToProclamationOpt = mapOpt1(handToProclamation);
 
-		const presidentDiscard = handToProclamationOpt(handDiffOpt(log.presidentHand, log.headmasterHand));
+		const ministerDiscard = handToProclamationOpt(handDiffOpt(log.ministerHand, log.headmasterHand));
 
 		const headmasterDiscard = handToProclamationOpt(handDiffOpt(log.headmasterHand, proclamationToHandOpt(log.enactedProclamation)));
 
-		return { presidentDiscard, headmasterDiscard };
+		return { ministerDiscard, headmasterDiscard };
 	})();
 
 	// Int
@@ -234,13 +234,13 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 		isExecution,
 		isVoldemortKilled,
 		isVoldemortElected,
-		presidentDiscard,
+		ministerDiscard,
 		headmasterDiscard,
 		isSpecialElection,
 		isProclamationPeek,
 		isVeto,
 		isVetoSuccessful,
-		presidentVeto,
+		ministerVeto,
 		headmasterVeto
 	});
 };

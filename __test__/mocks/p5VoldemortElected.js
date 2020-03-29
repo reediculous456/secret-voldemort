@@ -12,14 +12,14 @@ module.exports = {
 	logs: [
 		// turn 0
 		{
-			presidentId: 0,
+			ministerId: 0,
 			headmasterId: 4,
 			enactedProclamation: 'death eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 1,
 				blues: 2
 			},
@@ -27,26 +27,26 @@ module.exports = {
 		},
 		// turn 1
 		{
-			presidentId: 1,
+			ministerId: 1,
 			headmasterId: 3,
 			votes: [false, false, false, false, false]
 		},
 		// turn 2
 		{
-			presidentId: 2,
+			ministerId: 2,
 			headmasterId: 1,
 			votes: [false, false, false, false, false]
 		},
 		// turn 3
 		{
-			presidentId: 3,
+			ministerId: 3,
 			headmasterId: 2,
 			enactedProclamation: 'death eater',
 			votes: [false, false, false, false, false]
 		},
 		// turn 4
 		{
-			presidentId: 4,
+			ministerId: 4,
 			headmasterId: 1,
 			enactedProclamation: 'death eater',
 			proclamationPeek: {
@@ -61,7 +61,7 @@ module.exports = {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
@@ -69,12 +69,12 @@ module.exports = {
 		},
 		// turn 5
 		{
-			presidentId: 0,
+			ministerId: 0,
 			headmasterId: 3,
 			votes: [false, false, false, false, false]
 		},
 		{
-			presidentId: 1,
+			ministerId: 1,
 			headmasterId: 0,
 			votes: [true, true, true, true, false]
 		}

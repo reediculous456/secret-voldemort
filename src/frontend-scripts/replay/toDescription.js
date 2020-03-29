@@ -9,10 +9,10 @@ export default function(snapshot, game) {
 
 	switch (snapshot.phase) {
 		case 'candidacy':
-			return [text('player', usernameOf(snapshot.presidentId)), text('normal', 'is President')];
+			return [text('player', usernameOf(snapshot.ministerId)), text('normal', 'is Minister')];
 		case 'nomination':
 			return [
-				text('player', usernameOf(snapshot.presidentId)),
+				text('player', usernameOf(snapshot.ministerId)),
 				text('normal', 'nominates'),
 				text('player', usernameOf(snapshot.headmasterId)),
 				text('normal', 'as Headmaster')
@@ -31,11 +31,11 @@ export default function(snapshot, game) {
 			}
 		case 'topDeck':
 			return [text('normal', 'The election tracker is maxed')];
-		case 'presidentLegislation':
-			return [text('player', usernameOf(snapshot.presidentId)), text('normal', 'draws')]
-				.concat(handToText(snapshot.presidentHand))
+		case 'ministerLegislation':
+			return [text('player', usernameOf(snapshot.ministerId)), text('normal', 'draws')]
+				.concat(handToText(snapshot.ministerHand))
 				.concat([text('normal', 'and claims')])
-				.concat(claimHandToText(snapshot.presidentClaim));
+				.concat(claimHandToText(snapshot.ministerClaim));
 		case 'headmasterLegislation':
 			return [text('player', usernameOf(snapshot.headmasterId)), text('normal', 'receives')]
 				.concat(handToText(snapshot.headmasterHand))
@@ -55,24 +55,24 @@ export default function(snapshot, game) {
 			}
 		case 'investigation':
 			return [
-				text('player', usernameOf(snapshot.presidentId)),
+				text('player', usernameOf(snapshot.ministerId)),
 				text('normal', 'investigates'),
 				text('player', usernameOf(snapshot.investigationId)),
 				text('normal', 'and claims'),
 				claimToText(snapshot.investigationClaim.map(i => text(i, capitalize(i))))
 			];
 		case 'proclamationPeek':
-			return [text('player', usernameOf(snapshot.presidentId)), text('normal', 'peeks')]
+			return [text('player', usernameOf(snapshot.ministerId)), text('normal', 'peeks')]
 				.concat(handToText(snapshot.proclamationPeek))
 				.concat([text('normal', 'and claims')])
 				.concat(claimHandToText(snapshot.proclamationPeekClaim));
 		case 'specialElection':
-			return [text('player', usernameOf(snapshot.presidentId)), text('normal', 'special elects'), text('player', usernameOf(snapshot.specialElection))];
+			return [text('player', usernameOf(snapshot.ministerId)), text('normal', 'special elects'), text('player', usernameOf(snapshot.specialElection))];
 		case 'execution':
 			if (snapshot.gameOver) {
 				return gameOverText([text('voldemort', 'Voldemort'), text('normal', 'is killed.')]);
 			} else {
-				return [text('player', usernameOf(snapshot.presidentId)), text('normal', 'executes'), text('player', usernameOf(snapshot.execution))];
+				return [text('player', usernameOf(snapshot.ministerId)), text('normal', 'executes'), text('player', usernameOf(snapshot.execution))];
 			}
 	}
 }

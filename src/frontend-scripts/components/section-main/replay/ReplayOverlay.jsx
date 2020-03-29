@@ -12,8 +12,8 @@ const Legislation = ({ type, handTitle, claimTitle, hand, discard, claim }) => (
 	</div>
 );
 
-const PresidentLegislation = ({ hand, discard, claim }) => (
-	<Legislation type="president" handTitle={'President Hand'} claimTitle={'President Claim'} hand={hand} discard={some(discard)} claim={claim} />
+const MinisterLegislation = ({ hand, discard, claim }) => (
+	<Legislation type="minister" handTitle={'Minister Hand'} claimTitle={'Minister Claim'} hand={hand} discard={some(discard)} claim={claim} />
 );
 
 const HeadmasterLegislation = ({ hand, discard, claim }) => (
@@ -27,8 +27,8 @@ const ProclamationPeek = ({ peek, claim }) => (
 const ReplayOverlay = ({ snapshot }) => {
 	const overlay = (() => {
 		switch (snapshot.phase) {
-			case 'presidentLegislation':
-				return <PresidentLegislation hand={snapshot.presidentHand} discard={snapshot.presidentDiscard} claim={snapshot.presidentClaim} />;
+			case 'ministerLegislation':
+				return <MinisterLegislation hand={snapshot.ministerHand} discard={snapshot.ministerDiscard} claim={snapshot.ministerClaim} />;
 			case 'headmasterLegislation':
 				return <HeadmasterLegislation hand={snapshot.headmasterHand} discard={snapshot.headmasterDiscard} claim={snapshot.headmasterClaim} />;
 			case 'proclamationPeek':

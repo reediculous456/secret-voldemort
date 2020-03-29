@@ -24,7 +24,7 @@ avg = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 // Players will be considered more influential when:
 // + Casting votes that may have changed the outcome of an election.
 // + Elected to governments.
-// + Using the presidential powers.
+// + Using the ministerial powers.
 async function influence(game) {
 	const weighting = new Array(game.playerSize).fill(0.0);
 	let red = 0;
@@ -46,11 +46,11 @@ async function influence(game) {
 		}
 		if (await p) {
 			// In government influence
-			weighting[turn.presidentId]++;
+			weighting[turn.ministerId]++;
 			weighting[turn.headmasterId]++;
 			if (red > 3 && turn.enactedProclamation._value === 'death eater') {
-				// President powers influence
-				weighting[turn.presidentId]++;
+				// Minister powers influence
+				weighting[turn.ministerId]++;
 			}
 			if (turn.enactedProclamation._value === 'death eater') {
 				red += 1;

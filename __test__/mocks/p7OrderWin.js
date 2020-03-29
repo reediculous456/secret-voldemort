@@ -9,89 +9,89 @@ module.exports = {
 	},
 	logs: [
 		{
-			presidentId: 0,
+			ministerId: 0,
 			headmasterId: 3,
 			enactedProclamation: 'order',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
 			votes: [true, true, true, true, true, false, true]
 		},
 		{
-			presidentId: 1,
+			ministerId: 1,
 			headmasterId: 6,
 			enactedProclamation: 'death eater',
 			headmasterHand: {
 				reds: 2,
 				blues: 0
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 3,
 				blues: 0
 			},
 			votes: [true, true, true, true, false, false, true]
 		},
 		{
-			presidentId: 2,
+			ministerId: 2,
 			headmasterId: 5,
 			enactedProclamation: 'order',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
 			votes: [true, true, false, true, true, false, true]
 		},
 		{
-			presidentId: 3,
+			ministerId: 3,
 			headmasterId: 4,
 			enactedProclamation: 'order',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
 			votes: [true, true, true, false, true, false, false]
 		},
 		{
-			presidentId: 4,
+			ministerId: 4,
 			headmasterId: 2,
 			enactedProclamation: 'order',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 2,
 				blues: 1
 			},
 			votes: [true, false, true, false, true, true, true]
 		},
 		{
-			presidentId: 5,
+			ministerId: 5,
 			headmasterId: 3,
 			votes: [false, false, true, true, true, false, false]
 		},
 		{
-			presidentId: 6,
+			ministerId: 6,
 			headmasterId: 5,
 			enactedProclamation: 'order',
 			headmasterHand: {
 				reds: 0,
 				blues: 2
 			},
-			presidentHand: {
+			ministerHand: {
 				reds: 1,
 				blues: 2
 			},

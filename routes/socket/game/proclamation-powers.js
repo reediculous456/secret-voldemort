@@ -8,8 +8,8 @@ const { completeGame } = require('./end-game.js');
  */
 module.exports.proclamationPeek = game => {
 	const { seatedPlayers } = game.private;
-	const { presidentIndex } = game.gameState;
-	const president = seatedPlayers[presidentIndex];
+	const { ministerIndex } = game.gameState;
+	const minister = seatedPlayers[ministerIndex];
 
 	if (!game.private.lock.proclamationPeek && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
 		game.private.lock.proclamationPeek = true;
@@ -18,9 +18,9 @@ module.exports.proclamationPeek = game => {
 			shuffleProclamations(game);
 		}
 
-		game.general.status = 'President to peek at proclamations.';
-		game.publicPlayersState[presidentIndex].isLoader = true;
-		president.playersState[presidentIndex].proclamationNotification = true;
+		game.general.status = 'Minister of Magic to peek at proclamations.';
+		game.publicPlayersState[ministerIndex].isLoader = true;
+		minister.playersState[ministerIndex].proclamationNotification = true;
 		sendInProgressGameUpdate(game, true);
 	}
 };
@@ -31,10 +31,10 @@ module.exports.proclamationPeek = game => {
  * @param {object} socket - socket
  */
 module.exports.selectProclamations = (passport, game, socket) => {
-	const { presidentIndex } = game.gameState;
+	const { ministerIndex } = game.gameState;
 	const { experiencedMode } = game.general;
 	const { seatedPlayers } = game.private;
-	const president = seatedPlayers[presidentIndex];
+	const minister = seatedPlayers[ministerIndex];
 
 	if (game.gameState.isGameFrozen) {
 		return;
@@ -44,7 +44,7 @@ module.exports.selectProclamations = (passport, game, socket) => {
 		return;
 	}
 
-	if (!president || president.userName !== passport.user) {
+	if (!minister || minister.userName !== passport.user) {
 		return;
 	}
 
@@ -56,7 +56,7 @@ module.exports.selectProclamations = (passport, game, socket) => {
 
 	if (!game.private.lock.selectProclamations && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
 		game.private.lock.selectProclamations = true;
-		game.publicPlayersState[presidentIndex].isLoader = false;
+		game.publicPlayersState[ministerIndex].isLoader = false;
 
 		if (game.private.proclamations.length < 3) {
 			shuffleProclamations(game);
@@ -75,7 +75,7 @@ module.exports.selectProclamations = (passport, game, socket) => {
 			)
 		});
 
-		president.cardFlingerState = [
+		minister.cardFlingerState = [
 			{
 				position: 'middle-far-left',
 				action: 'active',
@@ -106,12 +106,12 @@ module.exports.selectProclamations = (passport, game, socket) => {
 		];
 
 		game.gameState.audioCue = 'proclamationPeek';
-		president.playersState[presidentIndex].proclamationNotification = false;
+		minister.playersState[ministerIndex].proclamationNotification = false;
 		sendInProgressGameUpdate(game, true);
 
 		setTimeout(
 			() => {
-				president.cardFlingerState[0].cardStatus.isFlipped = president.cardFlingerState[1].cardStatus.isFlipped = president.cardFlingerState[2].cardStatus.isFlipped = true;
+				minister.cardFlingerState[0].cardStatus.isFlipped = minister.cardFlingerState[1].cardStatus.isFlipped = minister.cardFlingerState[2].cardStatus.isFlipped = true;
 				sendInProgressGameUpdate(game, true);
 			},
 			process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 500 : 2000
@@ -119,8 +119,8 @@ module.exports.selectProclamations = (passport, game, socket) => {
 
 		setTimeout(
 			() => {
-				president.cardFlingerState[0].cardStatus.isFlipped = president.cardFlingerState[1].cardStatus.isFlipped = president.cardFlingerState[2].cardStatus.isFlipped = false;
-				president.cardFlingerState[0].action = president.cardFlingerState[1].action = president.cardFlingerState[2].action = '';
+				minister.cardFlingerState[0].cardStatus.isFlipped = minister.cardFlingerState[1].cardStatus.isFlipped = minister.cardFlingerState[2].cardStatus.isFlipped = false;
+				minister.cardFlingerState[0].action = minister.cardFlingerState[1].action = minister.cardFlingerState[2].action = '';
 				sendInProgressGameUpdate(game, true);
 				game.gameState.audioCue = '';
 			},
@@ -129,17 +129,17 @@ module.exports.selectProclamations = (passport, game, socket) => {
 
 		setTimeout(
 			() => {
-				president.cardFlingerState = [];
+				minister.cardFlingerState = [];
 
 				const modOnlyChat = {
 					timestamp: new Date(),
 					gameChat: true,
 					chat: [
 						{
-							text: 'President '
+							text: 'Minister of Magic '
 						},
 						{
-							text: `${seatedPlayers[presidentIndex].userName} {${presidentIndex + 1}}`,
+							text: `${seatedPlayers[ministerIndex].userName} {${ministerIndex + 1}}`,
 							type: 'player'
 						},
 						{
@@ -166,7 +166,7 @@ module.exports.selectProclamations = (passport, game, socket) => {
 				sendInProgressModChatUpdate(game, modOnlyChat);
 
 				if (!game.general.disableGamechat) {
-					president.gameChats.push({
+					minister.gameChats.push({
 						gameChat: true,
 						timestamp: new Date(),
 						chat: [
@@ -192,7 +192,7 @@ module.exports.selectProclamations = (passport, game, socket) => {
 
 				sendInProgressGameUpdate(game);
 				game.trackState.electionTrackerCount = 0;
-				president.playersState[presidentIndex].claim = 'didProclamationPeek';
+				minister.playersState[ministerIndex].claim = 'didProclamationPeek';
 				startElection(game);
 			},
 			process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 4500 : 7000
@@ -205,8 +205,8 @@ module.exports.selectProclamations = (passport, game, socket) => {
  */
 module.exports.proclamationPeekAndDrop = game => {
 	const { seatedPlayers } = game.private;
-	const { presidentIndex } = game.gameState;
-	const president = seatedPlayers[presidentIndex];
+	const { ministerIndex } = game.gameState;
+	const minister = seatedPlayers[ministerIndex];
 
 	if (!game.private.lock.proclamationPeekAndDrop && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
 		game.private.lock.proclamationPeekAndDrop = true;
@@ -215,9 +215,9 @@ module.exports.proclamationPeekAndDrop = game => {
 			shuffleProclamations(game);
 		}
 
-		game.general.status = 'President to peek at one proclamation.';
-		game.publicPlayersState[presidentIndex].isLoader = true;
-		president.playersState[presidentIndex].proclamationNotification = true;
+		game.general.status = 'Minister of Magic to peek at one proclamation.';
+		game.publicPlayersState[ministerIndex].isLoader = true;
+		minister.playersState[ministerIndex].proclamationNotification = true;
 		sendInProgressGameUpdate(game, true);
 	}
 };
@@ -227,10 +227,10 @@ module.exports.proclamationPeekAndDrop = game => {
  * @param {object} game - target game.
  */
 module.exports.selectOneProclamation = (passport, game) => {
-	const { presidentIndex } = game.gameState;
+	const { ministerIndex } = game.gameState;
 	const { experiencedMode } = game.general;
 	const { seatedPlayers } = game.private;
-	const president = seatedPlayers[presidentIndex];
+	const minister = seatedPlayers[ministerIndex];
 
 	if (game.gameState.isGameFrozen) {
 		if (socket) {
@@ -246,7 +246,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 		return;
 	}
 
-	if (!president || president.userName !== passport.user) {
+	if (!minister || minister.userName !== passport.user) {
 		return;
 	}
 
@@ -258,7 +258,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 
 	if (!game.private.lock.selectOneProclamation && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
 		game.private.lock.selectOneProclamation = true;
-		game.publicPlayersState[presidentIndex].isLoader = false;
+		game.publicPlayersState[ministerIndex].isLoader = false;
 
 		if (game.private.proclamations.length < 3) {
 			shuffleProclamations(game);
@@ -278,7 +278,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 		});
 
 		const proclamation = game.private.proclamations[0];
-		president.cardFlingerState = [
+		minister.cardFlingerState = [
 			{
 				position: 'middle-center',
 				action: 'active',
@@ -291,12 +291,12 @@ module.exports.selectOneProclamation = (passport, game) => {
 		];
 
 		game.gameState.audioCue = 'proclamationPeek';
-		president.playersState[presidentIndex].proclamationNotification = false;
+		minister.playersState[ministerIndex].proclamationNotification = false;
 		sendInProgressGameUpdate(game, true);
 
 		setTimeout(
 			() => {
-				president.cardFlingerState[0].cardStatus.isFlipped = true;
+				minister.cardFlingerState[0].cardStatus.isFlipped = true;
 				sendInProgressGameUpdate(game, true);
 			},
 			process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 500 : 2000
@@ -304,8 +304,8 @@ module.exports.selectOneProclamation = (passport, game) => {
 
 		setTimeout(
 			() => {
-				president.cardFlingerState[0].cardStatus.isFlipped = false;
-				president.cardFlingerState[0].action = '';
+				minister.cardFlingerState[0].cardStatus.isFlipped = false;
+				minister.cardFlingerState[0].action = '';
 				sendInProgressGameUpdate(game, true);
 				game.gameState.audioCue = '';
 			},
@@ -314,17 +314,17 @@ module.exports.selectOneProclamation = (passport, game) => {
 
 		setTimeout(
 			() => {
-				president.cardFlingerState = [];
+				minister.cardFlingerState = [];
 
 				const modOnlyChat = {
 					timestamp: new Date(),
 					gameChat: true,
 					chat: [
 						{
-							text: 'President '
+							text: 'Minister of Magic '
 						},
 						{
-							text: `${seatedPlayers[presidentIndex].userName} {${presidentIndex + 1}}`,
+							text: `${seatedPlayers[ministerIndex].userName} {${ministerIndex + 1}}`,
 							type: 'player'
 						},
 						{
@@ -343,7 +343,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 				sendInProgressModChatUpdate(game, modOnlyChat);
 
 				if (!game.general.disableGamechat) {
-					president.gameChats.push({
+					minister.gameChats.push({
 						gameChat: true,
 						timestamp: new Date(),
 						chat: [
@@ -359,7 +359,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 
 				sendInProgressGameUpdate(game);
 				game.trackState.electionTrackerCount = 0;
-				president.playersState[presidentIndex].claim = 'didSingleProclamationPeek';
+				minister.playersState[ministerIndex].claim = 'didSingleProclamationPeek';
 				setTimeout(
 					() => {
 						const chat = {
@@ -373,9 +373,9 @@ module.exports.selectOneProclamation = (passport, game) => {
 							]
 						};
 
-						game.publicPlayersState[presidentIndex].isLoader = true;
+						game.publicPlayersState[ministerIndex].isLoader = true;
 
-						president.cardFlingerState = [
+						minister.cardFlingerState = [
 							{
 								position: 'middle-left',
 								notificationStatus: '',
@@ -399,16 +399,16 @@ module.exports.selectOneProclamation = (passport, game) => {
 						];
 
 						if (!game.general.disableGamechat) {
-							president.gameChats.push(chat);
+							minister.gameChats.push(chat);
 						}
 
 						sendInProgressGameUpdate(game);
 
 						setTimeout(
 							() => {
-								president.cardFlingerState[0].cardStatus.isFlipped = president.cardFlingerState[1].cardStatus.isFlipped = true;
-								president.cardFlingerState[0].notificationStatus = president.cardFlingerState[1].notificationStatus = 'notification';
-								game.gameState.phase = 'presidentVoteOnBurn';
+								minister.cardFlingerState[0].cardStatus.isFlipped = minister.cardFlingerState[1].cardStatus.isFlipped = true;
+								minister.cardFlingerState[0].notificationStatus = minister.cardFlingerState[1].notificationStatus = 'notification';
+								game.gameState.phase = 'ministerVoteOnBurn';
 
 								if (game.general.timedMode) {
 									if (game.private.timerId) {
@@ -420,7 +420,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 										() => {
 											if (game.gameState.timedModeEnabled) {
 												game.gameState.timedModeEnabled = false;
-												selectBurnCard({ user: president.userName }, game, { vote: Boolean(Math.floor(Math.random() * 2)) });
+												selectBurnCard({ user: minister.userName }, game, { vote: Boolean(Math.floor(Math.random() * 2)) });
 											}
 										},
 										process.env.DEVTIMEDDELAY ? process.env.DEVTIMEDDELAY : game.general.timedMode * 1000
@@ -467,12 +467,12 @@ module.exports.selectBurnCard = (passport, game, data, socket) => {
 	}
 
 	const { experiencedMode } = game.general;
-	const { presidentIndex } = game.gameState;
+	const { ministerIndex } = game.gameState;
 	const { seatedPlayers } = game.private;
-	const president = seatedPlayers[presidentIndex];
-	const publicPresident = game.publicPlayersState[game.gameState.presidentIndex];
+	const minister = seatedPlayers[ministerIndex];
+	const publicMinister = game.publicPlayersState[game.gameState.ministerIndex];
 
-	if (!president || president.userName !== passport.user) {
+	if (!minister || minister.userName !== passport.user) {
 		return;
 	}
 
@@ -480,21 +480,21 @@ module.exports.selectBurnCard = (passport, game, data, socket) => {
 		game.private.lock.selectBurnCard = true;
 
 		game.private.summary = game.private.summary.updateLog({
-			presidentVeto: data.vote
+			ministerVeto: data.vote
 		});
-		game.publicPlayersState[presidentIndex].isLoader = false;
-		president.cardFlingerState[0].action = president.cardFlingerState[1].action = '';
-		president.cardFlingerState[0].cardStatus.isFlipped = president.cardFlingerState[1].cardStatus.isFlipped = false;
+		game.publicPlayersState[ministerIndex].isLoader = false;
+		minister.cardFlingerState[0].action = minister.cardFlingerState[1].action = '';
+		minister.cardFlingerState[0].cardStatus.isFlipped = minister.cardFlingerState[1].cardStatus.isFlipped = false;
 
 		if (data.vote) {
-			president.cardFlingerState[0].notificationStatus = 'selected';
-			president.cardFlingerState[1].notificationStatus = '';
+			minister.cardFlingerState[0].notificationStatus = 'selected';
+			minister.cardFlingerState[1].notificationStatus = '';
 		} else {
-			president.cardFlingerState[0].notificationStatus = '';
-			president.cardFlingerState[1].notificationStatus = 'selected';
+			minister.cardFlingerState[0].notificationStatus = '';
+			minister.cardFlingerState[1].notificationStatus = 'selected';
 		}
 
-		publicPresident.cardStatus = {
+		publicMinister.cardStatus = {
 			cardDisplayed: true,
 			cardFront: 'ballot',
 			cardBack: {
@@ -510,11 +510,11 @@ module.exports.selectBurnCard = (passport, game, data, socket) => {
 					timestamp: new Date(),
 					gameChat: true,
 					chat: [
-						{ text: 'President ' },
+						{ text: 'Minister ' },
 						{
 							text: game.general.blindMode
-								? `{${game.private.seatedPlayers.indexOf(president) + 1}}`
-								: `${passport.user} {${game.private.seatedPlayers.indexOf(president) + 1}}`,
+								? `{${game.private.seatedPlayers.indexOf(minister) + 1}}`
+								: `${passport.user} {${game.private.seatedPlayers.indexOf(minister) + 1}}`,
 							type: 'player'
 						},
 						{
@@ -530,9 +530,9 @@ module.exports.selectBurnCard = (passport, game, data, socket) => {
 					game.private.unSeatedGameChats.push(chat);
 				}
 
-				publicPresident.cardStatus.isFlipped = true;
+				publicMinister.cardStatus.isFlipped = true;
 
-				president.cardFlingerState = [];
+				minister.cardFlingerState = [];
 				if (data.vote) {
 					game.private.proclamations.shift();
 					game.gameState.undrawnProclamationCount--;
@@ -559,16 +559,16 @@ module.exports.selectBurnCard = (passport, game, data, socket) => {
  */
 module.exports.investigateLoyalty = game => {
 	const { seatedPlayers } = game.private;
-	const { presidentIndex } = game.gameState;
-	const president = seatedPlayers[presidentIndex];
+	const { ministerIndex } = game.gameState;
+	const minister = seatedPlayers[ministerIndex];
 
-	president.playersState.forEach((player, i) => {
+	minister.playersState.forEach((player, i) => {
 		if (!seatedPlayers[i]) {
-			console.error(`PLAYERSTATE CONTAINS NULL!\n${JSON.stringify(president.playersState)}\n${JSON.stringify(game)}`);
+			console.error(`PLAYERSTATE CONTAINS NULL!\n${JSON.stringify(minister.playersState)}\n${JSON.stringify(game)}`);
 		}
 	});
 	const hasTarget =
-		president.playersState.filter((player, i) => i !== presidentIndex && !seatedPlayers[i].isDead && !seatedPlayers[i].wasInvestigated).length > 0;
+		minister.playersState.filter((player, i) => i !== ministerIndex && !seatedPlayers[i].isDead && !seatedPlayers[i].wasInvestigated).length > 0;
 	if (!hasTarget) {
 		const t = new Date();
 
@@ -578,9 +578,9 @@ module.exports.investigateLoyalty = game => {
 			timestamp: t,
 			gameChat: true,
 			chat: [
-				{ text: 'President ' },
+				{ text: 'Minister of Magic ' },
 				{
-					text: game.general.blindMode ? `{${presidentIndex + 1}}` : `${president.userName} {${presidentIndex + 1}}`,
+					text: game.general.blindMode ? `{${ministerIndex + 1}}` : `${minister.userName} {${ministerIndex + 1}}`,
 					type: 'player'
 				},
 				{ text: '  has no valid investigation target.' }
@@ -599,17 +599,17 @@ module.exports.investigateLoyalty = game => {
 	if (!game.private.lock.investigateLoyalty && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
 		game.private.lock.investigateLoyalty = true;
 
-		game.general.status = 'Waiting for President to investigate.';
-		president.playersState
-			.filter((player, i) => i !== presidentIndex && !seatedPlayers[i].isDead && !seatedPlayers[i].wasInvestigated)
+		game.general.status = 'Waiting for Minister of Magic to investigate.';
+		minister.playersState
+			.filter((player, i) => i !== ministerIndex && !seatedPlayers[i].isDead && !seatedPlayers[i].wasInvestigated)
 			.forEach(player => {
 				player.notificationStatus = 'notification';
 			});
-		game.publicPlayersState[presidentIndex].isLoader = true;
+		game.publicPlayersState[ministerIndex].isLoader = true;
 		game.gameState.clickActionInfo = [
-			president.userName,
+			minister.userName,
 			seatedPlayers
-				.filter((player, i) => i !== presidentIndex && !seatedPlayers[i].isDead && !seatedPlayers[i].wasInvestigated)
+				.filter((player, i) => i !== ministerIndex && !seatedPlayers[i].isDead && !seatedPlayers[i].wasInvestigated)
 				.map(player => seatedPlayers.indexOf(player))
 		];
 		game.gameState.phase = 'selectPartyMembershipInvestigate';
@@ -646,16 +646,16 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 
 	const { playerIndex } = data;
 	const { experiencedMode } = game.general;
-	const { presidentIndex } = game.gameState;
+	const { ministerIndex } = game.gameState;
 	const { seatedPlayers } = game.private;
-	const president = seatedPlayers[presidentIndex];
+	const minister = seatedPlayers[ministerIndex];
 	const playersTeam = game.private.seatedPlayers[playerIndex].role.team;
 
-	if (playerIndex === presidentIndex) {
+	if (playerIndex === ministerIndex) {
 		return;
 	}
 
-	if (!president || president.userName !== passport.user) {
+	if (!minister || minister.userName !== passport.user) {
 		return;
 	}
 
@@ -666,7 +666,7 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 			game.gameState.audioCue = 'selectedInvestigate';
 			seatedPlayers[playerIndex].wasInvestigated = true;
 
-			president.playersState.forEach(player => {
+			minister.playersState.forEach(player => {
 				player.notificationStatus = '';
 			});
 
@@ -674,7 +674,7 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 				investigationId: playerIndex
 			});
 
-			game.publicPlayersState[presidentIndex].isLoader = false;
+			game.publicPlayersState[ministerIndex].isLoader = false;
 			game.publicPlayersState[playerIndex].cardStatus = {
 				cardDisplayed: true,
 				cardFront: 'partymembership',
@@ -690,7 +690,7 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 						gameChat: true
 					};
 
-					president.playersState[playerIndex].cardStatus = {
+					minister.playersState[playerIndex].cardStatus = {
 						isFlipped: true,
 						cardBack: {
 							cardName: `membership-${playersTeam}`
@@ -699,12 +699,12 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 
 					if (!game.general.disableGamechat) {
 						seatedPlayers
-							.filter(player => player.userName !== president.userName)
+							.filter(player => player.userName !== minister.userName)
 							.forEach(player => {
 								chat.chat = [
-									{ text: 'President ' },
+									{ text: 'Minister of Magic ' },
 									{
-										text: game.general.blindMode ? `{${presidentIndex + 1}}` : `${president.userName} {${presidentIndex + 1}}`,
+										text: game.general.blindMode ? `{${ministerIndex + 1}}` : `${minister.userName} {${ministerIndex + 1}}`,
 										type: 'player'
 									},
 									{ text: ' investigates the party membership of ' },
@@ -720,7 +720,7 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 
 						game.private.unSeatedGameChats.push(chat);
 
-						president.gameChats.push({
+						minister.gameChats.push({
 							timestamp: new Date(),
 							gameChat: true,
 							chat: [
@@ -744,10 +744,10 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 						gameChat: true,
 						chat: [
 							{
-								text: 'President '
+								text: 'Minister of Magic '
 							},
 							{
-								text: `${seatedPlayers[presidentIndex].userName} {${presidentIndex + 1}}`,
+								text: `${seatedPlayers[ministerIndex].userName} {${ministerIndex + 1}}`,
 								type: 'player'
 							},
 							{
@@ -767,9 +767,9 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 
 					if (
 						!game.general.disableGamechat &&
-						!(game.private.seatedPlayers[playerIndex].role.cardName === 'voldemort' && president.role.team === 'death eater')
+						!(game.private.seatedPlayers[playerIndex].role.cardName === 'voldemort' && minister.role.team === 'death eater')
 					) {
-						president.playersState[playerIndex].nameStatus = playersTeam;
+						minister.playersState[playerIndex].nameStatus = playersTeam;
 					}
 					game.private.invIndex = playerIndex;
 					sendInProgressGameUpdate(game);
@@ -780,7 +780,7 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 			setTimeout(
 				() => {
 					game.gameState.audioCue = '';
-					president.playersState[playerIndex].cardStatus.isFlipped = false;
+					minister.playersState[playerIndex].cardStatus.isFlipped = false;
 					sendInProgressGameUpdate(game, true);
 				},
 				process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 4000 : 6000
@@ -789,8 +789,8 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 			setTimeout(
 				() => {
 					game.publicPlayersState[playerIndex].cardStatus.cardDisplayed = false;
-					president.playersState[playerIndex].cardStatus.cardBack = {};
-					president.playersState[presidentIndex].claim = 'didInvestigateLoyalty';
+					minister.playersState[playerIndex].cardStatus.cardBack = {};
+					minister.playersState[ministerIndex].claim = 'didInvestigateLoyalty';
 					sendInProgressGameUpdate(game, true);
 					startElection(game);
 				},
@@ -805,22 +805,22 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
  */
 module.exports.showPlayerLoyalty = game => {
 	const { seatedPlayers } = game.private;
-	const { presidentIndex } = game.gameState;
-	const president = seatedPlayers[presidentIndex];
+	const { ministerIndex } = game.gameState;
+	const minister = seatedPlayers[ministerIndex];
 
 	if (!game.private.lock.showPlayerLoyalty && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
 		game.private.lock.showPlayerLoyalty = true;
 
-		game.general.status = 'Waiting for President to show their party.';
-		president.playersState
-			.filter((player, i) => i !== presidentIndex && !seatedPlayers[i].isDead)
+		game.general.status = 'Waiting for Minister of Magic to show their party.';
+		minister.playersState
+			.filter((player, i) => i !== ministerIndex && !seatedPlayers[i].isDead)
 			.forEach(player => {
 				player.notificationStatus = 'notification';
 			});
-		game.publicPlayersState[presidentIndex].isLoader = true;
+		game.publicPlayersState[ministerIndex].isLoader = true;
 		game.gameState.clickActionInfo = [
-			president.userName,
-			seatedPlayers.filter((player, i) => i !== presidentIndex && !seatedPlayers[i].isDead).map(player => seatedPlayers.indexOf(player))
+			minister.userName,
+			seatedPlayers.filter((player, i) => i !== ministerIndex && !seatedPlayers[i].isDead).map(player => seatedPlayers.indexOf(player))
 		];
 		game.gameState.phase = 'selectPartyMembershipInvestigateReverse';
 		sendInProgressGameUpdate(game, true);
@@ -856,16 +856,16 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 
 	const { playerIndex } = data;
 	const { experiencedMode } = game.general;
-	const { presidentIndex } = game.gameState;
+	const { ministerIndex } = game.gameState;
 	const { seatedPlayers } = game.private;
-	const president = seatedPlayers[presidentIndex];
-	const playersTeam = game.private.seatedPlayers[presidentIndex].role.team;
+	const minister = seatedPlayers[ministerIndex];
+	const playersTeam = game.private.seatedPlayers[ministerIndex].role.team;
 
-	if (playerIndex === presidentIndex) {
+	if (playerIndex === ministerIndex) {
 		return;
 	}
 
-	if (!president || president.userName !== passport.user) {
+	if (!minister || minister.userName !== passport.user) {
 		return;
 	}
 
@@ -875,9 +875,9 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 		const targetPlayer = seatedPlayers[playerIndex];
 		if (!targetPlayer.isDead) {
 			game.gameState.audioCue = 'selectedInvestigate';
-			seatedPlayers[presidentIndex].wasInvestigated = true;
+			seatedPlayers[ministerIndex].wasInvestigated = true;
 
-			president.playersState.forEach(player => {
+			minister.playersState.forEach(player => {
 				player.notificationStatus = '';
 			});
 
@@ -885,8 +885,8 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 				investigationId: playerIndex
 			});
 
-			game.publicPlayersState[presidentIndex].isLoader = false;
-			game.publicPlayersState[presidentIndex].cardStatus = {
+			game.publicPlayersState[ministerIndex].isLoader = false;
+			game.publicPlayersState[ministerIndex].cardStatus = {
 				cardDisplayed: true,
 				cardFront: 'partymembership',
 				cardBack: {}
@@ -901,7 +901,7 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 						gameChat: true
 					};
 
-					targetPlayer.playersState[presidentIndex].cardStatus = {
+					targetPlayer.playersState[ministerIndex].cardStatus = {
 						isFlipped: true,
 						cardBack: {
 							cardName: `membership-${playersTeam}`
@@ -910,12 +910,12 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 
 					if (!game.general.disableGamechat) {
 						seatedPlayers
-							.filter(player => player.userName !== president.userName && player.userName !== targetPlayer.userName)
+							.filter(player => player.userName !== minister.userName && player.userName !== targetPlayer.userName)
 							.forEach(player => {
 								chat.chat = [
-									{ text: 'President ' },
+									{ text: 'Minister of Magic ' },
 									{
-										text: game.general.blindMode ? `{${presidentIndex + 1}}` : `${president.userName} {${presidentIndex + 1}}`,
+										text: game.general.blindMode ? `{${ministerIndex + 1}}` : `${minister.userName} {${ministerIndex + 1}}`,
 										type: 'player'
 									},
 									{ text: ' shows their party membership to ' },
@@ -931,7 +931,7 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 
 						game.private.unSeatedGameChats.push(chat);
 
-						president.gameChats.push({
+						minister.gameChats.push({
 							timestamp: new Date(),
 							gameChat: true,
 							chat: [
@@ -950,7 +950,7 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 							gameChat: true,
 							chat: [
 								{
-									text: game.general.blindMode ? `{${presidentIndex + 1}}` : `${president.userName} {${presidentIndex + 1}}`,
+									text: game.general.blindMode ? `{${ministerIndex + 1}}` : `${minister.userName} {${ministerIndex + 1}}`,
 									type: 'player'
 								},
 								{ text: ' has shown you their party membership, and you determine that they are on the ' },
@@ -968,10 +968,10 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 						gameChat: true,
 						chat: [
 							{
-								text: 'President '
+								text: 'Minister of Magic '
 							},
 							{
-								text: `${seatedPlayers[presidentIndex].userName} {${presidentIndex + 1}}`,
+								text: `${seatedPlayers[ministerIndex].userName} {${ministerIndex + 1}}`,
 								type: 'player'
 							},
 							{
@@ -991,9 +991,9 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 
 					if (
 						!game.general.disableGamechat &&
-						!(game.private.seatedPlayers[presidentIndex].role.cardName === 'voldemort' && targetPlayer.role.team === 'death eater')
+						!(game.private.seatedPlayers[ministerIndex].role.cardName === 'voldemort' && targetPlayer.role.team === 'death eater')
 					) {
-						targetPlayer.playersState[presidentIndex].nameStatus = playersTeam;
+						targetPlayer.playersState[ministerIndex].nameStatus = playersTeam;
 					}
 
 					sendInProgressGameUpdate(game);
@@ -1004,7 +1004,7 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 			setTimeout(
 				() => {
 					game.gameState.audioCue = '';
-					targetPlayer.playersState[presidentIndex].cardStatus.isFlipped = false;
+					targetPlayer.playersState[ministerIndex].cardStatus.isFlipped = false;
 					sendInProgressGameUpdate(game, true);
 				},
 				process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 4000 : 6000
@@ -1012,8 +1012,8 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 
 			setTimeout(
 				() => {
-					game.publicPlayersState[presidentIndex].cardStatus.cardDisplayed = false;
-					targetPlayer.playersState[presidentIndex].cardStatus.cardBack = {};
+					game.publicPlayersState[ministerIndex].cardStatus.cardDisplayed = false;
+					targetPlayer.playersState[ministerIndex].cardStatus.cardBack = {};
 					targetPlayer.playersState[playerIndex].claim = 'didInvestigateLoyalty';
 					sendInProgressGameUpdate(game, true);
 					startElection(game);
@@ -1029,25 +1029,25 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
  */
 module.exports.specialElection = game => {
 	const { seatedPlayers } = game.private;
-	const { presidentIndex } = game.gameState;
-	const president = seatedPlayers[presidentIndex];
+	const { ministerIndex } = game.gameState;
+	const minister = seatedPlayers[ministerIndex];
 
 	if (!game.private.lock.specialElection && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
 		game.private.lock.specialElection = true;
-		game.general.status = 'President to select special election.';
-		game.gameState.specialElectionFormerPresidentIndex = presidentIndex;
-		game.publicPlayersState[presidentIndex].isLoader = true;
+		game.general.status = 'Minister of Magic to select special election.';
+		game.gameState.specialElectionFormerMinisterIndex = ministerIndex;
+		game.publicPlayersState[ministerIndex].isLoader = true;
 
-		president.playersState
-			.filter((player, index) => index !== presidentIndex && !seatedPlayers[index].isDead)
+		minister.playersState
+			.filter((player, index) => index !== ministerIndex && !seatedPlayers[index].isDead)
 			.forEach(player => {
 				player.notificationStatus = 'notification';
 			});
 
 		game.gameState.phase = 'specialElection';
 		game.gameState.clickActionInfo = [
-			president.userName,
-			seatedPlayers.filter((player, i) => i !== presidentIndex && !seatedPlayers[i].isDead).map(player => seatedPlayers.indexOf(player))
+			minister.userName,
+			seatedPlayers.filter((player, i) => i !== ministerIndex && !seatedPlayers[i].isDead).map(player => seatedPlayers.indexOf(player))
 		];
 		sendInProgressGameUpdate(game, true);
 	}
@@ -1061,15 +1061,15 @@ module.exports.specialElection = game => {
  */
 module.exports.selectSpecialElection = (passport, game, data, socket) => {
 	const { playerIndex } = data;
-	const { presidentIndex } = game.gameState;
+	const { ministerIndex } = game.gameState;
 	const gameChat = {
 		timestamp: new Date(),
 		gameChat: true,
 		chat: []
 	};
-	const president = game.private.seatedPlayers[presidentIndex];
+	const minister = game.private.seatedPlayers[ministerIndex];
 	const seatedPlayers = game.private.seatedPlayers;
-	if (!president || president.userName !== passport.user) {
+	if (!minister || minister.userName !== passport.user) {
 		return;
 	}
 
@@ -1087,7 +1087,7 @@ module.exports.selectSpecialElection = (passport, game, data, socket) => {
 		return;
 	}
 
-	if (playerIndex === presidentIndex) {
+	if (playerIndex === ministerIndex) {
 		return;
 	}
 
@@ -1104,20 +1104,20 @@ module.exports.selectSpecialElection = (passport, game, data, socket) => {
 			specialElection: data.playerIndex
 		});
 
-		game.publicPlayersState[game.gameState.presidentIndex].isLoader = false;
+		game.publicPlayersState[game.gameState.ministerIndex].isLoader = false;
 
-		game.private.seatedPlayers[game.gameState.presidentIndex].playersState.forEach(player => {
+		game.private.seatedPlayers[game.gameState.ministerIndex].playersState.forEach(player => {
 			player.notificationStatus = '';
 		});
 
 		if (!game.general.disableGamechat) {
 			seatedPlayers
-				.filter(player => player.userName !== president.userName)
+				.filter(player => player.userName !== minister.userName)
 				.forEach(player => {
 					gameChat.chat = [
-						{ text: 'President ' },
+						{ text: 'Minister of Magic ' },
 						{
-							text: game.general.blindMode ? `{${presidentIndex + 1}}` : `${president.userName} {${presidentIndex + 1}}`,
+							text: game.general.blindMode ? `{${ministerIndex + 1}}` : `${minister.userName} {${ministerIndex + 1}}`,
 							type: 'player'
 						},
 						{ text: ' has chosen to special elect ' },
@@ -1125,7 +1125,7 @@ module.exports.selectSpecialElection = (passport, game, data, socket) => {
 							text: game.general.blindMode ? `{${playerIndex + 1}}` : `${seatedPlayers[playerIndex].userName} {${playerIndex + 1}}`,
 							type: 'player'
 						},
-						{ text: ' as president.' }
+						{ text: ' as minister of magic.' }
 					];
 
 					player.gameChats.push(gameChat);
@@ -1133,7 +1133,7 @@ module.exports.selectSpecialElection = (passport, game, data, socket) => {
 
 			game.private.unSeatedGameChats.push(gameChat);
 
-			president.gameChats.push({
+			minister.gameChats.push({
 				timestamp: new Date(),
 				gameChat: true,
 				chat: [
@@ -1142,7 +1142,7 @@ module.exports.selectSpecialElection = (passport, game, data, socket) => {
 						text: game.general.blindMode ? `{${playerIndex + 1}}` : `${seatedPlayers[playerIndex].userName} {${playerIndex + 1}}`,
 						type: 'player'
 					},
-					{ text: ' as president.' }
+					{ text: ' as minister of magic.' }
 				]
 			});
 		}
@@ -1158,45 +1158,45 @@ module.exports.selectSpecialElection = (passport, game, data, socket) => {
  */
 module.exports.executePlayer = game => {
 	const { seatedPlayers } = game.private;
-	const { presidentIndex } = game.gameState;
-	const president = seatedPlayers[presidentIndex];
+	const { ministerIndex } = game.gameState;
+	const minister = seatedPlayers[ministerIndex];
 
 	if (!game.private.lock.executePlayer && !(game.general.isTourny && game.general.tournyInfo.isCancelled)) {
 		game.private.lock.executePlayer = true;
-		game.general.status = 'President to execute a player.';
-		game.publicPlayersState[presidentIndex].isLoader = true;
+		game.general.status = 'Minister of Magic to execute a player.';
+		game.publicPlayersState[ministerIndex].isLoader = true;
 
 		if (!game.general.disableGamechat) {
-			president.gameChats.push({
+			minister.gameChats.push({
 				gameChat: true,
 				timestamp: new Date(),
 				chat: [{ text: 'You must select a player to execute.' }]
 			});
 		}
 
-		president.playersState
+		minister.playersState
 			.filter(
 				(player, index) =>
-					index !== presidentIndex &&
+					index !== ministerIndex &&
 					!seatedPlayers[index].isDead &&
-					((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
-						(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
-						(game.customGameSettings.fasCanShootHit && president.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort'))
+					((!game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort'))
 			)
 			.forEach(player => {
 				player.notificationStatus = 'notification';
 			});
 
 		game.gameState.clickActionInfo = [
-			president.userName,
+			minister.userName,
 			seatedPlayers
 				.filter(
 					(player, i) =>
-						i !== presidentIndex &&
+						i !== ministerIndex &&
 						!seatedPlayers[i].isDead &&
-						((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
-							(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
-							(game.customGameSettings.fasCanShootHit && president.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort'))
+						((!game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort'))
 				)
 				.map(player => seatedPlayers.indexOf(player))
 		];
@@ -1213,11 +1213,11 @@ module.exports.executePlayer = game => {
  */
 module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 	const { playerIndex } = data;
-	const { presidentIndex } = game.gameState;
+	const { ministerIndex } = game.gameState;
 	const { seatedPlayers } = game.private;
 	const selectedPlayer = seatedPlayers[playerIndex];
 	const publicSelectedPlayer = game.publicPlayersState[playerIndex];
-	const president = seatedPlayers[presidentIndex];
+	const minister = seatedPlayers[ministerIndex];
 
 	if (game.gameState.isGameFrozen) {
 		if (socket) {
@@ -1235,24 +1235,24 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 
 	// Make sure the target is valid
 	if (
-		playerIndex === presidentIndex ||
+		playerIndex === ministerIndex ||
 		selectedPlayer.isDead ||
-		(!game.customGameSettings.fasCanShootHit && president.role.cardName === 'death eater' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
+		(!game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death eater' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
 	) {
 		return;
 	}
 
-	if (!president || president.userName !== passport.user) {
+	if (!minister || minister.userName !== passport.user) {
 		return;
 	}
 
-	const nonPresidentChat = {
+	const nonMinisterChat = {
 		gameChat: true,
 		timestamp: new Date(),
 		chat: [
-			{ text: 'President ' },
+			{ text: 'Minister of Magic ' },
 			{
-				text: game.general.blindMode ? `{${presidentIndex + 1}}` : `${president.userName} {${presidentIndex + 1}}`,
+				text: game.general.blindMode ? `{${ministerIndex + 1}}` : `${minister.userName} {${ministerIndex + 1}}`,
 				type: 'player'
 			},
 			{ text: ' selects to execute ' },
@@ -1279,15 +1279,15 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 		});
 
 		if (!game.general.disableGamechat) {
-			game.private.unSeatedGameChats.push(nonPresidentChat);
+			game.private.unSeatedGameChats.push(nonMinisterChat);
 
 			seatedPlayers
-				.filter(player => player.userName !== president.userName)
+				.filter(player => player.userName !== minister.userName)
 				.forEach(player => {
-					player.gameChats.push(nonPresidentChat);
+					player.gameChats.push(nonMinisterChat);
 				});
 
-			president.gameChats.push({
+			minister.gameChats.push({
 				gameChat: true,
 				timestamp: new Date(),
 				chat: [
@@ -1301,9 +1301,9 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 			});
 		}
 
-		game.publicPlayersState[presidentIndex].isLoader = false;
+		game.publicPlayersState[ministerIndex].isLoader = false;
 
-		president.playersState.forEach(player => {
+		minister.playersState.forEach(player => {
 			player.notificationStatus = '';
 		});
 

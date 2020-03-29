@@ -179,43 +179,43 @@ export default () => {
 			expect(getEnactedProclamation(7)).toEqual(some('death eater'));
 		});
 
-		it('should track president hands', () => {
-			const presidentHand = turnNum => turns.get(turnNum).presidentHand;
+		it('should track minister hands', () => {
+			const ministerHand = turnNum => turns.get(turnNum).ministerHand;
 
-			expect(presidentHand(0)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentHand(1)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentHand(2)).toEqual(some({ reds: 1, blues: 2 }));
-			expect(presidentHand(3)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentHand(4)).toEqual(none);
-			expect(presidentHand(5)).toEqual(none);
-			expect(presidentHand(6)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentHand(7)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerHand(0)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerHand(1)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerHand(2)).toEqual(some({ reds: 1, blues: 2 }));
+			expect(ministerHand(3)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerHand(4)).toEqual(none);
+			expect(ministerHand(5)).toEqual(none);
+			expect(ministerHand(6)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerHand(7)).toEqual(some({ reds: 2, blues: 1 }));
 		});
 
-		it('should track president claims', () => {
-			const presidentClaim = turnNum => turns.get(turnNum).presidentClaim;
+		it('should track minister claims', () => {
+			const ministerClaim = turnNum => turns.get(turnNum).ministerClaim;
 
-			expect(presidentClaim(0)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentClaim(1)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentClaim(2)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentClaim(3)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentClaim(4)).toEqual(none);
-			expect(presidentClaim(5)).toEqual(none);
-			expect(presidentClaim(6)).toEqual(some({ reds: 2, blues: 1 }));
-			expect(presidentClaim(7)).toEqual(none);
+			expect(ministerClaim(0)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerClaim(1)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerClaim(2)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerClaim(3)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerClaim(4)).toEqual(none);
+			expect(ministerClaim(5)).toEqual(none);
+			expect(ministerClaim(6)).toEqual(some({ reds: 2, blues: 1 }));
+			expect(ministerClaim(7)).toEqual(none);
 		});
 
-		it('should track president discard', () => {
-			const presidentDiscard = turnNum => turns.get(turnNum).presidentDiscard;
+		it('should track minister discard', () => {
+			const ministerDiscard = turnNum => turns.get(turnNum).ministerDiscard;
 
-			expect(presidentDiscard(0)).toEqual(some('order'));
-			expect(presidentDiscard(1)).toEqual(some('death eater'));
-			expect(presidentDiscard(2)).toEqual(some('order'));
-			expect(presidentDiscard(3)).toEqual(some('death eater'));
-			expect(presidentDiscard(4)).toEqual(none);
-			expect(presidentDiscard(5)).toEqual(none);
-			expect(presidentDiscard(6)).toEqual(some('order'));
-			expect(presidentDiscard(7)).toEqual(some('order'));
+			expect(ministerDiscard(0)).toEqual(some('order'));
+			expect(ministerDiscard(1)).toEqual(some('death eater'));
+			expect(ministerDiscard(2)).toEqual(some('order'));
+			expect(ministerDiscard(3)).toEqual(some('death eater'));
+			expect(ministerDiscard(4)).toEqual(none);
+			expect(ministerDiscard(5)).toEqual(none);
+			expect(ministerDiscard(6)).toEqual(some('order'));
+			expect(ministerDiscard(7)).toEqual(some('order'));
 		});
 
 		it('should track headmaster hands', () => {
@@ -369,7 +369,7 @@ export default () => {
 			).toEqual(
 				some({
 					ja: true,
-					presidentId: 4,
+					ministerId: 4,
 					headmasterId: 2
 				})
 			);

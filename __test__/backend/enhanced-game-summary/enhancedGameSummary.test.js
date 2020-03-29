@@ -35,11 +35,11 @@ describe('build enhanced game summary', () => {
 
 		expect(logs).toBeAList();
 		expect(log).toBeTypeOf('object');
-		expect(log.presidentId).toBeTypeOf('number');
+		expect(log.ministerId).toBeTypeOf('number');
 		expect(log.headmasterId).toBeTypeOf('number');
 		expect(log.votes).toBeAList();
-		expect(log.presidentHand).toBeAnOption();
-		expect(log.presidentHand.value()).toBeTypeOf('object');
+		expect(log.ministerHand).toBeAnOption();
+		expect(log.ministerHand.value()).toBeTypeOf('object');
 		expect(log.execution).toBeAnOption();
 
 		// turns

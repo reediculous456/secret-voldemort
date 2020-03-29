@@ -678,7 +678,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 			previousElectedGovernment: [],
 			undrawnProclamationCount: 17,
 			discardedProclamationCount: 0,
-			presidentIndex: -1
+			ministerIndex: -1
 		},
 		chats: [],
 		general: {
@@ -888,7 +888,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 		game.private.seatedPlayers[playerIndex] &&
 		game.private.seatedPlayers[playerIndex].playersState &&
 		game.private.seatedPlayers[playerIndex].playersState[playerIndex] &&
-		!/^(wasPresident|wasHeadmaster|didSingleProclamationPeek|didProclamationPeek|didInvestigateLoyalty)$/.exec(
+		!/^(wasMinister|wasHeadmaster|didSingleProclamationPeek|didProclamationPeek|didInvestigateLoyalty)$/.exec(
 			game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim
 		)
 	) {
@@ -904,10 +904,10 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 		let text;
 
 		switch (data.claim) {
-			case 'wasPresident':
+			case 'wasMinister':
 				text = [
 					{
-						text: 'President '
+						text: 'Minister of Magic'
 					},
 					{
 						text: blindMode ? `${replacementNames[playerIndex]} {${playerIndex + 1}} ` : `${passport.user} {${playerIndex + 1}} `,
@@ -918,9 +918,9 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rrr':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								presidentClaim: { reds: 3, blues: 0 }
+								ministerClaim: { reds: 3, blues: 0 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -940,9 +940,9 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rrb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								presidentClaim: { reds: 2, blues: 1 }
+								ministerClaim: { reds: 2, blues: 1 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -966,9 +966,9 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'rbb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								presidentClaim: { reds: 1, blues: 2 }
+								ministerClaim: { reds: 1, blues: 2 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -992,9 +992,9 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					case 'bbb':
 						game.private.summary = game.private.summary.updateLog(
 							{
-								presidentClaim: { reds: 0, blues: 3 }
+								ministerClaim: { reds: 0, blues: 3 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1099,7 +1099,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 				if (data.claimState === 'order' || data.claimState === 'death eater') {
 					text = [
 						{
-							text: 'President '
+							text: 'Minister '
 						},
 						{
 							text: blindMode ? `${replacementNames[playerIndex]} {${playerIndex + 1}} ` : `${passport.user} {${playerIndex + 1}} `,
@@ -1121,7 +1121,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 			case 'didProclamationPeek':
 				text = [
 					{
-						text: 'President '
+						text: 'Minister '
 					},
 					{
 						text: blindMode ? `${replacementNames[playerIndex]} {${playerIndex + 1}} ` : `${passport.user} {${playerIndex + 1}} `,
@@ -1134,7 +1134,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							{
 								proclamationPeekClaim: { reds: 3, blues: 0 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1156,7 +1156,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							{
 								proclamationPeekClaim: { reds: 2, blues: 1 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1186,7 +1186,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							{
 								proclamationPeekClaim: { reds: 2, blues: 1 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1217,7 +1217,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							{
 								proclamationPeekClaim: { reds: 2, blues: 1 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1248,7 +1248,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							{
 								proclamationPeekClaim: { reds: 1, blues: 2 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1274,7 +1274,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							{
 								proclamationPeekClaim: { reds: 1, blues: 2 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1300,7 +1300,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							{
 								proclamationPeekClaim: { reds: 1, blues: 2 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1330,7 +1330,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							{
 								proclamationPeekClaim: { reds: 0, blues: 3 }
 							},
-							{ presidentId: playerIndex }
+							{ ministerId: playerIndex }
 						);
 
 						text.push(
@@ -1353,7 +1353,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 				if (invIndex != -1 && invIndex < game.private.seatedPlayers.length) {
 					text = [
 						{
-							text: 'President '
+							text: 'Minister '
 						},
 						{
 							text: blindMode ? `${replacementNames[playerIndex]} {${playerIndex + 1}} ` : `${passport.user} {${playerIndex + 1}} `,
@@ -1375,7 +1375,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 				} else {
 					text = [
 						{
-							text: 'President '
+							text: 'Minister '
 						},
 						{
 							text: blindMode ? `${replacementNames[playerIndex]} {${playerIndex + 1}} ` : `${passport.user} {${playerIndex + 1}} `,
@@ -1391,7 +1391,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					{
 						investigationClaim: data.claimState
 					},
-					{ presidentId: playerIndex }
+					{ ministerId: playerIndex }
 				);
 				switch (data.claimState) {
 					case 'death eater':
@@ -1526,7 +1526,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 			previousElectedGovernment: [],
 			undrawnProclamationCount: 17,
 			discardedProclamationCount: 0,
-			presidentIndex: -1
+			ministerIndex: -1
 		};
 
 		newGame.chats = [];
@@ -1841,7 +1841,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 
 			// console.log(chat, ' - ', formattedChat, ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
 
-			if (chat.length === 3 && 0 <= playerIndex <= 9 && game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'wasPresident') {
+			if (chat.length === 3 && 0 <= playerIndex <= 9 && game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'wasMinister') {
 				const claimData = {
 					userName: user.userName,
 					claimState: formattedChat,
@@ -1926,8 +1926,8 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 
 	if (
 		player &&
-		(gameState.phase === 'presidentSelectingProclamation' || gameState.phase === 'headmasterSelectingProclamation') &&
-		(publicPlayersState.find(play => play.userName === player.userName).governmentStatus === 'isPresident' ||
+		(gameState.phase === 'ministerSelectingProclamation' || gameState.phase === 'headmasterSelectingProclamation') &&
+		(publicPlayersState.find(play => play.userName === player.userName).governmentStatus === 'isMinister' ||
 			publicPlayersState.find(play => play.userName === player.userName).governmentStatus === 'isHeadmaster')
 	) {
 		return;
@@ -2067,8 +2067,8 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 					socket.emit('sendAlert', `There is no seat ${affectedPlayerNumber + 1}.`);
 					return;
 				}
-				if (affectedPlayerNumber !== game.gameState.presidentIndex) {
-					socket.emit('sendAlert', `The player in seat ${affectedPlayerNumber + 1} is not president.`);
+				if (affectedPlayerNumber !== game.gameState.ministerIndex) {
+					socket.emit('sendAlert', `The player in seat ${affectedPlayerNumber + 1} is not minister of magic.`);
 					return;
 				}
 				let headmaster = -1;
@@ -2106,7 +2106,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 							type: 'player'
 						},
 						{
-							text: ' as president.'
+							text: ' as minister of magic.'
 						}
 					]
 				});
@@ -2147,8 +2147,8 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 					socket.emit('sendAlert', `There is no seat ${headmasterPick}.`);
 					return;
 				}
-				if (affectedPlayerNumber !== game.gameState.presidentIndex) {
-					socket.emit('sendAlert', `The player in seat ${affectedPlayerNumber + 1} is not president.`);
+				if (affectedPlayerNumber !== game.gameState.ministerIndex) {
+					socket.emit('sendAlert', `The player in seat ${affectedPlayerNumber + 1} is not minister of magic.`);
 					return;
 				}
 				if (

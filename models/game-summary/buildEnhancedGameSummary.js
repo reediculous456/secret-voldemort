@@ -12,12 +12,12 @@ function buildEnhancedGameSummary(_summary) {
 	// convert Arrays to Lists and some values to Options
 	const summary = fromJS(_summary, (key, value, path) => {
 		const options = [
-			'presidentHand',
+			'ministerHand',
 			'headmasterHand',
 			'enactedProclamation',
-			'presidentClaim',
+			'ministerClaim',
 			'headmasterClaim',
-			'presidentVeto',
+			'ministerVeto',
 			'headmasterVeto',
 			'proclamationPeek',
 			'proclamationPeekClaim',
@@ -132,13 +132,13 @@ function buildEnhancedGameSummary(_summary) {
 		return playerOf(id).map(p => p.role);
 	};
 
-	// Option[List[Option[{ ja: Boolean, presidentId: Int, headmasterId: Int }]]]
+	// Option[List[Option[{ ja: Boolean, ministerId: Int, headmasterId: Int }]]]
 	const votesOf = username => {
 		return indexOf(username).map(i =>
 			turns.map(t =>
 				t.votes.get(i).map(v => ({
 					ja: v,
-					presidentId: t.presidentId,
+					ministerId: t.ministerId,
 					headmasterId: t.headmasterId
 				}))
 			)
@@ -147,7 +147,7 @@ function buildEnhancedGameSummary(_summary) {
 
 	// Option[List[Int]]
 	const shotsOf = username => {
-		return indexOf(username).map(i => turns.filter(t => t.presidentId === i && t.execution.isSome()).map(t => t.execution.value()));
+		return indexOf(username).map(i => turns.filter(t => t.ministerId === i && t.execution.isSome()).map(t => t.execution.value()));
 	};
 
 	// Option[Boolean]

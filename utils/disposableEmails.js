@@ -6694,7 +6694,7 @@ module.exports = [
 	'fashionfwd.net',
 	'fashionstudios.ru',
 	'fask1300.info',
-	'fassagforpresident.ga',
+	'fassagforminister.ga',
 	'fast-coin.com',
 	'fast-email.info',
 	'fast-mail.fr',

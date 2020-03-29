@@ -29,14 +29,14 @@ export default () => {
 				return t.turnNum === turnNum && t.phase === phase;
 			});
 
-		const testCandidacy = (snapshot, turnNum, phase, track, deadPlayers, electionTracker, presidentId) => {
+		const testCandidacy = (snapshot, turnNum, phase, track, deadPlayers, electionTracker, ministerId) => {
 			testSnapshot(snapshot, turnNum, phase, track, deadPlayers, electionTracker);
-			expect(snapshot.presidentId).toBe(presidentId);
+			expect(snapshot.ministerId).toBe(ministerId);
 		};
 
-		const testNomination = (turnNum, presidentId, headmasterId) => {
+		const testNomination = (turnNum, ministerId, headmasterId) => {
 			const snapshot = findPhase('nomination', turnNum);
-			expect(snapshot.presidentId).toBe(presidentId);
+			expect(snapshot.ministerId).toBe(ministerId);
 			expect(snapshot.headmasterId).toBe(headmasterId);
 		};
 
@@ -58,7 +58,7 @@ export default () => {
 			expect(snapshot[govt + 'Claim']).toEqual(claim);
 		};
 
-		const testPresidentLegislation = testLegislation.bind(null, 'president');
+		const testMinisterLegislation = testLegislation.bind(null, 'minister');
 
 		const testHeadmasterLegislation = testLegislation.bind(null, 'headmaster');
 
@@ -123,7 +123,7 @@ export default () => {
 					Range(0, 7).map(i => some(true))
 				);
 
-				testPresidentLegislation(0, { reds: 2, blues: 1 }, 'order', some({ reds: 2, blues: 1 }));
+				testMinisterLegislation(0, { reds: 2, blues: 1 }, 'order', some({ reds: 2, blues: 1 }));
 
 				testHeadmasterLegislation(0, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
 
@@ -155,7 +155,7 @@ export default () => {
 					Range(0, 7).map(i => some(true))
 				);
 
-				testPresidentLegislation(1, { reds: 2, blues: 1 }, 'death eater', some({ reds: 2, blues: 1 }));
+				testMinisterLegislation(1, { reds: 2, blues: 1 }, 'death eater', some({ reds: 2, blues: 1 }));
 
 				testHeadmasterLegislation(1, { reds: 1, blues: 1 }, some('order'), some({ reds: 2, blues: 0 }));
 
@@ -193,7 +193,7 @@ export default () => {
 					List([true, false, false, null, false, false, false]).map(x => fromNullable(x))
 				);
 
-				testPresidentLegislation(5, null, none);
+				testMinisterLegislation(5, null, none);
 
 				testHeadmasterLegislation(5, null, none);
 
@@ -225,7 +225,7 @@ export default () => {
 					List([true, true, true, null, true, true, true]).map(x => fromNullable(x))
 				);
 
-				testPresidentLegislation(6, { reds: 2, blues: 1 }, 'order', some({ reds: 2, blues: 1 }));
+				testMinisterLegislation(6, { reds: 2, blues: 1 }, 'order', some({ reds: 2, blues: 1 }));
 
 				testHeadmasterLegislation(6, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
 
@@ -252,7 +252,7 @@ export default () => {
 
 				testNomination(7, 0, 5);
 
-				testPresidentLegislation(7, { reds: 2, blues: 1 }, 'order', none);
+				testMinisterLegislation(7, { reds: 2, blues: 1 }, 'order', none);
 
 				testHeadmasterLegislation(7, { reds: 2, blues: 0 }, some('death eater'), none);
 

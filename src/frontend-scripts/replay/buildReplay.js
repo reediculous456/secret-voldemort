@@ -20,17 +20,17 @@ export default function buildReplay(game) {
 			afterElectionTracker,
 			beforeDeckSize,
 			afterDeckSize,
-			presidentId,
+			ministerId,
 			headmasterId,
 			votes,
 			enactedProclamation,
-			presidentHand,
+			ministerHand,
 			headmasterHand,
-			presidentClaim,
+			ministerClaim,
 			headmasterClaim,
-			presidentDiscard,
+			ministerDiscard,
 			headmasterDiscard,
-			presidentVeto,
+			ministerVeto,
 			headmasterVeto,
 			isVetoSuccessful,
 			execution,
@@ -61,7 +61,7 @@ export default function buildReplay(game) {
 		});
 
 		const midEnactionAdd = add({
-			presidentId,
+			ministerId,
 			headmasterId,
 			players: beforePlayers,
 			track: beforeTrack,
@@ -70,7 +70,7 @@ export default function buildReplay(game) {
 		});
 
 		const postEnactionAdd = add({
-			presidentId,
+			ministerId,
 			headmasterId,
 			players: afterPlayers,
 			track: afterTrack,
@@ -80,23 +80,23 @@ export default function buildReplay(game) {
 
 		switch (phase) {
 			case 'candidacy':
-				return preEnactionAdd({ presidentId });
+				return preEnactionAdd({ ministerId });
 			case 'nomination':
-				return preEnactionAdd({ presidentId, headmasterId });
+				return preEnactionAdd({ ministerId, headmasterId });
 			case 'election':
 				return preEnactionAdd({
-					presidentId,
+					ministerId,
 					headmasterId,
 					votes,
 					electionTracker: afterElectionTracker
 				});
 			case 'topDeck':
 				return midEnactionAdd({});
-			case 'presidentLegislation':
+			case 'ministerLegislation':
 				return midEnactionAdd({
-					presidentClaim,
-					presidentHand: presidentHand.value(),
-					presidentDiscard: presidentDiscard.value()
+					ministerClaim,
+					ministerHand: ministerHand.value(),
+					ministerDiscard: ministerDiscard.value()
 				});
 			case 'headmasterLegislation':
 				return midEnactionAdd({
@@ -107,7 +107,7 @@ export default function buildReplay(game) {
 			case 'veto':
 				return midEnactionAdd({
 					isVetoSuccessful,
-					presidentVeto,
+					ministerVeto,
 					headmasterVeto: headmasterVeto.value()
 				});
 			case 'proclamationEnaction':
@@ -173,12 +173,12 @@ export default function buildReplay(game) {
 				return next('election');
 			case 'election':
 				if (isVoldemortElected) return gameOver();
-				else if (isVotePassed) return next('presidentLegislation');
+				else if (isVotePassed) return next('ministerLegislation');
 				else if (isElectionTrackerMaxed) return next('topDeck');
 				else return jump();
 			case 'topDeck':
 				return next('proclamationEnaction');
-			case 'presidentLegislation':
+			case 'ministerLegislation':
 				return next('headmasterLegislation');
 			case 'headmasterLegislation':
 				if (isVeto) return next('veto');

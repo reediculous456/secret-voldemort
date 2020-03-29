@@ -98,10 +98,10 @@ module.exports = class EnhancedGameSummary {
 		const playerIndex = this.indexOf(identifier);
 
 		return this.logs.map(log => {
-			const { presidentId, headmasterId, votes } = log;
+			const { ministerId, headmasterId, votes } = log;
 
 			return {
-				presidentId,
+				ministerId,
 				headmasterId,
 				vote: votes[playerIndex]
 			};
@@ -111,6 +111,6 @@ module.exports = class EnhancedGameSummary {
 	shotsOf(identifier) {
 		const playerIndex = this.indexOf(identifier);
 
-		return this.logs.filter(log => log.presidentId === playerIndex && Number.isInteger(log.execution)).map(log => log.execution);
+		return this.logs.filter(log => log.ministerId === playerIndex && Number.isInteger(log.execution)).map(log => log.execution);
 	}
 };

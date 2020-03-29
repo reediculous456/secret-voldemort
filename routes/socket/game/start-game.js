@@ -521,7 +521,7 @@ const beginGame = game => {
 					state.cardStatus = {};
 				});
 			});
-			game.gameState.presidentIndex = -1;
+			game.gameState.ministerIndex = -1;
 			startElection(game);
 		},
 		process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 5400 : 9000

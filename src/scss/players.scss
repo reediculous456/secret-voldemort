@@ -174,14 +174,14 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 			top: 0;
 			opacity: 0.2;
 		}
-		.government-token.isPendingPresident,
+		.government-token.isPendingMinister,
 		.government-token.isPendingHeadmaster {
 			animation: fadeIn 1.5s infinite alternate;
 		}
-		.government-token.isPendingPresident,
-		.government-token.isPresident,
-		.government-token.wasPresident {
-			background-image: url('../../public/images/president-token.png');
+		.government-token.isPendingMinister,
+		.government-token.isMinister,
+		.government-token.wasMinister {
+			background-image: url('../../public/images/minister-token.png');
 		}
 		.government-token.isPendingHeadmaster,
 		.government-token.isHeadmaster,

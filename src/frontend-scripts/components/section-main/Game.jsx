@@ -40,8 +40,8 @@ export default class Game extends React.Component {
 				);
 			}
 
-			if (gameInfo.general.status === 'Waiting on presidential discard.' && prevProps.gameInfo.general.status !== 'Waiting on presidential discard.') {
-				playSound('presidentreceivesproclamations', 'pack1', 3000);
+			if (gameInfo.general.status === 'Waiting on ministerial discard.' && prevProps.gameInfo.general.status !== 'Waiting on ministerial discard.') {
+				playSound('ministerreceivesproclamations', 'pack1', 3000);
 			}
 
 			if (gameInfo.general.status === 'Waiting on headmaster enactment.' && prevProps.gameInfo.general.status !== 'Waiting on headmaster enactment.') {
@@ -61,8 +61,8 @@ export default class Game extends React.Component {
 			}
 
 			if (
-				prevProps.gameInfo.general.status === 'President to select special election.' &&
-				gameInfo.general.status !== 'President to select special election.'
+				prevProps.gameInfo.general.status === 'Minister of Magic to select special election.' &&
+				gameInfo.general.status !== 'Minister of Magic to select special election.'
 			) {
 				playSound(pack === 'pack1' ? 'proclamationspecialelection' : 'proclamationpeek', 'pack1', pack === 'pack1' ? 9000 : 3000);
 			}

@@ -62,10 +62,10 @@ const buildPlayback = (replay, to) => {
 	const { nextPhase, prevPhase } = (() => {
 		const toTurnWithPhaseElseFallback = (targetTurn, end) => {
 			const fallbacks = Map({
-				presidentLegislation: List(['topDeck', 'election']),
+				ministerLegislation: List(['topDeck', 'election']),
 				headmasterLegislation: List(['topDeck', 'election']),
-				topDeck: List(['presidentLegislation', 'election']),
-				veto: List(['presidentLegislation', 'election']),
+				topDeck: List(['ministerLegislation', 'election']),
+				veto: List(['ministerLegislation', 'election']),
 				proclamationEnaction: List(['election']),
 				investigation: List(['proclamationEnaction', 'election']),
 				proclamationPeek: List(['proclamationEnaction', 'election']),
@@ -107,13 +107,13 @@ const buildPlayback = (replay, to) => {
 
 		const legislationPos = rotate(
 			Map({
-				presidentLegislation: List(['headmasterLegislation']),
+				ministerLegislation: List(['headmasterLegislation']),
 				headmasterLegislation: List(['veto', 'proclamationEnaction']),
 				topDeck: List(['proclamationEnaction']),
-				veto: List(['proclamationEnaction', 'topDeck', 'presidentLegislation']),
-				proclamationEnaction: List(['presidentLegislation', 'topDeck'])
+				veto: List(['proclamationEnaction', 'topDeck', 'ministerLegislation']),
+				proclamationEnaction: List(['ministerLegislation', 'topDeck'])
 			}),
-			List(['presidentLegislation', 'topDeck'])
+			List(['ministerLegislation', 'topDeck'])
 		);
 
 		const actionPos = findTickPos(turnNum, List(['investigation', 'proclamationPeek', 'specialElection', 'execution']));

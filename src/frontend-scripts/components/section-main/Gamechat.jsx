@@ -74,12 +74,12 @@ class Gamechat extends React.Component {
 				gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).isDead) ||
 			(prevProps &&
 				userInfo.userName &&
-				gameInfo.gameState.phase === 'presidentSelectingProclamation' &&
+				gameInfo.gameState.phase === 'ministerSelectingProclamation' &&
 				((gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName) &&
-					gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).governmentStatus === 'isPresident') ||
+					gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).governmentStatus === 'isMinister') ||
 					(gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName) &&
 						gameInfo.publicPlayersState.find(player => userInfo.userName === player.userName).governmentStatus === 'isHeadmaster')) &&
-				prevProps.gameInfo.gameState.phase !== 'presidentSelectingProclamation')
+				prevProps.gameInfo.gameState.phase !== 'ministerSelectingProclamation')
 		) {
 			this.setState({ inputValue: '' });
 			$(this.gameChatInput).blur();
@@ -329,14 +329,9 @@ class Gamechat extends React.Component {
 			}
 		})();
 		const isGovernmentDuringProclamationSelection = (() => {
-			if (
-				gameState &&
-				(gameState.phase === 'presidentSelectingProclamation' || gameState.phase === 'headmasterSelectingProclamation') &&
-				userName &&
-				isSeated
-			) {
+			if (gameState && (gameState.phase === 'ministerSelectingProclamation' || gameState.phase === 'headmasterSelectingProclamation') && userName && isSeated) {
 				const player = publicPlayersState.find(p => p.userName === userName);
-				return player && (player.governmentStatus === 'isPresident' || player.governmentStatus === 'isHeadmaster');
+				return player && (player.governmentStatus === 'isMinister' || player.governmentStatus === 'isHeadmaster');
 			}
 		})();
 		const isStaff = Boolean(
@@ -977,10 +972,10 @@ class Gamechat extends React.Component {
 							};
 
 							switch (this.state.claim) {
-								case 'wasPresident':
+								case 'wasMinister':
 									return (
 										<div>
-											<p> As president, I drew...</p>
+											<p> As minister of magic, I drew...</p>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rrr');
@@ -1048,7 +1043,7 @@ class Gamechat extends React.Component {
 								case 'didInvestigateLoyalty':
 									return (
 										<div>
-											<p> As president, when I looked at the party membership I saw that he or she was on the...</p>
+											<p> As minister of magic, when I looked at the party membership I saw that he or she was on the...</p>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'death eater');
@@ -1070,7 +1065,7 @@ class Gamechat extends React.Component {
 								case 'didSingleProclamationPeek':
 									return (
 										<div>
-											<p> As president, when I looked at the top card I saw a...</p>
+											<p> As minister of magic, when I looked at the top card I saw a...</p>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'deatheater');
@@ -1092,7 +1087,7 @@ class Gamechat extends React.Component {
 								case 'didProclamationPeek':
 									return (
 										<div>
-											<p> As president, I peeked and saw... </p>
+											<p> As minister of magic, I peeked and saw... </p>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rrr');

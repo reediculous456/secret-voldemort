@@ -36,12 +36,12 @@ const gameSummary = new Schema({
 	logs: [
 		{
 			// election
-			presidentId: Number,
+			ministerId: Number,
 			headmasterId: Number,
 			votes: Array, // [Boolean]
 
 			// proclamation enaction
-			presidentHand: {
+			ministerHand: {
 				reds: Number,
 				blues: Number
 			},
@@ -51,7 +51,7 @@ const gameSummary = new Schema({
 			},
 			enactedProclamation: String,
 
-			presidentClaim: {
+			ministerClaim: {
 				reds: Number,
 				blues: Number
 			},
@@ -60,7 +60,7 @@ const gameSummary = new Schema({
 				blues: Number
 			},
 
-			presidentVeto: Boolean,
+			ministerVeto: Boolean,
 			headmasterVeto: Boolean,
 
 			// actions

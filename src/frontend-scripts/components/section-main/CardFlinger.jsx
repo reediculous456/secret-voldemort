@@ -29,8 +29,8 @@ class CardFlinger extends React.Component {
 				});
 			}
 
-			if (phase === 'presidentSelectingProclamation' && gameInfo.cardFlingerState[0].action === 'active') {
-				socket.emit('selectedPresidentProclamation', {
+			if (phase === 'ministerSelectingProclamation' && gameInfo.cardFlingerState[0].action === 'active') {
+				socket.emit('selectedMinisterProclamation', {
 					uid: gameInfo.general.uid,
 					selection: index ? (index === 2 ? 1 : 2) : 0
 				});
@@ -50,15 +50,15 @@ class CardFlinger extends React.Component {
 				});
 			}
 
-			if (phase === 'presidentVoteOnVeto' && gameInfo.cardFlingerState[0].action === 'active') {
-				socket.emit('selectedPresidentVoteOnVeto', {
+			if (phase === 'ministerVoteOnVeto' && gameInfo.cardFlingerState[0].action === 'active') {
+				socket.emit('selectedMinisterVoteOnVeto', {
 					vote: index === 1,
 					uid: gameInfo.general.uid
 				});
 			}
 
-			if (phase === 'presidentVoteOnBurn' && gameInfo.cardFlingerState[0].action === 'active') {
-				socket.emit('selectedPresidentVoteOnBurn', {
+			if (phase === 'ministerVoteOnBurn' && gameInfo.cardFlingerState[0].action === 'active') {
+				socket.emit('selectedMinisterVoteOnBurn', {
 					vote: index === 1,
 					uid: gameInfo.general.uid
 				});
@@ -92,9 +92,9 @@ class CardFlinger extends React.Component {
 						</div>
 					</div>
 				);
-			} else if (phase === 'selectingHeadmaster' && currentPlayerStatus === 'isPendingPresident') {
+			} else if (phase === 'selectingHeadmaster' && currentPlayerStatus === 'isPendingMinister') {
 				return <div className="help-message nominate-chanc">You must select a player to be your Headmaster</div>;
-			} else if (phase === 'presidentSelectingProclamation' && currentPlayerStatus === 'isPresident') {
+			} else if (phase === 'ministerSelectingProclamation' && currentPlayerStatus === 'isMinister') {
 				return (
 					<div className="help-message pres-select">
 						Choose 1 proclamation to <span>DISCARD</span>.
@@ -109,30 +109,30 @@ class CardFlinger extends React.Component {
 						Choose 1 proclamation to <span>PLAY</span>.
 					</div>
 				);
-			} else if (phase === 'selectPartyMembershipInvestigate' && currentPlayerStatus === 'isPresident') {
+			} else if (phase === 'selectPartyMembershipInvestigate' && currentPlayerStatus === 'isMinister') {
 				return <div className="help-message investigate">You must investigate another players party membership.</div>;
-			} else if (phase === 'selectPartyMembershipInvestigateReverse' && currentPlayerStatus === 'isPresident') {
+			} else if (phase === 'selectPartyMembershipInvestigateReverse' && currentPlayerStatus === 'isMinister') {
 				return <div className="help-message investigate">You must show another player your party membership.</div>;
-			} else if (phase === 'specialElection' && currentPlayerStatus === 'isPresident') {
-				return <div className="help-message special-election">Choose 1 player to become the next President.</div>;
-			} else if (phase === 'execution' && currentPlayerStatus === 'isPresident') {
+			} else if (phase === 'specialElection' && currentPlayerStatus === 'isMinister') {
+				return <div className="help-message special-election">Choose 1 player to become the next Minister.</div>;
+			} else if (phase === 'execution' && currentPlayerStatus === 'isMinister') {
 				return <div className="help-message execute">You must select a player to execute.</div>;
 			} else if (
 				(phase === 'headmasterVoteOnVeto' && currentPlayerStatus === 'isHeadmaster') ||
-				(phase === 'presidentVoteOnVeto' && currentPlayerStatus === 'isPresident')
+				(phase === 'ministerVoteOnVeto' && currentPlayerStatus === 'isMinister')
 			) {
 				return (
 					<div className="help-message veto">
 						Would you like to <span>VETO</span> both of these proclamations?
 					</div>
 				);
-			} else if (phase === 'presidentVoteOnBurn' && currentPlayerStatus === 'isPresident') {
+			} else if (phase === 'ministerVoteOnBurn' && currentPlayerStatus === 'isMinister') {
 				return (
 					<div className="help-message veto">
 						Would you like to <span>DISCARD</span> the top proclamation?
 					</div>
 				);
-			} else if (status === 'President to peek at proclamations.' && currentPlayerStatus === 'isPresident') {
+			} else if (status === 'Minister of Magic to peek at proclamations.' && currentPlayerStatus === 'isMinister') {
 				return <div className="help-message proclamation-peak">Click on the draw deck to peek at the top 3 proclamations.</div>;
 			}
 		};

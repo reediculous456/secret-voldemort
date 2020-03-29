@@ -343,7 +343,7 @@ module.exports.completeGame = (game, winningTeamName) => {
 					previousElectedGovernment: [],
 					undrawnProclamationCount: 17,
 					discardedProclamationCount: 0,
-					presidentIndex: -1,
+					ministerIndex: -1,
 					isStarted: true
 				};
 				finalGame.trackState = {

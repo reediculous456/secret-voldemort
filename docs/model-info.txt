@@ -8,9 +8,9 @@ gameState
 	timedModeEnabled bool
 	phase string ?
 	previousElectedGovernment array of numbers, 1st is pres 2nd is chanc,
-	presidentIndex number
+	ministerIndex number
 	undrawnProclamationCount number
-	specialElectionFormerPresidentIndex number
+	specialElectionFormerMinisterIndex number
 	audioCue string no op - a hint for the front end to play a sound
 flappyState
 	orderScore number
@@ -84,14 +84,14 @@ remakeData array
 publicPlayersState array
 	obj
 		pingTime number using getTime()
-		governmentStatus string isPendingPresident isPendingHeadmaster
+		governmentStatus string isPendingMinister isPendingHeadmaster
 		isDead bool
 		isConfetti bool
 		connected bool
 		isLoader bool
 		leftGame bool
 		userName string
-		previousGovernmentStatus string wasPresident wasHeadmaster
+		previousGovernmentStatus string wasMinister wasHeadmaster
 		cardStatus
 			cardDisplayed bool
 			isFlipped bool
@@ -126,7 +126,7 @@ private
 			cardName string
 			team string
 		gameChats array of chat objects
-		governmentStatus string isPresident isHeadmaster isSelectingHeadmaster isSelectingPresidentDiscard isSelectingHeadmasterDiscard
+		governmentStatus string isMinister isHeadmaster isSelectingHeadmaster isSelectingMinisterDiscard isSelectingHeadmasterDiscard
 		voteStatus
 			hasVoted bool
 			didVoteYes bool

@@ -19,15 +19,15 @@ const _ = require('lodash');
 const { makeReport } = require('../report.js');
 
 const powerMapping = {
-	investigate: [investigateLoyalty, 'The president must investigate the party membership of another player.'],
-	deckpeek: [proclamationPeek, 'The president must examine the top 3 proclamations.'],
-	election: [specialElection, 'The president must select a player for a special election.'],
-	bullet: [executePlayer, 'The president must select a player for execution.'],
-	reverseinv: [showPlayerLoyalty, 'The president must reveal their party membership to another player.'],
-	peekdrop: [proclamationPeekAndDrop, 'The president must examine the top proclamation, and may discard it.']
+	investigate: [investigateLoyalty, 'The minister of magic must investigate the party membership of another player.'],
+	deckpeek: [proclamationPeek, 'The minister of magic must examine the top 3 proclamations.'],
+	election: [specialElection, 'The minister of magic must select a player for a special election.'],
+	bullet: [executePlayer, 'The minister of magic must select a player for execution.'],
+	reverseinv: [showPlayerLoyalty, 'The minister of magic must reveal their party membership to another player.'],
+	peekdrop: [proclamationPeekAndDrop, 'The minister of magic must examine the top proclamation, and may discard it.']
 };
 
-const presidentPowers = [
+const ministerPowers = [
 	{
 		0: null,
 		1: null,
@@ -178,7 +178,7 @@ const enactProclamation = (game, team, socket) => {
 				});
 
 				if (game.trackState.electionTrackerCount <= 2 && game.publicPlayersState.findIndex(player => player.governmentStatus === 'isHeadmaster') > -1) {
-					game.publicPlayersState[game.gameState.presidentIndex].previousGovernmentStatus = 'wasPresident';
+					game.publicPlayersState[game.gameState.ministerIndex].previousGovernmentStatus = 'wasMinister';
 					game.publicPlayersState[game.publicPlayersState.findIndex(player => player.governmentStatus === 'isHeadmaster')].previousGovernmentStatus =
 						'wasHeadmaster';
 				}
@@ -187,7 +187,7 @@ const enactProclamation = (game, team, socket) => {
 				team === 'death eater'
 					? game.customGameSettings.enabled
 						? powerMapping[game.customGameSettings.powers[game.trackState.deathEaterProclamationCount - 1]]
-						: presidentPowers[game.general.type][game.trackState.deathEaterProclamationCount - 1]
+						: ministerPowers[game.general.type][game.trackState.deathEaterProclamationCount - 1]
 					: null;
 
 			game.trackState.enactedProclamations[index].position =
@@ -246,7 +246,7 @@ const enactProclamation = (game, team, socket) => {
 				addPreviousGovernmentStatus();
 
 				if (game.general.timedMode) {
-					const { presidentIndex } = game.gameState;
+					const { ministerIndex } = game.gameState;
 
 					if (game.private.timerId) {
 						clearTimeout(game.private.timerId);
@@ -256,26 +256,26 @@ const enactProclamation = (game, team, socket) => {
 					game.private.timerId = setTimeout(
 						() => {
 							if (game.gameState.timedModeEnabled) {
-								const president = seatedPlayers[presidentIndex];
-								let list = seatedPlayers.filter((player, i) => i !== presidentIndex && !seatedPlayers[i].isDead);
+								const minister = seatedPlayers[ministerIndex];
+								let list = seatedPlayers.filter((player, i) => i !== ministerIndex && !seatedPlayers[i].isDead);
 
 								game.gameState.timedModeEnabled = false;
 
 								switch (powerToEnact[1]) {
-									case 'The president must examine the top 3 proclamations.':
-										selectProclamations({ user: president.userName }, game, socket);
+									case 'The minister of magic must examine the top 3 proclamations.':
+										selectProclamations({ user: minister.userName }, game, socket);
 										break;
-									case 'The president must select a player for execution.':
-										if (president.role.cardName === 'death eater') {
+									case 'The minister of magic must select a player for execution.':
+										if (minister.role.cardName === 'death eater') {
 											list = list.filter(player => player.role.cardName !== 'voldemort');
 										}
-										selectPlayerToExecute({ user: president.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
+										selectPlayerToExecute({ user: minister.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
 										break;
-									case 'The president must investigate the party membership of another player.':
-										selectPartyMembershipInvestigate({ user: president.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
+									case 'The minister of magic must investigate the party membership of another player.':
+										selectPartyMembershipInvestigate({ user: minister.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
 										break;
-									case 'The president must select a player for a special election.':
-										selectSpecialElection({ user: president.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
+									case 'The minister of magic must select a player for a special election.':
+										selectSpecialElection({ user: minister.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
 										break;
 								}
 							}
@@ -302,12 +302,12 @@ const enactProclamation = (game, team, socket) => {
  * @param {object} data - socket emit
  * @param {object} socket - socket
  */
-const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
+const selectMinisterVoteOnVeto = (passport, game, data, socket) => {
 	const { experiencedMode } = game.general;
-	const president = game.private.seatedPlayers[game.gameState.presidentIndex];
+	const minister = game.private.seatedPlayers[game.gameState.ministerIndex];
 	const headmasterIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isHeadmaster');
 	const publicHeadmaster = game.publicPlayersState[headmasterIndex];
-	const publicPresident = game.publicPlayersState[game.gameState.presidentIndex];
+	const publicMinister = game.publicPlayersState[game.gameState.ministerIndex];
 
 	if (game.gameState.isGameFrozen) {
 		if (socket) {
@@ -323,38 +323,38 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 		return;
 	}
 
-	if (!president || president.userName !== passport.user) {
+	if (!minister || minister.userName !== passport.user) {
 		return;
 	}
 
 	game.private.summary = game.private.summary.updateLog({
-		presidentVeto: data.vote
+		ministerVeto: data.vote
 	});
 
 	if (
-		!game.private.lock.selectPresidentVoteOnVeto &&
+		!game.private.lock.selectMinisterVoteOnVeto &&
 		Number.isInteger(headmasterIndex) &&
 		game.publicPlayersState[headmasterIndex] &&
 		!(game.general.isTourny && game.general.tournyInfo.isCancelled) &&
-		president.cardFlingerState &&
-		president.cardFlingerState[0]
+		minister.cardFlingerState &&
+		minister.cardFlingerState[0]
 	) {
-		game.private.lock.selectPresidentVoteOnVeto = true;
+		game.private.lock.selectMinisterVoteOnVeto = true;
 
 		game.publicPlayersState[headmasterIndex].isLoader = false;
-		publicPresident.isLoader = false;
-		president.cardFlingerState[0].action = president.cardFlingerState[1].action = '';
-		president.cardFlingerState[0].cardStatus.isFlipped = president.cardFlingerState[1].cardStatus.isFlipped = false;
+		publicMinister.isLoader = false;
+		minister.cardFlingerState[0].action = minister.cardFlingerState[1].action = '';
+		minister.cardFlingerState[0].cardStatus.isFlipped = minister.cardFlingerState[1].cardStatus.isFlipped = false;
 
 		if (data.vote) {
-			president.cardFlingerState[0].notificationStatus = 'selected';
-			president.cardFlingerState[1].notificationStatus = '';
+			minister.cardFlingerState[0].notificationStatus = 'selected';
+			minister.cardFlingerState[1].notificationStatus = '';
 		} else {
-			president.cardFlingerState[0].notificationStatus = '';
-			president.cardFlingerState[1].notificationStatus = 'selected';
+			minister.cardFlingerState[0].notificationStatus = '';
+			minister.cardFlingerState[1].notificationStatus = 'selected';
 		}
 
-		publicPresident.cardStatus = {
+		publicMinister.cardStatus = {
 			cardDisplayed: true,
 			cardFront: 'ballot',
 			cardBack: {
@@ -370,11 +370,11 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 					timestamp: new Date(),
 					gameChat: true,
 					chat: [
-						{ text: 'President ' },
+						{ text: 'Minister ' },
 						{
 							text: game.general.blindMode
-								? `{${game.private.seatedPlayers.indexOf(president) + 1}}`
-								: `${passport.user} {${game.private.seatedPlayers.indexOf(president) + 1}}`,
+								? `{${game.private.seatedPlayers.indexOf(minister) + 1}}`
+								: `${passport.user} {${game.private.seatedPlayers.indexOf(minister) + 1}}`,
 							type: 'player'
 						},
 						{
@@ -390,7 +390,7 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 					game.private.unSeatedGameChats.push(chat);
 				}
 
-				publicPresident.cardStatus.isFlipped = true;
+				publicMinister.cardStatus.isFlipped = true;
 
 				sendInProgressGameUpdate(game);
 
@@ -401,13 +401,13 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 						timestamp: new Date(),
 						chat: [
 							{
-								text: `The President and Headmaster have voted to veto this election and the election tracker moves forward. (${game.trackState.electionTrackerCount}/3)`
+								text: `The Minister of Magic and Hogwarts Headmaster have voted to veto this election and the election tracker moves forward. (${game.trackState.electionTrackerCount}/3)`
 							}
 						]
 					};
 
 					game.gameState.pendingHeadmasterIndex = null;
-					game.private.lock.selectHeadmasterProclamation = game.private.lock.selectPresidentVoteOnVeto = game.private.lock.selectHeadmasterVoteOnVeto = false;
+					game.private.lock.selectHeadmasterProclamation = game.private.lock.selectMinisterVoteOnVeto = game.private.lock.selectHeadmasterVoteOnVeto = false;
 
 					if (!game.general.disableGamechat) {
 						game.private.seatedPlayers.forEach(player => {
@@ -420,14 +420,14 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 					setTimeout(
 						() => {
 							game.gameState.audioCue = '';
-							president.cardFlingerState = [];
+							minister.cardFlingerState = [];
 							if (game.trackState.electionTrackerCount <= 2 && game.publicPlayersState.findIndex(player => player.governmentStatus === 'isHeadmaster') > -1) {
 								game.publicPlayersState.forEach(player => {
 									if (player.previousGovernmentStatus) {
 										player.previousGovernmentStatus = '';
 									}
 								});
-								game.publicPlayersState[game.gameState.presidentIndex].previousGovernmentStatus = 'wasPresident';
+								game.publicPlayersState[game.gameState.ministerIndex].previousGovernmentStatus = 'wasMinister';
 								game.publicPlayersState[headmasterIndex].previousGovernmentStatus = 'wasHeadmaster';
 							}
 							if (game.trackState.electionTrackerCount >= 3) {
@@ -452,12 +452,12 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 					setTimeout(
 						() => {
 							game.gameState.audioCue = '';
-							publicPresident.cardStatus.cardDisplayed = false;
+							publicMinister.cardStatus.cardDisplayed = false;
 							publicHeadmaster.cardStatus.cardDisplayed = false;
-							president.cardFlingerState = [];
+							minister.cardFlingerState = [];
 							enactProclamation(game, game.private.currentElectionProclamations[0], socket);
 							setTimeout(() => {
-								publicHeadmaster.cardStatus.isFlipped = publicPresident.cardStatus.isFlipped = false;
+								publicHeadmaster.cardStatus.isFlipped = publicMinister.cardStatus.isFlipped = false;
 							}, 1000);
 						},
 						process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 1000 : 2000
@@ -469,7 +469,7 @@ const selectPresidentVoteOnVeto = (passport, game, data, socket) => {
 	}
 };
 
-module.exports.selectPresidentVoteOnVeto = selectPresidentVoteOnVeto;
+module.exports.selectMinisterVoteOnVeto = selectMinisterVoteOnVeto;
 
 /**
  * @param {object} passport - passport auth.
@@ -479,7 +479,7 @@ module.exports.selectPresidentVoteOnVeto = selectPresidentVoteOnVeto;
  */
 const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 	const { experiencedMode } = game.general;
-	const president = game.private.seatedPlayers[game.gameState.presidentIndex];
+	const minister = game.private.seatedPlayers[game.gameState.ministerIndex];
 	const headmasterIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isHeadmaster');
 	const headmaster = game.private.seatedPlayers.find(player => player.userName === game.private._headmasterPlayerName);
 	const publicHeadmaster = game.publicPlayersState[headmasterIndex];
@@ -506,7 +506,7 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 		headmasterVeto: data.vote
 	});
 
-	game.private.lock.selectPresidentVoteOnVeto = false;
+	game.private.lock.selectMinisterVoteOnVeto = false;
 	if (
 		!game.private.lock.selectHeadmasterVoteOnVeto &&
 		headmaster &&
@@ -569,7 +569,7 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 				sendInProgressGameUpdate(game);
 
 				if (data.vote) {
-					president.cardFlingerState = [
+					minister.cardFlingerState = [
 						{
 							position: 'middle-left',
 							notificationStatus: '',
@@ -593,7 +593,7 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 					];
 
 					if (!game.general.disableGamechat) {
-						president.gameChats.push({
+						minister.gameChats.push({
 							gameChat: true,
 							timestamp: new Date(),
 							chat: [
@@ -605,15 +605,15 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 						});
 					}
 
-					game.general.status = 'President to vote on proclamation veto.';
+					game.general.status = 'Minister of Magic to vote on proclamation veto.';
 					sendInProgressGameUpdate(game);
 					setTimeout(
 						() => {
-							president.cardFlingerState[0].cardStatus.isFlipped = president.cardFlingerState[1].cardStatus.isFlipped = true;
-							president.cardFlingerState[0].notificationStatus = president.cardFlingerState[1].notificationStatus = 'notification';
+							minister.cardFlingerState[0].cardStatus.isFlipped = minister.cardFlingerState[1].cardStatus.isFlipped = true;
+							minister.cardFlingerState[0].notificationStatus = minister.cardFlingerState[1].notificationStatus = 'notification';
 							headmaster.cardFlingerState = [];
-							game.publicPlayersState[game.gameState.presidentIndex].isLoader = true;
-							game.gameState.phase = 'presidentVoteOnVeto';
+							game.publicPlayersState[game.gameState.ministerIndex].isLoader = true;
+							game.gameState.phase = 'ministerVoteOnVeto';
 							sendInProgressGameUpdate(game);
 
 							if (game.general.timedMode) {
@@ -626,7 +626,7 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 									() => {
 										if (game.gameState.timedModeEnabled) {
 											game.gameState.timedModeEnabled = false;
-											selectPresidentVoteOnVeto({ user: president.userName }, game, { vote: Boolean(Math.floor(Math.random() * 2)) }, socket);
+											selectMinisterVoteOnVeto({ user: minister.userName }, game, { vote: Boolean(Math.floor(Math.random() * 2)) }, socket);
 										}
 									},
 									process.env.DEVTIMEDDELAY ? process.env.DEVTIMEDDELAY : game.general.timedMode * 1000
@@ -677,8 +677,8 @@ const handToLog = hand =>
  */
 const selectHeadmasterProclamation = (passport, game, data, wasTimer, socket) => {
 	const { experiencedMode } = game.general;
-	const presidentIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isPresident');
-	const president = game.private.seatedPlayers[presidentIndex];
+	const ministerIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isMinister');
+	const minister = game.private.seatedPlayers[ministerIndex];
 	const headmasterIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isHeadmaster');
 	const headmaster = game.private.seatedPlayers[headmasterIndex];
 	const enactedProclamation = game.private.currentHeadmasterOptions[data.selection === 3 ? 1 : 0];
@@ -780,7 +780,7 @@ const selectHeadmasterProclamation = (passport, game, data, wasTimer, socket) =>
 		game.private.hiddenInfoChat.push(modOnlyChat);
 		sendInProgressModChatUpdate(game, modOnlyChat);
 
-		game.private.lock.selectPresidentProclamation = false;
+		game.private.lock.selectMinisterProclamation = false;
 
 		if (game.general.timedMode && game.private.timerId) {
 			clearTimeout(game.private.timerId);
@@ -895,11 +895,11 @@ const selectHeadmasterProclamation = (passport, game, data, wasTimer, socket) =>
 			);
 		}
 		if (experiencedMode) {
-			president.playersState[presidentIndex].claim = 'wasPresident';
+			minister.playersState[ministerIndex].claim = 'wasMinister';
 			headmaster.playersState[headmasterIndex].claim = 'wasHeadmaster';
 		} else {
 			setTimeout(() => {
-				president.playersState[presidentIndex].claim = 'wasPresident';
+				minister.playersState[ministerIndex].claim = 'wasMinister';
 				headmaster.playersState[headmasterIndex].claim = 'wasHeadmaster';
 				sendInProgressGameUpdate(game);
 			}, 3000);
@@ -916,9 +916,9 @@ module.exports.selectHeadmasterProclamation = selectHeadmasterProclamation;
  * @param {boolean} wasTimer - came from timer
  * @param {object} socket - socket
  */
-const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => {
-	const { presidentIndex } = game.gameState;
-	const president = game.private.seatedPlayers[presidentIndex];
+const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
+	const { ministerIndex } = game.gameState;
+	const minister = game.private.seatedPlayers[ministerIndex];
 	const headmasterIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isHeadmaster');
 	const headmaster = game.private.seatedPlayers[headmasterIndex];
 	const nonDiscardedProclamations = _.range(0, 3).filter(num => num !== data.selection);
@@ -937,15 +937,15 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 		return;
 	}
 
-	if (!president || president.userName !== passport.user || nonDiscardedProclamations.length !== 2) {
+	if (!minister || minister.userName !== passport.user || nonDiscardedProclamations.length !== 2) {
 		return;
 	}
 
 	if (
-		!game.private.lock.selectPresidentProclamation &&
-		president &&
-		president.cardFlingerState &&
-		president.cardFlingerState.length &&
+		!game.private.lock.selectMinisterProclamation &&
+		minister &&
+		minister.cardFlingerState &&
+		minister.cardFlingerState.length &&
 		Number.isInteger(headmasterIndex) &&
 		game.publicPlayersState[headmasterIndex] &&
 		!(game.general.isTourny && game.general.tournyInfo.isCancelled)
@@ -963,10 +963,10 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 			gameChat: true,
 			chat: [
 				{
-					text: 'President '
+					text: 'Minister of Magic '
 				},
 				{
-					text: `${president.userName} {${presidentIndex + 1}}`,
+					text: `${minister.userName} {${ministerIndex + 1}}`,
 					type: 'player'
 				},
 				{
@@ -985,7 +985,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 		sendInProgressModChatUpdate(game, modOnlyChat);
 
 		if (!wasTimer && !game.general.private) {
-			// const presGetsPower = presidentPowers[game.general.type][game.trackState.death eaterProclamationCount] ? true : false;
+			// const presGetsPower = ministerPowers[game.general.type][game.trackState.death eaterProclamationCount] ? true : false;
 			const track4blue = game.trackState.orderProclamationCount >= 4;
 			const trackReds = game.trackState.deathEaterProclamationCount;
 
@@ -1000,7 +1000,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 			} else if (passed[1] === 'order') passedNicer = 'BR';
 			else passedNicer = 'RR';
 
-			if (president.role.team === 'order') {
+			if (minister.role.team === 'order') {
 				// order
 				if (discarded === 'order') {
 					if (track4blue) {
@@ -1008,8 +1008,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// tossed only blue on 4 blues
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Order',
 									situation: `got BRR with 4 blues on the track, and tossed the blue.`,
 									election: game.general.electionCount,
@@ -1024,8 +1024,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// did not force 5th blue
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Order',
 									situation: `got BBR with 4 blues on the track, and did not force.`,
 									election: game.general.electionCount,
@@ -1042,8 +1042,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// tossed only blue with no benefit
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Order',
 									situation: `got BRR before HZ, and tossed the blue.`,
 									election: game.general.electionCount,
@@ -1060,8 +1060,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// tossed blue in VZ
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Order',
 									situation: `got BRR during veto zone, and tossed the blue.`,
 									election: game.general.electionCount,
@@ -1076,8 +1076,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// tossed blue in VZ
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Order',
 									situation: `got BBR during veto zone, and did not force 5th blue.`,
 									election: game.general.electionCount,
@@ -1099,8 +1099,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// forced 5th blue on another fas
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Death Eater',
 									situation: `got BBR with 4 blues on the track, and forced blues on a death eater headmaster.`,
 									election: game.general.electionCount,
@@ -1115,8 +1115,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// offered 5th blue choice as fas
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Death Eater',
 									situation: `got BRR with 4 blues on the track, and offered choice to a order headmaster.`,
 									election: game.general.electionCount,
@@ -1133,8 +1133,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// forced 5th blue as hit
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Death Eater',
 									situation: `got BBR with 5 reds on the track, and forced blues on a death eater headmaster.`,
 									election: game.general.electionCount,
@@ -1149,8 +1149,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 							// offered 5th blue choice as hit
 							makeReport(
 								{
-									player: president.userName,
-									seat: presidentIndex + 1,
+									player: minister.userName,
+									seat: ministerIndex + 1,
 									role: 'Death Eater',
 									situation: `got BRR with 5 reds on the track, and offered choice to a order headmaster.`,
 									election: game.general.electionCount,
@@ -1167,23 +1167,23 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 			}
 		}
 
-		game.private.lock.selectPresidentProclamation = true;
-		game.publicPlayersState[presidentIndex].isLoader = false;
+		game.private.lock.selectMinisterProclamation = true;
+		game.publicPlayersState[ministerIndex].isLoader = false;
 		game.publicPlayersState[headmasterIndex].isLoader = true;
 
 		try {
 			if (data.selection === 0) {
-				president.cardFlingerState[0].notificationStatus = 'selected';
-				president.cardFlingerState[1].notificationStatus = president.cardFlingerState[2].notificationStatus = '';
+				minister.cardFlingerState[0].notificationStatus = 'selected';
+				minister.cardFlingerState[1].notificationStatus = minister.cardFlingerState[2].notificationStatus = '';
 			} else if (data.selection === 1) {
-				president.cardFlingerState[0].notificationStatus = president.cardFlingerState[2].notificationStatus = '';
-				president.cardFlingerState[1].notificationStatus = 'selected';
+				minister.cardFlingerState[0].notificationStatus = minister.cardFlingerState[2].notificationStatus = '';
+				minister.cardFlingerState[1].notificationStatus = 'selected';
 			} else {
-				president.cardFlingerState[0].notificationStatus = president.cardFlingerState[1].notificationStatus = '';
-				president.cardFlingerState[2].notificationStatus = 'selected';
+				minister.cardFlingerState[0].notificationStatus = minister.cardFlingerState[1].notificationStatus = '';
+				minister.cardFlingerState[2].notificationStatus = 'selected';
 			}
 		} catch (error) {
-			console.log(error, 'caught exception in president cardflinger');
+			console.log(error, 'caught exception in minister cardflinger');
 			return;
 		}
 
@@ -1195,8 +1195,8 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 			game.private.currentElectionProclamations[nonDiscardedProclamations[1]]
 		];
 
-		president.cardFlingerState[0].action = president.cardFlingerState[1].action = president.cardFlingerState[2].action = '';
-		president.cardFlingerState[0].cardStatus.isFlipped = president.cardFlingerState[1].cardStatus.isFlipped = president.cardFlingerState[2].cardStatus.isFlipped = false;
+		minister.cardFlingerState[0].action = minister.cardFlingerState[1].action = minister.cardFlingerState[2].action = '';
+		minister.cardFlingerState[0].cardStatus.isFlipped = minister.cardFlingerState[1].cardStatus.isFlipped = minister.cardFlingerState[2].cardStatus.isFlipped = false;
 
 		headmaster.cardFlingerState = [
 			{
@@ -1234,7 +1234,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 
 		setTimeout(
 			() => {
-				president.cardFlingerState = [];
+				minister.cardFlingerState = [];
 				headmaster.cardFlingerState.forEach(cardFlinger => {
 					cardFlinger.cardStatus.isFlipped = true;
 				});
@@ -1267,7 +1267,7 @@ const selectPresidentProclamation = (passport, game, data, wasTimer, socket) => 
 	}
 };
 
-module.exports.selectPresidentProclamation = selectPresidentProclamation;
+module.exports.selectMinisterProclamation = selectMinisterProclamation;
 
 /**
  * @param {object} passport - socket authentication.
@@ -1298,7 +1298,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 
 	const passedElection = socket => {
 		const { gameState } = game;
-		const { presidentIndex } = gameState;
+		const { ministerIndex } = gameState;
 		const headmasterIndex = game.publicPlayersState.findIndex(player => player.governmentStatus === 'isHeadmaster');
 
 		game.private._headmasterPlayerName = game.private.seatedPlayers[headmasterIndex].userName;
@@ -1324,13 +1324,13 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 			}
 		}
 
-		game.general.status = 'Waiting on presidential discard.';
-		game.publicPlayersState[presidentIndex].isLoader = true;
+		game.general.status = 'Waiting on ministerial discard.';
+		game.publicPlayersState[ministerIndex].isLoader = true;
 		if (!experiencedMode && !game.general.disableGamechat) {
-			seatedPlayers[presidentIndex].gameChats.push({
+			seatedPlayers[ministerIndex].gameChats.push({
 				timestamp: new Date(),
 				gameChat: true,
-				chat: [{ text: 'As president, you must select one proclamation to discard.' }]
+				chat: [{ text: 'As minister of magic, you must select one proclamation to discard.' }]
 			});
 		}
 
@@ -1353,7 +1353,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 			makeReport(
 				{
 					player: 'A Player',
-					seat: presidentIndex + 1,
+					seat: ministerIndex + 1,
 					role: 'Order',
 					situation: `has just received an invalid hand!\n${JSON.stringify(game.private.currentElectionProclamations)}`,
 					election: game.general.electionCount,
@@ -1371,10 +1371,10 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 			gameChat: true,
 			chat: [
 				{
-					text: 'President '
+					text: 'Minister '
 				},
 				{
-					text: `${seatedPlayers[presidentIndex].userName} {${presidentIndex + 1}}`,
+					text: `${seatedPlayers[ministerIndex].userName} {${ministerIndex + 1}}`,
 					type: 'player'
 				},
 				{
@@ -1401,10 +1401,10 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 		sendInProgressModChatUpdate(game, modOnlyChat);
 
 		game.private.summary = game.private.summary.updateLog({
-			presidentHand: handToLog(game.private.currentElectionProclamations)
+			ministerHand: handToLog(game.private.currentElectionProclamations)
 		});
 
-		seatedPlayers[presidentIndex].cardFlingerState = [
+		seatedPlayers[ministerIndex].cardFlingerState = [
 			{
 				position: 'middle-far-left',
 				action: 'active',
@@ -1444,15 +1444,15 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 		}, 400);
 		setTimeout(
 			() => {
-				seatedPlayers[presidentIndex].cardFlingerState[0].cardStatus.isFlipped = seatedPlayers[
-					presidentIndex
-				].cardFlingerState[1].cardStatus.isFlipped = seatedPlayers[presidentIndex].cardFlingerState[2].cardStatus.isFlipped = true;
-				seatedPlayers[presidentIndex].cardFlingerState[0].notificationStatus = seatedPlayers[
-					presidentIndex
-				].cardFlingerState[1].notificationStatus = seatedPlayers[presidentIndex].cardFlingerState[2].notificationStatus = 'notification';
-				gameState.phase = 'presidentSelectingProclamation';
+				seatedPlayers[ministerIndex].cardFlingerState[0].cardStatus.isFlipped = seatedPlayers[
+					ministerIndex
+				].cardFlingerState[1].cardStatus.isFlipped = seatedPlayers[ministerIndex].cardFlingerState[2].cardStatus.isFlipped = true;
+				seatedPlayers[ministerIndex].cardFlingerState[0].notificationStatus = seatedPlayers[
+					ministerIndex
+				].cardFlingerState[1].notificationStatus = seatedPlayers[ministerIndex].cardFlingerState[2].notificationStatus = 'notification';
+				gameState.phase = 'ministerSelectingProclamation';
 
-				game.gameState.previousElectedGovernment = [presidentIndex, headmasterIndex];
+				game.gameState.previousElectedGovernment = [ministerIndex, headmasterIndex];
 
 				if (game.general.timedMode) {
 					if (game.private.timerId) {
@@ -1464,7 +1464,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 						() => {
 							if (game.gameState.timedModeEnabled) {
 								game.gameState.timedModeEnabled = false;
-								selectPresidentProclamation({ user: seatedPlayers[presidentIndex].userName }, game, { selection: Math.floor(Math.random() * 3) }, true, socket);
+								selectMinisterProclamation({ user: seatedPlayers[ministerIndex].userName }, game, { selection: Math.floor(Math.random() * 3) }, true, socket);
 							}
 						},
 						process.env.DEVTIMEDDELAY ? process.env.DEVTIMEDDELAY : game.general.timedMode * 1000
@@ -1525,7 +1525,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 							game.gameState.pendingHeadmasterIndex = null;
 							game.gameState.timedModeEnabled = false;
 
-							selectHeadmaster(null, { user: game.private.seatedPlayers[game.gameState.presidentIndex].userName }, game, { headmasterIndex: headmasterIndex });
+							selectHeadmaster(null, { user: game.private.seatedPlayers[game.gameState.ministerIndex].userName }, game, { headmasterIndex: headmasterIndex });
 						}
 					},
 					process.env.DEVTIMEDDELAY ? process.env.DEVTIMEDDELAY : game.general.timedMode * 1000
@@ -1584,9 +1584,9 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 
 				if (seatedPlayers.filter(play => play.voteStatus.didVoteYes && !play.isDead).length / game.general.livingPlayerCount > 0.5) {
 					const headmasterIndex = game.gameState.pendingHeadmasterIndex;
-					const { presidentIndex } = game.gameState;
+					const { ministerIndex } = game.gameState;
 
-					game.publicPlayersState[presidentIndex].governmentStatus = 'isPresident';
+					game.publicPlayersState[ministerIndex].governmentStatus = 'isMinister';
 
 					game.publicPlayersState[headmasterIndex].governmentStatus = 'isHeadmaster';
 					chat.chat = [{ text: 'The election passes.' }];

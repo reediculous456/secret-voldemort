@@ -42,10 +42,10 @@ const {
 } = require('./user-requests');
 const {
 	selectVoting,
-	selectPresidentProclamation,
+	selectMinisterProclamation,
 	selectHeadmasterProclamation,
 	selectHeadmasterVoteOnVeto,
-	selectPresidentVoteOnVeto
+	selectMinisterVoteOnVeto
 } = require('./game/election');
 const { selectHeadmaster } = require('./game/election-util');
 const {
@@ -552,7 +552,7 @@ module.exports.socketRoutes = () => {
 			});
 			// election
 
-			socket.on('presidentSelectedHeadmaster', data => {
+			socket.on('ministerSelectedHeadmaster', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
@@ -566,11 +566,11 @@ module.exports.socketRoutes = () => {
 					selectVoting(passport, game, data, socket);
 				}
 			});
-			socket.on('selectedPresidentProclamation', data => {
+			socket.on('selectedMinisterProclamation', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
-					selectPresidentProclamation(passport, game, data, false, socket);
+					selectMinisterProclamation(passport, game, data, false, socket);
 				}
 			});
 			socket.on('selectedHeadmasterProclamation', data => {
@@ -580,11 +580,11 @@ module.exports.socketRoutes = () => {
 					selectHeadmasterProclamation(passport, game, data, false, socket);
 				}
 			});
-			socket.on('selectedPresidentVoteOnVeto', data => {
+			socket.on('selectedMinisterVoteOnVeto', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {
-					selectPresidentVoteOnVeto(passport, game, data, socket);
+					selectMinisterVoteOnVeto(passport, game, data, socket);
 				}
 			});
 			// proclamation-powers
@@ -610,7 +610,7 @@ module.exports.socketRoutes = () => {
 					else selectProclamations(passport, game, socket);
 				}
 			});
-			socket.on('selectedPresidentVoteOnBurn', data => {
+			socket.on('selectedMinisterVoteOnBurn', data => {
 				if (isRestricted) return;
 				const game = findGame(data);
 				if (authenticated && ensureInGame(passport, game)) {

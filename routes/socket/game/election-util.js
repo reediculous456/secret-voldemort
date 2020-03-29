@@ -20,23 +20,23 @@ module.exports.selectHeadmaster = (socket, passport, game, data, force = false) 
 	}
 
 	const { headmasterIndex } = data;
-	const { presidentIndex } = game.gameState;
+	const { ministerIndex } = game.gameState;
 	const { experiencedMode } = game.general;
 	const seatedPlayers = game.private.seatedPlayers.filter(player => !player.isDead);
-	const presidentPlayer = game.private.seatedPlayers[presidentIndex];
+	const ministerPlayer = game.private.seatedPlayers[ministerIndex];
 	const headmasterPlayer = game.private.seatedPlayers[headmasterIndex];
 
 	// Make sure the pick is valid
 	if (
 		game.publicPlayersState[headmasterIndex].isDead ||
-		headmasterIndex === presidentIndex ||
+		headmasterIndex === ministerIndex ||
 		headmasterIndex === game.gameState.previousElectedGovernment[1] ||
 		(headmasterIndex === game.gameState.previousElectedGovernment[0] && game.general.livingPlayerCount > 5)
 	) {
 		return;
 	}
 
-	if (!presidentPlayer || presidentPlayer.userName !== passport.user) {
+	if (!ministerPlayer || ministerPlayer.userName !== passport.user) {
 		return;
 	}
 
@@ -48,13 +48,13 @@ module.exports.selectHeadmaster = (socket, passport, game, data, force = false) 
 
 	if (!game.private.lock.selectHeadmaster && !Number.isInteger(game.gameState.pendingHeadmasterIndex) && game.gameState.phase !== 'voting') {
 		game.private.lock.selectHeadmaster = true;
-		game.publicPlayersState[presidentIndex].isLoader = false;
+		game.publicPlayersState[ministerIndex].isLoader = false;
 
 		game.private.summary = game.private.summary.updateLog({
 			headmasterId: headmasterIndex
 		});
 
-		presidentPlayer.playersState.forEach(player => {
+		ministerPlayer.playersState.forEach(player => {
 			player.notificationStatus = '';
 		});
 
@@ -83,10 +83,10 @@ module.exports.selectHeadmaster = (socket, passport, game, data, force = false) 
 					timestamp: new Date(),
 					chat: [
 						{
-							text: 'You must vote for the election of president '
+							text: 'You must vote for the election of minister of magic '
 						},
 						{
-							text: game.general.blindMode ? `{${presidentIndex + 1}}` : `${presidentPlayer.userName} {${presidentIndex + 1}}`,
+							text: game.general.blindMode ? `{${ministerIndex + 1}}` : `${ministerPlayer.userName} {${ministerIndex + 1}}`,
 							type: 'player'
 						},
 						{
@@ -132,10 +132,10 @@ module.exports.selectHeadmaster = (socket, passport, game, data, force = false) 
 			timestamp: new Date(),
 			chat: [
 				{
-					text: 'President '
+					text: 'Minister of Magic '
 				},
 				{
-					text: game.general.blindMode ? `{${presidentIndex + 1}}` : `${presidentPlayer.userName} {${presidentIndex + 1}}`,
+					text: game.general.blindMode ? `{${ministerIndex + 1}}` : `${ministerPlayer.userName} {${ministerIndex + 1}}`,
 					type: 'player'
 				},
 				{
@@ -146,7 +146,7 @@ module.exports.selectHeadmaster = (socket, passport, game, data, force = false) 
 					type: 'player'
 				},
 				{
-					text: ' as headmaster.'
+					text: ' as Hogwarts Headmaster.'
 				}
 			]
 		};
