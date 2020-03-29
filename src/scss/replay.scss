@@ -66,9 +66,9 @@
 				font-weight: 700;
 				color: #be0804;
 			}
-			.chat-role--fascist {
+			.chat-role--death-eater {
 				font-weight: 700;
-				color: $darkfascistteam;
+				color: $darkdeatheaterteam;
 			}
 			.chat-player {
 				color: var(--theme-text-1);
@@ -274,9 +274,9 @@
 			display: inline-block;
 			box-shadow: 0 0 4px 3px var(--theme-text-3);
 
-			&.fascist {
+			&.death-eater {
 				width: 16%;
-				background-image: url('../../public/images/cards/fascistp-l.png');
+				background-image: url('../../public/images/cards/death-eaterp-l.png');
 			}
 
 			&.liberal {
@@ -343,7 +343,7 @@
 						margin-right: 2px;
 					}
 
-					&.fascist-policies {
+					&.death-eater-policies {
 						width: 87%;
 						top: 60%;
 						left: 7%;
@@ -406,7 +406,7 @@
 						height: 96px;
 					}
 
-					&.fascist-policies {
+					&.death-eater-policies {
 						top: 214px;
 						left: 38px;
 					}

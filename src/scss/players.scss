@@ -229,23 +229,23 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 			.card.liberal5 {
 				background-image: url('../../public/images/cards/liberal5.png');
 			}
-			.card.fascist0 {
-				background-image: url('../../public/images/cards/fascist0.png');
+			.card.deatheater0 {
+				background-image: url('../../public/images/cards/deatheater0.png');
 			}
-			.card.fascist1 {
-				background-image: url('../../public/images/cards/fascist1.png');
+			.card.deatheater1 {
+				background-image: url('../../public/images/cards/deatheater1.png');
 			}
-			.card.fascist2 {
-				background-image: url('../../public/images/cards/fascist2.png');
+			.card.deatheater2 {
+				background-image: url('../../public/images/cards/deatheater2.png');
 			}
-			.card.fascist3 {
-				background-image: url('../../public/images/cards/fascist3.png');
+			.card.deatheater3 {
+				background-image: url('../../public/images/cards/deatheater3.png');
 			}
-			.card.fascist4 {
-				background-image: url('../../public/images/cards/fascist4.png');
+			.card.deatheater4 {
+				background-image: url('../../public/images/cards/deatheater4.png');
 			}
-			.card.fascist5 {
-				background-image: url('../../public/images/cards/fascist5.png');
+			.card.deatheater5 {
+				background-image: url('../../public/images/cards/deatheater5.png');
 			}
 			.card.voldemort0 {
 				background-image: url('../../public/images/cards/voldemort0.png');
@@ -268,8 +268,8 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 			.card.membership-liberal {
 				background-image: url('../../public/images/cards/membership-liberal.png');
 			}
-			.card.membership-fascist {
-				background-image: url('../../public/images/cards/membership-fascist.png');
+			.card.membership-death-eater {
+				background-image: url('../../public/images/cards/membership-death-eater.png');
 			}
 			.card-back {
 				-webkit-backface-visibility: hidden; // thanks osx safari
@@ -304,8 +304,8 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 		.player-number.liberal {
 			color: #608cb3;
 		}
-		.player-name.fascist,
-		.player-number.fascist {
+		.player-name.death-eater,
+		.player-number.death-eater {
 			color: #c36563;
 		}
 		.player-name.voldemort,
@@ -326,7 +326,7 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 		animation: fadeIn 0.6s infinite alternate;
 		cursor: pointer;
 	}
-	.player-container.fascist::after {
+	.player-container.death-eater::after {
 		box-shadow: 0 0 4px 4px #c36563;
 	}
 	.player-container.voldemort::after,

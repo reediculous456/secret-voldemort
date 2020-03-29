@@ -465,7 +465,7 @@
 	.browser-row.inprogress {
 		box-shadow: 0px 0px 6px 3px #608cb3;
 	}
-	.browser-row.fascist {
+	.browser-row.death-eater {
 		box-shadow: 0 0 6px 3px darkgray;
 	}
 	.browser-row.liberal {
@@ -508,7 +508,7 @@
 			color: $darkliberalteam;
 			margin: auto;
 		}
-		.progress-text.fascist {
+		.progress-text.death-eater {
 			color: var(--theme-secondary);
 			margin: auto;
 		}
@@ -536,11 +536,11 @@
 			.liberal-box.filled {
 				background-color: #5b9cc4;
 			}
-			.fascist-box {
+			.death-eater-box {
 				box-shadow: 0px 0px 1px 2px #c36563;
 				background-color: var(--theme-background-2);
 			}
-			.fascist-box.filled {
+			.death-eater-box.filled {
 				background-color: #c36563;
 			}
 		}
@@ -1202,11 +1202,11 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 }
 
 .moderator-name {
-	color: $lightfascistteam !important;
+	color: $lightdeatheaterteam !important;
 }
 
 .editor-name {
-	color: $darkfascistteam !important;
+	color: $darkdeatheaterteam !important;
 }
 
 .admin-name {

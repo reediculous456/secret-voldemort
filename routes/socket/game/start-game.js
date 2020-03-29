@@ -23,19 +23,19 @@ const beginGame = game => {
 		customGameSettings.deckState = { lib: 6, fas: 11 };
 		if (game.general.type == 0) {
 			// 5-6 players
-			customGameSettings.fascistCount = 1;
+			customGameSettings.deathEaterCount = 1;
 			customGameSettings.hitKnowsFas = true;
 			customGameSettings.powers = [null, null, 'deckpeek', 'bullet', 'bullet'];
 			if (game.general.rebalance6p && game.publicPlayersState.length == 6) customGameSettings.trackState.fas = 1;
 		} else if (game.general.type == 1) {
 			// 7-8 players
-			customGameSettings.fascistCount = 2;
+			customGameSettings.deathEaterCount = 2;
 			customGameSettings.hitKnowsFas = false;
 			customGameSettings.powers = [null, 'investigate', 'election', 'bullet', 'bullet'];
 			if (game.general.rebalance7p && game.publicPlayersState.length == 7) customGameSettings.deckState.fas = 10;
 		} else {
 			// 9-10 players
-			customGameSettings.fascistCount = 3;
+			customGameSettings.deathEaterCount = 3;
 			customGameSettings.hitKnowsFas = false;
 			customGameSettings.powers = ['investigate', 'investigate', 'election', 'bullet', 'bullet'];
 			if (game.general.rebalance9p2f && game.publicPlayersState.length == 9) customGameSettings.deckState.fas = 10;
@@ -47,7 +47,7 @@ const beginGame = game => {
 		{
 			cardName: 'voldemort',
 			icon: 0,
-			team: 'fascist'
+			team: 'e'
 		}
 	]
 		.concat(
@@ -59,18 +59,18 @@ const beginGame = game => {
 						icon: el % 6,
 						team: 'liberal'
 					}))
-					.slice(0, game.publicPlayersState.length - customGameSettings.fascistCount - 1)
+					.slice(0, game.publicPlayersState.length - customGameSettings.deathEaterCount - 1)
 			)
 		)
 		.concat(
 			_.shuffle(
 				_.range(0, 3)
 					.map(el => ({
-						cardName: 'fascist',
+						cardName: 'death eater',
 						icon: el,
-						team: 'fascist'
+						team: 'death eater'
 					}))
-					.slice(0, customGameSettings.fascistCount)
+					.slice(0, customGameSettings.deathEaterCount)
 			)
 		);
 
@@ -231,14 +231,14 @@ const beginGame = game => {
 				const { seatedPlayers } = game.private;
 				const { cardName } = player.role;
 
-				if (cardName === 'fascist') {
-					player.playersState[i].nameStatus = 'fascist';
+				if (cardName === 'death eater') {
+					player.playersState[i].nameStatus = 'death eater';
 
-					if (customGameSettings.fascistCount == 2) {
-						const otherFascist = seatedPlayers.find(play => play.role.cardName === 'fascist' && play.userName !== player.userName);
-						const otherFascistIndex = seatedPlayers.indexOf(otherFascist);
+					if (customGameSettings.deathEaterCount == 2) {
+						const otherDeathEater = seatedPlayers.find(play => play.role.cardName === 'death eater' && play.userName !== player.userName);
+						const otherDeathEaterIndex = seatedPlayers.indexOf(otherDeathEater);
 
-						if (!otherFascist) {
+						if (!otherDeathEater) {
 							return;
 						}
 
@@ -251,14 +251,14 @@ const beginGame = game => {
 										text: 'You see that the other '
 									},
 									{
-										text: 'fascist',
-										type: 'fascist'
+										text: 'death eater',
+										type: 'death eater'
 									},
 									{
 										text: ' in this game is '
 									},
 									{
-										text: game.general.blindMode ? `{${otherFascistIndex + 1}}` : `${otherFascist.userName} {${otherFascistIndex + 1}}`,
+										text: game.general.blindMode ? `{${otherDeathEaterIndex + 1}}` : `${otherDeathEater.userName} {${otherDeathEaterIndex + 1}}`,
 										type: 'player'
 									},
 									{
@@ -267,10 +267,10 @@ const beginGame = game => {
 								]
 							});
 						}
-						player.playersState[otherFascistIndex].nameStatus = 'fascist';
-						player.playersState[otherFascistIndex].notificationStatus = 'fascist';
-					} else if (customGameSettings.fascistCount == 3) {
-						const otherFascists = seatedPlayers.filter(play => play.role.cardName === 'fascist' && play.userName !== player.userName);
+						player.playersState[otherDeathEaterIndex].nameStatus = 'death eater';
+						player.playersState[otherDeathEaterIndex].notificationStatus = 'death eater';
+					} else if (customGameSettings.deathEaterCount == 3) {
+						const otherDeathEaters = seatedPlayers.filter(play => play.role.cardName === 'death eater' && play.userName !== player.userName);
 
 						if (!game.general.disableGamechat) {
 							player.gameChats.push({
@@ -281,16 +281,16 @@ const beginGame = game => {
 										text: 'You see that the other '
 									},
 									{
-										text: 'fascists',
-										type: 'fascist'
+										text: 'death Eaters',
+										type: 'death eater'
 									},
 									{
 										text: ' in this game are '
 									},
 									{
 										text: game.general.blindMode
-											? `{${seatedPlayers.indexOf(otherFascists[0]) + 1}}`
-											: `${otherFascists[0].userName} {${seatedPlayers.indexOf(otherFascists[0]) + 1}}`,
+											? `{${seatedPlayers.indexOf(otherDeathEaters[0]) + 1}}`
+											: `${otherDeathEaters[0].userName} {${seatedPlayers.indexOf(otherDeathEaters[0]) + 1}}`,
 										type: 'player'
 									},
 									{
@@ -298,8 +298,8 @@ const beginGame = game => {
 									},
 									{
 										text: game.general.blindMode
-											? `{${seatedPlayers.indexOf(otherFascists[1]) + 1}}`
-											: `${otherFascists[1].userName} {${seatedPlayers.indexOf(otherFascists[1]) + 1}}`,
+											? `{${seatedPlayers.indexOf(otherDeathEaters[1]) + 1}}`
+											: `${otherDeathEaters[1].userName} {${seatedPlayers.indexOf(otherDeathEaters[1]) + 1}}`,
 										type: 'player'
 									},
 									{
@@ -308,11 +308,11 @@ const beginGame = game => {
 								]
 							});
 						}
-						otherFascists.forEach(fascistPlayer => {
-							player.playersState[seatedPlayers.indexOf(fascistPlayer)].nameStatus = 'fascist';
+						otherDeathEaters.forEach(deathEaterPlayer => {
+							player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].nameStatus = 'death eater';
 						});
-						otherFascists.forEach(fascistPlayer => {
-							player.playersState[seatedPlayers.indexOf(fascistPlayer)].notificationStatus = 'fascist';
+						otherDeathEaters.forEach(deathEaterPlayer => {
+							player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].notificationStatus = 'death eater';
 						});
 					}
 
@@ -344,8 +344,8 @@ const beginGame = game => {
 							chat.chat.push(
 								{ text: '. They also see that you are a ' },
 								{
-									text: 'fascist',
-									type: 'fascist'
+									text: 'death eater',
+									type: 'death eater'
 								},
 								{ text: '.' }
 							);
@@ -353,8 +353,8 @@ const beginGame = game => {
 							chat.chat.push(
 								{ text: '. They do not know you are a ' },
 								{
-									text: 'fascist',
-									type: 'fascist'
+									text: 'death eater',
+									type: 'death eater'
 								},
 								{ text: '.' }
 							);
@@ -368,8 +368,8 @@ const beginGame = game => {
 					player.playersState[seatedPlayers.indexOf(player)].nameStatus = 'voldemort';
 
 					if (customGameSettings.hitKnowsFas) {
-						if (customGameSettings.fascistCount == 1) {
-							const otherFascist = seatedPlayers.find(player => player.role.cardName === 'fascist');
+						if (customGameSettings.deathEaterCount == 1) {
+							const otherDeathEater = seatedPlayers.find(player => player.role.cardName === 'death eater');
 
 							if (!game.general.disableGamechat) {
 								player.gameChats.push({
@@ -380,16 +380,16 @@ const beginGame = game => {
 											text: 'You see that the other '
 										},
 										{
-											text: 'fascist',
-											type: 'fascist'
+											text: 'death eater',
+											type: 'death eater'
 										},
 										{
 											text: ' in this game is '
 										},
 										{
 											text: game.general.blindMode
-												? `{${seatedPlayers.indexOf(otherFascist) + 1}}`
-												: `${otherFascist.userName} {${seatedPlayers.indexOf(otherFascist) + 1}}`,
+												? `{${seatedPlayers.indexOf(otherDeathEater) + 1}}`
+												: `${otherDeathEater.userName} {${seatedPlayers.indexOf(otherDeathEater) + 1}}`,
 											type: 'player'
 										},
 										{
@@ -398,10 +398,10 @@ const beginGame = game => {
 									]
 								});
 							}
-							player.playersState[seatedPlayers.indexOf(otherFascist)].nameStatus = 'fascist';
-							player.playersState[seatedPlayers.indexOf(otherFascist)].notificationStatus = 'fascist';
+							player.playersState[seatedPlayers.indexOf(otherDeathEater)].nameStatus = 'death eater';
+							player.playersState[seatedPlayers.indexOf(otherDeathEater)].notificationStatus = 'death eater';
 						} else {
-							const otherFascists = seatedPlayers.filter(play => play.role.cardName === 'fascist' && play.userName !== player.userName);
+							const otherDeathEaters = seatedPlayers.filter(play => play.role.cardName === 'death eater' && play.userName !== player.userName);
 
 							if (!game.general.disableGamechat) {
 								player.gameChats.push({
@@ -412,37 +412,37 @@ const beginGame = game => {
 											text: 'You see that the other '
 										},
 										{
-											text: 'fascists',
-											type: 'fascist'
+											text: 'death Eaters',
+											type: 'death eater'
 										},
 										{
 											text: ' in this game are '
 										},
 										{
 											text: game.general.blindMode
-												? `{${seatedPlayers.indexOf(otherFascists[0]) + 1}}`
-												: `${otherFascists[0].userName} {${seatedPlayers.indexOf(otherFascists[0]) + 1}}`,
+												? `{${seatedPlayers.indexOf(otherDeathEaters[0]) + 1}}`
+												: `${otherDeathEaters[0].userName} {${seatedPlayers.indexOf(otherDeathEaters[0]) + 1}}`,
 											type: 'player'
 										},
 										{
-											text: customGameSettings.fascistCount == 3 ? ', ' : ''
+											text: customGameSettings.deathEaterCount == 3 ? ', ' : ''
 										},
 										{
 											text:
-												customGameSettings.fascistCount == 3
+												customGameSettings.deathEaterCount == 3
 													? game.general.blindMode
-														? `{${seatedPlayers.indexOf(otherFascists[2]) + 1}}`
-														: `${otherFascists[2].userName} {${seatedPlayers.indexOf(otherFascists[2]) + 1}}`
+														? `{${seatedPlayers.indexOf(otherDeathEaters[2]) + 1}}`
+														: `${otherDeathEaters[2].userName} {${seatedPlayers.indexOf(otherDeathEaters[2]) + 1}}`
 													: '',
 											type: 'player'
 										},
 										{
-											text: customGameSettings.fascistCount == 3 ? ', and' : ' and '
+											text: customGameSettings.deathEaterCount == 3 ? ', and' : ' and '
 										},
 										{
 											text: game.general.blindMode
-												? `{${seatedPlayers.indexOf(otherFascists[1]) + 1}}`
-												: `${otherFascists[1].userName} {${seatedPlayers.indexOf(otherFascists[1]) + 1}}`,
+												? `{${seatedPlayers.indexOf(otherDeathEaters[1]) + 1}}`
+												: `${otherDeathEaters[1].userName} {${seatedPlayers.indexOf(otherDeathEaters[1]) + 1}}`,
 											type: 'player'
 										},
 										{
@@ -451,9 +451,9 @@ const beginGame = game => {
 									]
 								});
 							}
-							otherFascists.forEach(fascistPlayer => {
-								player.playersState[seatedPlayers.indexOf(fascistPlayer)].nameStatus = 'fascist';
-								player.playersState[seatedPlayers.indexOf(fascistPlayer)].notificationStatus = 'fascist';
+							otherDeathEaters.forEach(deathEaterPlayer => {
+								player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].nameStatus = 'death eater';
+								player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].notificationStatus = 'death eater';
 							});
 						}
 					} else {
@@ -463,11 +463,12 @@ const beginGame = game => {
 								gameChat: true,
 								chat: [
 									{
-										text: `There ${customGameSettings.fascistCount == 1 ? 'is' : 'are'} `
+										text: `There ${customGameSettings.deathEaterCount == 1 ? 'is' : 'are'} `
 									},
 									{
-										text: customGameSettings.fascistCount == 1 ? '1 fascist' : customGameSettings.fascistCount == 2 ? '2 fascists' : '3 fascists',
-										type: 'fascist'
+										text:
+											customGameSettings.deathEaterCount == 1 ? '1 death eater' : customGameSettings.deathEaterCount == 2 ? '2 death Eaters' : '3 death Eaters',
+										type: 'death eater'
 									},
 									{
 										text: ', they know who you are.'
@@ -565,7 +566,7 @@ module.exports = game => {
 
 	game.general.playerCount = game.publicPlayersState.length;
 	game.general.livingPlayerCount = game.publicPlayersState.length;
-	game.general.type = game.general.playerCount < 7 ? 0 : game.general.playerCount < 9 ? 1 : 2; // different fascist tracks
+	game.general.type = game.general.playerCount < 7 ? 0 : game.general.playerCount < 9 ? 1 : 2; // different death eater tracks
 	game.publicPlayersState = _.shuffle(game.publicPlayersState);
 	game.private.seatedPlayers = _.cloneDeep(game.publicPlayersState);
 	game.private.seatedPlayers.forEach(player => {

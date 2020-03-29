@@ -1,8 +1,8 @@
 // keep this updated with GameSummary schema
 
-// Jaina never votes for a fascist, kills a fascist
+// Jaina never votes for a death eater, kills a death eater
 // Valeera shoots a liberal
-// Uther always votes for a fascist
+// Uther always votes for a death eater
 module.exports = {
 	_id: 'generic-game',
 	date: new Date(),
@@ -17,7 +17,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 1,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			chancellorHand: {
 				reds: 2,
 				blues: 0
@@ -34,9 +34,9 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 3,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			investigationId: 4,
-			investigationClaim: 'fascist',
+			investigationClaim: 'death eater',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -53,7 +53,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 0,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			specialElection: 1,
 			chancellorHand: {
 				reds: 1,
@@ -71,7 +71,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 6,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			execution: 3,
 			chancellorHand: {
 				reds: 1,
@@ -101,7 +101,7 @@ module.exports = {
 		{
 			presidentId: 6,
 			chancellorId: 2,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			execution: 2,
 			chancellorHand: {
 				reds: 2,
@@ -119,7 +119,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 5,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			chancellorHand: {
 				reds: 2,
 				blues: 0
@@ -146,7 +146,7 @@ module.exports = {
 		},
 		{
 			username: 'Malfurian',
-			role: 'fascist'
+			role: 'death eater'
 		},
 		{
 			username: 'Thrall',
@@ -154,7 +154,7 @@ module.exports = {
 		},
 		{
 			username: 'Valeera',
-			role: 'fascist'
+			role: 'death eater'
 		},
 		{
 			username: 'Anduin',

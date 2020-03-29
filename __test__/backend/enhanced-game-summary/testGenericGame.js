@@ -172,11 +172,11 @@ export default () => {
 		it('should track enacted policies', () => {
 			const getEnactedPolicy = turnNum => turns.get(turnNum).enactedPolicy;
 
-			expect(getEnactedPolicy(0)).toEqual(some('fascist'));
-			expect(getEnactedPolicy(1)).toEqual(some('fascist'));
-			expect(getEnactedPolicy(3)).toEqual(some('fascist'));
+			expect(getEnactedPolicy(0)).toEqual(some('death eater'));
+			expect(getEnactedPolicy(1)).toEqual(some('death eater'));
+			expect(getEnactedPolicy(3)).toEqual(some('death eater'));
 			expect(getEnactedPolicy(5)).toEqual(none);
-			expect(getEnactedPolicy(7)).toEqual(some('fascist'));
+			expect(getEnactedPolicy(7)).toEqual(some('death eater'));
 		});
 
 		it('should track president hands', () => {
@@ -209,9 +209,9 @@ export default () => {
 			const presidentDiscard = turnNum => turns.get(turnNum).presidentDiscard;
 
 			expect(presidentDiscard(0)).toEqual(some('liberal'));
-			expect(presidentDiscard(1)).toEqual(some('fascist'));
+			expect(presidentDiscard(1)).toEqual(some('death eater'));
 			expect(presidentDiscard(2)).toEqual(some('liberal'));
-			expect(presidentDiscard(3)).toEqual(some('fascist'));
+			expect(presidentDiscard(3)).toEqual(some('death eater'));
 			expect(presidentDiscard(4)).toEqual(none);
 			expect(presidentDiscard(5)).toEqual(none);
 			expect(presidentDiscard(6)).toEqual(some('liberal'));
@@ -247,14 +247,14 @@ export default () => {
 		it('should track chancellor discard', () => {
 			const chancellorDiscard = turnNum => turns.get(turnNum).chancellorDiscard;
 
-			expect(chancellorDiscard(0)).toEqual(some('fascist'));
+			expect(chancellorDiscard(0)).toEqual(some('death eater'));
 			expect(chancellorDiscard(1)).toEqual(some('liberal'));
 			expect(chancellorDiscard(2)).toEqual(some('liberal'));
 			expect(chancellorDiscard(3)).toEqual(some('liberal'));
 			expect(chancellorDiscard(4)).toEqual(none);
 			expect(chancellorDiscard(5)).toEqual(none);
-			expect(chancellorDiscard(6)).toEqual(some('fascist'));
-			expect(chancellorDiscard(7)).toEqual(some('fascist'));
+			expect(chancellorDiscard(6)).toEqual(some('death eater'));
+			expect(chancellorDiscard(7)).toEqual(some('death eater'));
 		});
 
 		it('should track executions', () => {
@@ -311,9 +311,9 @@ export default () => {
 			expect(game.loyaltyOf('Jaina')).toEqual(some('liberal'));
 			expect(game.loyaltyOf('Rexxar')).toEqual(some('liberal'));
 			expect(game.loyaltyOf('Anduin')).toEqual(some('liberal'));
-			expect(game.loyaltyOf('Malfurian')).toEqual(some('fascist'));
-			expect(game.loyaltyOf('Thrall')).toEqual(some('fascist'));
-			expect(game.loyaltyOf('Valeera')).toEqual(some('fascist'));
+			expect(game.loyaltyOf('Malfurian')).toEqual(some('death eater'));
+			expect(game.loyaltyOf('Thrall')).toEqual(some('death eater'));
+			expect(game.loyaltyOf('Valeera')).toEqual(some('death eater'));
 		});
 
 		it('should track usernames', () => {
@@ -341,9 +341,9 @@ export default () => {
 			expect(game.roleOf('Jaina')).toEqual(some('liberal'));
 			expect(game.roleOf('Rexxar')).toEqual(some('liberal'));
 			expect(game.roleOf('Anduin')).toEqual(some('liberal'));
-			expect(game.roleOf('Malfurian')).toEqual(some('fascist'));
+			expect(game.roleOf('Malfurian')).toEqual(some('death eater'));
 			expect(game.roleOf('Thrall')).toEqual(some('voldemort'));
-			expect(game.roleOf('Valeera')).toEqual(some('fascist'));
+			expect(game.roleOf('Valeera')).toEqual(some('death eater'));
 		});
 
 		it('should track winners', () => {
@@ -357,7 +357,7 @@ export default () => {
 		});
 
 		it('should track winning team', () => {
-			expect(game.winningTeam).toBe('fascist');
+			expect(game.winningTeam).toBe('death eater');
 		});
 
 		it('should track votes', () => {

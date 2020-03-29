@@ -250,8 +250,8 @@ class Changelog extends React.Component {
 				<p>
 					Please note that 1.0 does not mean I am no longer supporting the application and site. Work will continue to make the site even better, but not
 					personally at the pace I have been. My next game is in progress and I expect to get to a playable pre-alpha state some time in the next few months. It
-					will be a (fresh IP) hidden role game with some similarities to the fascist hunting/electing game we all know and love but with some fun features and
-					mechanics that can only exist online. Stay tuned! -Chris
+					will be a (fresh IP) hidden role game with some similarities to the death eater hunting/electing game we all know and love but with some fun features
+					and mechanics that can only exist online. Stay tuned! -Chris
 				</p>
 				<p>This update also includes:</p>
 				<ul>

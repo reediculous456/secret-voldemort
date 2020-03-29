@@ -241,7 +241,7 @@ module.exports.formattedGameList = () => {
 		disableGamechat: games[gameName].general.disableGamechat || undefined,
 		blindMode: games[gameName].general.blindMode || undefined,
 		enactedLiberalPolicyCount: games[gameName].trackState.liberalPolicyCount,
-		enactedFascistPolicyCount: games[gameName].trackState.fascistPolicyCount,
+		enactedDeathEaterPolicyCount: games[gameName].trackState.deathEaterPolicyCount,
 		electionCount: games[gameName].general.electionCount,
 		rebalance6p: games[gameName].general.rebalance6p || undefined,
 		rebalance7p: games[gameName].general.rebalance7p || undefined,

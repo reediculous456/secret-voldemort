@@ -65,7 +65,7 @@ module.exports.selectPolicies = (passport, game, socket) => {
 		game.private.summary = game.private.summary.updateLog({
 			policyPeek: game.private.policies.slice(0, 3).reduce(
 				(peek, policy) => {
-					if (policy === 'fascist') {
+					if (policy === 'death eater') {
 						return Object.assign({}, peek, { reds: peek.reds + 1 });
 					} else {
 						return Object.assign({}, peek, { blues: peek.blues + 1 });
@@ -267,7 +267,7 @@ module.exports.selectOnePolicy = (passport, game) => {
 		game.private.summary = game.private.summary.updateLog({
 			policyPeek: game.private.policies.slice(0, 1).reduce(
 				(peek, policy) => {
-					if (policy === 'fascist') {
+					if (policy === 'death eater') {
 						return Object.assign({}, peek, { reds: peek.reds + 1 });
 					} else {
 						return Object.assign({}, peek, { blues: peek.blues + 1 });
@@ -765,7 +765,10 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 					game.private.hiddenInfoChat.push(modOnlyChat);
 					sendInProgressModChatUpdate(game, modOnlyChat);
 
-					if (!game.general.disableGamechat && !(game.private.seatedPlayers[playerIndex].role.cardName === 'voldemort' && president.role.team === 'fascist')) {
+					if (
+						!game.general.disableGamechat &&
+						!(game.private.seatedPlayers[playerIndex].role.cardName === 'voldemort' && president.role.team === 'death eater')
+					) {
 						president.playersState[playerIndex].nameStatus = playersTeam;
 					}
 					game.private.invIndex = playerIndex;
@@ -988,7 +991,7 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 
 					if (
 						!game.general.disableGamechat &&
-						!(game.private.seatedPlayers[presidentIndex].role.cardName === 'voldemort' && targetPlayer.role.team === 'fascist')
+						!(game.private.seatedPlayers[presidentIndex].role.cardName === 'voldemort' && targetPlayer.role.team === 'death eater')
 					) {
 						targetPlayer.playersState[presidentIndex].nameStatus = playersTeam;
 					}
@@ -1176,9 +1179,9 @@ module.exports.executePlayer = game => {
 				(player, index) =>
 					index !== presidentIndex &&
 					!seatedPlayers[index].isDead &&
-					((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'voldemort')) ||
-						(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'voldemort')) ||
-						(game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[index].role.cardName === 'voldemort'))
+					((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.fasCanShootHit && president.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort'))
 			)
 			.forEach(player => {
 				player.notificationStatus = 'notification';
@@ -1191,9 +1194,9 @@ module.exports.executePlayer = game => {
 					(player, i) =>
 						i !== presidentIndex &&
 						!seatedPlayers[i].isDead &&
-						((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'voldemort')) ||
-							(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'voldemort')) ||
-							(game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[i].role.cardName === 'voldemort'))
+						((!game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.fasCanShootHit && !(president.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.fasCanShootHit && president.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort'))
 				)
 				.map(player => seatedPlayers.indexOf(player))
 		];
@@ -1234,7 +1237,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 	if (
 		playerIndex === presidentIndex ||
 		selectedPlayer.isDead ||
-		(!game.customGameSettings.fasCanShootHit && president.role.cardName === 'fascist' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
+		(!game.customGameSettings.fasCanShootHit && president.role.cardName === 'death eater' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
 	) {
 		return;
 	}
@@ -1412,7 +1415,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 								});
 
 								game.gameState.audioCue = '';
-								completeGame(game, 'fascist');
+								completeGame(game, 'death eater');
 							},
 							process.env.NODE_ENV === 'development' ? 100 : 2000
 						);
@@ -1469,18 +1472,18 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 									chat: [
 										{ text: 'A ' },
 										{
-											text: policy === 'liberal' ? 'liberal' : 'fascist',
-											type: policy === 'liberal' ? 'liberal' : 'fascist'
+											text: policy === 'liberal' ? 'liberal' : 'death eater',
+											type: policy === 'liberal' ? 'liberal' : 'death eater'
 										},
 										{
 											text: ` policy has been enacted. (${
-												policy === 'liberal' ? game.trackState.liberalPolicyCount.toString() : game.trackState.fascistPolicyCount.toString()
+												policy === 'liberal' ? game.trackState.liberalPolicyCount.toString() : game.trackState.deathEaterPolicyCount.toString()
 											}/${policy === 'liberal' ? '5' : '6'})`
 										}
 									]
 								};
 								game.trackState.enactedPolicies[index].position =
-									policy === 'liberal' ? `liberal${game.trackState.liberalPolicyCount}` : `fascist${game.trackState.fascistPolicyCount}`;
+									policy === 'liberal' ? `liberal${game.trackState.liberalPolicyCount}` : `death eater${game.trackState.deathEaterPolicyCount}`;
 
 								if (!game.general.disableGamechat) {
 									game.private.seatedPlayers.forEach(player => {
@@ -1489,14 +1492,14 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 
 									game.private.unSeatedGameChats.push(chat);
 								}
-								if (game.trackState.liberalPolicyCount === 5 || game.trackState.fascistPolicyCount === 6) {
+								if (game.trackState.liberalPolicyCount === 5 || game.trackState.deathEaterPolicyCount === 6) {
 									game.publicPlayersState.forEach((player, i) => {
 										player.cardStatus.cardFront = 'secretrole';
 										player.cardStatus.cardBack = game.private.seatedPlayers[i].role;
 										player.cardStatus.cardDisplayed = true;
 										player.cardStatus.isFlipped = false;
 									});
-									game.gameState.audioCue = game.trackState.liberalPolicyCount === 5 ? 'liberalsWin' : 'fascistsWin';
+									game.gameState.audioCue = game.trackState.liberalPolicyCount === 5 ? 'liberalsWin' : 'death eatersWin';
 									setTimeout(
 										() => {
 											game.publicPlayersState.forEach((player, i) => {
@@ -1504,9 +1507,9 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 											});
 											game.gameState.audioCue = '';
 											if (process.env.NODE_ENV === 'development') {
-												completeGame(game, game.trackState.liberalPolicyCount === 1 ? 'liberal' : 'fascist');
+												completeGame(game, game.trackState.liberalPolicyCount === 1 ? 'liberal' : 'death eater');
 											} else {
-												completeGame(game, game.trackState.liberalPolicyCount === 5 ? 'liberal' : 'fascist');
+												completeGame(game, game.trackState.liberalPolicyCount === 5 ? 'liberal' : 'death eater');
 											}
 										},
 										process.env.NODE_ENV === 'development' ? 100 : 2000

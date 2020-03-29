@@ -14,7 +14,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 4,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -41,14 +41,14 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 2,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			votes: [false, false, false, false, false]
 		},
 		// turn 4
 		{
 			presidentId: 4,
 			chancellorId: 1,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			policyPeek: {
 				reds: 2,
 				blues: 1
@@ -86,7 +86,7 @@ module.exports = {
 		},
 		{
 			username: 'Jaina',
-			role: 'fascist'
+			role: 'death eater'
 		},
 		{
 			username: 'Rexxar',

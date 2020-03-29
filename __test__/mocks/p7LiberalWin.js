@@ -25,7 +25,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 6,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			chancellorHand: {
 				reds: 2,
 				blues: 0
@@ -117,11 +117,11 @@ module.exports = {
 		},
 		{
 			username: 'Malfurian',
-			role: 'fascist'
+			role: 'death eater'
 		},
 		{
 			username: 'Valeera',
-			role: 'fascist'
+			role: 'death eater'
 		},
 		{
 			username: 'Anduin',

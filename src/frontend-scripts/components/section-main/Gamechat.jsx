@@ -980,25 +980,25 @@ class Gamechat extends React.Component {
 												onClick={e => {
 													handleClaimButtonClick(e, 'rrr');
 												}}
-												className="ui button threefascist"
+												className="ui button threedeatheater"
 											>
-												3 Fascist policies
+												3 Death Eater policies
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rrb');
 												}}
-												className="ui button twofascistoneliberal"
+												className="ui button twodeatheateroneliberal"
 											>
-												2 Fascist and a Liberal policy
+												2 Death Eater and a Liberal policy
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rbb');
 												}}
-												className="ui button twoliberalonefascist"
+												className="ui button twoliberalonedeatheater"
 											>
-												2 Liberal and a Fascist policy
+												2 Liberal and a Death Eater policy
 											</button>
 											<button
 												onClick={e => {
@@ -1018,17 +1018,17 @@ class Gamechat extends React.Component {
 												onClick={e => {
 													handleClaimButtonClick(e, 'rr');
 												}}
-												className="ui button threefascist"
+												className="ui button threedeatheater"
 											>
-												2 Fascist policies
+												2 Death Eater policies
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rb');
 												}}
-												className="ui button onefascistoneliberal"
+												className="ui button onedeatheateroneliberal"
 											>
-												A Fascist and a Liberal policy
+												A Death Eater and a Liberal policy
 											</button>
 											<button
 												onClick={e => {
@@ -1046,11 +1046,11 @@ class Gamechat extends React.Component {
 											<p> As president, when I looked at the party membership I saw that he or she was on the...</p>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'fascist');
+													handleClaimButtonClick(e, 'death eater');
 												}}
-												className="ui button threefascist"
+												className="ui button threedeatheater"
 											>
-												Fascist team
+												Death Eater team
 											</button>
 											<button
 												onClick={e => {
@@ -1068,11 +1068,11 @@ class Gamechat extends React.Component {
 											<p> As president, when I looked at the top card I saw a...</p>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'fascist');
+													handleClaimButtonClick(e, 'deatheater');
 												}}
-												className="ui button threefascist"
+												className="ui button threedeatheater"
 											>
-												Fascist policy
+												Death Eater policy
 											</button>
 											<button
 												onClick={e => {
@@ -1092,25 +1092,25 @@ class Gamechat extends React.Component {
 												onClick={e => {
 													handleClaimButtonClick(e, 'rrr');
 												}}
-												className="ui button threefascist"
+												className="ui button threedeatheater"
 											>
-												3 Fascist policies
+												3 Death Eater policies
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rrb');
 												}}
-												className="ui button twofascistoneliberal"
+												className="ui button twodeatheateroneliberal"
 											>
-												2 Fascist and a Liberal policy
+												2 Death Eater and a Liberal policy
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rbb');
 												}}
-												className="ui button twoliberalonefascist"
+												className="ui button twoliberalonedeatheater"
 											>
-												2 Liberal and a Fascist policy
+												2 Liberal and a Death Eater policy
 											</button>
 											<button
 												onClick={e => {
@@ -1246,10 +1246,10 @@ class Gamechat extends React.Component {
 					<div
 						className="ui red positive inverted button"
 						onClick={() => {
-							sendModEndGame('fascist');
+							sendModEndGame('death eater');
 						}}
 					>
-						End game elo win for fascists
+						End game elo win for death eaters
 					</div>
 				</div>
 				<div

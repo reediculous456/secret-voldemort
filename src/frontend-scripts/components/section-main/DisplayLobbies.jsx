@@ -10,8 +10,8 @@ const DisplayLobbies = props => {
 
 		if (game.gameStatus === 'isStarted') {
 			classes += ' inprogress';
-		} else if (game.gameStatus === 'fascist') {
-			classes += ' fascist';
+		} else if (game.gameStatus === 'death eater') {
+			classes += ' death-eater';
 		} else if (game.gameStatus === 'liberal') {
 			classes += ' liberal';
 		} else {
@@ -378,9 +378,9 @@ const DisplayLobbies = props => {
 					<img src="../images/bird.png" />
 				</div>
 			);
-		} else if (game.gameStatus === 'fascist') {
-			classes += ' fascist';
-			progressText = 'Fascists Win !';
+		} else if (game.gameStatus === 'death eater') {
+			classes += ' death-eater';
+			progressText = 'Death Eaters Win !';
 			progressIcons = (
 				<div className="victory-icon">
 					<img src="../images/skull.png" />
@@ -402,11 +402,11 @@ const DisplayLobbies = props => {
 								/>
 							))}
 						</div>
-						<div className="fascist-count">
+						<div className="death-eater-count">
 							{_.range(1, 7).map(num => (
 								<div
 									key={num}
-									className={num <= game.enactedFascistPolicyCount ? 'leftsidebar box fascist-box filled' : ' leftsidebar box fascist-box unfilled'}
+									className={num <= game.enactedDeathEaterPolicyCount ? 'leftsidebar box death-eater-box filled' : ' leftsidebar box death-eater-box unfilled'}
 								/>
 							))}
 						</div>

@@ -13,7 +13,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 7,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			_id: '595052626419ea7a9b545b53',
 			chancellorClaim: {
 				reds: 2,
@@ -61,9 +61,9 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 5,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			investigationId: 3,
-			investigationClaim: 'fascist',
+			investigationClaim: 'death eater',
 			_id: '595052626419ea7a9b545b51',
 			chancellorHand: {
 				reds: 2,
@@ -94,7 +94,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 1,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			specialElection: 6,
 			_id: '595052626419ea7a9b545b4f',
 			chancellorHand: {
@@ -194,7 +194,7 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 6,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			_id: '595052626419ea7a9b545b47',
 			chancellorClaim: {
 				reds: 2,
@@ -210,7 +210,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 6,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			execution: 7,
 			_id: '595052626419ea7a9b545b46',
 			chancellorHand: {
@@ -272,7 +272,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 6,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			_id: '595052626419ea7a9b545b41',
 			votes: [false, false, true, false, false, false, false, false]
 		}
@@ -290,7 +290,7 @@ module.exports = {
 		},
 		{
 			username: 'sebastian',
-			role: 'fascist',
+			role: 'death eater',
 			_id: '595052626419ea7a9b545b59'
 		},
 		{
@@ -315,7 +315,7 @@ module.exports = {
 		},
 		{
 			username: 'obama',
-			role: 'fascist',
+			role: 'death eater',
 			_id: '595052626419ea7a9b545b54'
 		}
 	],

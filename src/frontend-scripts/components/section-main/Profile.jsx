@@ -64,7 +64,7 @@ class ProfileWrapper extends React.Component {
 					headers={['Loyalty', 'Matches', 'Winrate']}
 					rows={[
 						this.successRow('Liberal', matches.liberal.events, matches.liberal.successes),
-						this.successRow('Fascist', matches.fascist.events, matches.fascist.successes)
+						this.successRow('Death Eater', matches.deathEater.events, matches.deathEater.successes)
 					]}
 				/>
 			</div>
@@ -126,7 +126,7 @@ class ProfileWrapper extends React.Component {
 				window.location.hash = `/replay/${game._id}`;
 			},
 			cells: [
-				game.loyalty === 'liberal' ? 'Liberal' : 'Fascist',
+				game.loyalty === 'liberal' ? 'Liberal' : 'Death Eater',
 				game.isRebalanced ? game.playerSize + 'R' : game.playerSize,
 				game.isWinner ? 'Win' : 'Loss',
 				this.formatDateString(game.date)

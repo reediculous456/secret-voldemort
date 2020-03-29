@@ -83,7 +83,7 @@ const gameSummary = new Schema({
 		powers: Array, // [power x5, string or null]
 		voldemortZone: Number,
 		vetoZone: Number,
-		fascistCount: Number,
+		deathEaterCount: Number,
 		hitKnowsFas: Boolean,
 		deckState: {
 			lib: Number,

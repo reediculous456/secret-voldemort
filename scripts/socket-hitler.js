@@ -3,7 +3,7 @@
 // @name         Socket Voldemort
 // @namespace    http://tampermonkey.net/
 // @version      6.7
-// @description  This Machine Kills Fascists
+// @description  This Machine Kills Death Eaters
 // @author       Bot
 // @match        https://secretvoldemort.io/*
 // @match        http://localhost:8080/*

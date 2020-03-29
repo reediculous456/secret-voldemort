@@ -8,57 +8,57 @@ const data = {};
 const { CURRENTSEASONNUMBER } = require('../src/frontend-scripts/node-constants');
 
 const allPlayerGameData = {
-	fascistWinCount: 0,
+	deathEaterWinCount: 0,
 	totalGameCount: 0,
-	fascistWinCountSeason: 0,
+	deathEaterWinCountSeason: 0,
 	totalGameCountSeason: 0
 };
 const fivePlayerGameData = {
-	fascistWinCount: 0,
+	deathEaterWinCount: 0,
 	totalGameCount: 0,
-	fascistWinCountSeason: 0,
+	deathEaterWinCountSeason: 0,
 	totalGameCountSeason: 0
 };
 const sixPlayerGameData = {
-	fascistWinCount: 0,
+	deathEaterWinCount: 0,
 	totalGameCount: 0,
-	rebalancedFascistWinCount: 0,
+	rebalancedDeathEaterWinCount: 0,
 	rebalancedTotalGameCount: 0,
-	fascistWinCountSeason: 0,
+	deathEaterWinCountSeason: 0,
 	totalGameCountSeason: 0,
-	rebalancedFascistWinCountSeason: 0,
+	rebalancedDeathEaterWinCountSeason: 0,
 	rebalancedTotalGameCountSeason: 0
 };
 const sevenPlayerGameData = {
-	fascistWinCount: 0,
+	deathEaterWinCount: 0,
 	totalGameCount: 0,
-	rebalancedFascistWinCount: 0,
+	rebalancedDeathEaterWinCount: 0,
 	rebalancedTotalGameCount: 0,
-	fascistWinCountSeason: 0,
+	deathEaterWinCountSeason: 0,
 	totalGameCountSeason: 0,
-	rebalancedFascistWinCountSeason: 0,
+	rebalancedDeathEaterWinCountSeason: 0,
 	rebalancedTotalGameCountSeason: 0
 };
 const eightPlayerGameData = {
-	fascistWinCount: 0,
+	deathEaterWinCount: 0,
 	totalGameCount: 0,
-	fascistWinCountSeason: 0,
+	deathEaterWinCountSeason: 0,
 	totalGameCountSeason: 0
 };
 const ninePlayerGameData = {
-	fascistWinCount: 0,
+	deathEaterWinCount: 0,
 	totalGameCount: 0,
-	rebalanced2fFascistWinCount: 0,
+	rebalanced2fDeathEaterWinCount: 0,
 	rebalanced2fTotalGameCount: 0,
-	fascistWinCountSeason: 0,
+	deathEaterWinCountSeason: 0,
 	totalGameCountSeason: 0,
-	rebalanced2fFascistWinCountSeason: 0,
+	rebalanced2fDeathEaterWinCountSeason: 0,
 	rebalanced2fTotalGameCountSeason: 0
 };
 const tenPlayerGameData = {
-	fascistWinCount: 0,
+	deathEaterWinCount: 0,
 	totalGameCount: 0,
-	fascistWinCountSeason: 0,
+	deathEaterWinCountSeason: 0,
 	totalGameCountSeason: 0
 };
 
@@ -69,7 +69,7 @@ Game.find({})
 	.cursor()
 	.eachAsync(game => {
 		const playerCount = game.losingPlayers.length + game.winningPlayers.length;
-		const fascistsWon = game.winningTeam === 'fascist';
+		const deathEatersWon = game.winningTeam === 'death eater';
 		const gameDate = moment(new Date(game.date)).format('l');
 		const rebalanced = (game.rebalance6p && playerCount === 6) || (game.rebalance7p && playerCount === 7) || (game.rebalance9p && playerCount === 9);
 		const rebalanced9p2f = game.rebalance9p2f && playerCount === 9;
@@ -87,135 +87,135 @@ Game.find({})
 		switch (playerCount) {
 			case 5:
 				fivePlayerGameData.totalGameCount++;
-				if (fascistsWon) {
-					fivePlayerGameData.fascistWinCount++;
+				if (deathEatersWon) {
+					fivePlayerGameData.deathEaterWinCount++;
 				}
 
 				if (game.season && game.season === CURRENTSEASONNUMBER) {
 					fivePlayerGameData.totalGameCountSeason++;
-					if (fascistsWon) {
-						fivePlayerGameData.fascistWinCountSeason++;
+					if (deathEatersWon) {
+						fivePlayerGameData.deathEaterWinCountSeason++;
 					}
 				}
 				break;
 			case 6:
 				if (rebalanced) {
-					if (fascistsWon) {
-						sixPlayerGameData.rebalancedFascistWinCount++;
+					if (deathEatersWon) {
+						sixPlayerGameData.rebalancedDeathEaterWinCount++;
 					}
 					sixPlayerGameData.rebalancedTotalGameCount++;
 
 					if (game.season && game.season === CURRENTSEASONNUMBER) {
 						sixPlayerGameData.rebalancedTotalGameCountSeason++;
-						if (fascistsWon) {
-							sixPlayerGameData.rebalancedFascistWinCountSeason++;
+						if (deathEatersWon) {
+							sixPlayerGameData.rebalancedDeathEaterWinCountSeason++;
 						}
 					}
 				} else {
-					if (fascistsWon) {
-						sixPlayerGameData.fascistWinCount++;
+					if (deathEatersWon) {
+						sixPlayerGameData.deathEaterWinCount++;
 					}
 					sixPlayerGameData.totalGameCount++;
 
 					if (game.season && game.season === CURRENTSEASONNUMBER) {
 						sixPlayerGameData.totalGameCountSeason++;
-						if (fascistsWon) {
-							sixPlayerGameData.fascistWinCountSeason++;
+						if (deathEatersWon) {
+							sixPlayerGameData.deathEaterWinCountSeason++;
 						}
 					}
 				}
 				break;
 			case 7:
 				if (rebalanced) {
-					if (fascistsWon) {
-						sevenPlayerGameData.rebalancedFascistWinCount++;
+					if (deathEatersWon) {
+						sevenPlayerGameData.rebalancedDeathEaterWinCount++;
 					}
 					sevenPlayerGameData.rebalancedTotalGameCount++;
 
 					if (game.season && game.season === CURRENTSEASONNUMBER) {
 						sevenPlayerGameData.rebalancedTotalGameCountSeason++;
-						if (fascistsWon) {
-							sevenPlayerGameData.rebalancedFascistWinCountSeason++;
+						if (deathEatersWon) {
+							sevenPlayerGameData.rebalancedDeathEaterWinCountSeason++;
 						}
 					}
 				} else {
-					if (fascistsWon) {
-						sevenPlayerGameData.fascistWinCount++;
+					if (deathEatersWon) {
+						sevenPlayerGameData.deathEaterWinCount++;
 					}
 					sevenPlayerGameData.totalGameCount++;
 
 					if (game.season && game.season === CURRENTSEASONNUMBER) {
 						sevenPlayerGameData.totalGameCountSeason++;
-						if (fascistsWon) {
-							sevenPlayerGameData.fascistWinCountSeason++;
+						if (deathEatersWon) {
+							sevenPlayerGameData.deathEaterWinCountSeason++;
 						}
 					}
 				}
 				break;
 			case 8:
 				eightPlayerGameData.totalGameCount++;
-				if (fascistsWon) {
-					eightPlayerGameData.fascistWinCount++;
+				if (deathEatersWon) {
+					eightPlayerGameData.deathEaterWinCount++;
 				}
 				if (game.season && game.season === CURRENTSEASONNUMBER) {
 					eightPlayerGameData.totalGameCountSeason++;
-					if (fascistsWon) {
-						eightPlayerGameData.fascistWinCountSeason++;
+					if (deathEatersWon) {
+						eightPlayerGameData.deathEaterWinCountSeason++;
 					}
 				}
 				break;
 			case 9:
 				if (rebalanced) {
-					if (fascistsWon) {
-						ninePlayerGameData.rebalancedFascistWinCount++;
+					if (deathEatersWon) {
+						ninePlayerGameData.rebalancedDeathEaterWinCount++;
 					}
 					ninePlayerGameData.rebalancedTotalGameCount++;
 				} else if (rebalanced9p2f) {
-					if (fascistsWon) {
-						ninePlayerGameData.rebalanced2fFascistWinCount++;
+					if (deathEatersWon) {
+						ninePlayerGameData.rebalanced2fDeathEaterWinCount++;
 					}
 					ninePlayerGameData.rebalanced2fTotalGameCount++;
 
 					if (game.season && game.season === CURRENTSEASONNUMBER) {
 						ninePlayerGameData.rebalanced2fTotalGameCountSeason++;
-						if (fascistsWon) {
-							ninePlayerGameData.rebalanced2fFascistWinCountSeason++;
+						if (deathEatersWon) {
+							ninePlayerGameData.rebalanced2fDeathEaterWinCountSeason++;
 						}
 					}
 				} else {
-					if (fascistsWon) {
-						ninePlayerGameData.fascistWinCount++;
+					if (deathEatersWon) {
+						ninePlayerGameData.deathEaterWinCount++;
 					}
 					ninePlayerGameData.totalGameCount++;
 					if (game.season && game.season === CURRENTSEASONNUMBER) {
 						ninePlayerGameData.totalGameCountSeason++;
-						if (fascistsWon) {
-							ninePlayerGameData.fascistWinCountSeason++;
+						if (deathEatersWon) {
+							ninePlayerGameData.deathEaterWinCountSeason++;
 						}
 					}
 				}
 				break;
 			case 10:
 				tenPlayerGameData.totalGameCount++;
-				if (fascistsWon) {
-					tenPlayerGameData.fascistWinCount++;
+				if (deathEatersWon) {
+					tenPlayerGameData.deathEaterWinCount++;
 				}
 				if (game.season && game.season === CURRENTSEASONNUMBER) {
 					tenPlayerGameData.totalGameCountSeason++;
-					if (fascistsWon) {
-						tenPlayerGameData.fascistWinCountSeason++;
+					if (deathEatersWon) {
+						tenPlayerGameData.deathEaterWinCountSeason++;
 					}
 				}
 				break;
 		}
 		allPlayerGameData.totalGameCount++;
-		if (fascistsWon) {
-			allPlayerGameData.fascistWinCount++;
+		if (deathEatersWon) {
+			allPlayerGameData.deathEaterWinCount++;
 		}
 		if (game.season && game.season === CURRENTSEASONNUMBER) {
 			allPlayerGameData.totalGameCountSeason++;
-			if (fascistsWon) {
-				allPlayerGameData.fascistWinCountSeason++;
+			if (deathEatersWon) {
+				allPlayerGameData.deathEaterWinCountSeason++;
 			}
 		}
 		labels.push(moment(new Date(game.date)).format('l'));

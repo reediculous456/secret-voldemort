@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const Flappy = ({ isFacist, userInfo, gameInfo, socket }) => {
+const Flappy = ({ isDeathEater, userInfo, gameInfo, socket }) => {
 	const cb = new Image();
 
 	cb.src = '/images/default_cardback.png';
@@ -21,7 +21,7 @@ const Flappy = ({ isFacist, userInfo, gameInfo, socket }) => {
 		if (cardY < 30 + offset / 2 || cardY + 57 > 150 + offset / 2) {
 			socket.emit('flappyEvent', {
 				uid: gameInfo.general.uid,
-				team: isFacist ? 'fascist' : 'liberal',
+				team: isDeathEater ? 'death eater' : 'liberal',
 				type: 'collision'
 			});
 		} else if (x === -32) {
@@ -33,7 +33,7 @@ const Flappy = ({ isFacist, userInfo, gameInfo, socket }) => {
 	};
 
 	const draw = () => {
-		const ctx = document.getElementById(isFacist ? 'flappy-canvas-2' : 'flappy-canvas-1').getContext('2d');
+		const ctx = document.getElementById(isDeathEater ? 'flappy-canvas-2' : 'flappy-canvas-1').getContext('2d');
 		const timeDiff = Date.now() - lastFlapTime;
 
 		// vert = vert - (1000 * gameInfo.flappyState ? gameInfo.flappyState.flapDistance : 1 - timeDiff) * 0.001;
@@ -52,7 +52,7 @@ const Flappy = ({ isFacist, userInfo, gameInfo, socket }) => {
 		pylonCoords.forEach(coord => {
 			const pipeGradient = ctx.createLinearGradient(coord.x, 52 + coord.offset / 2, coord.x + 40, 52 + coord.offset / 2);
 			ctx.fillStyle = pipeGradient;
-			if (coord.x >= -32 && coord.x <= 52 && !isFacist) {
+			if (coord.x >= -32 && coord.x <= 52 && !isDeathEater) {
 				detectCollisionAndPass(vert, coord);
 			}
 
@@ -77,14 +77,14 @@ const Flappy = ({ isFacist, userInfo, gameInfo, socket }) => {
 	const flap = () => {
 		socket.emit('flappyEvent', {
 			uid: gameInfo.general.uid,
-			team: isFacist ? 'fascist' : 'liberal',
+			team: isDeathEater ? 'death eater' : 'liberal',
 			type: 'flap'
 		});
 	};
 
 	useEffect(() => {
 		setTimeout(() => {
-			if (!isFacist) {
+			if (!isDeathEater) {
 				socket.emit('flappyEvent', {
 					uid: gameInfo.general.uid,
 					type: 'startFlappy'
@@ -93,7 +93,7 @@ const Flappy = ({ isFacist, userInfo, gameInfo, socket }) => {
 		}, 500);
 
 		socket.on('flappyUpdate', data => {
-			if (data.type === 'flap' && ((isFacist && data.team == 'fascist') || (!isFacist && data.team === 'liberal'))) {
+			if (data.type === 'flap' && ((isDeathEater && data.team == 'death eater') || (!isDeathEater && data.team === 'liberal'))) {
 				lastFlapTime = Date.now();
 			}
 
@@ -115,7 +115,7 @@ const Flappy = ({ isFacist, userInfo, gameInfo, socket }) => {
 		<canvas
 			width="750"
 			height="220"
-			id={isFacist ? 'flappy-canvas-2' : 'flappy-canvas-1'}
+			id={isDeathEater ? 'flappy-canvas-2' : 'flappy-canvas-1'}
 			style={{ background: 'linear-gradient(to bottom, #7db9e8 0%, #1e5799 100%)' }}
 			onClick={flap}
 		/>
@@ -126,7 +126,7 @@ Flappy.propTypes = {
 	userInfo: PropTypes.object,
 	gameInfo: PropTypes.object,
 	socket: PropTypes.object,
-	isFacist: PropTypes.bool
+	isDeathEater: PropTypes.bool
 };
 
 export default Flappy;

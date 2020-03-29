@@ -71,12 +71,12 @@ export default class Game extends React.Component {
 				playSound('liberalswin', pack, pack === 'pack1' ? 19000 : 8000);
 			}
 
-			if (gameInfo.gameState.audioCue === 'fascistsWin' && prevProps.gameInfo.gameState.audioCue !== 'fascistsWin') {
-				playSound('fascistswin', pack, pack === 'pack1' ? 19000 : 13000);
+			if (gameInfo.gameState.audioCue === 'deathEatersWin' && prevProps.gameInfo.gameState.audioCue !== 'deathEatersWin') {
+				playSound('deatheaterswin', pack, pack === 'pack1' ? 19000 : 13000);
 			}
 
-			if (gameInfo.gameState.audioCue === 'fascistsWinVoldemortElected' && prevProps.gameInfo.gameState.audioCue !== 'fascistsWinVoldemortElected') {
-				playSound('fascistswinvoldemortelected', pack, pack === 'pack1' ? 11000 : 13000);
+			if (gameInfo.gameState.audioCue === 'deathEatersWinVoldemortElected' && prevProps.gameInfo.gameState.audioCue !== 'deathEatersWinVoldemortElected') {
+				playSound('deatheaterswinvoldemortelected', pack, pack === 'pack1' ? 11000 : 13000);
 			}
 
 			if (gameInfo.gameState.audioCue === 'passedVeto' && prevProps.gameInfo.gameState.audioCue !== 'passedVeto') {
@@ -113,8 +113,8 @@ export default class Game extends React.Component {
 						<div className="sixteen wide column tracks-container">
 							{isFlappy ? (
 								<React.Fragment>
-									<Flappy isFacist={false} userInfo={userInfo} gameInfo={gameInfo} socket={socket} />
-									<Flappy isFacist userInfo={userInfo} gameInfo={gameInfo} socket={socket} />
+									<Flappy isDeathEater={false} userInfo={userInfo} gameInfo={gameInfo} socket={socket} />
+									<Flappy isDeathEater userInfo={userInfo} gameInfo={gameInfo} socket={socket} />
 								</React.Fragment>
 							) : (
 								<Tracks userInfo={userInfo} gameInfo={gameInfo} socket={socket} />

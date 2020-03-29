@@ -125,9 +125,9 @@ export default () => {
 
 				testPresidentLegislation(0, { reds: 2, blues: 1 }, 'liberal', some({ reds: 2, blues: 1 }));
 
-				testChancellorLegislation(0, { reds: 2, blues: 0 }, some('fascist'), some({ reds: 2, blues: 0 }));
+				testChancellorLegislation(0, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
 
-				testPolicyEnaction(0, 'fascist');
+				testPolicyEnaction(0, 'death eater');
 
 				testExecution(0, null);
 
@@ -155,15 +155,15 @@ export default () => {
 					Range(0, 7).map(i => some(true))
 				);
 
-				testPresidentLegislation(1, { reds: 2, blues: 1 }, 'fascist', some({ reds: 2, blues: 1 }));
+				testPresidentLegislation(1, { reds: 2, blues: 1 }, 'death eater', some({ reds: 2, blues: 1 }));
 
 				testChancellorLegislation(1, { reds: 1, blues: 1 }, some('liberal'), some({ reds: 2, blues: 0 }));
 
-				testPolicyEnaction(1, 'fascist');
+				testPolicyEnaction(1, 'death eater');
 
 				testExecution(1, null);
 
-				testInvestigation(1, 4, some('fascist'));
+				testInvestigation(1, 4, some('death eater'));
 			});
 
 			it('3', () => {
@@ -227,9 +227,9 @@ export default () => {
 
 				testPresidentLegislation(6, { reds: 2, blues: 1 }, 'liberal', some({ reds: 2, blues: 1 }));
 
-				testChancellorLegislation(6, { reds: 2, blues: 0 }, some('fascist'), some({ reds: 2, blues: 0 }));
+				testChancellorLegislation(6, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
 
-				testPolicyEnaction(6, 'fascist');
+				testPolicyEnaction(6, 'death eater');
 
 				testExecution(6, 2);
 
@@ -254,14 +254,14 @@ export default () => {
 
 				testPresidentLegislation(7, { reds: 2, blues: 1 }, 'liberal', none);
 
-				testChancellorLegislation(7, { reds: 2, blues: 0 }, some('fascist'), none);
+				testChancellorLegislation(7, { reds: 2, blues: 0 }, some('death eater'), none);
 
 				testElection(
 					7,
 					List([true, false, null, null, true, true, true]).map(x => fromNullable(x))
 				);
 
-				testPolicyEnaction(7, 'fascist');
+				testPolicyEnaction(7, 'death eater');
 
 				testExecution(7, null);
 

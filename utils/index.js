@@ -37,7 +37,7 @@ exports.mapOpt2 = f => {
  * ALIASES:
  *
  * Hand: { reds: Int, blues: Int }
- * Policy: String ('fascist' | 'liberal')
+ * Policy: String ('death eater' | 'liberal')
  */
 
 // (handX: Hand, handY: Hand) => Hand
@@ -54,10 +54,10 @@ exports.handToPolicy = hand => {
 	if (hand.reds > 0 && hand.blues > 0) {
 		throw new Error('Expected hand to contain only a single card');
 	}
-	return hand.reds > 0 ? 'fascist' : 'liberal';
+	return hand.reds > 0 ? 'death eater' : 'liberal';
 };
 
-// consistently ordered 'fascist' first, followed by 'liberal'
+// consistently ordered 'death eater' first, followed by 'liberal'
 // (hand: Hand) => List[Policy]
 const handToPolicies = (exports.handToPolicies = hand => {
 	const toPolicies = (count, type) => {
@@ -66,7 +66,7 @@ const handToPolicies = (exports.handToPolicies = hand => {
 			.toList();
 	};
 
-	const reds = toPolicies(hand.reds, 'fascist');
+	const reds = toPolicies(hand.reds, 'death eater');
 	const blues = toPolicies(hand.blues, 'liberal');
 
 	return reds.concat(blues).toList();
@@ -74,19 +74,19 @@ const handToPolicies = (exports.handToPolicies = hand => {
 
 // (policy: Policy) => Hand
 exports.policyToHand = policy => {
-	return policy === 'fascist' ? { reds: 1, blues: 0 } : { reds: 0, blues: 1 };
+	return policy === 'death eater' ? { reds: 1, blues: 0 } : { reds: 0, blues: 1 };
 };
 
 // (policy: Policy) => String ('R' | 'B')
 exports.policyToString = policy => {
-	return policy === 'fascist' ? 'R' : 'B';
+	return policy === 'death eater' ? 'R' : 'B';
 };
 
 const text = (exports.text = (type, text, space) => ({ type, text, space }));
 
 // (hand: Hand) => String ('R*B*')
 exports.handToText = hand => {
-	const policyToString = policy => (policy === 'fascist' ? 'R' : 'B');
+	const policyToString = policy => (policy === 'death eater' ? 'R' : 'B');
 
 	return handToPolicies(hand)
 		.map(policy => text(policy, policyToString(policy), false))

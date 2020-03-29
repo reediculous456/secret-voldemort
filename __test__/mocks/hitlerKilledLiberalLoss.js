@@ -11,7 +11,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 5,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			_id: '595170616419ea7a9b548429',
 			chancellorClaim: {
 				reds: 2,
@@ -57,7 +57,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 5,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			_id: '595170616419ea7a9b548427',
 			chancellorClaim: {
 				reds: 2,
@@ -103,7 +103,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 2,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			_id: '595170616419ea7a9b548425',
 			policyPeekClaim: {
 				reds: 1,
@@ -180,7 +180,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 3,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			execution: 0,
 			_id: '595170616419ea7a9b54841c',
 			chancellorHand: {
@@ -222,7 +222,7 @@ module.exports = {
 		},
 		{
 			username: 'hoffan015',
-			role: 'fascist',
+			role: 'death eater',
 			_id: '595170616419ea7a9b54842a'
 		}
 	],

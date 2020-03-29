@@ -11,7 +11,7 @@ function profileDelta(username, game) {
 	const isWinner = game.isWinner(username).value();
 	const loyalty = game.loyaltyOf(username).value();
 	const isLiberal = loyalty === 'liberal';
-	const isFascist = !isLiberal;
+	const isDeathEater = !isLiberal;
 	const votes = game.voldemortZone
 		.map(hz =>
 			flattenListOpts(
@@ -19,7 +19,7 @@ function profileDelta(username, game) {
 					.votesOf(username)
 					.value()
 					.slice(hz)
-			).filter(v => game.loyaltyOf(v.presidentId).value() === 'fascist' || game.roleOf(v.chancellorId).value() === 'voldemort')
+			).filter(v => game.loyaltyOf(v.presidentId).value() === 'death eater' || game.roleOf(v.chancellorId).value() === 'voldemort')
 		)
 		.valueOrElse(List());
 	const accurateVotes = votes.filterNot(v => {
@@ -27,10 +27,10 @@ function profileDelta(username, game) {
 		const presidentLoyalty = game.loyaltyOf(presidentId).value();
 		const chancellorRole = game.roleOf(chancellorId).value();
 
-		return ja && (presidentLoyalty === 'fascist' || chancellorRole === 'voldemort');
+		return ja && (presidentLoyalty === 'death eater' || chancellorRole === 'voldemort');
 	});
 	const shots = game.shotsOf(username).value();
-	const accurateShots = shots.filter(id => game.loyaltyOf(id).value() === 'fascist');
+	const accurateShots = shots.filter(id => game.loyaltyOf(id).value() === 'death eater');
 
 	if (game.casualGame) {
 		return {
@@ -44,7 +44,7 @@ function profileDelta(username, game) {
 						events: 0,
 						successes: 0
 					},
-					fascist: {
+					deathEater: {
 						events: 0,
 						successes: 0
 					}
@@ -82,9 +82,9 @@ function profileDelta(username, game) {
 					events: isLiberal ? 1 : 0,
 					successes: isLiberal && isWinner ? 1 : 0
 				},
-				fascist: {
-					events: isFascist ? 1 : 0,
-					successes: isFascist && isWinner ? 1 : 0
+				deathEater: {
+					events: isDeathEater ? 1 : 0,
+					successes: isDeathEater && isWinner ? 1 : 0
 				}
 			},
 			actions: {
@@ -125,8 +125,8 @@ function updateProfile(username, game, options = {}) {
 					'stats.matches.liberal.events': delta.stats.matches.liberal.events,
 					'stats.matches.liberal.successes': delta.stats.matches.liberal.successes,
 
-					'stats.matches.fascist.events': delta.stats.matches.fascist.events,
-					'stats.matches.fascist.successes': delta.stats.matches.fascist.successes,
+					'stats.matches.deathEater.events': delta.stats.matches.deathEater.events,
+					'stats.matches.deathEater.successes': delta.stats.matches.deathEater.successes,
 
 					'stats.actions.voteAccuracy.events': delta.stats.actions.voteAccuracy.events,
 					'stats.actions.voteAccuracy.successes': delta.stats.actions.voteAccuracy.successes,

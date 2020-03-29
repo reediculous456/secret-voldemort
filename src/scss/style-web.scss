@@ -1,10 +1,10 @@
 $lred: #e36248;
 $lightliberalteam: #bfd8ee;
-$lightfascistteam: #e4bcba;
+$lightdeatheaterteam: #e4bcba;
 $darkliberalteam: #608cb3;
-$darkfascistteam: #c36563;
+$darkdeatheaterteam: #c36563;
 $voldemortteam: #be0804;
-$fascistteam: #e36248;
+$deatheaterteam: #e36248;
 $notification: #fbbd08;
 $selection: #db2828;
 $proceed: #2185d0;
@@ -314,12 +314,12 @@ span.emphasis {
 
 	h1,
 	h2 {
-		color: $darkfascistteam !important;
+		color: $darkdeatheaterteam !important;
 	}
 
 	h3,
 	h4 {
-		color: $fascistteam !important;
+		color: $deatheaterteam !important;
 	}
 }
 
@@ -334,7 +334,7 @@ span.emphasis {
 }
 
 .ct-series-a .ct-slice-pie {
-	fill: $fascistteam;
+	fill: $deatheaterteam;
 }
 
 #chart-completed-games .ct-label.ct-horizontal {

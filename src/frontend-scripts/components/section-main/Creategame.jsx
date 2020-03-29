@@ -50,7 +50,7 @@ export default class Creategame extends React.Component {
 				powers: [null, null, null, null, null], // last "power" is always a fas victory
 				voldemortZone: 3, // 1-5
 				vetoZone: 5, // 1-5, must be larger than fas track state
-				fascistCount: 1, // 1-3, does not include hit
+				deathEaterCount: 1, // 1-3, does not include hit
 				hitKnowsFas: false,
 				deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
 				trackState: { lib: 0, fas: 0 }
@@ -426,7 +426,7 @@ export default class Creategame extends React.Component {
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
 						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 1, // 1-3, does not include hit
+						deathEaterCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
 						fasCanShootHit: false,
 						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -464,7 +464,7 @@ export default class Creategame extends React.Component {
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
 						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 1, // 1-3, does not include hit
+						deathEaterCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
 						fasCanShootHit: false,
 						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -502,7 +502,7 @@ export default class Creategame extends React.Component {
 						powers: ['bullet', 'bullet', 'bullet', 'bullet', 'bullet'], // last "power" is always a fas victory
 						voldemortZone: 4, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 1, // 1-3, does not include hit
+						deathEaterCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
 						fasCanShootHit: false,
 						deckState: { lib: 6, fas: 13 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -541,7 +541,7 @@ export default class Creategame extends React.Component {
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
 						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 1, // 1-3, does not include hit
+						deathEaterCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
 						fasCanShootHit: false,
 						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -580,7 +580,7 @@ export default class Creategame extends React.Component {
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
 						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 1, // 1-3, does not include hit
+						deathEaterCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
 						fasCanShootHit: false,
 						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -619,7 +619,7 @@ export default class Creategame extends React.Component {
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
 						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 1, // 1-3, does not include hit
+						deathEaterCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
 						fasCanShootHit: false,
 						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -658,7 +658,7 @@ export default class Creategame extends React.Component {
 						powers: ['investigate', 'reverseinv', 'investigate', 'reverseinv', 'investigate'], // last "power" is always a fas victory
 						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 1, // 1-3, does not include hit
+						deathEaterCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
 						fasCanShootHit: false,
 						deckState: { lib: 6, fas: 15 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -697,7 +697,7 @@ export default class Creategame extends React.Component {
 						powers: ['bullet', 'bullet', 'bullet', 'bullet', 'bullet'], // last "power" is always a fas victory
 						voldemortZone: 4, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 2, // 1-3, does not include hit
+						deathEaterCount: 2, // 1-3, does not include hit
 						hitKnowsFas: true,
 						fasCanShootHit: true,
 						deckState: { lib: 6, fas: 19 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -736,7 +736,7 @@ export default class Creategame extends React.Component {
 						powers: [null, null, null, null, null], // last "power" is always a fas victory
 						voldemortZone: 3, // 1-5
 						vetoZone: 5, // 1-5, must be larger than fas track state
-						fascistCount: 1, // 1-3, does not include hit
+						deathEaterCount: 1, // 1-3, does not include hit
 						hitKnowsFas: false,
 						fasCanShootHit: false,
 						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
@@ -749,7 +749,7 @@ export default class Creategame extends React.Component {
 	sliderNumFas = val => {
 		const { customGameSettings } = this.state;
 
-		customGameSettings.fascistCount = val[0];
+		customGameSettings.deathEaterCount = val[0];
 		customGameSettings.enabled = true;
 		this.setState({ casualgame: true, customGameSettings });
 	};
@@ -962,7 +962,7 @@ export default class Creategame extends React.Component {
 
 		return (
 			<div className={this.state.isTourny ? 'rebalance-container isTourny' : 'rebalance-container'}>
-				<span title="When enabled, 6p games have a fascist policy already enacted, and 7p and 9p games start with one less fascist policy in the deck.">
+				<span title="When enabled, 6p games have a death eater policy already enacted, and 7p and 9p games start with one less death eater policy in the deck.">
 					<i className="info circle icon" />
 					Rebalance:
 				</span>
@@ -1074,7 +1074,7 @@ export default class Creategame extends React.Component {
 			})
 			.concat(
 				_.range(0, numFas).map((val, i) => {
-					return <div key={`F${i}`} className="deckcard" style={{ backgroundImage: "url('../images/cards/fascistp-l.png')" }} />; // eslint-disable-line
+					return <div key={`F${i}`} className="deckcard" style={{ backgroundImage: "url('../images/cards/death-eaterp-l.png')" }} />; // eslint-disable-line
 				})
 			);
 		const thirds = [];
@@ -1110,7 +1110,7 @@ export default class Creategame extends React.Component {
 			if (p == 'peekdrop') return 'PeekDrop';
 			return null;
 		});
-		const numFas = customGameSettings.fascistCount;
+		const numFas = customGameSettings.deathEaterCount;
 		const hzStart = customGameSettings.voldemortZone;
 		const vzPoint = customGameSettings.vetoZone;
 		const hitKnowsFas = customGameSettings.hitKnowsFas;
@@ -1275,17 +1275,17 @@ export default class Creategame extends React.Component {
 		const { hitKnowsFas } = this.state.customGameSettings;
 
 		const renderFas = () => {
-			return _.range(0, this.state.customGameSettings.fascistCount).map((val, i) => (
+			return _.range(0, this.state.customGameSettings.deathEaterCount).map((val, i) => (
 				<div
 					key={i}
 					className="rolecard"
-					style={{ backgroundImage: hitKnowsFas ? `url('../images/cards/fascist${val}.png')` : "url('../images/cards/secretrole.png')" }} // eslint-disable-line
+					style={{ backgroundImage: hitKnowsFas ? `url('../images/cards/deatheater${val}.png')` : "url('../images/cards/secretrole.png')" }} // eslint-disable-line
 				/>
 			));
 		};
 
 		const renderLib = () => {
-			return _.range(0, this.state.customGameSliderValue - this.state.customGameSettings.fascistCount - 1).map((val, i) => (
+			return _.range(0, this.state.customGameSliderValue - this.state.customGameSettings.deathEaterCount - 1).map((val, i) => (
 				<div
 					key={i}
 					className="rolecard"
@@ -1347,19 +1347,19 @@ export default class Creategame extends React.Component {
 					<div className="row">
 						<div className="six wide column">
 							<div>
-								<h4 className="ui header">Number of fascists</h4>
+								<h4 className="ui header">Number of death eaters</h4>
 								<Range
 									min={1}
 									max={3}
 									defaultValue={[2]}
 									onChange={this.sliderNumFas}
-									value={[this.state.customGameSettings.fascistCount]}
+									value={[this.state.customGameSettings.deathEaterCount]}
 									marks={{ 1: '1', 2: '2', 3: '3' }}
 								/>
 							</div>
 						</div>
 						<div className="five wide column">
-							<h4 className="ui header">Voldemort sees fascists</h4>
+							<h4 className="ui header">Voldemort sees death eaters</h4>
 							<Switch
 								className="create-game-switch"
 								onChange={checked => {
@@ -1376,7 +1376,7 @@ export default class Creategame extends React.Component {
 							/>
 						</div>
 						<div className="five wide column">
-							<h4 className="ui header">Fascists can shoot voldemort</h4>
+							<h4 className="ui header">Death Eaters can shoot voldemort</h4>
 							<Switch
 								className="create-game-switch"
 								onChange={checked => {
@@ -1415,7 +1415,7 @@ export default class Creategame extends React.Component {
 							/>
 						</div>
 						<div className="eight wide column">
-							<h4 className="ui header">Fascist policies</h4>
+							<h4 className="ui header">Death Eater policies</h4>
 							<Range
 								min={10}
 								max={19}
@@ -1514,7 +1514,7 @@ export default class Creategame extends React.Component {
 			}
 		}
 		if (this.state.customGameSettings.enabled) {
-			if (this.state.customGameSettings.fascistCount + 1 >= this.state.customGameSliderValue / 2) {
+			if (this.state.customGameSettings.deathEaterCount + 1 >= this.state.customGameSliderValue / 2) {
 				errs.push('There must be a liberal majority when the game starts.');
 			}
 			if (this.state.customGameSettings.vetoZone <= this.state.customGameSettings.trackState.fas) {
@@ -1980,7 +1980,7 @@ export default class Creategame extends React.Component {
 					<div className="row">
 						<div className="sixteen wide column">
 							<i className="big setting icon" />
-							<h4 className="ui header">Custom Game - Use a custom fascist track.</h4>
+							<h4 className="ui header">Custom Game - Use a custom death eater track.</h4>
 							<Switch
 								className="create-game-switch"
 								onChange={checked => {

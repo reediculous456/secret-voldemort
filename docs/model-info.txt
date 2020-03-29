@@ -14,7 +14,7 @@ gameState
 	audioCue string no op - a hint for the front end to play a sound
 flappyState
 	liberalScore number
-	fascistScore number
+	deathEaterScore number
 	pylonDensity number default 1
 	flapDistance number default 1
 chats array
@@ -73,9 +73,9 @@ seatedPlayers array 5-10
 trackState
 	liberalPolicyCount number
 	electionTrackerCount number
-	fascistPolicyCount number
+	deathEaterPolicyCount number
 	enactedPolicies array
-		location string offscreen center liberal0 ... fascist0 ...
+		location string offscreen center liberal0 ... deathEater0 ...
 remakeData array
 	obj
 		userName string
@@ -136,7 +136,7 @@ private
 			obj
 				cardBack object
 				notificationStatus string outline around player
-				nameStatus string fascist voldemort disabled liberal
+				nameStatus string deathEater voldemort disabled liberal
 				hasVoted bool
 				policyNotification bool
 		cardFlingerState array

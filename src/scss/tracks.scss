@@ -141,7 +141,7 @@
 			background-image: url('../../public/images/tracks/liberaltrack.png');
 		}
 		.bottom-track-front {
-			background-image: url('../../public/images/tracks/fascisttrack_front.png');
+			background-image: url('../../public/images/tracks/deatheatertrack_front.png');
 			background-position: center;
 			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
@@ -152,13 +152,13 @@
 			transform: rotateX(180deg);
 		}
 		.track0 {
-			background-image: url('../../public/images/tracks/fascisttrack56.png');
+			background-image: url('../../public/images/tracks/deatheatertrack56.png');
 		}
 		.track1 {
-			background-image: url('../../public/images/tracks/fascisttrack78.png');
+			background-image: url('../../public/images/tracks/deatheatertrack78.png');
 		}
 		.track2 {
-			background-image: url('../../public/images/tracks/fascisttrack910.png');
+			background-image: url('../../public/images/tracks/deatheatertrack910.png');
 		}
 		.remove.icon {
 			position: absolute;
@@ -307,8 +307,8 @@
 .cardflinger-card.liberalp {
 	background-image: url('../../public/images/cards/liberalp-l.png');
 }
-.cardflinger-card.fascistp {
-	background-image: url('../../public/images/cards/fascistp-l.png');
+.cardflinger-card.death-eaterp {
+	background-image: url('../../public/images/cards/deatheaterp-l.png');
 }
 .cardflinger-card-container.middle-far-right.hovered,
 .cardflinger-card-container.middle-center.hovered,
@@ -386,8 +386,8 @@
 .enactedpolicies-card.back.liberal {
 	background-image: url('../../public/images/cards/liberalp-l.png');
 }
-.enactedpolicies-card.back.fascist {
-	background-image: url('../../public/images/cards/fascistp-l.png');
+.enactedpolicies-card.back.death-eater {
+	background-image: url('../../public/images/cards/death-eaterp-l.png');
 }
 .enactedpolicies-card-container.middle {
 	left: 40%;
@@ -418,27 +418,27 @@
 	left: 71.85%;
 	top: 10.91%;
 }
-.enactedpolicies-card-container.fascist1 {
+.enactedpolicies-card-container.death-eater1 {
 	left: 7.1%;
 	top: 61%;
 }
-.enactedpolicies-card-container.fascist2 {
+.enactedpolicies-card-container.death-eater2 {
 	left: 21.5%;
 	top: 61%;
 }
-.enactedpolicies-card-container.fascist3 {
+.enactedpolicies-card-container.death-eater3 {
 	left: 35.9%;
 	top: 61%;
 }
-.enactedpolicies-card-container.fascist4 {
+.enactedpolicies-card-container.death-eater4 {
 	left: 50.3%;
 	top: 61%;
 }
-.enactedpolicies-card-container.fascist5 {
+.enactedpolicies-card-container.death-eater5 {
 	left: 64.7%;
 	top: 61%;
 }
-.enactedpolicies-card-container.fascist6 {
+.enactedpolicies-card-container.death-eater6 {
 	left: 79.1%;
 	top: 61%;
 }

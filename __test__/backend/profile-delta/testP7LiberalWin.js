@@ -15,8 +15,8 @@ export default () => {
 			expect(delta.stats.matches.liberal.events).toBe(1);
 			expect(delta.stats.matches.liberal.successes).toBe(1);
 
-			expect(delta.stats.matches.fascist.events).toBe(0);
-			expect(delta.stats.matches.fascist.successes).toBe(0);
+			expect(delta.stats.matches.deathEater.events).toBe(0);
+			expect(delta.stats.matches.deathEater.successes).toBe(0);
 
 			expect(delta.stats.actions.voteAccuracy.events).toBe(0);
 			expect(delta.stats.actions.voteAccuracy.successes).toBe(0);
@@ -38,8 +38,8 @@ export default () => {
 			expect(delta.stats.matches.liberal.events).toBe(0);
 			expect(delta.stats.matches.liberal.successes).toBe(0);
 
-			expect(delta.stats.matches.fascist.events).toBe(1);
-			expect(delta.stats.matches.fascist.successes).toBe(0);
+			expect(delta.stats.matches.deathEater.events).toBe(1);
+			expect(delta.stats.matches.deathEater.successes).toBe(0);
 
 			expect(delta.stats.actions.voteAccuracy.events).toBe(0);
 			expect(delta.stats.actions.voteAccuracy.successes).toBe(0);
@@ -47,7 +47,7 @@ export default () => {
 			expect(delta.stats.actions.shotAccuracy.events).toBe(0);
 			expect(delta.stats.actions.shotAccuracy.successes).toBe(0);
 
-			expect(delta.recentGames.loyalty).toBe('fascist');
+			expect(delta.recentGames.loyalty).toBe('death eater');
 			expect(delta.recentGames.playerSize).toBe(7);
 			expect(delta.recentGames.isWinner).toBe(false);
 		});

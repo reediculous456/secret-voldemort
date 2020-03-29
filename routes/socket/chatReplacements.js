@@ -31,7 +31,7 @@ module.exports.chatReplacements = [
 		id: 4,
 		regex: /^v.eto/i,
 		replacement:
-			'Veto is unlocked after the 5th fascist card is played. This power allows for the resulting policy to be played to be nullified- but only if both the president and chancellor vote "ja". If either votes "nein", the resulting policy will be enacted as usual.',
+			'Veto is unlocked after the 5th death eater card is played. This power allows for the resulting policy to be played to be nullified- but only if both the president and chancellor vote "ja". If either votes "nein", the resulting policy will be enacted as usual.',
 		aemCooldown: 15,
 		normalCooldown: 180,
 		normalGames: 50

@@ -169,7 +169,7 @@ block content
 			p It took a while, but we're here - all major features I could think of and some I couldn't are in and mostly working. A long, long way from the first stable(ish) release back in May 2017.
 			p I want to thank our moderation team first and foremost. The site would not be in the same shape without them. There was a time that feature wasn't even in and it was just a nightmare. Obviously its a combination of both the theme and the nature of a mostly anonymous internet, but they've done an amazing job keeping this place playable in public games and fun for everyone!
 			p I also want to call out contributor/mod Hexicube for spending so much working on various parts of the app over the last ~year. Many moderation tools and features like custom games would not exist without him.
-			p Please note that 1.0 does not mean I am no longer supporting the application and site. Work will continue to make the site even better, but not personally at the pace I have been. My next game is in progress and I expect to get to a playable pre-alpha state some time in the next few months. It will be a (fresh IP) hidden role game with some similarities to the fascist hunting/electing game we all know and love but with some fun features and mechanics that can only exist online. Stay tuned! -Chris
+			p Please note that 1.0 does not mean I am no longer supporting the application and site. Work will continue to make the site even better, but not personally at the pace I have been. My next game is in progress and I expect to get to a playable pre-alpha state some time in the next few months. It will be a (fresh IP) hidden role game with some similarities to the death eater hunting/electing game we all know and love but with some fun features and mechanics that can only exist online. Stay tuned! -Chris
 			p This update also includes:
 			ul
 				li Fixed player claims showing under player chat instead of game chat.
@@ -190,7 +190,7 @@ block content
 			p Why not?! This will be the last one.. probably. I don't want your facebook/google/apple nonsense.
 			h3 Fix: much better long-game performance.
 			p For far too long, games that had many chats were having a lot of lag in the late games. You now only see a smaller selection of chats (last 250) - you can toggle this in the game filters. Turning that off will cause your client to be slow, again.
-			h3 New feature: fixes to remakes and now remakes will always go based off of fascist count instead of a fixed number.  Thanks to contributor LoveOken.
+			h3 New feature: fixes to remakes and now remakes will always go based off of death eater count instead of a fixed number.  Thanks to contributor LoveOken.
 			h3 New feature: the contributor and trial mod roles are now assignable by mods as opposed to being hard coded.
 			h3 New feature: cardbacks should now be much more performant @Hexicube.
 			p Version 1.0.0-beta6 released 12-12-2018
@@ -246,7 +246,7 @@ block content
 			ul
 				li Custom Games are always casual, and have a fixed player count as opposed to the selectable range of players.
 				li It plays 5 to 10 as usual and must have a liberal majority.
-				li Choose if voldemort knows his fascists, when voldemort zone starts, when veto is enabled, and what policy cards are in the game.
+				li Choose if voldemort knows his death eaters, when voldemort zone starts, when veto is enabled, and what policy cards are in the game.
 				li There's a new game filter for custom games (filter icon next to the "create a new game" button on the lobby).
 				li All of this feature thanks to contributor Hexicube!
 			h4 New feature: game filters now save/persist when toggled.
@@ -316,7 +316,7 @@ block content
 			h3 New feature: elo slider/limiter (not quite working, will be in this week)
 			p Players above 1700 elo will now see a new slider while creating a game - use this to limit what players can play in the new game you are creating. Players who are under or over the threshold will not be able to sit.
 			p This feature will be watched for feedback - I don't want to lock players out of games, but I also think its nice to be able to play with high elo players exclusively if you want. This feature only applies to seasonal elo right now.
-			h3 The terms of use on the about page have been somewhat adjusted.  I want to make it clear that abuse by anyone is not allowed.  If someone makes a mistake that costs you a game, do not scream at them, do not call them "retards" or "cunts".  If so you will eat a ban.  Its a free web game with zero stakes, chill and hunt/elect some fascists.
+			h3 The terms of use on the about page have been somewhat adjusted.  I want to make it clear that abuse by anyone is not allowed.  If someone makes a mistake that costs you a game, do not scream at them, do not call them "retards" or "cunts".  If so you will eat a ban.  Its a free web game with zero stakes, chill and hunt/elect some death eaters.
 			p Version 0.14.7 released 6-17-2018
 			p Verification emails should be fixed.
 			p New leaderboard component now has a working link on the lobby.
@@ -402,10 +402,10 @@ block content
 				li New emotes: CantBeBothered and Salty, thanks to contributor LordVader.
 			p Version 0.13.1 released 4-3-2018
 			h3 New game mode: Timed mode
-			p In a timed mode game, a timer on all actions appears in the lower right part of the fascist board, after which the next action is chosen at random.
+			p In a timed mode game, a timer on all actions appears in the lower right part of the death eater board, after which the next action is chosen at random.
 			div(style="text-align: center")
 				img(src="/images/timed-mode-example.png", style="border: 1px solid grey")
-			p Example: in a 5 minute timed mode game, if someone does not make a required action in 5 minutes such as voting on an election, their nein or ja vote is chosen for them at random by the server. Note that in order to save stress on the server, this countdown is held client-side and will only be visible to	players/observers if they are present in the game when each timer starts (but still goes on in the background on the server, of course). This mode will	likely favor fascists! Feedback requested.
+			p Example: in a 5 minute timed mode game, if someone does not make a required action in 5 minutes such as voting on an election, their nein or ja vote is chosen for them at random by the server. Note that in order to save stress on the server, this countdown is held client-side and will only be visible to	players/observers if they are present in the game when each timer starts (but still goes on in the background on the server, of course). This mode will	likely favor death eaters! Feedback requested.
 			p Complicated magical changes were made in the back end in order to enable this functionality and it may be subject to.. not being perfect. Please report any problems you see. Hopefully problems != crashes.
 			h3 Bug fix: game now once again works on iOS devices.
 			h3 Bug fix: blind mode players cannot reveal their names by pinging other players..
@@ -452,11 +452,11 @@ block content
 			ul
 				li Thanks to a contribution, tournament crowns are no longer visible in blind mode.
 				li Please welcome new moderators safi, Wilmeister, and MrEth3real.
-				li Stats for rebalanced (-2 fascist policy) 9 player games might be working tomorrow.. (data collection occurs at 4am)
+				li Stats for rebalanced (-2 death eater policy) 9 player games might be working tomorrow.. (data collection occurs at 4am)
 				li There's a new poll on the polls page re: length of seasons.
 			p Version 0.12.4 released 2-3-2018
 			h3 New feature: rebalanced 9p games (again).
-			p Now, they start with 2 less fascist policies in the deck. The stats page should be updated.
+			p Now, they start with 2 less death eater policies in the deck. The stats page should be updated.
 			h3 New feature: games being remade will now show player roles briefly  (thanks to Z3r0-K0ol on github.).
 			h3 Other items:
 			ul
@@ -468,7 +468,7 @@ block content
 				li Please welcome new editor Invidia.
 			p Version 0.12.3 released 1-6-2018
 			h3 New feature: rerebalanced 9p games.
-			p Due to 9p, even rebalanced, being way too easy for fascists, the newly rebalanced 9p games will have a "phantom" liberal policy already enacted at the start of the game, in addition to one less fascist policy. There will still be 6 liberal policies in the deck to start.
+			p Due to 9p, even rebalanced, being way too easy for death eaters, the newly rebalanced 9p games will have a "phantom" liberal policy already enacted at the start of the game, in addition to one less death eater policy. There will still be 6 liberal policies in the deck to start.
 			ul
 				li The broken UI on the playerlist has been fixed.
 				li Sorting of grey players on the playerlist had a bug which caused it to be really broken - now fixed.
@@ -501,7 +501,7 @@ block content
 			p This has been requested a lot lately, we'll see how this goes/how people like it for season 1. The poll on this was split, lets give this a shot.
 			h3 Other items:
 			ul
-				li Thanks to a pull request, the fascist/lib card icons are now randomized correctly i.e. liberal with pencil mustache/snake in a suit fascist can now appear in any game, not just 9/10p games.
+				li Thanks to a pull request, the death eater/lib card icons are now randomized correctly i.e. liberal with pencil mustache/snake in a suit death eater can now appear in any game, not just 9/10p games.
 				li Thanks to the same PR, claims now are filtered into the "game" internal chat filter.
 				li Thanks to a PR, replays have been worked on and fixed! If you see more issues, please alert us. In addition the role cards are no longer all the same at the end of replays.
 				li The above work was done by contributor STOshka/AlexSTO. Awesome!
@@ -514,7 +514,7 @@ block content
 			p Version 0.11.2 released 12-24-2017
 			h3 Tournament mode re-re-enabled..
 			ul
-				li Thanks to a PR, the fascist/lib card icons are now randomized correctly i.e. liberal with pencil mustache can now appear in any game, not just 10p games.
+				li Thanks to a PR, the death eater/lib card icons are now randomized correctly i.e. liberal with pencil mustache can now appear in any game, not just 10p games.
 				li Thanks to the same PR, claims now are filtered into the "game" internal chat filter.
 			p Version 0.11.1 released 12-22-2017
 			h3 Tournament mode re-enabled.. we'll see how I messed it up this time.
@@ -549,7 +549,7 @@ block content
 			h3 New feature: see chats in replays.
 			p There's a new button on replays to toggle between the replay tools and the chats in that game.
 			h3 New feature: rebalanced 7p games.
-			p 7p games have the optional rebalance treatment now - same as 9p, a fascist policy has been removed to start the game.
+			p 7p games have the optional rebalance treatment now - same as 9p, a death eater policy has been removed to start the game.
 			h3 Up next: blind mode and tournament mode!
 			p Version 0.9.2 "dim3" released 11-5-2017
 			h3 New feature: discord integration in general chat.
@@ -572,7 +572,7 @@ block content
 				img(style="width: 80%; border: 1px solid grey; padding: 10px; margin: 5px 0;",src="/images/bio.png")
 			p Visit your profile page to write something brief about yourself that others can see. Links are allowed, but SEO unfriendly (google "nofollow noreferrer noopener"). Obviously still subject to the site terms of use..
 			h3 New feature: optional rebalancing for 6 and 9 player games.
-			p There's a new create game option (default: on) that, when a 6 or 9p game has begun, a facist and liberal policy have already been enacted, respectively. You'll get it. While these are being recorded correctly, there are no stats/graphs for this yet - next minor update.
+			p There's a new create game option (default: on) that, when a 6 or 9p game has begun, a death eater and liberal policy have already been enacted, respectively. You'll get it. While these are being recorded correctly, there are no stats/graphs for this yet - next minor update.
 			h3 New feature: URL routing
 			p What this means is the URL of your browser now accurately shows the state of the application. The big takeaway is games, replays, and profiles are now all deep linkable! Make a private game and want your friends to join? Just send them the link. The browser back and forward buttons now work in the way you would expect as well. If you link a game that no longer exists, you will instead be routed to the replay. This required a large change to the front end and may not be perfect, please update if so. Also using gfycat style naming convention for game IDs!
 			h3 New feature: actual private games
@@ -611,7 +611,7 @@ block content
 				li Home page and about us page text has been updated and the webform deprecated. If you have feedback/issues, a new email address has been set up in the about page and we are always available via discord and the player report feature.
 				li Gamenotes clear button now works.
 				li Thanks to contributor jonnybest, hovering on a game on the list in the left sidebar now shows you who is seated in that game.
-				li A bug in "blind mode" (no gamechat) was causing fascists to get credit for winning the game when Voldemort was shot, this mode was previously disabled via hotfix, now that bug has been fixed and that mode has been re-enabled.
+				li A bug in "blind mode" (no gamechat) was causing death eaters to get credit for winning the game when Voldemort was shot, this mode was previously disabled via hotfix, now that bug has been fixed and that mode has been re-enabled.
 				li Private games "P" icon in the upper left corner of a gamelist was disappearing after the game started - thanks to contributor jonnybest, this has been fixed.
 				li Players can now search/type in other players to look at their profile just like clicking on them. The player settings page (gear icon) has this new input field.
 				li The footer bar in the default view has been updated to include our wiki.
@@ -631,7 +631,7 @@ block content
 			h3 New feature: better support for large width monitors.
 			p The application is no longer fixed width, and will stretch to fit the entire screen.  Chat boxes will take up the remaining space.  I recommend turning "show right sidebar in game" on.
 			h3 New feature: enhanced moderator actions
-			p Mods can now delete users, set wins and losses, and delete cardbacks.  Also they can now type in player names to affect offline players.  Lets hope they're not fascists.
+			p Mods can now delete users, set wins and losses, and delete cardbacks.  Also they can now type in player names to affect offline players.  Lets hope they're not death eaters.
 			p Other stuff:
 			ul
 				li The "chat a blank line" bug was fixed.

@@ -180,9 +180,9 @@
 					font-weight: 700;
 					color: #be0804;
 				}
-				.chat-role--fascist {
+				.chat-role--death-eater {
 					font-weight: 700;
-					color: $darkfascistteam;
+					color: $darkdeatheaterteam;
 				}
 				.chat-player {
 					color: var(--theme-text-1);
@@ -219,18 +219,18 @@
 					width: 230px;
 					margin: 0 auto 15px;
 				}
-				.threefascist {
+				.threedeatheater {
 					background: #c36563;
 				}
-				.twofascistoneliberal {
+				.twodeatheateroneliberal {
 					background: #e4bcba;
 					color: var(--theme-background-2) !important;
 				}
-				.onefascistoneliberal {
+				.onedeatheateroneliberal {
 					background: #fff;
 					color: var(--theme-background-2) !important;
 				}
-				.twoliberalonefascist {
+				.twoliberalonedeatheater {
 					background: #bfd8ee;
 					color: var(--theme-background-2) !important;
 				}

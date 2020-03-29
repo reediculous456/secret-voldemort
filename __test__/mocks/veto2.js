@@ -12,7 +12,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 1,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -27,7 +27,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 2,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -42,7 +42,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 1,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			policyPeek: {
 				reds: 2,
 				blues: 1
@@ -61,7 +61,7 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 2,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			execution: 4,
 			chancellorHand: {
 				reds: 2,
@@ -77,7 +77,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 1,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			execution: 1,
 			chancellorHand: {
 				reds: 2,
@@ -140,7 +140,7 @@ module.exports = {
 			chancellorId: 0,
 			chancellorVeto: true,
 			presidentVeto: true,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -163,7 +163,7 @@ module.exports = {
 		},
 		{
 			username: 'Uther',
-			role: 'fascist'
+			role: 'death eater'
 		},
 		{
 			username: 'Rexxar',

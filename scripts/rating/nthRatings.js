@@ -40,7 +40,7 @@ async function influence(game) {
 		}
 		if (Math.abs((await ja(turn.votes)) - (await nein(turn.votes))) === 0) {
 			for (const v of turn.votes) {
-				// even number of fascist and liberal votes: everyone gets a point
+				// even number of death eater and liberal votes: everyone gets a point
 				weighting[v]++;
 			}
 		}
@@ -48,11 +48,11 @@ async function influence(game) {
 			// In government influence
 			weighting[turn.presidentId]++;
 			weighting[turn.chancellorId]++;
-			if (red > 3 && turn.enactedPolicy._value === 'fascist') {
+			if (red > 3 && turn.enactedPolicy._value === 'death eater') {
 				// President powers influence
 				weighting[turn.presidentId]++;
 			}
-			if (turn.enactedPolicy._value === 'fascist') {
+			if (turn.enactedPolicy._value === 'death eater') {
 				red += 1;
 			}
 		}
@@ -69,12 +69,12 @@ async function rate(summary) {
 		.filter(player => player.role === 'liberal')
 		.map(player => player.username)
 		.toArray();
-	const fascistPlayerNames = game.players
+	const deathEaterPlayerNames = game.players
 		.filter(player => liberalPlayerNames.indexOf(player.username) === -1)
 		.map(player => player.username)
 		.toArray();
-	const winningPlayerNames = game.winningTeam === 'liberal' ? liberalPlayerNames : fascistPlayerNames;
-	const losingPlayerNames = game.winningTeam === 'liberal' ? fascistPlayerNames : liberalPlayerNames;
+	const winningPlayerNames = game.winningTeam === 'liberal' ? liberalPlayerNames : deathEaterPlayerNames;
+	const losingPlayerNames = game.winningTeam === 'liberal' ? deathEaterPlayerNames : liberalPlayerNames;
 	const playerNames = game.players.map(player => player.username).toArray();
 	const playerInfluence = await influence(game);
 	// Construct some basic statistics for each team

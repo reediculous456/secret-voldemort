@@ -25,23 +25,23 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 			});
 		}
 		if (game.customGameSettings.trackState.fas > 0) {
-			game.trackState.fascistPolicyCount = game.customGameSettings.trackState.fas;
+			game.trackState.deathEaterPolicyCount = game.customGameSettings.trackState.fas;
 			_.range(0, game.customGameSettings.trackState.fas).forEach(num => {
 				game.trackState.enactedPolicies.push({
-					cardBack: 'fascist',
+					cardBack: 'death eater',
 					isFlipped: true,
-					position: `fascist${num + 1}`
+					position: `death eater${num + 1}`
 				});
 			});
 		}
 	}
 
 	const libCount = game.customGameSettings.deckState.lib - game.trackState.liberalPolicyCount;
-	const fasCount = game.customGameSettings.deckState.fas - game.trackState.fascistPolicyCount;
+	const fasCount = game.customGameSettings.deckState.fas - game.trackState.deathEaterPolicyCount;
 	game.private.policies = _.shuffle(
 		_.range(0, libCount)
 			.map(num => 'liberal')
-			.concat(_.range(0, fasCount).map(num => 'fascist'))
+			.concat(_.range(0, fasCount).map(num => 'death eater'))
 	);
 
 	game.gameState.undrawnPolicyCount = game.private.policies.length;
@@ -62,8 +62,8 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 					text: ' and '
 				},
 				{
-					text: `${fasCount} fascist`,
-					type: 'fascist'
+					text: `${fasCount} death eater`,
+					type: 'death eater'
 				},
 				{
 					text: ' policies.'
@@ -97,7 +97,7 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 module.exports.startElection = (game, specialElectionPresidentIndex) => {
 	const { experiencedMode } = game.general;
 
-	if (game.trackState.fascistPolicyCount >= game.customGameSettings.vetoZone) {
+	if (game.trackState.deathEaterPolicyCount >= game.customGameSettings.vetoZone) {
 		game.gameState.isVetoEnabled = true;
 	}
 

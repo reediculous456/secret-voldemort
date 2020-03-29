@@ -86,42 +86,42 @@ describe('handDiff', () => {
 });
 
 describe('handToPolicy', () => {
-	expect(handToPolicy({ reds: 1, blues: 0 })).toBe('fascist');
+	expect(handToPolicy({ reds: 1, blues: 0 })).toBe('death eater');
 	expect(handToPolicy({ reds: 0, blues: 1 })).toBe('liberal');
 });
 
 describe('handToPolicies', () => {
-	expect(handToPolicies({ reds: 3, blues: 0 })).toImmutableEqual(List(['fascist', 'fascist', 'fascist']));
-	expect(handToPolicies({ reds: 2, blues: 1 })).toImmutableEqual(List(['fascist', 'fascist', 'liberal']));
-	expect(handToPolicies({ reds: 1, blues: 2 })).toImmutableEqual(List(['fascist', 'liberal', 'liberal']));
+	expect(handToPolicies({ reds: 3, blues: 0 })).toImmutableEqual(List(['death eater', 'death eater', 'death eater']));
+	expect(handToPolicies({ reds: 2, blues: 1 })).toImmutableEqual(List(['death eater', 'death eater', 'liberal']));
+	expect(handToPolicies({ reds: 1, blues: 2 })).toImmutableEqual(List(['death eater', 'liberal', 'liberal']));
 	expect(handToPolicies({ reds: 0, blues: 3 })).toImmutableEqual(List(['liberal', 'liberal', 'liberal']));
-	expect(handToPolicies({ reds: 2, blues: 0 })).toImmutableEqual(List(['fascist', 'fascist']));
-	expect(handToPolicies({ reds: 1, blues: 1 })).toImmutableEqual(List(['fascist', 'liberal']));
+	expect(handToPolicies({ reds: 2, blues: 0 })).toImmutableEqual(List(['death eater', 'death eater']));
+	expect(handToPolicies({ reds: 1, blues: 1 })).toImmutableEqual(List(['death eater', 'liberal']));
 	expect(handToPolicies({ reds: 0, blues: 2 })).toImmutableEqual(List(['liberal', 'liberal']));
 });
 
 describe('policyToHand', () => {
 	expect(policyToHand('liberal')).toEqual({ reds: 0, blues: 1 });
-	expect(policyToHand('fascist')).toEqual({ reds: 1, blues: 0 });
+	expect(policyToHand('death eater')).toEqual({ reds: 1, blues: 0 });
 });
 
 describe('handToText', () => {
 	expect(handToText({ reds: 3, blues: 0 })).toEqual([
-		text('fascist', 'R', false),
-		text('fascist', 'R', false),
-		text('fascist', 'R', false),
+		text('death eater', 'R', false),
+		text('death eater', 'R', false),
+		text('death eater', 'R', false),
 		text('normal', '')
 	]);
 
 	expect(handToText({ reds: 2, blues: 1 })).toEqual([
-		text('fascist', 'R', false),
-		text('fascist', 'R', false),
+		text('death eater', 'R', false),
+		text('death eater', 'R', false),
 		text('liberal', 'B', false),
 		text('normal', '')
 	]);
 
 	expect(handToText({ reds: 1, blues: 2 })).toEqual([
-		text('fascist', 'R', false),
+		text('death eater', 'R', false),
 		text('liberal', 'B', false),
 		text('liberal', 'B', false),
 		text('normal', '')
@@ -134,9 +134,9 @@ describe('handToText', () => {
 		text('normal', '')
 	]);
 
-	expect(handToText({ reds: 2, blues: 0 })).toEqual([text('fascist', 'R', false), text('fascist', 'R', false), text('normal', '')]);
+	expect(handToText({ reds: 2, blues: 0 })).toEqual([text('death eater', 'R', false), text('death eater', 'R', false), text('normal', '')]);
 
-	expect(handToText({ reds: 1, blues: 1 })).toEqual([text('fascist', 'R', false), text('liberal', 'B', false), text('normal', '')]);
+	expect(handToText({ reds: 1, blues: 1 })).toEqual([text('death eater', 'R', false), text('liberal', 'B', false), text('normal', '')]);
 
 	expect(handToText({ reds: 0, blues: 2 })).toEqual([text('liberal', 'B', false), text('liberal', 'B', false), text('normal', '')]);
 });

@@ -11,7 +11,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 2,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -25,7 +25,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 3,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			investigationId: 2,
 			presidentClaim: {
 				reds: 0,
@@ -49,7 +49,7 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 4,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			specialElection: 4,
 			chancellorHand: {
 				reds: 1,
@@ -64,7 +64,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 5,
-			enactedPolicy: 'fascist',
+			enactedPolicy: 'death eater',
 			execution: 2,
 			chancellorHand: {
 				reds: 2,
@@ -84,7 +84,7 @@ module.exports = {
 		},
 		{
 			username: 'Jaina',
-			role: 'fascist'
+			role: 'death eater'
 		},
 		{
 			username: 'Malfurian',
@@ -92,7 +92,7 @@ module.exports = {
 		},
 		{
 			username: 'Rexxar',
-			role: 'fascist'
+			role: 'death eater'
 		},
 		{
 			username: 'Thrall',

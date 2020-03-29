@@ -54,8 +54,8 @@ function buildEnhancedGameSummary(_summary) {
 	const players = (() => {
 		const roleToLoyalty = Map({
 			liberal: 'liberal',
-			fascist: 'fascist',
-			voldemort: 'fascist'
+			deathEater: 'death eater',
+			voldemort: 'death eater'
 		});
 
 		return summary.players.map((p, i) => {
@@ -84,7 +84,7 @@ function buildEnhancedGameSummary(_summary) {
 		const lastTurn = turns.last();
 
 		if (lastTurn.isVoldemortElected) {
-			return 'fascist';
+			return 'death eater';
 		} else if (lastTurn.isVoldemortKilled) {
 			return 'liberal';
 		} else {

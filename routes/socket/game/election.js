@@ -160,12 +160,12 @@ const enactPolicy = (game, team, socket) => {
 				chat: [
 					{ text: 'A ' },
 					{
-						text: team === 'liberal' ? 'liberal' : 'fascist',
-						type: team === 'liberal' ? 'liberal' : 'fascist'
+						text: team === 'liberal' ? 'liberal' : 'death eater',
+						type: team === 'liberal' ? 'liberal' : 'death eater'
 					},
 					{
 						text: ` policy has been enacted. (${
-							team === 'liberal' ? game.trackState.liberalPolicyCount.toString() : game.trackState.fascistPolicyCount.toString()
+							team === 'liberal' ? game.trackState.liberalPolicyCount.toString() : game.trackState.deathEaterPolicyCount.toString()
 						}/${team === 'liberal' ? '5' : '6'})`
 					}
 				]
@@ -184,14 +184,14 @@ const enactPolicy = (game, team, socket) => {
 				}
 			};
 			const powerToEnact =
-				team === 'fascist'
+				team === 'death eater'
 					? game.customGameSettings.enabled
-						? powerMapping[game.customGameSettings.powers[game.trackState.fascistPolicyCount - 1]]
-						: presidentPowers[game.general.type][game.trackState.fascistPolicyCount - 1]
+						? powerMapping[game.customGameSettings.powers[game.trackState.deathEaterPolicyCount - 1]]
+						: presidentPowers[game.general.type][game.trackState.deathEaterPolicyCount - 1]
 					: null;
 
 			game.trackState.enactedPolicies[index].position =
-				team === 'liberal' ? `liberal${game.trackState.liberalPolicyCount}` : `fascist${game.trackState.fascistPolicyCount}`;
+				team === 'liberal' ? `liberal${game.trackState.liberalPolicyCount}` : `death eater${game.trackState.deathEaterPolicyCount}`;
 
 			if (!game.general.disableGamechat) {
 				game.private.seatedPlayers.forEach(player => {
@@ -201,7 +201,7 @@ const enactPolicy = (game, team, socket) => {
 				game.private.unSeatedGameChats.push(chat);
 			}
 
-			if (game.trackState.liberalPolicyCount === 5 || game.trackState.fascistPolicyCount === 6) {
+			if (game.trackState.liberalPolicyCount === 5 || game.trackState.deathEaterPolicyCount === 6) {
 				game.publicPlayersState.forEach((player, i) => {
 					player.cardStatus.cardFront = 'secretrole';
 					player.cardStatus.cardBack = game.private.seatedPlayers[i].role;
@@ -211,7 +211,7 @@ const enactPolicy = (game, team, socket) => {
 
 				sendInProgressGameUpdate(game);
 
-				game.gameState.audioCue = game.trackState.liberalPolicyCount === 5 ? 'liberalsWin' : 'fascistsWin';
+				game.gameState.audioCue = game.trackState.liberalPolicyCount === 5 ? 'liberalsWin' : 'deathEatersWin';
 				setTimeout(
 					() => {
 						game.publicPlayersState.forEach((player, i) => {
@@ -219,9 +219,9 @@ const enactPolicy = (game, team, socket) => {
 						});
 						game.gameState.audioCue = '';
 						if (process.env.NODE_ENV === 'development') {
-							completeGame(game, game.trackState.liberalPolicyCount === 1 ? 'liberal' : 'fascist');
+							completeGame(game, game.trackState.liberalPolicyCount === 1 ? 'liberal' : 'death eater');
 						} else {
-							completeGame(game, game.trackState.liberalPolicyCount === 5 ? 'liberal' : 'fascist');
+							completeGame(game, game.trackState.liberalPolicyCount === 5 ? 'liberal' : 'death eater');
 						}
 					},
 					process.env.NODE_ENV === 'development' ? 100 : 2000
@@ -266,7 +266,7 @@ const enactPolicy = (game, team, socket) => {
 										selectPolicies({ user: president.userName }, game, socket);
 										break;
 									case 'The president must select a player for execution.':
-										if (president.role.cardName === 'fascist') {
+										if (president.role.cardName === 'death eater') {
 											list = list.filter(player => player.role.cardName !== 'voldemort');
 										}
 										selectPlayerToExecute({ user: president.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
@@ -663,7 +663,7 @@ module.exports.selectChancellorVoteOnVeto = selectChancellorVoteOnVeto;
 const handToLog = hand =>
 	hand.reduce(
 		(hand, policy) => {
-			return policy === 'fascist' ? Object.assign({}, hand, { reds: hand.reds + 1 }) : Object.assign({}, hand, { blues: hand.blues + 1 });
+			return policy === 'death eater' ? Object.assign({}, hand, { reds: hand.reds + 1 }) : Object.assign({}, hand, { blues: hand.blues + 1 });
 		},
 		{ reds: 0, blues: 0 }
 	);
@@ -711,16 +711,16 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 		if (!wasTimer && !game.general.private) {
 			if (
 				chancellor.role.team === 'liberal' &&
-				enactedPolicy === 'fascist' &&
+				enactedPolicy === 'death eater' &&
 				(game.private.currentChancellorOptions[0] === 'liberal' || game.private.currentChancellorOptions[1] === 'liberal')
 			) {
-				// Liberal chancellor chose to play fascist, probably throwing.
+				// Liberal chancellor chose to play death eater, probably throwing.
 				makeReport(
 					{
 						player: chancellor.userName,
 						seat: chancellorIndex + 1,
 						role: 'Liberal',
-						situation: `was given choice as chancellor, and played fascist.`,
+						situation: `was given choice as chancellor, and played death eater.`,
 						election: game.general.electionCount,
 						title: game.general.name,
 						uid: game.general.uid,
@@ -731,17 +731,17 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 				);
 			}
 			if (
-				chancellor.role.team === 'fascist' &&
+				chancellor.role.team === 'death eater' &&
 				enactedPolicy === 'liberal' &&
 				game.trackState.liberalPolicyCount >= 4 &&
-				(game.private.currentChancellorOptions[0] === 'fascist' || game.private.currentChancellorOptions[1] === 'fascist')
+				(game.private.currentChancellorOptions[0] === 'death eater' || game.private.currentChancellorOptions[1] === 'death eater')
 			) {
-				// Fascist chancellor chose to play 5th liberal.
+				// Death Eater chancellor chose to play 5th liberal.
 				makeReport(
 					{
 						player: chancellor.userName,
 						seat: chancellorIndex + 1,
-						role: 'Fascist',
+						role: 'Death Eater',
 						situation: `was given choice as chancellor with 4 blues on the track, and played liberal.`,
 						election: game.general.electionCount,
 						title: game.general.name,
@@ -985,9 +985,9 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 		sendInProgressModChatUpdate(game, modOnlyChat);
 
 		if (!wasTimer && !game.general.private) {
-			// const presGetsPower = presidentPowers[game.general.type][game.trackState.fascistPolicyCount] ? true : false;
+			// const presGetsPower = presidentPowers[game.general.type][game.trackState.death eaterPolicyCount] ? true : false;
 			const track4blue = game.trackState.liberalPolicyCount >= 4;
-			const trackReds = game.trackState.fascistPolicyCount;
+			const trackReds = game.trackState.deathEaterPolicyCount;
 
 			const passed = [game.private.currentElectionPolicies[nonDiscardedPolicies[0]], game.private.currentElectionPolicies[nonDiscardedPolicies[1]]];
 			let passedNicer = '';
@@ -1089,8 +1089,8 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 					}
 				}
 			} else {
-				// fascist
-				if (discarded === 'fascist') {
+				// death eater
+				if (discarded === 'death eater') {
 					if (track4blue) {
 						if (passedNicer === 'BB' && chancellor.role.team !== 'liberal') {
 							// forced 5th blue on another fas
@@ -1098,8 +1098,8 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Fascist',
-									situation: `got BBR with 4 blues on the track, and forced blues on a fascist chancellor.`,
+									role: 'Death Eater',
+									situation: `got BBR with 4 blues on the track, and forced blues on a death eater chancellor.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1114,7 +1114,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Fascist',
+									role: 'Death Eater',
 									situation: `got BRR with 4 blues on the track, and offered choice to a liberal chancellor.`,
 									election: game.general.electionCount,
 									title: game.general.name,
@@ -1132,8 +1132,8 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Fascist',
-									situation: `got BBR with 5 reds on the track, and forced blues on a fascist chancellor.`,
+									role: 'Death Eater',
+									situation: `got BBR with 5 reds on the track, and forced blues on a death eater chancellor.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1148,7 +1148,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Fascist',
+									role: 'Death Eater',
 									situation: `got BRR with 5 reds on the track, and offered choice to a liberal chancellor.`,
 									election: game.general.electionCount,
 									title: game.general.name,
@@ -1339,7 +1339,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 		game.private.currentElectionPolicies = [game.private.policies.shift(), game.private.policies.shift(), game.private.policies.shift()];
 		const verifyCorrect = policy => {
 			if (policy === 'liberal') return true;
-			if (policy === 'fascist') return true;
+			if (policy === 'death eater') return true;
 			return false;
 		};
 		if (
@@ -1597,7 +1597,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					}
 
 					if (
-						game.trackState.fascistPolicyCount >= game.customGameSettings.voldemortZone &&
+						game.trackState.deathEaterPolicyCount >= game.customGameSettings.voldemortZone &&
 						game.private.seatedPlayers[chancellorIndex].role.cardName === 'voldemort'
 					) {
 						const getNumberText = val => {
@@ -1615,7 +1615,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 									type: 'voldemort'
 								},
 								{
-									text: ` has been elected chancellor after the ${getNumberText(game.customGameSettings.voldemortZone)} fascist policy has been enacted.`
+									text: ` has been elected chancellor after the ${getNumberText(game.customGameSettings.voldemortZone)} death eater policy has been enacted.`
 								}
 							]
 						};
@@ -1633,7 +1633,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 										player.gameChats.push(chat);
 									});
 
-									game.gameState.audioCue = 'fascistsWinVoldemortElected';
+									game.gameState.audioCue = 'deathEatersWinVoldemortElected';
 									game.private.unSeatedGameChats.push(chat);
 								}
 								sendInProgressGameUpdate(game);
@@ -1647,7 +1647,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 								game.publicPlayersState.forEach(player => {
 									player.cardStatus.isFlipped = true;
 								});
-								completeGame(game, 'fascist');
+								completeGame(game, 'death eater');
 							},
 							process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 2000 : 4000
 						);

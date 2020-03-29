@@ -8,8 +8,8 @@ const SidebarGame = ({ game, socket }) => {
 
 		if (game.gameStatus === 'isStarted') {
 			classes += ' inprogress';
-		} else if (game.gameStatus === 'fascist') {
-			classes += ' fascist';
+		} else if (game.gameStatus === 'death eater') {
+			classes += ' death-eater';
 		} else if (game.gameStatus === 'liberal') {
 			classes += ' liberal';
 		} else {
@@ -67,7 +67,7 @@ const SidebarGame = ({ game, socket }) => {
 					{(game.rebalance6p || game.rebalance7p || game.rebalance9p) && (
 						<div
 							className="rebalance-game"
-							title="This is a rebalanced game - 6 player games start with a fascist policy enacted, 7 & 9 player games start with one less fascist policy."
+							title="This is a rebalanced game - 6 player games start with a death eater policy enacted, 7 & 9 player games start with one less death eater policy."
 						>
 							{game.rebalance6p && game.rebalance7p && game.rebalance9p
 								? 'R679'
@@ -140,7 +140,7 @@ const SidebarGame = ({ game, socket }) => {
 					{game.rebalance69p && (
 						<div
 							className="rebalance-game"
-							title="This is a rebalanced game - 6 player games start with a fascist policy enacted, 7 & 9 player games start with one less fascist policy."
+							title="This is a rebalanced game - 6 player games start with a death eater policy enacted, 7 & 9 player games start with one less death eater policy."
 						>
 							R
 						</div>
@@ -153,9 +153,9 @@ const SidebarGame = ({ game, socket }) => {
 							<div key={num} className={num <= game.enactedLiberalPolicyCount ? 'box liberal-box filled' : 'box liberal-box unfilled'} />
 						))}
 					</div>
-					<div className="fascist-count">
+					<div className="death-eater-count">
 						{_.range(1, 7).map(num => (
-							<div key={num} className={num <= game.enactedFascistPolicyCount ? 'box fascist-box filled' : 'box fascist-box unfilled'} />
+							<div key={num} className={num <= game.enactedDeathEaterPolicyCount ? 'box death eater-box filled' : 'box death-eater-box unfilled'} />
 						))}
 					</div>
 					<div className="lower-row">

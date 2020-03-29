@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function(event) {
 	// this page/code is total shit but I would need to get a different graphing library to make it better.
 
-	const processWinrateData = (fascistWinCount, totalGameCount) => {
-		const fWins = Math.round((fascistWinCount / totalGameCount) * 100000) / 1000;
-		const lWins = Math.round(((totalGameCount - fascistWinCount) / totalGameCount) * 100000) / 1000;
+	const processWinrateData = (deathEaterWinCount, totalGameCount) => {
+		const fWins = Math.round((deathEaterWinCount / totalGameCount) * 100000) / 1000;
+		const lWins = Math.round(((totalGameCount - deathEaterWinCount) / totalGameCount) * 100000) / 1000;
 
 		return {
 			series: [fWins, lWins],
-			labels: [`${fWins.toFixed()}% Fascist wins`, `${lWins.toFixed()}% Liberal wins`]
+			labels: [`${fWins.toFixed()}% Death Eater wins`, `${lWins.toFixed()}% Liberal wins`]
 		};
 	};
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 			new Chartist.Pie(
 				'#chart-allplayer-games-winrate',
-				processWinrateData(data.allPlayerGameData.fascistWinCountSeason, data.allPlayerGameData.totalGameCountSeason),
+				processWinrateData(data.allPlayerGameData.deathEaterWinCountSeason, data.allPlayerGameData.totalGameCountSeason),
 				{
 					width: '400px',
 					height: '400px'
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 			new Chartist.Pie(
 				'#chart-fiveplayer-games-winrate',
-				processWinrateData(data.fivePlayerGameData.fascistWinCountSeason, data.fivePlayerGameData.totalGameCountSeason),
+				processWinrateData(data.fivePlayerGameData.deathEaterWinCountSeason, data.fivePlayerGameData.totalGameCountSeason),
 				{
 					width: '400px',
 					height: '400px'
@@ -49,12 +49,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
 			);
 
 			$('#chart-fiveplayer-games-winrate').after(
-				`<p style="text-align: center">Total 5 player games played: ${data.fivePlayerGameData.totalGameCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">40%</span></p>`
+				`<p style="text-align: center">Total 5 player games played: ${data.fivePlayerGameData.totalGameCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">40%</span></p>`
 			);
 
 			new Chartist.Pie(
 				'#chart-sixplayer-games-winrate',
-				processWinrateData(data.sixPlayerGameData.fascistWinCountSeason, data.sixPlayerGameData.totalGameCountSeason),
+				processWinrateData(data.sixPlayerGameData.deathEaterWinCountSeason, data.sixPlayerGameData.totalGameCountSeason),
 				{
 					width: '400px',
 					height: '400px'
@@ -62,44 +62,44 @@ document.addEventListener('DOMContentLoaded', function(event) {
 			);
 
 			$('#chart-sixplayer-games-winrate').after(
-				`<p style="text-align: center">Total 6 player games played: ${data.sixPlayerGameData.totalGameCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">33%</span></p><h2 class="ui header centered">Winrate for 6 player games (rebalanced)</h2><div class="chart" id="chart-sixplayer-rebalanced-games-winrate"></div><p style="text-align: center">Total 6 player rebalanced games played: ${data.sixPlayerGameData.rebalancedTotalGameCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">33%</span></p>`
+				`<p style="text-align: center">Total 6 player games played: ${data.sixPlayerGameData.totalGameCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">33%</span></p><h2 class="ui header centered">Winrate for 6 player games (rebalanced)</h2><div class="chart" id="chart-sixplayer-rebalanced-games-winrate"></div><p style="text-align: center">Total 6 player rebalanced games played: ${data.sixPlayerGameData.rebalancedTotalGameCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">33%</span></p>`
 			);
 
 			new Chartist.Pie(
 				'#chart-sixplayer-rebalanced-games-winrate',
-				processWinrateData(data.sixPlayerGameData.rebalancedFascistWinCountSeason, data.sixPlayerGameData.rebalancedTotalGameCountSeason),
+				processWinrateData(data.sixPlayerGameData.rebalancedDeathEaterWinCountSeason, data.sixPlayerGameData.rebalancedTotalGameCountSeason),
 				{ width: '400px', height: '400px' }
 			);
 
 			new Chartist.Pie(
 				'#chart-sevenplayer-games-winrate',
-				processWinrateData(data.sevenPlayerGameData.fascistWinCountSeason, data.sevenPlayerGameData.totalGameCountSeason),
+				processWinrateData(data.sevenPlayerGameData.deathEaterWinCountSeason, data.sevenPlayerGameData.totalGameCountSeason),
 				{ width: '400px', height: '400px' }
 			);
 
 			$('#chart-sevenplayer-games-winrate').after(
-				`<p style="text-align: center">Total 7 player games played: ${data.sevenPlayerGameData.totalGameCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">43%</span></p><h2 class="ui header centered">Winrate for 7 player games (rebalanced)</h2><div class="chart" id="chart-sevenplayer-rebalanced-games-winrate"></div><p style="text-align: center">Total 7 player rebalanced games played: ${data.sevenPlayerGameData.rebalancedTotalGameCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">43%</span></p>`
+				`<p style="text-align: center">Total 7 player games played: ${data.sevenPlayerGameData.totalGameCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">43%</span></p><h2 class="ui header centered">Winrate for 7 player games (rebalanced)</h2><div class="chart" id="chart-sevenplayer-rebalanced-games-winrate"></div><p style="text-align: center">Total 7 player rebalanced games played: ${data.sevenPlayerGameData.rebalancedTotalGameCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">43%</span></p>`
 			);
 
 			new Chartist.Pie(
 				'#chart-sevenplayer-rebalanced-games-winrate',
-				processWinrateData(data.sevenPlayerGameData.rebalancedFascistWinCountSeason, data.sevenPlayerGameData.rebalancedTotalGameCountSeason),
+				processWinrateData(data.sevenPlayerGameData.rebalancedDeathEaterWinCountSeason, data.sevenPlayerGameData.rebalancedTotalGameCountSeason),
 				{ width: '400px', height: '400px' }
 			);
 
 			new Chartist.Pie(
 				'#chart-eightplayer-games-winrate',
-				processWinrateData(data.eightPlayerGameData.fascistWinCountSeason, data.eightPlayerGameData.totalGameCountSeason),
+				processWinrateData(data.eightPlayerGameData.deathEaterWinCountSeason, data.eightPlayerGameData.totalGameCountSeason),
 				{ width: '400px', height: '400px' }
 			);
 
 			$('#chart-eightplayer-games-winrate').after(
-				`<p style="text-align: center">Total 8 player games played: ${data.eightPlayerGameData.totalGameCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">38%</span></p>`
+				`<p style="text-align: center">Total 8 player games played: ${data.eightPlayerGameData.totalGameCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">38%</span></p>`
 			);
 
 			new Chartist.Pie(
 				'#chart-nineplayer-games-winrate',
-				processWinrateData(data.ninePlayerGameData.fascistWinCountSeason, data.ninePlayerGameData.totalGameCountSeason),
+				processWinrateData(data.ninePlayerGameData.deathEaterWinCountSeason, data.ninePlayerGameData.totalGameCountSeason),
 				{
 					width: '400px',
 					height: '400px'
@@ -107,18 +107,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
 			);
 
 			$('#chart-nineplayer-games-winrate').after(
-				`<p style="text-align: center">Total 9 player games played: ${data.ninePlayerGameData.totalGameCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">44%</span></p><h2 class="ui header centered">Winrate for 9 player games (rebalanced)</h2><div class="chart" id="chart-nineplayer-rebalanced-games-winrate"></div><p style="text-align: center">Total 9 player rebalanced games played: ${data.ninePlayerGameData.rebalanced2fFascistWinCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">44%</span></p>`
+				`<p style="text-align: center">Total 9 player games played: ${data.ninePlayerGameData.totalGameCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">44%</span></p><h2 class="ui header centered">Winrate for 9 player games (rebalanced)</h2><div class="chart" id="chart-nineplayer-rebalanced-games-winrate"></div><p style="text-align: center">Total 9 player rebalanced games played: ${data.ninePlayerGameData.rebalanced2fDeathEaterWinCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">44%</span></p>`
 			);
 
 			new Chartist.Pie(
 				'#chart-nineplayer-rebalanced-games-winrate',
-				processWinrateData(data.ninePlayerGameData.rebalanced2fFascistWinCountSeason, data.ninePlayerGameData.rebalanced2fTotalGameCountSeason),
+				processWinrateData(data.ninePlayerGameData.rebalanced2fDeathEaterWinCountSeason, data.ninePlayerGameData.rebalanced2fTotalGameCountSeason),
 				{ width: '400px', height: '400px' }
 			);
 
 			new Chartist.Pie(
 				'#chart-tenplayer-games-winrate',
-				processWinrateData(data.tenPlayerGameData.fascistWinCountSeason, data.tenPlayerGameData.totalGameCountSeason),
+				processWinrateData(data.tenPlayerGameData.deathEaterWinCountSeason, data.tenPlayerGameData.totalGameCountSeason),
 				{
 					width: '400px',
 					height: '400px'
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 			);
 
 			$('#chart-tenplayer-games-winrate').after(
-				`<p style="text-align: center">Total 10 player games played: ${data.tenPlayerGameData.totalGameCountSeason} | Percentage of Fascists in game: <span style="color: red; font-weight: bold">40%</span></p>`
+				`<p style="text-align: center">Total 10 player games played: ${data.tenPlayerGameData.totalGameCountSeason} | Percentage of Death Eaters in game: <span style="color: red; font-weight: bold">40%</span></p>`
 			);
 		}
 	});

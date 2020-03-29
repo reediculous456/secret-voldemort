@@ -271,7 +271,7 @@ const handleSocketDisconnect = socket => {
 					publicPlayersState[playerIndex].leftGame = true;
 					const playerRemakeData = game.remakeData && game.remakeData.find(player => player.userName === passport.user);
 					if (playerRemakeData && playerRemakeData.isRemaking) {
-						const minimumRemakeVoteCount = game.general.playerCount - game.customGameSettings.fascistCount;
+						const minimumRemakeVoteCount = game.general.playerCount - game.customGameSettings.deathEaterCount;
 						const remakePlayerCount = game.remakeData.filter(player => player.isRemaking).length;
 
 						if (!game.general.isRemade && game.general.isRemaking && remakePlayerCount <= minimumRemakeVoteCount) {
@@ -358,7 +358,7 @@ const handleUserLeaveGame = (socket, game, data, passport) => {
 		const playerRemakeData = game.remakeData && game.remakeData.find(player => player.userName === passport.user);
 		if (playerRemakeData && playerRemakeData.isRemaking) {
 			// Count leaving the game as rescinded remake vote.
-			const minimumRemakeVoteCount = game.general.playerCount - game.customGameSettings.fascistCount;
+			const minimumRemakeVoteCount = game.general.playerCount - game.customGameSettings.deathEaterCount;
 			const remakePlayerCount = game.remakeData.filter(player => player.isRemaking).length;
 
 			if (!game.general.isRemade && game.general.isRemaking && remakePlayerCount <= minimumRemakeVoteCount) {
@@ -642,7 +642,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 
 		// Ensure that there is never a fas majority at the start.
 		// Custom games should probably require a fixed player count, which will be in playerCounts[0] regardless.
-		if (!(data.customGameSettings.fascistCount >= 1) || data.customGameSettings.fascistCount + 1 > playerCounts[0] / 2) return;
+		if (!(data.customGameSettings.deathEaterCount >= 1) || data.customGameSettings.deathEaterCount + 1 > playerCounts[0] / 2) return;
 
 		// Ensure standard victory conditions can be met for both teams.
 		if (!(data.customGameSettings.deckState.lib >= 5) || data.customGameSettings.deckState.lib > 8) return;
@@ -722,7 +722,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 		cardFlingerState: [],
 		trackState: {
 			liberalPolicyCount: 0,
-			fascistPolicyCount: 0,
+			deathEaterPolicyCount: 0,
 			electionTrackerCount: 0,
 			enactedPolicies: []
 		}
@@ -744,8 +744,8 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 					text: ' and '
 				},
 				{
-					text: `${newGame.customGameSettings.deckState.fas - newGame.customGameSettings.trackState.fas} fascist`,
-					type: 'fascist'
+					text: `${newGame.customGameSettings.deckState.fas - newGame.customGameSettings.trackState.fas} death eater`,
+					type: 'death eater'
 				},
 				{
 					text: ' policies in the deck.'
@@ -769,8 +769,8 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 					text: ' and '
 				},
 				{
-					text: `${newGame.customGameSettings.trackState.fas} fascist`,
-					type: 'fascist'
+					text: `${newGame.customGameSettings.trackState.fas} death eater`,
+					type: 'death eater'
 				},
 				{
 					text: ' policies.'
@@ -929,7 +929,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'RRR',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: '.'
@@ -951,7 +951,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'RR',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: 'B',
@@ -977,7 +977,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: 'BB',
@@ -1038,7 +1038,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'RR',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: '.'
@@ -1060,7 +1060,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: 'B',
@@ -1096,7 +1096,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						return text;
 				}
 			case 'didSinglePolicyPeek':
-				if (data.claimState === 'liberal' || data.claimState === 'fascist') {
+				if (data.claimState === 'liberal' || data.claimState === 'death eater') {
 					text = [
 						{
 							text: 'President '
@@ -1143,7 +1143,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'RRR',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: '.'
@@ -1165,7 +1165,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: 'B',
@@ -1173,7 +1173,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: '.'
@@ -1199,12 +1199,12 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: '.'
@@ -1226,12 +1226,12 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: 'B',
@@ -1257,7 +1257,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: 'BB',
@@ -1287,7 +1287,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: '.'
@@ -1313,7 +1313,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'fascist'
+								type: 'death eater'
 							},
 							{
 								text: 'B',
@@ -1394,11 +1394,11 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					{ presidentId: playerIndex }
 				);
 				switch (data.claimState) {
-					case 'fascist':
+					case 'death eater':
 						text.push(
 							{
-								text: 'fascist ',
-								type: 'fascist'
+								text: 'death eater ',
+								type: 'death eater'
 							},
 							{
 								text: 'team.'
@@ -1470,7 +1470,8 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 	const player = remakeData[playerIndex];
 	let chat;
 	const minimumRemakeVoteCount =
-		(game.customGameSettings.fascistCount && game.general.playerCount - game.customGameSettings.fascistCount) || Math.floor(game.general.playerCount / 2) + 2;
+		(game.customGameSettings.deathEaterCount && game.general.playerCount - game.customGameSettings.deathEaterCount) ||
+		Math.floor(game.general.playerCount / 2) + 2;
 	if (game && game.general && game.general.private) {
 		chat = {
 			timestamp: new Date(),
@@ -1545,8 +1546,8 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 						text: ' and '
 					},
 					{
-						text: `${newGame.customGameSettings.deckState.fas - newGame.customGameSettings.trackState.fas} fascist`,
-						type: 'fascist'
+						text: `${newGame.customGameSettings.deckState.fas - newGame.customGameSettings.trackState.fas} death eater`,
+						type: 'death eater'
 					},
 					{
 						text: ' policies in the deck.'
@@ -1570,8 +1571,8 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 						text: ' and '
 					},
 					{
-						text: `${newGame.customGameSettings.trackState.fas} fascist`,
-						type: 'fascist'
+						text: `${newGame.customGameSettings.trackState.fas} death eater`,
+						type: 'death eater'
 					},
 					{
 						text: ' policies.'
@@ -1617,7 +1618,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 		newGame.cardFlingerState = [];
 		newGame.trackState = {
 			liberalPolicyCount: 0,
-			fascistPolicyCount: 0,
+			deathEaterPolicyCount: 0,
 			electionTrackerCount: 0,
 			enactedPolicies: []
 		};
@@ -1888,8 +1889,8 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			}
 		}
 
-		if (/^(r|red|fas|f|fasc|fascist)$/i.exec(chat)) {
-			// console.log(chat, ' - ', 'fascist', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
+		if (/^(r|red|dea|d|death|death eater)$/i.exec(chat)) {
+			// console.log(chat, ' - ', 'death eater', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
 			if (
 				0 <= playerIndex <= 9 &&
 				(game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didSinglePolicyPeek' ||
@@ -1897,7 +1898,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			) {
 				const claimData = {
 					userName: user.userName,
-					claimState: 'fascist',
+					claimState: 'death eater',
 					claim: game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim,
 					uid: data.uid
 				};
@@ -1957,7 +1958,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 						if (card === 'R' || card === 'B') {
 							changedChat.push({
 								text: card,
-								type: `${card === 'R' ? 'fascist' : 'liberal'}`
+								type: `${card === 'R' ? 'death eater' : 'liberal'}`
 							});
 						}
 					}
@@ -4045,9 +4046,9 @@ module.exports.handleFlappyEvent = (data, game) => {
 	if (data.type === 'startFlappy') {
 		game.flappyState = {
 			controllingLibUser: '',
-			controllingFascistUser: '',
+			controllingDeathEaterUser: '',
 			liberalScore: 0,
-			fascistScore: 0,
+			deathEaterScore: 0,
 			pylonDensity: 1.3,
 			flapDistance: 1,
 			pylonOffset: 1.3,
@@ -4078,7 +4079,7 @@ module.exports.handleFlappyEvent = (data, game) => {
 
 	if (data.type === 'passedPylon') {
 		game.flappyState.passedPylonCount++;
-		game.general.status = `FLAPPY VOLDEMORT: ${game.flappyState.liberalScore} - ${game.flappyState.fascistScore} (${game.flappyState.passedPylonCount})`;
+		game.general.status = `FLAPPY VOLDEMORT: ${game.flappyState.liberalScore} - ${game.flappyState.deathEaterScore} (${game.flappyState.passedPylonCount})`;
 
 		io.sockets.in(game.general.uid).emit('gameUpdate', game);
 	}

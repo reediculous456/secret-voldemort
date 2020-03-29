@@ -147,7 +147,7 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 
 		const beforeTrack = prevTurn.afterTrack;
 		const afterTrack = {
-			reds: f(beforeTrack.reds, log.enactedPolicy, 'fascist'),
+			reds: f(beforeTrack.reds, log.enactedPolicy, 'death eater'),
 			blues: f(beforeTrack.blues, log.enactedPolicy, 'liberal')
 		};
 

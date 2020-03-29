@@ -364,7 +364,7 @@ class Tracks extends React.Component {
 						console.log(`Unknown power: ${p}`);
 						return null;
 					});
-					numFas = gameInfo.customGameSettings.fascistCount;
+					numFas = gameInfo.customGameSettings.deathEaterCount;
 					hzStart = gameInfo.customGameSettings.voldemortZone;
 					vzPoint = gameInfo.customGameSettings.vetoZone;
 					hitKnowsFas = gameInfo.customGameSettings.hitKnowsFas;
