@@ -54,7 +54,7 @@ function buildEnhancedGameSummary(_summary) {
 	const players = (() => {
 		const roleToLoyalty = Map({
 			order: 'order',
-			deathEater: 'death eater',
+			'death eater': 'death eater',
 			voldemort: 'death eater'
 		});
 
