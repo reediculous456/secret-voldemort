@@ -90,15 +90,15 @@ module.exports = {
 		},
 		{
 			username: 'Rexxar',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Thrall',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Malfurian',
-			role: 'liberal'
+			role: 'order'
 		}
 	],
 	__v: 0

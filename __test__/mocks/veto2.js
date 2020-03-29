@@ -95,7 +95,7 @@ module.exports = {
 			chancellorId: 0,
 			chancellorVeto: true,
 			presidentVeto: false,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -111,7 +111,7 @@ module.exports = {
 			presidentId: 3,
 			chancellorId: 2,
 			chancellorVeto: false,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -155,11 +155,11 @@ module.exports = {
 	players: [
 		{
 			username: 'Malfurian',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Jaina',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Uther',
@@ -171,7 +171,7 @@ module.exports = {
 		},
 		{
 			username: 'Thrall',
-			role: 'liberal'
+			role: 'order'
 		}
 	],
 	__v: 0

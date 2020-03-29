@@ -1,5 +1,5 @@
 module.exports = {
-	_id: 'voldemort-killed-liberal-loss',
+	_id: 'voldemort-killed-order-loss',
 	date: '2017-06-26T20:26:04.058Z',
 	gameSetting: {
 		rebalance6p: false,
@@ -34,7 +34,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 4,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			_id: '595170616419ea7a9b548428',
 			chancellorClaim: {
 				reds: 1,
@@ -80,7 +80,7 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 1,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			_id: '595170616419ea7a9b548426',
 			chancellorClaim: {
 				reds: 2,
@@ -138,7 +138,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 5,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			_id: '595170616419ea7a9b548422',
 			votes: [false, false, false, false, false, false]
 		},
@@ -157,7 +157,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 2,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			_id: '595170616419ea7a9b54841f',
 			votes: [false, false, false, false, false, false]
 		},
@@ -202,22 +202,22 @@ module.exports = {
 		},
 		{
 			username: 'onebobby',
-			role: 'liberal',
+			role: 'order',
 			_id: '595170616419ea7a9b54842e'
 		},
 		{
 			username: 'Blue',
-			role: 'liberal',
+			role: 'order',
 			_id: '595170616419ea7a9b54842d'
 		},
 		{
 			username: 'Benduth',
-			role: 'liberal',
+			role: 'order',
 			_id: '595170616419ea7a9b54842c'
 		},
 		{
 			username: 'DumbBullDoor',
-			role: 'liberal',
+			role: 'order',
 			_id: '595170616419ea7a9b54842b'
 		},
 		{

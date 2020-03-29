@@ -152,7 +152,7 @@ module.exports.rateEloGame = (game, accounts, winningPlayerNames) => {
 	const winningAccounts = accounts.filter(account => winningPlayerNames.includes(account.username));
 	const loosingAccounts = accounts.filter(account => losingPlayerNames.includes(account.username));
 	// Construct some basic statistics for each team
-	const b = game.gameState.isCompleted === 'liberal' ? 1 : 0;
+	const b = game.gameState.isCompleted === 'order' ? 1 : 0;
 	const size = game.private.seatedPlayers.length;
 	const averageRatingWinners = avg(winningAccounts, a => a.eloOverall || defaultELO) + b * libAdjust[size];
 	const averageRatingWinnersSeason = avg(winningAccounts, a => a.eloSeason || defaultELO) + b * libAdjust[size];

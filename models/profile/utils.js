@@ -10,8 +10,8 @@ function profileDelta(username, game) {
 	const { playerSize, isRebalanced, date, id } = game;
 	const isWinner = game.isWinner(username).value();
 	const loyalty = game.loyaltyOf(username).value();
-	const isLiberal = loyalty === 'liberal';
-	const isDeathEater = !isLiberal;
+	const isOrder = loyalty === 'order';
+	const isDeathEater = !isOrder;
 	const votes = game.voldemortZone
 		.map(hz =>
 			flattenListOpts(
@@ -40,7 +40,7 @@ function profileDelta(username, game) {
 						events: 0,
 						successes: 0
 					},
-					liberal: {
+					order: {
 						events: 0,
 						successes: 0
 					},
@@ -78,9 +78,9 @@ function profileDelta(username, game) {
 					events: 1,
 					successes: isWinner ? 1 : 0
 				},
-				liberal: {
-					events: isLiberal ? 1 : 0,
-					successes: isLiberal && isWinner ? 1 : 0
+				order: {
+					events: isOrder ? 1 : 0,
+					successes: isOrder && isWinner ? 1 : 0
 				},
 				deathEater: {
 					events: isDeathEater ? 1 : 0,
@@ -89,12 +89,12 @@ function profileDelta(username, game) {
 			},
 			actions: {
 				voteAccuracy: {
-					events: isLiberal ? votes.size : 0,
-					successes: isLiberal ? accurateVotes.size : 0
+					events: isOrder ? votes.size : 0,
+					successes: isOrder ? accurateVotes.size : 0
 				},
 				shotAccuracy: {
-					events: isLiberal ? shots.size : 0,
-					successes: isLiberal ? accurateShots.size : 0
+					events: isOrder ? shots.size : 0,
+					successes: isOrder ? accurateShots.size : 0
 				}
 			}
 		},
@@ -122,8 +122,8 @@ function updateProfile(username, game, options = {}) {
 					'stats.matches.allMatches.events': delta.stats.matches.allMatches.events,
 					'stats.matches.allMatches.successes': delta.stats.matches.allMatches.successes,
 
-					'stats.matches.liberal.events': delta.stats.matches.liberal.events,
-					'stats.matches.liberal.successes': delta.stats.matches.liberal.successes,
+					'stats.matches.order.events': delta.stats.matches.order.events,
+					'stats.matches.order.successes': delta.stats.matches.order.successes,
 
 					'stats.matches.deathEater.events': delta.stats.matches.deathEater.events,
 					'stats.matches.deathEater.successes': delta.stats.matches.deathEater.successes,

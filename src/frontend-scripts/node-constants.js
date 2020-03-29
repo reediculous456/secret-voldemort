@@ -18,7 +18,7 @@ module.exports.TOU_CHANGES = [
 	{
 		changeVer: '1.1',
 		changeDesc:
-			'Lying as liberal is allowed if you can prove it helps your team.\nFollowing players to comment on their games or talking about a no-chat game is now explicitly forbidden.\nMinor wording changes to forbidden language and card-backs.'
+			'Lying as order is allowed if you can prove it helps your team.\nFollowing players to comment on their games or talking about a no-chat game is now explicitly forbidden.\nMinor wording changes to forbidden language and card-backs.'
 	},
 	{
 		changeVer: '1.0',

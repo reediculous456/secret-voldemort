@@ -53,7 +53,7 @@ function buildEnhancedGameSummary(_summary) {
 	// List[{ id: Int, username: String, role: String, loyalty: String }]
 	const players = (() => {
 		const roleToLoyalty = Map({
-			liberal: 'liberal',
+			order: 'order',
 			deathEater: 'death eater',
 			voldemort: 'death eater'
 		});
@@ -86,7 +86,7 @@ function buildEnhancedGameSummary(_summary) {
 		if (lastTurn.isVoldemortElected) {
 			return 'death eater';
 		} else if (lastTurn.isVoldemortKilled) {
-			return 'liberal';
+			return 'order';
 		} else {
 			if (!lastTurn.enactedPolicy) {
 				console.log('no lastturn enacted policy @ buildenhancedgamesummary');

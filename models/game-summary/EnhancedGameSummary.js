@@ -69,7 +69,7 @@ module.exports = class EnhancedGameSummary {
 
 	isWinner(identifier) {
 		if (this.lastTurn.execution === this.voldemortIndex) {
-			return this.loyaltyOf(identifier) === 'liberal';
+			return this.loyaltyOf(identifier) === 'order';
 		} else if (this.lastTurn.chancellorId === this.voldemortIndex && this.lastTurn.votes.filter(v => v).length > this.playerSize / 2) {
 			return this.loyaltyOf(identifier) === 'death eater';
 		} else {
@@ -84,7 +84,7 @@ module.exports = class EnhancedGameSummary {
 		if (player.role === 'death eater' || player.role === 'voldemort') {
 			return 'death eater';
 		} else {
-			return 'liberal';
+			return 'order';
 		}
 	}
 

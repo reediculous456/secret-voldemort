@@ -118,8 +118,8 @@ module.exports.completeGame = (game, winningTeamName) => {
 		timestamp: new Date(),
 		chat: [
 			{
-				text: winningTeamName === 'death eater' ? 'Death Eaters' : 'Liberals',
-				type: winningTeamName === 'death eater' ? 'death eater' : 'liberal'
+				text: winningTeamName === 'death eater' ? 'Death Eaters' : 'Order Members',
+				type: winningTeamName === 'death eater' ? 'death eater' : 'order'
 			},
 			{ text: ' win the game.' }
 		]
@@ -134,8 +134,8 @@ module.exports.completeGame = (game, winningTeamName) => {
 		].concat(
 			game.private.policies
 				.map(policyName => ({
-					text: policyName === 'liberal' ? 'B' : 'R',
-					type: policyName === 'liberal' ? 'liberal' : 'death eater'
+					text: policyName === 'order' ? 'B' : 'R',
+					type: policyName === 'order' ? 'order' : 'death eater'
 				}))
 				.concat({
 					text: '.'
@@ -158,7 +158,7 @@ module.exports.completeGame = (game, winningTeamName) => {
 		}, 15000);
 	}
 
-	game.general.status = winningTeamName === 'death eater' ? 'Death Eaters win the game.' : 'Liberals win the game.';
+	game.general.status = winningTeamName === 'death eater' ? 'Death Eaters win the game.' : 'Orders win the game.';
 	game.gameState.isCompleted = winningTeamName;
 	sendGameList();
 
@@ -347,7 +347,7 @@ module.exports.completeGame = (game, winningTeamName) => {
 					isStarted: true
 				};
 				finalGame.trackState = {
-					liberalPolicyCount: 0,
+					orderPolicyCount: 0,
 					deathEaterPolicyCount: 0,
 					electionTrackerCount: 0,
 					enactedPolicies: []

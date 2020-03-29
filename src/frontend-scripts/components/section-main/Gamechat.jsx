@@ -988,25 +988,25 @@ class Gamechat extends React.Component {
 												onClick={e => {
 													handleClaimButtonClick(e, 'rrb');
 												}}
-												className="ui button twodeatheateroneliberal"
+												className="ui button twodeatheateroneorder"
 											>
-												2 Death Eater and a Liberal policy
+												2 Death Eater and a Order policy
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rbb');
 												}}
-												className="ui button twoliberalonedeatheater"
+												className="ui button twoorderonedeatheater"
 											>
-												2 Liberal and a Death Eater policy
+												2 Order and a Death Eater policy
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'bbb');
 												}}
-												className="ui button threeliberal"
+												className="ui button threeorder"
 											>
-												3 Liberal policies
+												3 Order policies
 											</button>
 										</div>
 									);
@@ -1026,17 +1026,17 @@ class Gamechat extends React.Component {
 												onClick={e => {
 													handleClaimButtonClick(e, 'rb');
 												}}
-												className="ui button onedeatheateroneliberal"
+												className="ui button onedeatheateroneorder"
 											>
-												A Death Eater and a Liberal policy
+												A Death Eater and a Order policy
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'bb');
 												}}
-												className="ui button threeliberal"
+												className="ui button threeorder"
 											>
-												2 Liberal policies
+												2 Order policies
 											</button>
 										</div>
 									);
@@ -1054,11 +1054,11 @@ class Gamechat extends React.Component {
 											</button>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'liberal');
+													handleClaimButtonClick(e, 'order');
 												}}
-												className="ui button threeliberal"
+												className="ui button threeorder"
 											>
-												Liberal team
+												Order team
 											</button>
 										</div>
 									);
@@ -1076,11 +1076,11 @@ class Gamechat extends React.Component {
 											</button>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'liberal');
+													handleClaimButtonClick(e, 'order');
 												}}
-												className="ui button threeliberal"
+												className="ui button threeorder"
 											>
-												Liberal policy
+												Order policy
 											</button>
 										</div>
 									);
@@ -1100,25 +1100,25 @@ class Gamechat extends React.Component {
 												onClick={e => {
 													handleClaimButtonClick(e, 'rrb');
 												}}
-												className="ui button twodeatheateroneliberal"
+												className="ui button twodeatheateroneorder"
 											>
-												2 Death Eater and a Liberal policy
+												2 Death Eater and a Order policy
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'rbb');
 												}}
-												className="ui button twoliberalonedeatheater"
+												className="ui button twoorderonedeatheater"
 											>
-												2 Liberal and a Death Eater policy
+												2 Order and a Death Eater policy
 											</button>
 											<button
 												onClick={e => {
 													handleClaimButtonClick(e, 'bbb');
 												}}
-												className="ui button threeliberal"
+												className="ui button threeorder"
 											>
-												3 Liberal policies
+												3 Order policies
 											</button>
 										</div>
 									);
@@ -1238,10 +1238,10 @@ class Gamechat extends React.Component {
 					<div
 						className="ui blue positive inverted button"
 						onClick={() => {
-							sendModEndGame('liberal');
+							sendModEndGame('order');
 						}}
 					>
-						End game elo win for liberals
+						End game elo win for order members
 					</div>
 					<div
 						className="ui red positive inverted button"

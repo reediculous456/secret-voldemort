@@ -15,7 +15,7 @@ export default () => {
 			expect(turn.chancellorVeto).toEqual(some(true));
 			expect(turn.presidentVeto).toEqual(some(false));
 			expect(turn.isVetoSuccessful).toBe(false);
-			expect(turn.enactedPolicy).toEqual(some('liberal'));
+			expect(turn.enactedPolicy).toEqual(some('order'));
 		});
 
 		it('should have rejected veto on turn 6', () => {

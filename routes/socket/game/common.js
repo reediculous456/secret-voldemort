@@ -15,12 +15,12 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 	if (isStart) {
 		game.trackState.enactedPolicies = [];
 		if (game.customGameSettings.trackState.lib > 0) {
-			game.trackState.liberalPolicyCount = game.customGameSettings.trackState.lib;
+			game.trackState.orderPolicyCount = game.customGameSettings.trackState.lib;
 			_.range(0, game.customGameSettings.trackState.lib).forEach(num => {
 				game.trackState.enactedPolicies.push({
-					cardBack: 'liberal',
+					cardBack: 'order',
 					isFlipped: true,
-					position: `liberal${num + 1}`
+					position: `order${num + 1}`
 				});
 			});
 		}
@@ -36,11 +36,11 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 		}
 	}
 
-	const libCount = game.customGameSettings.deckState.lib - game.trackState.liberalPolicyCount;
+	const libCount = game.customGameSettings.deckState.lib - game.trackState.orderPolicyCount;
 	const fasCount = game.customGameSettings.deckState.fas - game.trackState.deathEaterPolicyCount;
 	game.private.policies = _.shuffle(
 		_.range(0, libCount)
-			.map(num => 'liberal')
+			.map(num => 'order')
 			.concat(_.range(0, fasCount).map(num => 'death eater'))
 	);
 
@@ -55,8 +55,8 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 					text: 'Deck shuffled: '
 				},
 				{
-					text: `${libCount} liberal`,
-					type: 'liberal'
+					text: `${libCount} order`,
+					type: 'order'
 				},
 				{
 					text: ' and '
@@ -83,7 +83,7 @@ const shufflePolicies = (module.exports.shufflePolicies = (game, isStart) => {
 	};
 	game.private.policies.forEach(policy => {
 		modOnlyChat.chat.push({
-			text: policy === 'liberal' ? 'B' : 'R',
+			text: policy === 'order' ? 'B' : 'R',
 			type: policy
 		});
 	});

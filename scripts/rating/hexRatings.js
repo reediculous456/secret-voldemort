@@ -29,7 +29,7 @@ async function rate(game) {
 	// Then look up account information
 	const accounts = await Account.find({ username: { $in: playerNames } }, { eloOverall: 1, eloSeason: 1, username: 1 });
 	// Construct some basic statistics for each team
-	const b = game.winningTeam === 'liberal' ? 1 : 0;
+	const b = game.winningTeam === 'order' ? 1 : 0;
 	const averageRatingWinners = avg(accounts, winningPlayerNames, a => a.eloOverall, 1600) + b * libAdjust[game.playerCount];
 	const averageRatingWinnersSeason = avg(accounts, winningPlayerNames, a => a.eloSeason, 1600) + b * libAdjust[game.playerCount];
 	const averageRatingLosers = avg(accounts, losingPlayerNames, a => a.eloOverall, 1600) + (1 - b) * libAdjust[game.playerCount];

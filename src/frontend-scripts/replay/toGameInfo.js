@@ -87,7 +87,7 @@ export default function toGameInfo(snapshot) {
 
 	const trackState = {
 		deathEaterPolicyCount: snapshot.track.reds,
-		liberalPolicyCount: snapshot.track.blues,
+		orderPolicyCount: snapshot.track.blues,
 		enactedPolicies: [],
 		isBlurred: ['presidentLegislation', 'chancellorLegislation', 'policyPeek'].includes(snapshot.phase),
 		isHidden: true

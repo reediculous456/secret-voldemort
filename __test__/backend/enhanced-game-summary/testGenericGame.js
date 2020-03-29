@@ -55,8 +55,8 @@ export default () => {
 				id: 0,
 				icon: 0,
 				username: 'Uther',
-				role: 'liberal',
-				loyalty: 'liberal',
+				role: 'order',
+				loyalty: 'order',
 				isDead: false
 			});
 		});
@@ -208,14 +208,14 @@ export default () => {
 		it('should track president discard', () => {
 			const presidentDiscard = turnNum => turns.get(turnNum).presidentDiscard;
 
-			expect(presidentDiscard(0)).toEqual(some('liberal'));
+			expect(presidentDiscard(0)).toEqual(some('order'));
 			expect(presidentDiscard(1)).toEqual(some('death eater'));
-			expect(presidentDiscard(2)).toEqual(some('liberal'));
+			expect(presidentDiscard(2)).toEqual(some('order'));
 			expect(presidentDiscard(3)).toEqual(some('death eater'));
 			expect(presidentDiscard(4)).toEqual(none);
 			expect(presidentDiscard(5)).toEqual(none);
-			expect(presidentDiscard(6)).toEqual(some('liberal'));
-			expect(presidentDiscard(7)).toEqual(some('liberal'));
+			expect(presidentDiscard(6)).toEqual(some('order'));
+			expect(presidentDiscard(7)).toEqual(some('order'));
 		});
 
 		it('should track chancellor hands', () => {
@@ -248,9 +248,9 @@ export default () => {
 			const chancellorDiscard = turnNum => turns.get(turnNum).chancellorDiscard;
 
 			expect(chancellorDiscard(0)).toEqual(some('death eater'));
-			expect(chancellorDiscard(1)).toEqual(some('liberal'));
-			expect(chancellorDiscard(2)).toEqual(some('liberal'));
-			expect(chancellorDiscard(3)).toEqual(some('liberal'));
+			expect(chancellorDiscard(1)).toEqual(some('order'));
+			expect(chancellorDiscard(2)).toEqual(some('order'));
+			expect(chancellorDiscard(3)).toEqual(some('order'));
 			expect(chancellorDiscard(4)).toEqual(none);
 			expect(chancellorDiscard(5)).toEqual(none);
 			expect(chancellorDiscard(6)).toEqual(some('death eater'));
@@ -307,10 +307,10 @@ export default () => {
 		});
 
 		it('should track loyalties', () => {
-			expect(game.loyaltyOf('Uther')).toEqual(some('liberal'));
-			expect(game.loyaltyOf('Jaina')).toEqual(some('liberal'));
-			expect(game.loyaltyOf('Rexxar')).toEqual(some('liberal'));
-			expect(game.loyaltyOf('Anduin')).toEqual(some('liberal'));
+			expect(game.loyaltyOf('Uther')).toEqual(some('order'));
+			expect(game.loyaltyOf('Jaina')).toEqual(some('order'));
+			expect(game.loyaltyOf('Rexxar')).toEqual(some('order'));
+			expect(game.loyaltyOf('Anduin')).toEqual(some('order'));
 			expect(game.loyaltyOf('Malfurian')).toEqual(some('death eater'));
 			expect(game.loyaltyOf('Thrall')).toEqual(some('death eater'));
 			expect(game.loyaltyOf('Valeera')).toEqual(some('death eater'));
@@ -337,10 +337,10 @@ export default () => {
 		});
 
 		it('should track roles', () => {
-			expect(game.roleOf('Uther')).toEqual(some('liberal'));
-			expect(game.roleOf('Jaina')).toEqual(some('liberal'));
-			expect(game.roleOf('Rexxar')).toEqual(some('liberal'));
-			expect(game.roleOf('Anduin')).toEqual(some('liberal'));
+			expect(game.roleOf('Uther')).toEqual(some('order'));
+			expect(game.roleOf('Jaina')).toEqual(some('order'));
+			expect(game.roleOf('Rexxar')).toEqual(some('order'));
+			expect(game.roleOf('Anduin')).toEqual(some('order'));
 			expect(game.roleOf('Malfurian')).toEqual(some('death eater'));
 			expect(game.roleOf('Thrall')).toEqual(some('voldemort'));
 			expect(game.roleOf('Valeera')).toEqual(some('death eater'));

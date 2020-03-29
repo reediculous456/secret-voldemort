@@ -12,8 +12,8 @@ export default () => {
 			expect(delta.stats.matches.allMatches.events).toBe(1);
 			expect(delta.stats.matches.allMatches.successes).toBe(1);
 
-			expect(delta.stats.matches.liberal.events).toBe(1);
-			expect(delta.stats.matches.liberal.successes).toBe(1);
+			expect(delta.stats.matches.order.events).toBe(1);
+			expect(delta.stats.matches.order.successes).toBe(1);
 
 			expect(delta.stats.matches.deathEater.events).toBe(0);
 			expect(delta.stats.matches.deathEater.successes).toBe(0);
@@ -24,7 +24,7 @@ export default () => {
 			expect(delta.stats.actions.shotAccuracy.events).toBe(1);
 			expect(delta.stats.actions.shotAccuracy.successes).toBe(1);
 
-			expect(delta.recentGames.loyalty).toBe('liberal');
+			expect(delta.recentGames.loyalty).toBe('order');
 			expect(delta.recentGames.playerSize).toBe(7);
 			expect(delta.recentGames.isWinner).toBe(true);
 		});
@@ -35,8 +35,8 @@ export default () => {
 			expect(delta.stats.matches.allMatches.events).toBe(1);
 			expect(delta.stats.matches.allMatches.successes).toBe(0);
 
-			expect(delta.stats.matches.liberal.events).toBe(0);
-			expect(delta.stats.matches.liberal.successes).toBe(0);
+			expect(delta.stats.matches.order.events).toBe(0);
+			expect(delta.stats.matches.order.successes).toBe(0);
 
 			expect(delta.stats.matches.deathEater.events).toBe(1);
 			expect(delta.stats.matches.deathEater.successes).toBe(0);
@@ -58,8 +58,8 @@ export default () => {
 			expect(delta.stats.matches.allMatches.events).toBe(1);
 			expect(delta.stats.matches.allMatches.successes).toBe(0);
 
-			expect(delta.stats.matches.liberal.events).toBe(0);
-			expect(delta.stats.matches.liberal.successes).toBe(0);
+			expect(delta.stats.matches.order.events).toBe(0);
+			expect(delta.stats.matches.order.successes).toBe(0);
 
 			expect(delta.stats.matches.deathEater.events).toBe(1);
 			expect(delta.stats.matches.deathEater.successes).toBe(0);

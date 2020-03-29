@@ -80,7 +80,7 @@ module.exports = {
 	players: [
 		{
 			username: 'Uther',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Jaina',
@@ -96,15 +96,15 @@ module.exports = {
 		},
 		{
 			username: 'Thrall',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Valeera',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Anduin',
-			role: 'liberal'
+			role: 'order'
 		}
 	],
 	__v: 0

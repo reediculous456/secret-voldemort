@@ -12,8 +12,8 @@ const DisplayLobbies = props => {
 			classes += ' inprogress';
 		} else if (game.gameStatus === 'death eater') {
 			classes += ' death-eater';
-		} else if (game.gameStatus === 'liberal') {
-			classes += ' liberal';
+		} else if (game.gameStatus === 'order') {
+			classes += ' order';
 		} else {
 			classes += ' notstarted';
 		}
@@ -370,9 +370,9 @@ const DisplayLobbies = props => {
 					<i className="yellow lock icon" title="This is a private game.  You can only be seated if you know the password, or are whitelisted" />
 				</div>
 			);
-		} else if (game.gameStatus === 'liberal') {
-			classes += ' liberal';
-			progressText = 'Liberals Win !';
+		} else if (game.gameStatus === 'order') {
+			classes += ' order';
+			progressText = 'Orders Win !';
 			progressIcons = (
 				<div className="victory-icon">
 					<img src="../images/bird.png" />
@@ -394,12 +394,9 @@ const DisplayLobbies = props => {
 				progressText = 'Election #' + game.electionCount;
 				progressIcons = (
 					<div className="progress-icons">
-						<div className="liberal-count">
+						<div className="order-count">
 							{_.range(1, 6).map(num => (
-								<div
-									key={num}
-									className={num <= game.enactedLiberalPolicyCount ? 'leftsidebar box liberal-box filled' : 'leftsidebar box liberal-box unfilled'}
-								/>
+								<div key={num} className={num <= game.enactedOrderPolicyCount ? 'leftsidebar box order-box filled' : 'leftsidebar box order-box unfilled'} />
 							))}
 						</div>
 						<div className="death-eater-count">

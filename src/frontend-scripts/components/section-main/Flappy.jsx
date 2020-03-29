@@ -21,7 +21,7 @@ const Flappy = ({ isDeathEater, userInfo, gameInfo, socket }) => {
 		if (cardY < 30 + offset / 2 || cardY + 57 > 150 + offset / 2) {
 			socket.emit('flappyEvent', {
 				uid: gameInfo.general.uid,
-				team: isDeathEater ? 'death eater' : 'liberal',
+				team: isDeathEater ? 'death eater' : 'order',
 				type: 'collision'
 			});
 		} else if (x === -32) {
@@ -77,7 +77,7 @@ const Flappy = ({ isDeathEater, userInfo, gameInfo, socket }) => {
 	const flap = () => {
 		socket.emit('flappyEvent', {
 			uid: gameInfo.general.uid,
-			team: isDeathEater ? 'death eater' : 'liberal',
+			team: isDeathEater ? 'death eater' : 'order',
 			type: 'flap'
 		});
 	};
@@ -93,7 +93,7 @@ const Flappy = ({ isDeathEater, userInfo, gameInfo, socket }) => {
 		}, 500);
 
 		socket.on('flappyUpdate', data => {
-			if (data.type === 'flap' && ((isDeathEater && data.team == 'death eater') || (!isDeathEater && data.team === 'liberal'))) {
+			if (data.type === 'flap' && ((isDeathEater && data.team == 'death eater') || (!isDeathEater && data.team === 'order'))) {
 				lastFlapTime = Date.now();
 			}
 

@@ -37,7 +37,7 @@ exports.mapOpt2 = f => {
  * ALIASES:
  *
  * Hand: { reds: Int, blues: Int }
- * Policy: String ('death eater' | 'liberal')
+ * Policy: String ('death eater' | 'order')
  */
 
 // (handX: Hand, handY: Hand) => Hand
@@ -54,10 +54,10 @@ exports.handToPolicy = hand => {
 	if (hand.reds > 0 && hand.blues > 0) {
 		throw new Error('Expected hand to contain only a single card');
 	}
-	return hand.reds > 0 ? 'death eater' : 'liberal';
+	return hand.reds > 0 ? 'death eater' : 'order';
 };
 
-// consistently ordered 'death eater' first, followed by 'liberal'
+// consistently ordered 'death eater' first, followed by 'order'
 // (hand: Hand) => List[Policy]
 const handToPolicies = (exports.handToPolicies = hand => {
 	const toPolicies = (count, type) => {
@@ -67,7 +67,7 @@ const handToPolicies = (exports.handToPolicies = hand => {
 	};
 
 	const reds = toPolicies(hand.reds, 'death eater');
-	const blues = toPolicies(hand.blues, 'liberal');
+	const blues = toPolicies(hand.blues, 'order');
 
 	return reds.concat(blues).toList();
 });

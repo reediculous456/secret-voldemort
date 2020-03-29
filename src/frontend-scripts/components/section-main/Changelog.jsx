@@ -233,7 +233,7 @@ class Changelog extends React.Component {
 					<li>adam: 1882</li>
 					<li>Cucumber: 1879</li>
 				</ul>
-				<h3>Badges this season are thanks to player liberalist!</h3>
+				<h3>Badges this season are thanks to player orderist!</h3>
 				<p>
 					It took a while, but we're here - all major features I could think of and some I couldn't are in and mostly working. A long, long way from the first
 					stable(ish) release back in May 2017.

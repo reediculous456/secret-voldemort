@@ -10,8 +10,8 @@ const SidebarGame = ({ game, socket }) => {
 			classes += ' inprogress';
 		} else if (game.gameStatus === 'death eater') {
 			classes += ' death-eater';
-		} else if (game.gameStatus === 'liberal') {
-			classes += ' liberal';
+		} else if (game.gameStatus === 'order') {
+			classes += ' order';
 		} else {
 			classes += ' notstarted';
 		}
@@ -148,9 +148,9 @@ const SidebarGame = ({ game, socket }) => {
 					<div className={game.rainbowgame ? 'gamename rainbow' : 'gamename'} title={'Playing: ' + game.userNames.join(', ')}>
 						{game.name}
 					</div>
-					<div className="liberal-count">
+					<div className="order-count">
 						{_.range(1, 6).map(num => (
-							<div key={num} className={num <= game.enactedLiberalPolicyCount ? 'box liberal-box filled' : 'box liberal-box unfilled'} />
+							<div key={num} className={num <= game.enactedOrderPolicyCount ? 'box order-box filled' : 'box order-box unfilled'} />
 						))}
 					</div>
 					<div className="death-eater-count">

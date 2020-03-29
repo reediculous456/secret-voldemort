@@ -146,15 +146,15 @@ module.exports.selectPolicies = (passport, game, socket) => {
 							text: ' peeks and sees '
 						},
 						{
-							text: game.private.policies[0] === 'liberal' ? 'B' : 'R',
+							text: game.private.policies[0] === 'order' ? 'B' : 'R',
 							type: game.private.policies[0]
 						},
 						{
-							text: game.private.policies[1] === 'liberal' ? 'B' : 'R',
+							text: game.private.policies[1] === 'order' ? 'B' : 'R',
 							type: game.private.policies[1]
 						},
 						{
-							text: game.private.policies[2] === 'liberal' ? 'B' : 'R',
+							text: game.private.policies[2] === 'order' ? 'B' : 'R',
 							type: game.private.policies[2]
 						},
 						{
@@ -331,7 +331,7 @@ module.exports.selectOnePolicy = (passport, game) => {
 							text: ' peeks and sees '
 						},
 						{
-							text: game.private.policies[0] === 'liberal' ? 'B' : 'R',
+							text: game.private.policies[0] === 'order' ? 'B' : 'R',
 							type: game.private.policies[0]
 						},
 						{
@@ -1363,14 +1363,14 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 							});
 
 							game.gameState.audioCue = '';
-							completeGame(game, 'liberal');
+							completeGame(game, 'order');
 						},
 						process.env.NODE_ENV === 'development' ? 100 : 2000
 					);
 				} else {
 					let libAlive = false;
 					seatedPlayers.forEach(p => {
-						if (p.role.cardName == 'liberal' && !p.isDead) libAlive = true;
+						if (p.role.cardName == 'order' && !p.isDead) libAlive = true;
 					});
 					if (!libAlive) {
 						const chat = {
@@ -1379,8 +1379,8 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 							chat: [
 								{ text: 'All ' },
 								{
-									text: 'liberals',
-									type: 'liberal'
+									text: 'orders',
+									type: 'order'
 								},
 								{ text: '  have been executed.' }
 							]
@@ -1437,8 +1437,8 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 										text: ' and one '
 									},
 									{
-										text: 'liberal',
-										type: 'liberal'
+										text: 'order',
+										type: 'order'
 									},
 									{
 										text: ' remain, top-decking to the end...'
@@ -1472,18 +1472,18 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 									chat: [
 										{ text: 'A ' },
 										{
-											text: policy === 'liberal' ? 'liberal' : 'death eater',
-											type: policy === 'liberal' ? 'liberal' : 'death eater'
+											text: policy === 'order' ? 'order' : 'death eater',
+											type: policy === 'order' ? 'order' : 'death eater'
 										},
 										{
 											text: ` policy has been enacted. (${
-												policy === 'liberal' ? game.trackState.liberalPolicyCount.toString() : game.trackState.deathEaterPolicyCount.toString()
-											}/${policy === 'liberal' ? '5' : '6'})`
+												policy === 'order' ? game.trackState.orderPolicyCount.toString() : game.trackState.deathEaterPolicyCount.toString()
+											}/${policy === 'order' ? '5' : '6'})`
 										}
 									]
 								};
 								game.trackState.enactedPolicies[index].position =
-									policy === 'liberal' ? `liberal${game.trackState.liberalPolicyCount}` : `death eater${game.trackState.deathEaterPolicyCount}`;
+									policy === 'order' ? `order${game.trackState.orderPolicyCount}` : `death eater${game.trackState.deathEaterPolicyCount}`;
 
 								if (!game.general.disableGamechat) {
 									game.private.seatedPlayers.forEach(player => {
@@ -1492,14 +1492,14 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 
 									game.private.unSeatedGameChats.push(chat);
 								}
-								if (game.trackState.liberalPolicyCount === 5 || game.trackState.deathEaterPolicyCount === 6) {
+								if (game.trackState.orderPolicyCount === 5 || game.trackState.deathEaterPolicyCount === 6) {
 									game.publicPlayersState.forEach((player, i) => {
 										player.cardStatus.cardFront = 'secretrole';
 										player.cardStatus.cardBack = game.private.seatedPlayers[i].role;
 										player.cardStatus.cardDisplayed = true;
 										player.cardStatus.isFlipped = false;
 									});
-									game.gameState.audioCue = game.trackState.liberalPolicyCount === 5 ? 'liberalsWin' : 'death eatersWin';
+									game.gameState.audioCue = game.trackState.orderPolicyCount === 5 ? 'ordersWin' : 'death eatersWin';
 									setTimeout(
 										() => {
 											game.publicPlayersState.forEach((player, i) => {
@@ -1507,9 +1507,9 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 											});
 											game.gameState.audioCue = '';
 											if (process.env.NODE_ENV === 'development') {
-												completeGame(game, game.trackState.liberalPolicyCount === 1 ? 'liberal' : 'death eater');
+												completeGame(game, game.trackState.orderPolicyCount === 1 ? 'order' : 'death eater');
 											} else {
-												completeGame(game, game.trackState.liberalPolicyCount === 5 ? 'liberal' : 'death eater');
+												completeGame(game, game.trackState.orderPolicyCount === 5 ? 'order' : 'death eater');
 											}
 										},
 										process.env.NODE_ENV === 'development' ? 100 : 2000

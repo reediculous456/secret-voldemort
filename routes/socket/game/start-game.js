@@ -55,9 +55,9 @@ const beginGame = game => {
 				// With custom games, up to 8 libs can be in a game, but there are only 6 cards. Two are re-used in this case.
 				_.range(0, 8)
 					.map(el => ({
-						cardName: 'liberal',
+						cardName: 'order',
 						icon: el % 6,
-						team: 'liberal'
+						team: 'order'
 					}))
 					.slice(0, game.publicPlayersState.length - customGameSettings.deathEaterCount - 1)
 			)
@@ -151,8 +151,8 @@ const beginGame = game => {
 		sendInProgressModChatUpdate(game, modOnlyChat);
 	});
 
-	const libPlayers = game.private.seatedPlayers.filter(player => player.role.team === 'liberal');
-	const fasPlayers = game.private.seatedPlayers.filter(player => player.role.team !== 'liberal');
+	const libPlayers = game.private.seatedPlayers.filter(player => player.role.team === 'order');
+	const fasPlayers = game.private.seatedPlayers.filter(player => player.role.team !== 'order');
 	const lib = libPlayers.map(player => player.userName);
 	const fas = fasPlayers.map(player => player.userName);
 	const libElo = { overall: 1600, season: 1600 };
@@ -478,7 +478,7 @@ const beginGame = game => {
 						}
 					}
 				} else if (!game.general.disableGamechat) {
-					player.playersState[seatedPlayers.indexOf(player)].nameStatus = 'liberal';
+					player.playersState[seatedPlayers.indexOf(player)].nameStatus = 'order';
 				}
 
 				player.playersState[i].cardStatus.isFlipped = true;

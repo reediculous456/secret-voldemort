@@ -1,6 +1,6 @@
-// liberal win
+// order win
 module.exports = {
-	_id: 'liberal-win-7p',
+	_id: 'order-win-7p',
 	gameSetting: {
 		rebalance6p: false,
 		rebalance7p: false,
@@ -11,7 +11,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 3,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -39,7 +39,7 @@ module.exports = {
 		{
 			presidentId: 2,
 			chancellorId: 5,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -53,7 +53,7 @@ module.exports = {
 		{
 			presidentId: 3,
 			chancellorId: 4,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -67,7 +67,7 @@ module.exports = {
 		{
 			presidentId: 4,
 			chancellorId: 2,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			chancellorHand: {
 				reds: 1,
 				blues: 1
@@ -86,7 +86,7 @@ module.exports = {
 		{
 			presidentId: 6,
 			chancellorId: 5,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			chancellorHand: {
 				reds: 0,
 				blues: 2
@@ -101,11 +101,11 @@ module.exports = {
 	players: [
 		{
 			username: 'Uther',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Jaina',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Rexxar',
@@ -113,7 +113,7 @@ module.exports = {
 		},
 		{
 			username: 'Thrall',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Malfurian',
@@ -125,7 +125,7 @@ module.exports = {
 		},
 		{
 			username: 'Anduin',
-			role: 'liberal'
+			role: 'order'
 		}
 	],
 	__v: 0

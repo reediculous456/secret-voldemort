@@ -171,7 +171,7 @@ class Settings extends React.Component {
 								fontSize: this.state.fontSize
 							}}
 						>
-							The quick brown death eater jumped over the lazy liberal. (comfortaa, default)
+							The quick brown death eater jumped over the lazy order of the pheonix member. (comfortaa, default)
 						</label>
 					</div>
 				</div>
@@ -191,7 +191,7 @@ class Settings extends React.Component {
 								fontSize: this.state.fontSize
 							}}
 						>
-							The quick brown death eater jumped over the lazy liberal. (lato)
+							The quick brown death eater jumped over the lazy order of the pheonix member. (lato)
 						</label>
 					</div>
 				</div>
@@ -211,7 +211,7 @@ class Settings extends React.Component {
 								fontSize: this.state.fontSize
 							}}
 						>
-							The quick brown death eater jumped over the lazy liberal. (germania one)
+							The quick brown death eater jumped over the lazy order of the pheonix member. (germania one)
 						</label>
 					</div>
 				</div>
@@ -231,7 +231,7 @@ class Settings extends React.Component {
 								fontSize: this.state.fontSize
 							}}
 						>
-							The quick brown death eater jumped over the lazy liberal. (roboto slab)
+							The quick brown death eater jumped over the lazy order of the pheonix member. (roboto slab)
 						</label>
 					</div>
 				</div>

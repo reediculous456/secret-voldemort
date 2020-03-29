@@ -6,10 +6,10 @@ import '../../matchers';
 import testGenericGame from './testGenericGame';
 import testP5VoldemortElected from './testP5VoldemortElected';
 import testP7VoldemortKilled from './testP7VoldemortKilled';
-import testP7LiberalWin from './testP7LiberalWin';
+import testP7OrderWin from './testP7OrderWin';
 import testVeto from './testVeto';
 import testVeto2 from './testVeto2';
-import testVoldemortKilledLiberalLoss from './testVoldemortKilledLiberalLoss';
+import testVoldemortKilledOrderLoss from './testVoldemortKilledOrderLoss';
 
 describe('build enhanced game summary', () => {
 	const game = buildEnhancedGameSummary(mockGameSummary);
@@ -51,9 +51,9 @@ describe('build enhanced game summary', () => {
 		testGenericGame();
 		testP5VoldemortElected();
 		testP7VoldemortKilled();
-		testP7LiberalWin();
+		testP7OrderWin();
 		testVeto();
 		testVeto2();
-		testVoldemortKilledLiberalLoss();
+		testVoldemortKilledOrderLoss();
 	});
 });

@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 		return {
 			series: [fWins, lWins],
-			labels: [`${fWins.toFixed()}% Death Eater wins`, `${lWins.toFixed()}% Liberal wins`]
+			labels: [`${fWins.toFixed()}% Death Eater wins`, `${lWins.toFixed()}% Order Member wins`]
 		};
 	};
 

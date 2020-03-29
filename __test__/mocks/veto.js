@@ -37,7 +37,7 @@ module.exports = {
 		{
 			presidentId: 1,
 			chancellorId: 6,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			_id: '595052626419ea7a9b545b52',
 			chancellorClaim: {
 				reds: 2,
@@ -118,7 +118,7 @@ module.exports = {
 		{
 			presidentId: 5,
 			chancellorId: 6,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			_id: '595052626419ea7a9b545b4d',
 			chancellorClaim: {
 				reds: 0,
@@ -156,7 +156,7 @@ module.exports = {
 		{
 			presidentId: 0,
 			chancellorId: 4,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			_id: '595052626419ea7a9b545b4a',
 			chancellorClaim: {
 				reds: 0,
@@ -234,7 +234,7 @@ module.exports = {
 		{
 			presidentId: 6,
 			chancellorId: 1,
-			enactedPolicy: 'liberal',
+			enactedPolicy: 'order',
 			_id: '595052626419ea7a9b545b44',
 			chancellorHand: {
 				reds: 1,
@@ -285,7 +285,7 @@ module.exports = {
 		},
 		{
 			username: 'cbell',
-			role: 'liberal',
+			role: 'order',
 			_id: '595052626419ea7a9b545b5a'
 		},
 		{
@@ -295,22 +295,22 @@ module.exports = {
 		},
 		{
 			username: 'hootie',
-			role: 'liberal',
+			role: 'order',
 			_id: '595052626419ea7a9b545b58'
 		},
 		{
 			username: 'Mountainhawk',
-			role: 'liberal',
+			role: 'order',
 			_id: '595052626419ea7a9b545b57'
 		},
 		{
 			username: 'sethe',
-			role: 'liberal',
+			role: 'order',
 			_id: '595052626419ea7a9b545b56'
 		},
 		{
 			username: 'morewhales',
-			role: 'liberal',
+			role: 'order',
 			_id: '595052626419ea7a9b545b55'
 		},
 		{

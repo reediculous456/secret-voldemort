@@ -721,7 +721,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 		playersState: [],
 		cardFlingerState: [],
 		trackState: {
-			liberalPolicyCount: 0,
+			orderPolicyCount: 0,
 			deathEaterPolicyCount: 0,
 			electionTrackerCount: 0,
 			enactedPolicies: []
@@ -737,8 +737,8 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 					text: 'There will be '
 				},
 				{
-					text: `${newGame.customGameSettings.deckState.lib - newGame.customGameSettings.trackState.lib} liberal`,
-					type: 'liberal'
+					text: `${newGame.customGameSettings.deckState.lib - newGame.customGameSettings.trackState.lib} order`,
+					type: 'order'
 				},
 				{
 					text: ' and '
@@ -762,8 +762,8 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 					text: 'The game will start with '
 				},
 				{
-					text: `${newGame.customGameSettings.trackState.lib} liberal`,
-					type: 'liberal'
+					text: `${newGame.customGameSettings.trackState.lib} order`,
+					type: 'order'
 				},
 				{
 					text: ' and '
@@ -955,7 +955,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'B',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -981,7 +981,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'BB',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -1003,7 +1003,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'BBB',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -1064,7 +1064,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'B',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -1086,7 +1086,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'BB',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -1096,7 +1096,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						return text;
 				}
 			case 'didSinglePolicyPeek':
-				if (data.claimState === 'liberal' || data.claimState === 'death eater') {
+				if (data.claimState === 'order' || data.claimState === 'death eater') {
 					text = [
 						{
 							text: 'President '
@@ -1169,7 +1169,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'B',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: 'R',
@@ -1195,7 +1195,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'B',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: 'R',
@@ -1235,7 +1235,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'B',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -1261,7 +1261,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'BB',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -1283,7 +1283,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'BB',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: 'R',
@@ -1309,7 +1309,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'B',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: 'R',
@@ -1317,7 +1317,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'B',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -1339,7 +1339,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'BBB',
-								type: 'liberal'
+								type: 'order'
 							},
 							{
 								text: '.'
@@ -1406,11 +1406,11 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'liberal':
+					case 'order':
 						text.push(
 							{
-								text: 'liberal ',
-								type: 'liberal'
+								text: 'order ',
+								type: 'order'
 							},
 							{
 								text: 'team.'
@@ -1539,8 +1539,8 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 						text: 'There will be '
 					},
 					{
-						text: `${newGame.customGameSettings.deckState.lib - newGame.customGameSettings.trackState.lib} liberal`,
-						type: 'liberal'
+						text: `${newGame.customGameSettings.deckState.lib - newGame.customGameSettings.trackState.lib} order`,
+						type: 'order'
 					},
 					{
 						text: ' and '
@@ -1564,8 +1564,8 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 						text: 'The game will start with '
 					},
 					{
-						text: `${newGame.customGameSettings.trackState.lib} liberal`,
-						type: 'liberal'
+						text: `${newGame.customGameSettings.trackState.lib} order`,
+						type: 'order'
 					},
 					{
 						text: ' and '
@@ -1617,7 +1617,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 		newGame.playersState = [];
 		newGame.cardFlingerState = [];
 		newGame.trackState = {
-			liberalPolicyCount: 0,
+			orderPolicyCount: 0,
 			deathEaterPolicyCount: 0,
 			electionTrackerCount: 0,
 			enactedPolicies: []
@@ -1872,8 +1872,8 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			}
 		}
 
-		if (/^(b|blue|l|lib|liberal)$/i.exec(chat)) {
-			// console.log(chat, ' - ', 'liberal', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
+		if (/^(b|blue|l|lib|order)$/i.exec(chat)) {
+			// console.log(chat, ' - ', 'order', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
 			if (
 				0 <= playerIndex <= 9 &&
 				(game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didSinglePolicyPeek' ||
@@ -1881,7 +1881,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			) {
 				const claimData = {
 					userName: user.userName,
-					claimState: 'liberal',
+					claimState: 'order',
 					claim: game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim,
 					uid: data.uid
 				};
@@ -1958,7 +1958,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 						if (card === 'R' || card === 'B') {
 							changedChat.push({
 								text: card,
-								type: `${card === 'R' ? 'death eater' : 'liberal'}`
+								type: `${card === 'R' ? 'death eater' : 'order'}`
 							});
 						}
 					}
@@ -2661,7 +2661,7 @@ module.exports.handleSubscribeModChat = (socket, passport, game) => {
 	};
 	game.private.policies.forEach(policy => {
 		modOnlyChat.chat.push({
-			text: policy === 'liberal' ? 'B' : 'R',
+			text: policy === 'order' ? 'B' : 'R',
 			type: policy
 		});
 	});
@@ -4047,7 +4047,7 @@ module.exports.handleFlappyEvent = (data, game) => {
 		game.flappyState = {
 			controllingLibUser: '',
 			controllingDeathEaterUser: '',
-			liberalScore: 0,
+			orderScore: 0,
 			deathEaterScore: 0,
 			pylonDensity: 1.3,
 			flapDistance: 1,
@@ -4079,7 +4079,7 @@ module.exports.handleFlappyEvent = (data, game) => {
 
 	if (data.type === 'passedPylon') {
 		game.flappyState.passedPylonCount++;
-		game.general.status = `FLAPPY VOLDEMORT: ${game.flappyState.liberalScore} - ${game.flappyState.deathEaterScore} (${game.flappyState.passedPylonCount})`;
+		game.general.status = `FLAPPY VOLDEMORT: ${game.flappyState.orderScore} - ${game.flappyState.deathEaterScore} (${game.flappyState.passedPylonCount})`;
 
 		io.sockets.in(game.general.uid).emit('gameUpdate', game);
 	}

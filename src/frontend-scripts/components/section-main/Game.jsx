@@ -30,10 +30,10 @@ export default class Game extends React.Component {
 			}
 
 			if (
-				(gameInfo.gameState.audioCue === 'enactPolicyL' || gameInfo.gameState.audioCue === 'enactPolicyF') &&
-				(prevProps.gameInfo.gameState.audioCue !== 'enactPolicyL' || prevProps.gameInfo.gameState.audioCue !== 'enactPolicyF')
+				(gameInfo.gameState.audioCue === 'enactPolicyO' || gameInfo.gameState.audioCue === 'enactPolicyD') &&
+				(prevProps.gameInfo.gameState.audioCue !== 'enactPolicyO' || prevProps.gameInfo.gameState.audioCue !== 'enactPolicyD')
 			) {
-				playSound(pack === 'pack1' ? 'enactpolicy' : gameInfo.gameState.audioCue === 'enactPolicyL' ? 'enactpolicyl' : 'enactpolicyf', pack, 4000);
+				playSound(pack === 'pack1' ? 'enactpolicy' : gameInfo.gameState.audioCue === 'enactPolicyO' ? 'enactpolicyo' : 'enactpolicyd', pack, 4000);
 			}
 
 			if (gameInfo.general.status === 'Waiting on presidential discard.' && prevProps.gameInfo.general.status !== 'Waiting on presidential discard.') {
@@ -64,11 +64,11 @@ export default class Game extends React.Component {
 			}
 
 			if (gameInfo.gameState.audioCue === 'voldemortShot' && prevProps.gameInfo.gameState.audioCue !== 'voldemortShot') {
-				playSound(pack === 'pack1' ? 'liberalswinvoldemortshot' : 'liberalswin', pack, pack === 'pack1' ? 26000 : 8000);
+				playSound(pack === 'pack1' ? 'orderswinvoldemortshot' : 'orderswin', pack, pack === 'pack1' ? 26000 : 8000);
 			}
 
-			if (gameInfo.gameState.audioCue === 'liberalsWin' && prevProps.gameInfo.gameState.audioCue !== 'liberalsWin') {
-				playSound('liberalswin', pack, pack === 'pack1' ? 19000 : 8000);
+			if (gameInfo.gameState.audioCue === 'ordersWin' && prevProps.gameInfo.gameState.audioCue !== 'ordersWin') {
+				playSound('orderswin', pack, pack === 'pack1' ? 19000 : 8000);
 			}
 
 			if (gameInfo.gameState.audioCue === 'deathEatersWin' && prevProps.gameInfo.gameState.audioCue !== 'deathEatersWin') {

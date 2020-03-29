@@ -40,7 +40,7 @@ async function influence(game) {
 		}
 		if (Math.abs((await ja(turn.votes)) - (await nein(turn.votes))) === 0) {
 			for (const v of turn.votes) {
-				// even number of death eater and liberal votes: everyone gets a point
+				// even number of death eater and order votes: everyone gets a point
 				weighting[v]++;
 			}
 		}
@@ -65,20 +65,20 @@ async function influence(game) {
 async function rate(summary) {
 	const game = buildEnhancedGameSummary(summary.toObject());
 	// Construct extra game info
-	const liberalPlayerNames = game.players
-		.filter(player => player.role === 'liberal')
+	const orderPlayerNames = game.players
+		.filter(player => player.role === 'order')
 		.map(player => player.username)
 		.toArray();
 	const deathEaterPlayerNames = game.players
-		.filter(player => liberalPlayerNames.indexOf(player.username) === -1)
+		.filter(player => orderPlayerNames.indexOf(player.username) === -1)
 		.map(player => player.username)
 		.toArray();
-	const winningPlayerNames = game.winningTeam === 'liberal' ? liberalPlayerNames : deathEaterPlayerNames;
-	const losingPlayerNames = game.winningTeam === 'liberal' ? deathEaterPlayerNames : liberalPlayerNames;
+	const winningPlayerNames = game.winningTeam === 'order' ? orderPlayerNames : deathEaterPlayerNames;
+	const losingPlayerNames = game.winningTeam === 'order' ? deathEaterPlayerNames : orderPlayerNames;
 	const playerNames = game.players.map(player => player.username).toArray();
 	const playerInfluence = await influence(game);
 	// Construct some basic statistics for each team
-	const b = game.winningTeam === 'liberal' ? 1 : 0;
+	const b = game.winningTeam === 'order' ? 1 : 0;
 	const weightedPlayerRank = new Array(game.playerSize);
 	const weightedPlayerSeasonRank = new Array(game.playerSize);
 	for (const i in playerNames) {

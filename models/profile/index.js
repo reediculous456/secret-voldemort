@@ -14,7 +14,7 @@ const profileSchema = new Schema({
 				events: { type: Number, default: 0 },
 				successes: { type: Number, default: 0 }
 			},
-			liberal: {
+			order: {
 				events: { type: Number, default: 0 },
 				successes: { type: Number, default: 0 }
 			},

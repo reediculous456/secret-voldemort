@@ -9,52 +9,52 @@ const makeReport = () => {
 				fields: [
 					{
 						title: 'Seat 1',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 2',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 3',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 4',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 5',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 6',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 7',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 8',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 9',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					},
 					{
 						title: 'Seat 10',
-						value: 'SomePlayer\nLiberal',
+						value: 'SomePlayer\nOrder',
 						short: true
 					}
 				]

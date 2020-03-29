@@ -129,7 +129,7 @@
 			width: 100%;
 		}
 		.top-track-front {
-			background-image: url('../../public/images/tracks/liberaltrack_front.png');
+			background-image: url('../../public/images/tracks/ordertrack_front.png');
 			background-position: center;
 			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
@@ -138,7 +138,7 @@
 			-webkit-backface-visibility: hidden;
 			backface-visibility: hidden;
 			transform: rotateX(180deg);
-			background-image: url('../../public/images/tracks/liberaltrack.png');
+			background-image: url('../../public/images/tracks/ordertrack.png');
 		}
 		.bottom-track-front {
 			background-image: url('../../public/images/tracks/deatheatertrack_front.png');
@@ -304,8 +304,8 @@
 .cardflinger-card.policy {
 	background-image: url('../../public/images/cards/policy-l.png');
 }
-.cardflinger-card.liberalp {
-	background-image: url('../../public/images/cards/liberalp-l.png');
+.cardflinger-card.orderp {
+	background-image: url('../../public/images/cards/orderp-l.png');
 }
 .cardflinger-card.death-eaterp {
 	background-image: url('../../public/images/cards/deatheaterp-l.png');
@@ -383,8 +383,8 @@
 .enactedpolicies-card.front {
 	background-image: url('../../public/images/cards/policy-l.png');
 }
-.enactedpolicies-card.back.liberal {
-	background-image: url('../../public/images/cards/liberalp-l.png');
+.enactedpolicies-card.back.order {
+	background-image: url('../../public/images/cards/orderp-l.png');
 }
 .enactedpolicies-card.back.death-eater {
 	background-image: url('../../public/images/cards/death-eaterp-l.png');
@@ -398,23 +398,23 @@
 	background-size: contain;
 	//height: 23.8%;
 }
-.enactedpolicies-card-container.liberal1 {
+.enactedpolicies-card-container.order1 {
 	left: 14.15%; //95px
 	top: 10.91%; //48px
 }
-.enactedpolicies-card-container.liberal2 {
+.enactedpolicies-card-container.order2 {
 	left: 28.5%;
 	top: 10.91%;
 }
-.enactedpolicies-card-container.liberal3 {
+.enactedpolicies-card-container.order3 {
 	left: 42.85%;
 	top: 10.91%;
 }
-.enactedpolicies-card-container.liberal4 {
+.enactedpolicies-card-container.order4 {
 	left: 57.5%;
 	top: 10.91%;
 }
-.enactedpolicies-card-container.liberal5 {
+.enactedpolicies-card-container.order5 {
 	left: 71.85%;
 	top: 10.91%;
 }

@@ -18,7 +18,7 @@ export const TOU_CHANGES = [
 	{
 		changeVer: '1.1',
 		changeDesc:
-			'Lying as liberal is allowed if you can prove it helps your team.\nFollowing players to comment on their games or talking about a no-chat game is now explicitly forbidden.\nMinor wording changes to forbidden language and card-backs.'
+			'Lying as order is allowed if you can prove it helps your team.\nFollowing players to comment on their games or talking about a no-chat game is now explicitly forbidden.\nMinor wording changes to forbidden language and card-backs.'
 	},
 	{
 		changeVer: '1.0',
@@ -123,7 +123,7 @@ export const getBadWord = text => {
 
 	// let ec = 0; //for future use in auto reporting
 	let exceptedText = text;
-	for (let exception of exceptions) {
+	for (const exception of exceptions) {
 		while (exceptedText.search(exception) > -1) {
 			exceptedText = exceptedText.replace(exception, '');
 			// ec++;

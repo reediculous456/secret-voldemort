@@ -58,9 +58,9 @@
 			.broadcast-chat {
 				color: lightskyblue !important;
 			}
-			.chat-role--liberal {
+			.chat-role--order {
 				font-weight: 700;
-				color: $darkliberalteam;
+				color: $darkorderteam;
 			}
 			.chat-role--voldemort {
 				font-weight: 700;
@@ -279,9 +279,9 @@
 				background-image: url('../../public/images/cards/death-eaterp-l.png');
 			}
 
-			&.liberal {
+			&.order {
 				width: 19.2%;
-				background-image: url('../../public/images/cards/liberalp-l.png');
+				background-image: url('../../public/images/cards/orderp-l.png');
 			}
 
 			&.discarded {
@@ -349,7 +349,7 @@
 						left: 7%;
 					}
 
-					&.liberal-policies {
+					&.order-policies {
 						width: 73%;
 						top: 10%;
 						left: 14.15%;
@@ -411,7 +411,7 @@
 						left: 38px;
 					}
 
-					&.liberal-policies {
+					&.order-policies {
 						top: 38px;
 						left: 76px;
 					}

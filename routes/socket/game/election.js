@@ -145,7 +145,7 @@ const enactPolicy = (game, team, socket) => {
 	setTimeout(
 		() => {
 			game.trackState.enactedPolicies[index].isFlipped = true;
-			game.gameState.audioCue = team === 'liberal' ? 'enactPolicyL' : 'enactPolicyF';
+			game.gameState.audioCue = team === 'order' ? 'enactPolicyO' : 'enactPolicyD';
 			sendInProgressGameUpdate(game, true);
 		},
 		process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 300 : 2000
@@ -160,13 +160,13 @@ const enactPolicy = (game, team, socket) => {
 				chat: [
 					{ text: 'A ' },
 					{
-						text: team === 'liberal' ? 'liberal' : 'death eater',
-						type: team === 'liberal' ? 'liberal' : 'death eater'
+						text: team === 'order' ? 'order member' : 'death eater',
+						type: team === 'order' ? 'order' : 'death eater'
 					},
 					{
 						text: ` policy has been enacted. (${
-							team === 'liberal' ? game.trackState.liberalPolicyCount.toString() : game.trackState.deathEaterPolicyCount.toString()
-						}/${team === 'liberal' ? '5' : '6'})`
+							team === 'order' ? game.trackState.orderPolicyCount.toString() : game.trackState.deathEaterPolicyCount.toString()
+						}/${team === 'order' ? '5' : '6'})`
 					}
 				]
 			};
@@ -191,7 +191,7 @@ const enactPolicy = (game, team, socket) => {
 					: null;
 
 			game.trackState.enactedPolicies[index].position =
-				team === 'liberal' ? `liberal${game.trackState.liberalPolicyCount}` : `death eater${game.trackState.deathEaterPolicyCount}`;
+				team === 'order' ? `order${game.trackState.orderPolicyCount}` : `death eater${game.trackState.deathEaterPolicyCount}`;
 
 			if (!game.general.disableGamechat) {
 				game.private.seatedPlayers.forEach(player => {
@@ -201,7 +201,7 @@ const enactPolicy = (game, team, socket) => {
 				game.private.unSeatedGameChats.push(chat);
 			}
 
-			if (game.trackState.liberalPolicyCount === 5 || game.trackState.deathEaterPolicyCount === 6) {
+			if (game.trackState.orderPolicyCount === 5 || game.trackState.deathEaterPolicyCount === 6) {
 				game.publicPlayersState.forEach((player, i) => {
 					player.cardStatus.cardFront = 'secretrole';
 					player.cardStatus.cardBack = game.private.seatedPlayers[i].role;
@@ -211,7 +211,7 @@ const enactPolicy = (game, team, socket) => {
 
 				sendInProgressGameUpdate(game);
 
-				game.gameState.audioCue = game.trackState.liberalPolicyCount === 5 ? 'liberalsWin' : 'deathEatersWin';
+				game.gameState.audioCue = game.trackState.orderPolicyCount === 5 ? 'ordersWin' : 'deathEatersWin';
 				setTimeout(
 					() => {
 						game.publicPlayersState.forEach((player, i) => {
@@ -219,9 +219,9 @@ const enactPolicy = (game, team, socket) => {
 						});
 						game.gameState.audioCue = '';
 						if (process.env.NODE_ENV === 'development') {
-							completeGame(game, game.trackState.liberalPolicyCount === 1 ? 'liberal' : 'death eater');
+							completeGame(game, game.trackState.orderPolicyCount === 1 ? 'order' : 'death eater');
 						} else {
-							completeGame(game, game.trackState.liberalPolicyCount === 5 ? 'liberal' : 'death eater');
+							completeGame(game, game.trackState.orderPolicyCount === 5 ? 'order' : 'death eater');
 						}
 					},
 					process.env.NODE_ENV === 'development' ? 100 : 2000
@@ -710,16 +710,16 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 	) {
 		if (!wasTimer && !game.general.private) {
 			if (
-				chancellor.role.team === 'liberal' &&
+				chancellor.role.team === 'order' &&
 				enactedPolicy === 'death eater' &&
-				(game.private.currentChancellorOptions[0] === 'liberal' || game.private.currentChancellorOptions[1] === 'liberal')
+				(game.private.currentChancellorOptions[0] === 'order' || game.private.currentChancellorOptions[1] === 'order')
 			) {
-				// Liberal chancellor chose to play death eater, probably throwing.
+				// Order chancellor chose to play death eater, probably throwing.
 				makeReport(
 					{
 						player: chancellor.userName,
 						seat: chancellorIndex + 1,
-						role: 'Liberal',
+						role: 'Order',
 						situation: `was given choice as chancellor, and played death eater.`,
 						election: game.general.electionCount,
 						title: game.general.name,
@@ -732,17 +732,17 @@ const selectChancellorPolicy = (passport, game, data, wasTimer, socket) => {
 			}
 			if (
 				chancellor.role.team === 'death eater' &&
-				enactedPolicy === 'liberal' &&
-				game.trackState.liberalPolicyCount >= 4 &&
+				enactedPolicy === 'order' &&
+				game.trackState.orderPolicyCount >= 4 &&
 				(game.private.currentChancellorOptions[0] === 'death eater' || game.private.currentChancellorOptions[1] === 'death eater')
 			) {
-				// Death Eater chancellor chose to play 5th liberal.
+				// Death Eater chancellor chose to play 5th order member.
 				makeReport(
 					{
 						player: chancellor.userName,
 						seat: chancellorIndex + 1,
 						role: 'Death Eater',
-						situation: `was given choice as chancellor with 4 blues on the track, and played liberal.`,
+						situation: `was given choice as chancellor with 4 blues on the track, and played order.`,
 						election: game.general.electionCount,
 						title: game.general.name,
 						uid: game.general.uid,
@@ -986,20 +986,20 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 
 		if (!wasTimer && !game.general.private) {
 			// const presGetsPower = presidentPowers[game.general.type][game.trackState.death eaterPolicyCount] ? true : false;
-			const track4blue = game.trackState.liberalPolicyCount >= 4;
+			const track4blue = game.trackState.orderPolicyCount >= 4;
 			const trackReds = game.trackState.deathEaterPolicyCount;
 
 			const passed = [game.private.currentElectionPolicies[nonDiscardedPolicies[0]], game.private.currentElectionPolicies[nonDiscardedPolicies[1]]];
 			let passedNicer = '';
-			if (passed[0] === 'liberal') {
-				if (passed[1] === 'liberal') passedNicer = 'BB';
+			if (passed[0] === 'order') {
+				if (passed[1] === 'order') passedNicer = 'BB';
 				else passedNicer = 'BR';
-			} else if (passed[1] === 'liberal') passedNicer = 'BR';
+			} else if (passed[1] === 'order') passedNicer = 'BR';
 			else passedNicer = 'RR';
 
-			if (president.role.team === 'liberal') {
-				// liberal
-				if (discarded === 'liberal') {
+			if (president.role.team === 'order') {
+				// order
+				if (discarded === 'order') {
 					if (track4blue) {
 						if (passedNicer === 'RR') {
 							// tossed only blue on 4 blues
@@ -1007,7 +1007,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Liberal',
+									role: 'Order',
 									situation: `got BRR with 4 blues on the track, and tossed the blue.`,
 									election: game.general.electionCount,
 									title: game.general.name,
@@ -1023,7 +1023,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Liberal',
+									role: 'Order',
 									situation: `got BBR with 4 blues on the track, and did not force.`,
 									election: game.general.electionCount,
 									title: game.general.name,
@@ -1041,7 +1041,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Liberal',
+									role: 'Order',
 									situation: `got BRR before HZ, and tossed the blue.`,
 									election: game.general.electionCount,
 									title: game.general.name,
@@ -1059,7 +1059,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Liberal',
+									role: 'Order',
 									situation: `got BRR during veto zone, and tossed the blue.`,
 									election: game.general.electionCount,
 									title: game.general.name,
@@ -1075,7 +1075,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
-									role: 'Liberal',
+									role: 'Order',
 									situation: `got BBR during veto zone, and did not force 5th blue.`,
 									election: game.general.electionCount,
 									title: game.general.name,
@@ -1092,7 +1092,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 				// death eater
 				if (discarded === 'death eater') {
 					if (track4blue) {
-						if (passedNicer === 'BB' && chancellor.role.team !== 'liberal') {
+						if (passedNicer === 'BB' && chancellor.role.team !== 'order') {
 							// forced 5th blue on another fas
 							makeReport(
 								{
@@ -1108,14 +1108,14 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								game,
 								'report'
 							);
-						} else if (passedNicer === 'BR' && chancellor.role.team === 'liberal') {
+						} else if (passedNicer === 'BR' && chancellor.role.team === 'order') {
 							// offered 5th blue choice as fas
 							makeReport(
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
 									role: 'Death Eater',
-									situation: `got BRR with 4 blues on the track, and offered choice to a liberal chancellor.`,
+									situation: `got BRR with 4 blues on the track, and offered choice to a order chancellor.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1126,7 +1126,7 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 							);
 						}
 					} else if (trackReds === 5) {
-						if (passedNicer === 'BB' && chancellor.role.team !== 'liberal') {
+						if (passedNicer === 'BB' && chancellor.role.team !== 'order') {
 							// forced 5th blue as hit
 							makeReport(
 								{
@@ -1142,14 +1142,14 @@ const selectPresidentPolicy = (passport, game, data, wasTimer, socket) => {
 								game,
 								'report'
 							);
-						} else if (passedNicer === 'BR' && chancellor.role.team === 'liberal') {
+						} else if (passedNicer === 'BR' && chancellor.role.team === 'order') {
 							// offered 5th blue choice as hit
 							makeReport(
 								{
 									player: president.userName,
 									seat: presidentIndex + 1,
 									role: 'Death Eater',
-									situation: `got BRR with 5 reds on the track, and offered choice to a liberal chancellor.`,
+									situation: `got BRR with 5 reds on the track, and offered choice to a order chancellor.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1338,7 +1338,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 		gameState.undrawnPolicyCount--;
 		game.private.currentElectionPolicies = [game.private.policies.shift(), game.private.policies.shift(), game.private.policies.shift()];
 		const verifyCorrect = policy => {
-			if (policy === 'liberal') return true;
+			if (policy === 'order') return true;
 			if (policy === 'death eater') return true;
 			return false;
 		};
@@ -1351,7 +1351,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 				{
 					player: 'A Player',
 					seat: presidentIndex + 1,
-					role: 'Liberal',
+					role: 'Order',
 					situation: `has just received an invalid hand!\n${JSON.stringify(game.private.currentElectionPolicies)}`,
 					election: game.general.electionCount,
 					title: game.general.name,
@@ -1378,15 +1378,15 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					text: ' received '
 				},
 				{
-					text: game.private.currentElectionPolicies[0] === 'liberal' ? 'B' : 'R',
+					text: game.private.currentElectionPolicies[0] === 'order' ? 'B' : 'R',
 					type: game.private.currentElectionPolicies[0]
 				},
 				{
-					text: game.private.currentElectionPolicies[1] === 'liberal' ? 'B' : 'R',
+					text: game.private.currentElectionPolicies[1] === 'order' ? 'B' : 'R',
 					type: game.private.currentElectionPolicies[1]
 				},
 				{
-					text: game.private.currentElectionPolicies[2] === 'liberal' ? 'B' : 'R',
+					text: game.private.currentElectionPolicies[2] === 'order' ? 'B' : 'R',
 					type: game.private.currentElectionPolicies[2]
 				},
 				{

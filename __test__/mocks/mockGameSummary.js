@@ -1,7 +1,7 @@
 // keep this updated with GameSummary schema
 
 // Jaina never votes for a death eater, kills a death eater
-// Valeera shoots a liberal
+// Valeera shoots a order
 // Uther always votes for a death eater
 module.exports = {
 	_id: 'generic-game',
@@ -134,15 +134,15 @@ module.exports = {
 	players: [
 		{
 			username: 'Uther',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Jaina',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Rexxar',
-			role: 'liberal'
+			role: 'order'
 		},
 		{
 			username: 'Malfurian',
@@ -158,7 +158,7 @@ module.exports = {
 		},
 		{
 			username: 'Anduin',
-			role: 'liberal'
+			role: 'order'
 		}
 	]
 };

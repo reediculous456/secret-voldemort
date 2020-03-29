@@ -1070,7 +1070,7 @@ export default class Creategame extends React.Component {
 		const rowWidth = Math.ceil((numLib + numFas) / 3);
 		const data = _.range(0, numLib)
 			.map((val, i) => {
-				return <div key={`L${i}`} className="deckcard" style={{ backgroundImage: "url('../images/cards/liberalp-l.png')" }} />; // eslint-disable-line
+				return <div key={`L${i}`} className="deckcard" style={{ backgroundImage: "url('../images/cards/orderp-l.png')" }} />; // eslint-disable-line
 			})
 			.concat(
 				_.range(0, numFas).map((val, i) => {
@@ -1289,7 +1289,7 @@ export default class Creategame extends React.Component {
 				<div
 					key={i}
 					className="rolecard"
-					style={{ backgroundImage: hitKnowsFas ? `url('../images/cards/liberal${val % 6}.png')` : "url('../images/cards/secretrole.png')" }} // eslint-disable-line
+					style={{ backgroundImage: hitKnowsFas ? `url('../images/cards/order${val % 6}.png')` : "url('../images/cards/secretrole.png')" }} // eslint-disable-line
 				/>
 			));
 		};
@@ -1404,7 +1404,7 @@ export default class Creategame extends React.Component {
 				<div className="eight wide column ui grid" style={{ marginTop: '-1rem', marginLeft: '3rem', marginBottom: '3rem' }}>
 					<div className="row">
 						<div className="eight wide column">
-							<h4 className="ui header">Liberal policies</h4>
+							<h4 className="ui header">Order policies</h4>
 							<Range
 								min={5}
 								max={8}
@@ -1515,7 +1515,7 @@ export default class Creategame extends React.Component {
 		}
 		if (this.state.customGameSettings.enabled) {
 			if (this.state.customGameSettings.deathEaterCount + 1 >= this.state.customGameSliderValue / 2) {
-				errs.push('There must be a liberal majority when the game starts.');
+				errs.push('There must be a order member majority when the game starts.');
 			}
 			if (this.state.customGameSettings.vetoZone <= this.state.customGameSettings.trackState.fas) {
 				errs.push('Veto Zone cannot be active when the game starts.');

@@ -252,7 +252,7 @@
 .game > .ui.grid .chat-container .gamechat .chats .broadcast-chat {
 	color: lightskyblue !important;
 }
-.game > .ui.grid .chat-container .gamechat .chats .chat-role--liberal {
+.game > .ui.grid .chat-container .gamechat .chats .chat-role--order {
 	font-weight: 700;
 	color: #608cb3;
 }
@@ -302,19 +302,19 @@
 .game > .ui.grid .chat-container .gamechat .claim-container .threedeatheater {
 	background: #c36563;
 }
-.game > .ui.grid .chat-container .gamechat .claim-container .twodeatheateroneliberal {
+.game > .ui.grid .chat-container .gamechat .claim-container .twodeatheateroneorder {
 	background: #e4bcba;
 	color: #333 !important;
 }
-.game > .ui.grid .chat-container .gamechat .claim-container .onedeatheateroneliberal {
+.game > .ui.grid .chat-container .gamechat .claim-container .onedeatheateroneorder {
 	background: #fff;
 	color: #333 !important;
 }
-.game > .ui.grid .chat-container .gamechat .claim-container .twoliberalonedeatheater {
+.game > .ui.grid .chat-container .gamechat .claim-container .twoorderonedeatheater {
 	background: #bfd8ee;
 	color: #333 !important;
 }
-.game > .ui.grid .chat-container .gamechat .claim-container .threeliberal {
+.game > .ui.grid .chat-container .gamechat .claim-container .threeorder {
 	background: #608cb3;
 }
 .game > .ui.grid .chat-container .gamechat .claim-container.active {
@@ -622,23 +622,23 @@
 .players-container .players .player-container .card-container .card.secretrole {
 	background-image: url('../images/cards/secretrole.png');
 }
-.players-container .players .player-container .card-container .card.liberal0 {
-	background-image: url('../images/cards/liberal0.png');
+.players-container .players .player-container .card-container .card.order0 {
+	background-image: url('../images/cards/order0.png');
 }
-.players-container .players .player-container .card-container .card.liberal1 {
-	background-image: url('../images/cards/liberal1.png');
+.players-container .players .player-container .card-container .card.order1 {
+	background-image: url('../images/cards/order1.png');
 }
-.players-container .players .player-container .card-container .card.liberal2 {
-	background-image: url('../images/cards/liberal2.png');
+.players-container .players .player-container .card-container .card.order2 {
+	background-image: url('../images/cards/order2.png');
 }
-.players-container .players .player-container .card-container .card.liberal3 {
-	background-image: url('../images/cards/liberal3.png');
+.players-container .players .player-container .card-container .card.order3 {
+	background-image: url('../images/cards/order3.png');
 }
-.players-container .players .player-container .card-container .card.liberal4 {
-	background-image: url('../images/cards/liberal4.png');
+.players-container .players .player-container .card-container .card.order4 {
+	background-image: url('../images/cards/order4.png');
 }
-.players-container .players .player-container .card-container .card.liberal5 {
-	background-image: url('../images/cards/liberal5.png');
+.players-container .players .player-container .card-container .card.order5 {
+	background-image: url('../images/cards/order5.png');
 }
 .players-container .players .player-container .card-container .card.deatheater0 {
 	background-image: url('../images/cards/deatheater0.png');
@@ -676,8 +676,8 @@
 .players-container .players .player-container .card-container .card.partymembership {
 	background-image: url('../images/cards/partymembership.png');
 }
-.players-container .players .player-container .card-container .card.membership-liberal {
-	background-image: url('../images/cards/membership-liberal.png');
+.players-container .players .player-container .card-container .card.membership-order {
+	background-image: url('../images/cards/membership-order.png');
 }
 .players-container .players .player-container .card-container .card.membership-death-eater {
 	background-image: url('../images/cards/membership-death-eater.png');
@@ -699,8 +699,8 @@
 .players-container .players .player-container .player-number.disconnected {
 	opacity: 0.6;
 }
-.players-container .players .player-container .player-name.liberal,
-.players-container .players .player-container .player-number.liberal {
+.players-container .players .player-container .player-name.order,
+.players-container .players .player-container .player-number.order {
 	color: #608cb3;
 }
 .players-container .players .player-container .player-name.death-eater,
@@ -731,7 +731,7 @@
 .players-container .players .player-container.danger::after {
 	box-shadow: 0 0 4px 4px #be0804;
 }
-.players-container .players .player-container.liberal::after {
+.players-container .players .player-container.order::after {
 	box-shadow: 0 0 4px 4px #608cb3;
 }
 .players-container .players .player-container.notification::after {
@@ -1065,7 +1065,7 @@
 	width: 100%;
 }
 .tracks-container .tracks .top-track-front {
-	background-image: url('../images/tracks/liberaltrack_front.png');
+	background-image: url('../images/tracks/ordertrack_front.png');
 	background-position: center;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
@@ -1074,7 +1074,7 @@
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	transform: rotateX(180deg);
-	background-image: url('../images/tracks/liberaltrack.png');
+	background-image: url('../images/tracks/ordertrack.png');
 }
 .tracks-container .tracks .bottom-track-front {
 	background-image: url('../images/tracks/deatheatertrack_front.png');
@@ -1212,8 +1212,8 @@
 .cardflinger-card.policy {
 	background-image: url('../images/cards/policy-l.png');
 }
-.cardflinger-card.liberalp {
-	background-image: url('../images/cards/liberalp-l.png');
+.cardflinger-card.orderp {
+	background-image: url('../images/cards/orderp-l.png');
 }
 .cardflinger-card.death-eaterp {
 	background-image: url('../images/cards/death-eaterp-l.png');
@@ -1283,8 +1283,8 @@
 .enactedpolicies-card.front {
 	background-image: url('../images/cards/policy-l.png');
 }
-.enactedpolicies-card.back.liberal {
-	background-image: url('../images/cards/liberalp-l.png');
+.enactedpolicies-card.back.order {
+	background-image: url('../images/cards/orderp-l.png');
 }
 .enactedpolicies-card.back.death-eater {
 	background-image: url('../images/cards/death-eaterp-l.png');
@@ -1298,23 +1298,23 @@
 	background-size: contain;
 	height: 124px;
 }
-.enactedpolicies-card-container.liberal1 {
+.enactedpolicies-card-container.order1 {
 	left: 95px;
 	top: 48px;
 }
-.enactedpolicies-card-container.liberal2 {
+.enactedpolicies-card-container.order2 {
 	left: 188px;
 	top: 48px;
 }
-.enactedpolicies-card-container.liberal3 {
+.enactedpolicies-card-container.order3 {
 	left: 280px;
 	top: 48px;
 }
-.enactedpolicies-card-container.liberal4 {
+.enactedpolicies-card-container.order4 {
 	left: 374px;
 	top: 48px;
 }
-.enactedpolicies-card-container.liberal5 {
+.enactedpolicies-card-container.order5 {
 	left: 466px;
 	top: 48px;
 }
@@ -2113,8 +2113,8 @@
 #replay .left-side .card.death-eater {
 	background-image: url('../images/cards/death-eaterp-l.png');
 }
-#replay .left-side .card.liberal {
-	background-image: url('../images/cards/liberalp-l.png');
+#replay .left-side .card.order {
+	background-image: url('../images/cards/orderp-l.png');
 }
 #replay .left-side .card.discarded {
 	box-shadow: 0 0 4px 3px red;
@@ -2255,7 +2255,7 @@
 	top: 264px;
 	left: 43px;
 }
-#replay .big .left-side .track-pieces .enacted.liberal-policies {
+#replay .big .left-side .track-pieces .enacted.order-policies {
 	top: 44px;
 	left: 89px;
 }
@@ -2297,7 +2297,7 @@
 	top: 214px;
 	left: 38px;
 }
-#replay .small .left-side .track-pieces .enacted.liberal-policies {
+#replay .small .left-side .track-pieces .enacted.order-policies {
 	top: 38px;
 	left: 76px;
 }
@@ -2493,7 +2493,7 @@
 .game-text .normal {
 	color: #8b8b8b;
 }
-.game-text .liberal {
+.game-text .order {
 	font-weight: 700;
 	color: #608cb3;
 }
@@ -2896,7 +2896,7 @@
 #main .browser-row.death-eater {
 	box-shadow: 0 0 6px 3px darkgray;
 }
-#main .browser-row.liberal {
+#main .browser-row.order {
 	box-shadow: 0 0 6px 3px darkgray;
 }
 #main .browser-row.tourny {
@@ -2933,7 +2933,7 @@
 #main .game-row .progress-text.waiting {
 	margin: auto;
 }
-#main .game-row .progress-text.liberal {
+#main .game-row .progress-text.order {
 	color: #608cb3;
 	margin: auto;
 }
@@ -2948,7 +2948,7 @@
 #main .game-row .progress-icons i {
 	font-size: 50px;
 }
-#main .game-row .progress-icons .liberal-count {
+#main .game-row .progress-icons .order-count {
 	padding: 10px 0 8px 0;
 }
 #main .game-row .progress-icons .box {
@@ -2957,11 +2957,11 @@
 	height: 13px;
 	margin: 0 3px;
 }
-#main .game-row .progress-icons .liberal-box {
+#main .game-row .progress-icons .order-box {
 	box-shadow: 0px 0px 1px 2px #5b9cc4;
 	background-color: #1b1b1b;
 }
-#main .game-row .progress-icons .liberal-box.filled {
+#main .game-row .progress-icons .order-box.filled {
 	background-color: #5b9cc4;
 }
 #main .game-row .progress-icons .death-eater-box {

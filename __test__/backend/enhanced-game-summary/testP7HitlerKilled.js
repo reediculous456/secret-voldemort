@@ -19,7 +19,7 @@ export default () => {
 
 		it('last turn should have voldemort killed', () => {
 			expect(turns.last().isVoldemortKilled).toBe(true);
-			expect(game.winningTeam).toBe('liberal');
+			expect(game.winningTeam).toBe('order');
 		});
 
 		it('should track shots', () => {

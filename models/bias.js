@@ -6,7 +6,7 @@ const Bias = new Schema({
 		required: true,
 		unique: true
 	},
-	eloLiberal: Number,
+	eloOrder: Number,
 	eloDeathEater: Number
 });
 
