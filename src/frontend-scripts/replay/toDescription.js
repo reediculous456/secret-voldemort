@@ -1,7 +1,7 @@
 import { text, handToText, mapOpt1, capitalize } from '../../../utils';
 
 export default function(snapshot, game) {
-	const { isVotePassed, jas, neins } = game.turns.get(snapshot.turnNum);
+	const { isVotePassed, lumoses, noxes } = game.turns.get(snapshot.turnNum);
 	const usernameOf = id => game.usernameOf(id).valueOrElse('');
 	const claimToText = claim => claim.valueOrElse(text('player', 'nothing'));
 	const claimHandToText = claim => claimToText(mapOpt1(handToText)(claim));
@@ -24,9 +24,9 @@ export default function(snapshot, game) {
 				return [
 					text('normal', 'The vote'),
 					text('normal', isVotePassed ? 'passes' : 'fails'),
-					text('player', jas),
+					text('player', lumoses),
 					text('normal', 'to'),
-					text('player', neins)
+					text('player', noxes)
 				];
 			}
 		case 'topDeck':

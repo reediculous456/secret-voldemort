@@ -358,7 +358,7 @@ const selectMinisterVoteOnVeto = (passport, game, data, socket) => {
 			cardDisplayed: true,
 			cardFront: 'ballot',
 			cardBack: {
-				cardName: data.vote ? 'ja' : 'nein'
+				cardName: data.vote ? 'lumos' : 'nox'
 			}
 		};
 
@@ -534,7 +534,7 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 			cardDisplayed: true,
 			cardFront: 'ballot',
 			cardBack: {
-				cardName: data.vote ? 'ja' : 'nein'
+				cardName: data.vote ? 'lumos' : 'nox'
 			}
 		};
 
@@ -577,7 +577,7 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 							cardStatus: {
 								isFlipped: false,
 								cardFront: 'ballot',
-								cardBack: 'ja'
+								cardBack: 'lumos'
 							}
 						},
 						{
@@ -587,7 +587,7 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 							cardStatus: {
 								isFlipped: false,
 								cardFront: 'ballot',
-								cardBack: 'nein'
+								cardBack: 'nox'
 							}
 						}
 					];
@@ -599,7 +599,7 @@ const selectHeadmasterVoteOnVeto = (passport, game, data, socket) => {
 							chat: [
 								{
 									text:
-										'You must vote whether or not to veto these proclamations.  Select Ja to veto the proclamations you passed to the Headmaster or select Nein to enact the proclamation the Headmaster has chosen in secret.'
+										'You must vote whether or not to veto these proclamations.  Select Lumos to veto the proclamations you passed to the Headmaster or select Nox to enact the proclamation the Headmaster has chosen in secret.'
 								}
 							]
 						});
@@ -815,7 +815,7 @@ const selectHeadmasterProclamation = (passport, game, data, wasTimer, socket) =>
 						chat: [
 							{
 								text:
-									'You must vote whether or not to veto these proclamations.  Select Ja to veto the your chosen proclamation or select Nein to enact your chosen proclamation.'
+									'You must vote whether or not to veto these proclamations.  Select Lumos to veto the your chosen proclamation or select Nox to enact your chosen proclamation.'
 							}
 						]
 					};
@@ -830,7 +830,7 @@ const selectHeadmasterProclamation = (passport, game, data, wasTimer, socket) =>
 							cardStatus: {
 								isFlipped: false,
 								cardFront: 'ballot',
-								cardBack: 'ja'
+								cardBack: 'lumos'
 							}
 						},
 						{
@@ -840,7 +840,7 @@ const selectHeadmasterProclamation = (passport, game, data, wasTimer, socket) =>
 							cardStatus: {
 								isFlipped: false,
 								cardFront: 'ballot',
-								cardBack: 'nein'
+								cardBack: 'nox'
 							}
 						}
 					];
@@ -1550,7 +1550,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 
 		game.publicPlayersState.forEach((player, i) => {
 			if (!player.isDead && seatedPlayers[i]) {
-				player.cardStatus.cardBack.cardName = seatedPlayers[i].voteStatus.didVoteYes ? 'ja' : 'nein';
+				player.cardStatus.cardBack.cardName = seatedPlayers[i].voteStatus.didVoteYes ? 'lumos' : 'nox';
 				player.cardStatus.isFlipped = true;
 			}
 		});
@@ -1712,7 +1712,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					cardStatus: {
 						isFlipped: true,
 						cardFront: 'ballot',
-						cardBack: 'ja'
+						cardBack: 'lumos'
 					}
 				},
 				{
@@ -1722,7 +1722,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					cardStatus: {
 						isFlipped: true,
 						cardFront: 'ballot',
-						cardBack: 'nein'
+						cardBack: 'nox'
 					}
 				}
 			];
@@ -1735,7 +1735,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					cardStatus: {
 						isFlipped: true,
 						cardFront: 'ballot',
-						cardBack: 'ja'
+						cardBack: 'lumos'
 					}
 				},
 				{
@@ -1745,7 +1745,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 					cardStatus: {
 						isFlipped: true,
 						cardFront: 'ballot',
-						cardBack: 'nein'
+						cardBack: 'nox'
 					}
 				}
 			];

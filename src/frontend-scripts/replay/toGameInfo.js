@@ -49,7 +49,7 @@ export default function toGameInfo(snapshot) {
 						return f(true, true, 'ballot', {
 							cardName: snapshot.votes
 								.get(i)
-								.map(x => (x ? 'ja' : 'nein'))
+								.map(x => (x ? 'lumos' : 'nox'))
 								.valueOrElse(null)
 						});
 					case 'investigation':
@@ -59,7 +59,7 @@ export default function toGameInfo(snapshot) {
 							cardName: isInvTarget && 'membership-' + p.loyalty
 						});
 					case 'veto':
-						const vetoCard = vote => f(true, true, 'ballot', { cardName: vote ? 'ja' : 'nein' });
+						const vetoCard = vote => f(true, true, 'ballot', { cardName: vote ? 'lumos' : 'nox' });
 
 						if (i === snapshot.headmasterId) {
 							return vetoCard(snapshot.headmasterVeto);

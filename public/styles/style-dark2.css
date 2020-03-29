@@ -667,11 +667,11 @@
 .players-container .players .player-container .card-container .card.ballot {
 	background-image: url('../images/cards/ballot.png');
 }
-.players-container .players .player-container .card-container .card.ja {
-	background-image: url('../images/cards/ja.png');
+.players-container .players .player-container .card-container .card.lumos {
+	background-image: url('../images/cards/lumos.png');
 }
-.players-container .players .player-container .card-container .card.nein {
-	background-image: url('../images/cards/nein.png');
+.players-container .players .player-container .card-container .card.nox {
+	background-image: url('../images/cards/nox.png');
 }
 .players-container .players .player-container .card-container .card.partymembership {
 	background-image: url('../images/cards/partymembership.png');
@@ -1203,11 +1203,11 @@
 .cardflinger-card.ballot {
 	background-image: url('../images/cards/ballot-l.png');
 }
-.cardflinger-card.nein {
-	background-image: url('../images/cards/nein-l.png');
+.cardflinger-card.nox {
+	background-image: url('../images/cards/nox-l.png');
 }
-.cardflinger-card.ja {
-	background-image: url('../images/cards/ja-l.png');
+.cardflinger-card.lumos {
+	background-image: url('../images/cards/lumos-l.png');
 }
 .cardflinger-card.proclamation {
 	background-image: url('../images/cards/proclamation-l.png');

@@ -368,7 +368,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 							chat: [
 								{
 									text:
-										'You must vote whether or not to discard this proclamation.  Select Ja to discard the peeked proclamation or select Nein to put it back on the deck.'
+										'You must vote whether or not to discard this proclamation.  Select Lumos to discard the peeked proclamation or select Nox to put it back on the deck.'
 								}
 							]
 						};
@@ -383,7 +383,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 								cardStatus: {
 									isFlipped: false,
 									cardFront: 'ballot',
-									cardBack: 'ja'
+									cardBack: 'lumos'
 								}
 							},
 							{
@@ -393,7 +393,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 								cardStatus: {
 									isFlipped: false,
 									cardFront: 'ballot',
-									cardBack: 'nein'
+									cardBack: 'nox'
 								}
 							}
 						];
@@ -498,7 +498,7 @@ module.exports.selectBurnCard = (passport, game, data, socket) => {
 			cardDisplayed: true,
 			cardFront: 'ballot',
 			cardBack: {
-				cardName: data.vote ? 'ja' : 'nein'
+				cardName: data.vote ? 'lumos' : 'nox'
 			}
 		};
 

@@ -85,13 +85,13 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 	const votes = log.votes.map((v, i) => (beforeDeadPlayers.includes(i) ? none : some(v)));
 
 	// Int
-	const jas = flattenListOpts(votes).count(v => v);
+	const lumoses = flattenListOpts(votes).count(v => v);
 
 	// Int
-	const neins = players.size - jas - beforeDeadPlayers.size;
+	const noxes = players.size - lumoses - beforeDeadPlayers.size;
 
 	// Boolean
-	const isVotePassed = jas > neins;
+	const isVotePassed = lumoses > noxes;
 
 	// Boolean
 	const isVoteFailed = !isVotePassed;
@@ -223,8 +223,8 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 		players: null,
 		alivePlayers,
 		votes,
-		jas,
-		neins,
+		lumoses,
+		noxes,
 		isVotePassed,
 		isVoteFailed,
 		beforeElectionTracker,

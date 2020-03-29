@@ -111,7 +111,7 @@ module.exports.selectHeadmaster = (socket, passport, game, data, force = false) 
 					cardStatus: {
 						isFlipped: false,
 						cardFront: 'ballot',
-						cardBack: 'ja'
+						cardBack: 'lumos'
 					}
 				},
 				{
@@ -121,7 +121,7 @@ module.exports.selectHeadmaster = (socket, passport, game, data, force = false) 
 					cardStatus: {
 						isFlipped: false,
 						cardFront: 'ballot',
-						cardBack: 'nein'
+						cardBack: 'nox'
 					}
 				}
 			];

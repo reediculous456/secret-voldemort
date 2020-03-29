@@ -13,9 +13,9 @@ const libAdjust = {
 	10: -31.539
 };
 
-ja = async votes => votes.toArray().filter(b => b).length;
-nein = async votes => votes.toArray().filter(b => !b).length;
-passed = async votes => (await ja(votes)) > (await nein(votes));
+lumos = async votes => votes.toArray().filter(b => b).length;
+nox = async votes => votes.toArray().filter(b => !b).length;
+passed = async votes => (await lumos(votes)) > (await nox(votes));
 
 softmax = arr => arr.map((value, index) => Math.exp(value) / arr.map(Math.exp).reduce((a, b) => a + b));
 avg = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
@@ -30,7 +30,7 @@ async function influence(game) {
 	let red = 0;
 	for (const turn of game.summary.logs) {
 		p = passed(turn.votes);
-		if (Math.abs((await ja(turn.votes)) - (await nein(turn.votes))) === 1) {
+		if (Math.abs((await lumos(turn.votes)) - (await nox(turn.votes))) === 1) {
 			for (const v of turn.votes) {
 				if (turn.votes[v] === (await p)) {
 					// voting with the majority on a close vote
@@ -38,7 +38,7 @@ async function influence(game) {
 				}
 			}
 		}
-		if (Math.abs((await ja(turn.votes)) - (await nein(turn.votes))) === 0) {
+		if (Math.abs((await lumos(turn.votes)) - (await nox(turn.votes))) === 0) {
 			for (const v of turn.votes) {
 				// even number of death eater and order votes: everyone gets a point
 				weighting[v]++;

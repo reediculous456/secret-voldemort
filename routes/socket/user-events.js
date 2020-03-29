@@ -1985,7 +1985,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			return;
 		}
 
-		const aemForce = /^\/forcevote (\d{1,2}) (ya|ja|nein|yes|no|true|false)$/i.exec(chat);
+		const aemForce = /^\/forcevote (\d{1,2}) (ya|lumos|nox|yes|no|true|false)$/i.exec(chat);
 		if (aemForce) {
 			if (player) {
 				socket.emit('sendAlert', 'You cannot force a vote whilst playing.');
@@ -2004,14 +2004,14 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 					return;
 				}
 				let vote = false;
-				if (voteString == 'ya' || voteString == 'ja' || voteString == 'yes' || voteString == 'true') vote = true;
+				if (voteString == 'ya' || voteString == 'lumos' || voteString == 'yes' || voteString == 'true') vote = true;
 
 				if (affectedPlayer.voteStatus.hasVoted) {
 					socket.emit(
 						'sendAlert',
 						`${affectedPlayer.userName} {${affectedPlayerNumber + 1}} has already voted.\nThey were voting: ${
-							affectedPlayer.voteStatus.didVoteYes ? 'ja' : 'nein'
-						}\nYou have set them to vote: ${vote ? 'ja' : 'nein'}
+							affectedPlayer.voteStatus.didVoteYes ? 'lumos' : 'nox'
+						}\nYou have set them to vote: ${vote ? 'lumos' : 'nox'}
 						`
 					);
 				}
@@ -2033,7 +2033,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 							text: ' to vote '
 						},
 						{
-							text: `${vote ? 'ja' : 'nein'}`,
+							text: `${vote ? 'lumos' : 'nox'}`,
 							type: 'player'
 						},
 						{
@@ -2767,7 +2767,7 @@ module.exports.handleModPeekVotes = (socket, passport, game, modUserName) => {
 			} else {
 				output += 'Roles not Dealt - ';
 			}
-			output += player.isDead ? 'Dead' : player.voteStatus && player.voteStatus.hasVoted ? (player.voteStatus.didVoteYes ? 'Ja' : 'Nein') : 'Not' + ' Voted';
+			output += player.isDead ? 'Dead' : player.voteStatus && player.voteStatus.hasVoted ? (player.voteStatus.didVoteYes ? 'Lumos' : 'Nox') : 'Not' + ' Voted';
 			output += '\n';
 		});
 	}

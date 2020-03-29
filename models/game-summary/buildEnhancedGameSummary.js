@@ -132,12 +132,12 @@ function buildEnhancedGameSummary(_summary) {
 		return playerOf(id).map(p => p.role);
 	};
 
-	// Option[List[Option[{ ja: Boolean, ministerId: Int, headmasterId: Int }]]]
+	// Option[List[Option[{ lumos: Boolean, ministerId: Int, headmasterId: Int }]]]
 	const votesOf = username => {
 		return indexOf(username).map(i =>
 			turns.map(t =>
 				t.votes.get(i).map(v => ({
-					ja: v,
+					lumos: v,
 					ministerId: t.ministerId,
 					headmasterId: t.headmasterId
 				}))

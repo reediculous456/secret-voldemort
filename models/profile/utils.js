@@ -23,11 +23,11 @@ function profileDelta(username, game) {
 		)
 		.valueOrElse(List());
 	const accurateVotes = votes.filterNot(v => {
-		const { ministerId, headmasterId, ja } = v;
+		const { ministerId, headmasterId, lumos } = v;
 		const ministerLoyalty = game.loyaltyOf(ministerId).value();
 		const headmasterRole = game.roleOf(headmasterId).value();
 
-		return ja && (ministerLoyalty === 'death eater' || headmasterRole === 'voldemort');
+		return lumos && (ministerLoyalty === 'death eater' || headmasterRole === 'voldemort');
 	});
 	const shots = game.shotsOf(username).value();
 	const accurateShots = shots.filter(id => game.loyaltyOf(id).value() === 'death eater');

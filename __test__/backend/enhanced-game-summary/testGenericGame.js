@@ -78,30 +78,30 @@ export default () => {
 			expect(getVotes(7).toArray()).toEqual([true, false, null, null, true, true, true]);
 		});
 
-		it('should track jas', () => {
-			const jas = turnNum => turns.get(turnNum).jas;
+		it('should track lumoses', () => {
+			const lumoses = turnNum => turns.get(turnNum).lumoses;
 
-			expect(jas(0)).toBe(7);
-			expect(jas(1)).toBe(7);
-			expect(jas(2)).toBe(7);
-			expect(jas(3)).toBe(5);
-			expect(jas(4)).toBe(2);
-			expect(jas(5)).toBe(1);
-			expect(jas(6)).toBe(6);
-			expect(jas(7)).toBe(4);
+			expect(lumoses(0)).toBe(7);
+			expect(lumoses(1)).toBe(7);
+			expect(lumoses(2)).toBe(7);
+			expect(lumoses(3)).toBe(5);
+			expect(lumoses(4)).toBe(2);
+			expect(lumoses(5)).toBe(1);
+			expect(lumoses(6)).toBe(6);
+			expect(lumoses(7)).toBe(4);
 		});
 
-		it('should track neins', () => {
-			const neins = turnNum => turns.get(turnNum).neins;
+		it('should track noxes', () => {
+			const noxes = turnNum => turns.get(turnNum).noxes;
 
-			expect(neins(0)).toBe(0);
-			expect(neins(1)).toBe(0);
-			expect(neins(2)).toBe(0);
-			expect(neins(3)).toBe(2);
-			expect(neins(4)).toBe(4);
-			expect(neins(5)).toBe(5);
-			expect(neins(6)).toBe(0);
-			expect(neins(7)).toBe(1);
+			expect(noxes(0)).toBe(0);
+			expect(noxes(1)).toBe(0);
+			expect(noxes(2)).toBe(0);
+			expect(noxes(3)).toBe(2);
+			expect(noxes(4)).toBe(4);
+			expect(noxes(5)).toBe(5);
+			expect(noxes(6)).toBe(0);
+			expect(noxes(7)).toBe(1);
 		});
 
 		it('should track successful votes', () => {
@@ -368,7 +368,7 @@ export default () => {
 					.get(4)
 			).toEqual(
 				some({
-					ja: true,
+					lumos: true,
 					ministerId: 4,
 					headmasterId: 2
 				})

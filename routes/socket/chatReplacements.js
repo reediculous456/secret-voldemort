@@ -31,7 +31,7 @@ module.exports.chatReplacements = [
 		id: 4,
 		regex: /^v.eto/i,
 		replacement:
-			'Veto is unlocked after the 5th death eater card is played. This power allows for the resulting proclamation to be played to be nullified- but only if both the minister of magic and headmaster vote "ja". If either votes "nein", the resulting proclamation will be enacted as usual.',
+			'Veto is unlocked after the 5th death eater card is played. This power allows for the resulting proclamation to be played to be nullified- but only if both the minister of magic and headmaster vote "lumos". If either votes "nox", the resulting proclamation will be enacted as usual.',
 		aemCooldown: 15,
 		normalCooldown: 180,
 		normalGames: 50

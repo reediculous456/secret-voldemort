@@ -405,7 +405,7 @@ block content
 			p In a timed mode game, a timer on all actions appears in the lower right part of the death eater board, after which the next action is chosen at random.
 			div(style="text-align: center")
 				img(src="/images/timed-mode-example.png", style="border: 1px solid grey")
-			p Example: in a 5 minute timed mode game, if someone does not make a required action in 5 minutes such as voting on an election, their nein or ja vote is chosen for them at random by the server. Note that in order to save stress on the server, this countdown is held client-side and will only be visible to	players/observers if they are present in the game when each timer starts (but still goes on in the background on the server, of course). This mode will	likely favor death eaters! Feedback requested.
+			p Example: in a 5 minute timed mode game, if someone does not make a required action in 5 minutes such as voting on an election, their nox or lumos vote is chosen for them at random by the server. Note that in order to save stress on the server, this countdown is held client-side and will only be visible to	players/observers if they are present in the game when each timer starts (but still goes on in the background on the server, of course). This mode will	likely favor death eaters! Feedback requested.
 			p Complicated magical changes were made in the back end in order to enable this functionality and it may be subject to.. not being perfect. Please report any problems you see. Hopefully problems != crashes.
 			h3 Bug fix: game now once again works on iOS devices.
 			h3 Bug fix: blind mode players cannot reveal their names by pinging other players..
@@ -507,9 +507,9 @@ block content
 				li The above work was done by contributor STOshka/AlexSTO. Awesome!
 				li In blind mode games, hovering on a player's name no longer shows you who they are..
 				li You can now report players in blind mode. Reminder: blind mode is not an excuse to break site rules.
-				li In a consensus vote on elections (everyone votes the same), the ja/nein cards are visible for a much shorter period of time, getting on with it.
+				li In a consensus vote on elections (everyone votes the same), the lumos/nox cards are visible for a much shorter period of time, getting on with it.
 				li A bug that prevented players from remaking a game more than once has been fixed.
-				li The weird selection bug on elections ja/nein has been fixed, was hotfixed about a week ago but you had to have cleared your cache.
+				li The weird selection bug on elections lumos/nox has been fixed, was hotfixed about a week ago but you had to have cleared your cache.
 				li Say goodbye for now to Santa Voldemort.
 			p Version 0.11.2 released 12-24-2017
 			h3 Tournament mode re-re-enabled..
@@ -601,7 +601,7 @@ block content
 			p Typically a clickable popup will be available and selectable.. I didn't get to that - next patch. For now, please check out our #[a(href="https://github.com/reediculous456/secret-voldemort/wiki/Emotes",target="_blank") 				emote reference].
 			p Thanks goes out to contributor andy013!
 			h3 New feature: election voting rework (changable votes)
-			p Previously, a vote on a government was immediate and permanent. Now, clicking on ja or nein will remove your loader gif, but you can either a) click the selected one again to bring back the loader and prevent vote tallying or just b) select the other option to switch your vote. Votes are tallied as usual when all players have selected their vote.
+			p Previously, a vote on a government was immediate and permanent. Now, clicking on lumos or nox will remove your loader gif, but you can either a) click the selected one again to bring back the loader and prevent vote tallying or just b) select the other option to switch your vote. Votes are tallied as usual when all players have selected their vote.
 			h3 New feature: 2nd tier of player moderators (editors) and many new helpful moderation tools implemented.
 			p Editors will have an (E) next to their name, and mysterious expanded mod powers! Like assign roles to players, and reveal all roles to themselves. Just kidding. Editors and mods can now do helpful things like temporarily turn off account creation in case of troll attack and disable ip bans so that a group from one location can get around the 1 account per day limit.
 			h3 New feature: wiki page
@@ -658,7 +658,7 @@ block content
 				li A 3 second delay has been implemented between the inactment of a proclamation by the headmaster, and the ability for the government to make a claim (for non-experienced games only).  This should change game play a lot I think..
 				li Various tooltips have been added to some items and will continue to be addded in the future.
 				li A fix to rainbow losses also adding to normal losses, but not the other way around.  I'll see if there's a way to credit those.
-				li Contribution by player sethe: a fix to the (relatively rare) problem of the election tracker not working right with vetos and neins.
+				li Contribution by player sethe: a fix to the (relatively rare) problem of the election tracker not working right with vetos and noxes.
 			p Up next: player profiles.  This is just about ready to go and will be released within the next 2 days.
 			p Version 0.4.0 "chestnut" released 6-5-2017
 			h3 New feature: Rainbow games.
