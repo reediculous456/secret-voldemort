@@ -68,7 +68,7 @@ module.exports.generalChats = {
 };
 module.exports.accountCreationDisabled = { status: false };
 module.exports.bypassVPNCheck = { status: true };
-module.exports.ipbansNotEnforced = { status: false };
+module.exports.ipbansNotEnforced = { status: true };
 module.exports.gameCreationDisabled = { status: false };
 module.exports.limitNewPlayers = { status: false };
 module.exports.newStaff = {
