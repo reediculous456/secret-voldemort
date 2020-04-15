@@ -42,3 +42,4 @@ coverage/*
 dump/
 scripts/out/*
 public/images/emotesheet.png
+process.json
