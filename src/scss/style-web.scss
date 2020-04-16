@@ -1,10 +1,10 @@
 $lred: #e36248;
 $lightorderteam: #bfd8ee;
 $lightdeatheaterteam: #e4bcba;
-$darkorderteam: #608cb3;
-$darkdeatheaterteam: #c36563;
-$voldemortteam: #be0804;
-$deatheaterteam: #e36248;
+$darkorderteam: #c36563;
+$darkdeatheaterteam: #b690ea;
+$voldemortteam: #66409c;
+$deatheaterteam: #857287;
 $notification: #fbbd08;
 $selection: #db2828;
 $proceed: #2185d0;
@@ -87,10 +87,10 @@ html {
 }
 
 .ui.buttons * {
-	background: #608cb3;
+	background: #c36563;
 
 	&:hover {
-		background: #608cb3;
+		background: #c36563;
 	}
 }
 

@@ -302,15 +302,15 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 		}
 		.player-name.order,
 		.player-number.order {
-			color: #608cb3;
+			color: #c36563;
 		}
 		.player-name.death-eater,
 		.player-number.death-eater {
-			color: #c36563;
+			color: #857287;
 		}
 		.player-name.voldemort,
 		.player-number.voldemort {
-			color: #be0804;
+			color: #66409c;
 		}
 	}
 	.player-container.isDead {
@@ -327,14 +327,14 @@ $eloValues: (1500 0.3 1 0.3) (1600 0.3 1 0.5) (1849 0 1 0.7) (1850 1 1 0.7) (190
 		cursor: pointer;
 	}
 	.player-container.death-eater::after {
-		box-shadow: 0 0 4px 4px #c36563;
+		box-shadow: 0 0 4px 4px #857287;
 	}
 	.player-container.voldemort::after,
 	.player-container.danger::after {
-		box-shadow: 0 0 4px 4px #be0804;
+		box-shadow: 0 0 4px 4px #66409c;
 	}
 	.player-container.order::after {
-		box-shadow: 0 0 4px 4px #608cb3;
+		box-shadow: 0 0 4px 4px #c36563;
 	}
 	.player-container.notification::after {
 		box-shadow: 0 0 4px 4px #fbbd08;
