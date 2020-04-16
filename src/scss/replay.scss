@@ -310,9 +310,9 @@
 
 			.election-tracker {
 				position: absolute;
-				width: 3.85%;
-				height: 5.68%;
-				background-color: #2f2fbe;
+				width: 3%;
+				height: 4.3%;
+				background-color: #700c1a;
 				border-radius: 50%;
 			}
 		}
@@ -357,19 +357,19 @@
 				}
 
 				.election-tracker {
-					top: 41.36%;
+					top: 43.35%;
 
 					&.zero {
-						left: 32.6%;
+						left: 29.6%;
 					}
 					&.one {
-						left: 42.46%;
+						left: 41.6%;
 					}
 					&.two {
-						left: 52.15%;
+						left: 53.6%;
 					}
 					&.three {
-						left: 62%;
+						left: 65.6%;
 					}
 				}
 			}
