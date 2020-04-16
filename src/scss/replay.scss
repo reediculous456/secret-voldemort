@@ -272,16 +272,21 @@
 			height: 100%;
 			background-size: contain;
 			display: inline-block;
-			box-shadow: 0 0 4px 3px var(--theme-text-3);
 
 			&.death-eater {
+				margin-right: 1%;
 				width: 16%;
 				background-image: url('../../public/images/cards/death-eaterp-l.png');
+				background-repeat: no-repeat;
+				box-shadow: 0 0 4px 3px var(--theme-text-3);
 			}
 
 			&.order {
-				width: 19.2%;
+				margin-right: 3.5%;
+				width: 14.3%;
 				background-image: url('../../public/images/cards/orderp-l.png');
+				background-repeat: no-repeat;
+				box-shadow: 0 0 4px 3px var(--theme-text-3);
 			}
 
 			&.discarded {
@@ -339,20 +344,17 @@
 		.left-side {
 			.track-pieces {
 				.enacted {
-					.card {
-						margin-right: 2px;
-					}
-
 					&.death-eater-proclamations {
+						white-space: nowrap;
 						width: 87%;
-						top: 60%;
-						left: 7%;
+						top: 61%;
+						left: 6%;
 					}
 
 					&.order-proclamations {
-						width: 73%;
+						width: 100%;
 						top: 10%;
-						left: 14.15%;
+						left: 7.15%;
 					}
 				}
 
