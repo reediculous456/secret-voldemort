@@ -1458,7 +1458,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 								if (game.private.proclamations.length < 3) shuffleProclamations(game);
 								const index = game.trackState.enactedProclamations.length;
 								const proclamation = game.private.proclamations.shift();
-								game.trackState[`${proclamation}ProclamationCount`]++;
+								game.trackState[`${proclamation === `order` ? team : `deathEater`}ProclamationCount`]++;
 								sendGameList();
 								game.trackState.enactedProclamations.push({
 									position: 'middle',

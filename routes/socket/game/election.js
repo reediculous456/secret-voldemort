@@ -131,7 +131,7 @@ const enactProclamation = (game, team, socket) => {
 	});
 
 	game.general.status = 'A proclamation is being enacted.';
-	game.trackState[`${team}ProclamationCount`]++;
+	game.trackState[`${team === `order` ? team : `deathEater`}ProclamationCount`]++;
 	sendGameList();
 
 	game.trackState.enactedProclamations.push({
