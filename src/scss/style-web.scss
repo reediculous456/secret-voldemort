@@ -45,13 +45,13 @@ html {
 #header-container {
 	width: 100%;
 	margin: 55px auto 0;
-	background: no-repeat center center url('../images/banner-new.png') #f2654b;
+	background: no-repeat center center url('../images/banner-new.png') #8f7d93;
 	background-size: contain;
 	padding-top: 46%;
 
 	.online-count {
 		padding: 5px;
-		background: #6f3939;
+		background: #8f79d3;
 		position: absolute;
 		top: 10px;
 		right: 20px;
@@ -59,11 +59,11 @@ html {
 		font-size: 18px;
 
 		i {
-			color: lightblue;
+			color: darkred;
 		}
 
 		span {
-			color: #85d42a;
+			color: darkred;
 		}
 	}
 
@@ -87,15 +87,15 @@ html {
 }
 
 .ui.buttons * {
-	background: #c36563;
+	background: #8f79d3;
 
 	&:hover {
-		background: #c36563;
+		background: #8f79d3;
 	}
 }
 
 a.ui.button {
-	background: #e36248;
+	background: #8f79d3;
 }
 
 p {
@@ -129,7 +129,7 @@ span.emphasis {
 		color: #fff;
 
 		&:hover {
-			background: #e36248;
+			background: #8f79d3;
 		}
 	}
 
