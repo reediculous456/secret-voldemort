@@ -161,7 +161,7 @@ const enactProclamation = (game, team, socket) => {
 					{ text: 'A ' },
 					{
 						text: team === 'order' ? 'order member' : 'death eater',
-						type: team === 'order' ? 'order' : 'death eater'
+						type: team === 'order' ? 'order' : 'death-eater'
 					},
 					{
 						text: ` proclamation has been enacted. (${
@@ -184,14 +184,14 @@ const enactProclamation = (game, team, socket) => {
 				}
 			};
 			const powerToEnact =
-				team === 'death eater'
+				team === 'death-eater'
 					? game.customGameSettings.enabled
 						? powerMapping[game.customGameSettings.powers[game.trackState.deathEaterProclamationCount - 1]]
 						: ministerPowers[game.general.type][game.trackState.deathEaterProclamationCount - 1]
 					: null;
 
 			game.trackState.enactedProclamations[index].position =
-				team === 'order' ? `order${game.trackState.orderProclamationCount}` : `death eater${game.trackState.deathEaterProclamationCount}`;
+				team === 'order' ? `order${game.trackState.orderProclamationCount}` : `death-eater${game.trackState.deathEaterProclamationCount}`;
 
 			if (!game.general.disableGamechat) {
 				game.private.seatedPlayers.forEach(player => {
@@ -219,9 +219,9 @@ const enactProclamation = (game, team, socket) => {
 						});
 						game.gameState.audioCue = '';
 						if (process.env.NODE_ENV === 'development') {
-							completeGame(game, game.trackState.orderProclamationCount === 1 ? 'order' : 'death eater');
+							completeGame(game, game.trackState.orderProclamationCount === 1 ? 'order' : 'death-eater');
 						} else {
-							completeGame(game, game.trackState.orderProclamationCount === 5 ? 'order' : 'death eater');
+							completeGame(game, game.trackState.orderProclamationCount === 5 ? 'order' : 'death-eater');
 						}
 					},
 					process.env.NODE_ENV === 'development' ? 100 : 2000
@@ -266,7 +266,7 @@ const enactProclamation = (game, team, socket) => {
 										selectProclamations({ user: minister.userName }, game, socket);
 										break;
 									case 'The minister of magic must select a player for execution.':
-										if (minister.role.cardName === 'death eater') {
+										if (minister.role.cardName === 'death-eater') {
 											list = list.filter(player => player.role.cardName !== 'voldemort');
 										}
 										selectPlayerToExecute({ user: minister.userName }, game, { playerIndex: seatedPlayers.indexOf(_.shuffle(list)[0]) }, socket);
@@ -663,7 +663,7 @@ module.exports.selectHeadmasterVoteOnVeto = selectHeadmasterVoteOnVeto;
 const handToLog = hand =>
 	hand.reduce(
 		(hand, proclamation) => {
-			return proclamation === 'death eater' ? Object.assign({}, hand, { reds: hand.reds + 1 }) : Object.assign({}, hand, { blues: hand.blues + 1 });
+			return proclamation === 'death-eater' ? Object.assign({}, hand, { reds: hand.reds + 1 }) : Object.assign({}, hand, { blues: hand.blues + 1 });
 		},
 		{ reds: 0, blues: 0 }
 	);
@@ -711,7 +711,7 @@ const selectHeadmasterProclamation = (passport, game, data, wasTimer, socket) =>
 		if (!wasTimer && !game.general.private) {
 			if (
 				headmaster.role.team === 'order' &&
-				enactedProclamation === 'death eater' &&
+				enactedProclamation === 'death-eater' &&
 				(game.private.currentHeadmasterOptions[0] === 'order' || game.private.currentHeadmasterOptions[1] === 'order')
 			) {
 				// Order headmaster chose to play death eater, probably throwing.
@@ -731,10 +731,10 @@ const selectHeadmasterProclamation = (passport, game, data, wasTimer, socket) =>
 				);
 			}
 			if (
-				headmaster.role.team === 'death eater' &&
+				headmaster.role.team === 'death-eater' &&
 				enactedProclamation === 'order' &&
 				game.trackState.orderProclamationCount >= 4 &&
-				(game.private.currentHeadmasterOptions[0] === 'death eater' || game.private.currentHeadmasterOptions[1] === 'death eater')
+				(game.private.currentHeadmasterOptions[0] === 'death-eater' || game.private.currentHeadmasterOptions[1] === 'death-eater')
 			) {
 				// Death Eater headmaster chose to play 5th order member.
 				makeReport(
@@ -1093,7 +1093,7 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 				}
 			} else {
 				// death eater
-				if (discarded === 'death eater') {
+				if (discarded === 'death-eater') {
 					if (track4blue) {
 						if (passedNicer === 'BB' && headmaster.role.team !== 'order') {
 							// forced 5th blue on another fas
@@ -1342,7 +1342,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 		game.private.currentElectionProclamations = [game.private.proclamations.shift(), game.private.proclamations.shift(), game.private.proclamations.shift()];
 		const verifyCorrect = proclamation => {
 			if (proclamation === 'order') return true;
-			if (proclamation === 'death eater') return true;
+			if (proclamation === 'death-eater') return true;
 			return false;
 		};
 		if (
@@ -1652,7 +1652,7 @@ module.exports.selectVoting = (passport, game, data, socket, force = false) => {
 								game.publicPlayersState.forEach(player => {
 									player.cardStatus.isFlipped = true;
 								});
-								completeGame(game, 'death eater');
+								completeGame(game, 'death-eater');
 							},
 							process.env.NODE_ENV === 'development' ? 100 : experiencedMode ? 2000 : 4000
 						);

@@ -54,8 +54,8 @@ function buildEnhancedGameSummary(_summary) {
 	const players = (() => {
 		const roleToLoyalty = Map({
 			order: 'order',
-			'death eater': 'death eater',
-			voldemort: 'death eater'
+			'death-eater': 'death-eater',
+			voldemort: 'death-eater'
 		});
 
 		return summary.players.map((p, i) => {
@@ -84,7 +84,7 @@ function buildEnhancedGameSummary(_summary) {
 		const lastTurn = turns.last();
 
 		if (lastTurn.isVoldemortElected) {
-			return 'death eater';
+			return 'death-eater';
 		} else if (lastTurn.isVoldemortKilled) {
 			return 'order';
 		} else {

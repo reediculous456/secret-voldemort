@@ -11,7 +11,7 @@ module.exports = {
 		{
 			ministerId: 0,
 			headmasterId: 2,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
@@ -25,7 +25,7 @@ module.exports = {
 		{
 			ministerId: 1,
 			headmasterId: 3,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			investigationId: 2,
 			ministerClaim: {
 				reds: 0,
@@ -49,7 +49,7 @@ module.exports = {
 		{
 			ministerId: 3,
 			headmasterId: 4,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			specialElection: 4,
 			headmasterHand: {
 				reds: 1,
@@ -64,7 +64,7 @@ module.exports = {
 		{
 			ministerId: 4,
 			headmasterId: 5,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			execution: 2,
 			headmasterHand: {
 				reds: 2,
@@ -84,7 +84,7 @@ module.exports = {
 		},
 		{
 			username: 'Jaina',
-			role: 'death eater'
+			role: 'death-eater'
 		},
 		{
 			username: 'Malfurian',
@@ -92,7 +92,7 @@ module.exports = {
 		},
 		{
 			username: 'Rexxar',
-			role: 'death eater'
+			role: 'death-eater'
 		},
 		{
 			username: 'Thrall',

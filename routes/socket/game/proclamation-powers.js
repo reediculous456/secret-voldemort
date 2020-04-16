@@ -65,7 +65,7 @@ module.exports.selectProclamations = (passport, game, socket) => {
 		game.private.summary = game.private.summary.updateLog({
 			proclamationPeek: game.private.proclamations.slice(0, 3).reduce(
 				(peek, proclamation) => {
-					if (proclamation === 'death eater') {
+					if (proclamation === 'death-eater') {
 						return Object.assign({}, peek, { reds: peek.reds + 1 });
 					} else {
 						return Object.assign({}, peek, { blues: peek.blues + 1 });
@@ -267,7 +267,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 		game.private.summary = game.private.summary.updateLog({
 			proclamationPeek: game.private.proclamations.slice(0, 1).reduce(
 				(peek, proclamation) => {
-					if (proclamation === 'death eater') {
+					if (proclamation === 'death-eater') {
 						return Object.assign({}, peek, { reds: peek.reds + 1 });
 					} else {
 						return Object.assign({}, peek, { blues: peek.blues + 1 });
@@ -767,7 +767,7 @@ module.exports.selectPartyMembershipInvestigate = (passport, game, data, socket)
 
 					if (
 						!game.general.disableGamechat &&
-						!(game.private.seatedPlayers[playerIndex].role.cardName === 'voldemort' && minister.role.team === 'death eater')
+						!(game.private.seatedPlayers[playerIndex].role.cardName === 'voldemort' && minister.role.team === 'death-eater')
 					) {
 						minister.playersState[playerIndex].nameStatus = playersTeam;
 					}
@@ -991,7 +991,7 @@ module.exports.selectPartyMembershipInvestigateReverse = (passport, game, data, 
 
 					if (
 						!game.general.disableGamechat &&
-						!(game.private.seatedPlayers[ministerIndex].role.cardName === 'voldemort' && targetPlayer.role.team === 'death eater')
+						!(game.private.seatedPlayers[ministerIndex].role.cardName === 'voldemort' && targetPlayer.role.team === 'death-eater')
 					) {
 						targetPlayer.playersState[ministerIndex].nameStatus = playersTeam;
 					}
@@ -1179,9 +1179,9 @@ module.exports.executePlayer = game => {
 				(player, index) =>
 					index !== ministerIndex &&
 					!seatedPlayers[index].isDead &&
-					((!game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
-						(game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
-						(game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death eater' && seatedPlayers[index].role.cardName === 'voldemort'))
+					((!game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort'))
 			)
 			.forEach(player => {
 				player.notificationStatus = 'notification';
@@ -1194,9 +1194,9 @@ module.exports.executePlayer = game => {
 					(player, i) =>
 						i !== ministerIndex &&
 						!seatedPlayers[i].isDead &&
-						((!game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
-							(game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
-							(game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death eater' && seatedPlayers[i].role.cardName === 'voldemort'))
+						((!game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort'))
 				)
 				.map(player => seatedPlayers.indexOf(player))
 		];
@@ -1237,7 +1237,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 	if (
 		playerIndex === ministerIndex ||
 		selectedPlayer.isDead ||
-		(!game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death eater' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
+		(!game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death-eater' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
 	) {
 		return;
 	}
@@ -1415,7 +1415,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 								});
 
 								game.gameState.audioCue = '';
-								completeGame(game, 'death eater');
+								completeGame(game, 'death-eater');
 							},
 							process.env.NODE_ENV === 'development' ? 100 : 2000
 						);
@@ -1473,7 +1473,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 										{ text: 'A ' },
 										{
 											text: proclamation === 'order' ? 'order' : 'death eater',
-											type: proclamation === 'order' ? 'order' : 'death eater'
+											type: proclamation === 'order' ? 'order' : 'death-eater'
 										},
 										{
 											text: ` proclamation has been enacted. (${
@@ -1483,7 +1483,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 									]
 								};
 								game.trackState.enactedProclamations[index].position =
-									proclamation === 'order' ? `order${game.trackState.orderProclamationCount}` : `death eater${game.trackState.deathEaterProclamationCount}`;
+									proclamation === 'order' ? `order${game.trackState.orderProclamationCount}` : `death-eater${game.trackState.deathEaterProclamationCount}`;
 
 								if (!game.general.disableGamechat) {
 									game.private.seatedPlayers.forEach(player => {
@@ -1507,9 +1507,9 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 											});
 											game.gameState.audioCue = '';
 											if (process.env.NODE_ENV === 'development') {
-												completeGame(game, game.trackState.orderProclamationCount === 1 ? 'order' : 'death eater');
+												completeGame(game, game.trackState.orderProclamationCount === 1 ? 'order' : 'death-eater');
 											} else {
-												completeGame(game, game.trackState.orderProclamationCount === 5 ? 'order' : 'death eater');
+												completeGame(game, game.trackState.orderProclamationCount === 5 ? 'order' : 'death-eater');
 											}
 										},
 										process.env.NODE_ENV === 'development' ? 100 : 2000

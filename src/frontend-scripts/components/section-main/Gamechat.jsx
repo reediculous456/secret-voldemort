@@ -1046,7 +1046,7 @@ class Gamechat extends React.Component {
 											<p> As minister of magic, when I looked at the party membership I saw that he or she was on the...</p>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'death eater');
+													handleClaimButtonClick(e, 'death-eater');
 												}}
 												className="ui button threedeatheater"
 											>
@@ -1246,7 +1246,7 @@ class Gamechat extends React.Component {
 					<div
 						className="ui red positive inverted button"
 						onClick={() => {
-							sendModEndGame('death eater');
+							sendModEndGame('death-eater');
 						}}
 					>
 						End game elo win for death eaters

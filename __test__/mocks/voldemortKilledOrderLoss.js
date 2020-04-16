@@ -11,7 +11,7 @@ module.exports = {
 		{
 			ministerId: 0,
 			headmasterId: 5,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			_id: '595170616419ea7a9b548429',
 			headmasterClaim: {
 				reds: 2,
@@ -57,7 +57,7 @@ module.exports = {
 		{
 			ministerId: 2,
 			headmasterId: 5,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			_id: '595170616419ea7a9b548427',
 			headmasterClaim: {
 				reds: 2,
@@ -103,7 +103,7 @@ module.exports = {
 		{
 			ministerId: 4,
 			headmasterId: 2,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			_id: '595170616419ea7a9b548425',
 			proclamationPeekClaim: {
 				reds: 1,
@@ -180,7 +180,7 @@ module.exports = {
 		{
 			ministerId: 1,
 			headmasterId: 3,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			execution: 0,
 			_id: '595170616419ea7a9b54841c',
 			headmasterHand: {
@@ -222,7 +222,7 @@ module.exports = {
 		},
 		{
 			username: 'hoffan015',
-			role: 'death eater',
+			role: 'death-eater',
 			_id: '595170616419ea7a9b54842a'
 		}
 	],

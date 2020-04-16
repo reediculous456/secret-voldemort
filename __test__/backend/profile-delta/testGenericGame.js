@@ -48,7 +48,7 @@ export default () => {
 			expect(delta.stats.actions.shotAccuracy.events).toBe(0);
 			expect(delta.stats.actions.shotAccuracy.successes).toBe(0);
 
-			expect(delta.recentGames.loyalty).toBe('death eater');
+			expect(delta.recentGames.loyalty).toBe('death-eater');
 			expect(delta.recentGames.playerSize).toBe(7);
 			expect(delta.recentGames.isWinner).toBe(true);
 			expect(delta.recentGames.date).toBeDefined();

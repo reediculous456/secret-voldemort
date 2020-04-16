@@ -28,9 +28,9 @@ const shuffleProclamations = (module.exports.shuffleProclamations = (game, isSta
 			game.trackState.deathEaterProclamationCount = game.customGameSettings.trackState.fas;
 			_.range(0, game.customGameSettings.trackState.fas).forEach(num => {
 				game.trackState.enactedProclamations.push({
-					cardBack: 'death eater',
+					cardBack: 'death-eater',
 					isFlipped: true,
-					position: `death eater${num + 1}`
+					position: `death-eater${num + 1}`
 				});
 			});
 		}
@@ -41,7 +41,7 @@ const shuffleProclamations = (module.exports.shuffleProclamations = (game, isSta
 	game.private.proclamations = _.shuffle(
 		_.range(0, libCount)
 			.map(num => 'order')
-			.concat(_.range(0, fasCount).map(num => 'death eater'))
+			.concat(_.range(0, fasCount).map(num => 'death-eater'))
 	);
 
 	game.gameState.undrawnProclamationCount = game.private.proclamations.length;
@@ -63,7 +63,7 @@ const shuffleProclamations = (module.exports.shuffleProclamations = (game, isSta
 				},
 				{
 					text: `${fasCount} death eater`,
-					type: 'death eater'
+					type: 'death-eater'
 				},
 				{
 					text: ' proclamations.'

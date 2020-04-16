@@ -10,7 +10,7 @@ const DisplayLobbies = props => {
 
 		if (game.gameStatus === 'isStarted') {
 			classes += ' inprogress';
-		} else if (game.gameStatus === 'death eater') {
+		} else if (game.gameStatus === 'death-eater') {
 			classes += ' death-eater';
 		} else if (game.gameStatus === 'order') {
 			classes += ' order';
@@ -378,7 +378,7 @@ const DisplayLobbies = props => {
 					<img src="../images/bird.png" />
 				</div>
 			);
-		} else if (game.gameStatus === 'death eater') {
+		} else if (game.gameStatus === 'death-eater') {
 			classes += ' death-eater';
 			progressText = 'Death Eaters Win !';
 			progressIcons = (

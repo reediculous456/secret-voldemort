@@ -14,7 +14,7 @@ module.exports = {
 		{
 			ministerId: 0,
 			headmasterId: 4,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
@@ -41,14 +41,14 @@ module.exports = {
 		{
 			ministerId: 3,
 			headmasterId: 2,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			votes: [false, false, false, false, false]
 		},
 		// turn 4
 		{
 			ministerId: 4,
 			headmasterId: 1,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			proclamationPeek: {
 				reds: 2,
 				blues: 1
@@ -86,7 +86,7 @@ module.exports = {
 		},
 		{
 			username: 'Jaina',
-			role: 'death eater'
+			role: 'death-eater'
 		},
 		{
 			username: 'Rexxar',

@@ -19,7 +19,7 @@ export default () => {
 
 		it('last turn should have voldemort elected', () => {
 			expect(turns.last().isVoldemortElected).toBe(true);
-			expect(game.winningTeam).toBe('death eater');
+			expect(game.winningTeam).toBe('death-eater');
 		});
 
 		it('should track the deck size', () => {

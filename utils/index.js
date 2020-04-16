@@ -37,7 +37,7 @@ exports.mapOpt2 = f => {
  * ALIASES:
  *
  * Hand: { reds: Int, blues: Int }
- * Proclamation: String ('death eater' | 'order')
+ * Proclamation: String ('death-eater' | 'order')
  */
 
 // (handX: Hand, handY: Hand) => Hand
@@ -54,10 +54,10 @@ exports.handToProclamation = hand => {
 	if (hand.reds > 0 && hand.blues > 0) {
 		throw new Error('Expected hand to contain only a single card');
 	}
-	return hand.reds > 0 ? 'death eater' : 'order';
+	return hand.reds > 0 ? 'death-eater' : 'order';
 };
 
-// consistently ordered 'death eater' first, followed by 'order'
+// consistently ordered 'death-eater' first, followed by 'order'
 // (hand: Hand) => List[Proclamation]
 const handToProclamations = (exports.handToProclamations = hand => {
 	const toProclamations = (count, type) => {
@@ -66,7 +66,7 @@ const handToProclamations = (exports.handToProclamations = hand => {
 			.toList();
 	};
 
-	const reds = toProclamations(hand.reds, 'death eater');
+	const reds = toProclamations(hand.reds, 'death-eater');
 	const blues = toProclamations(hand.blues, 'order');
 
 	return reds.concat(blues).toList();
@@ -74,19 +74,19 @@ const handToProclamations = (exports.handToProclamations = hand => {
 
 // (proclamation: Proclamation) => Hand
 exports.proclamationToHand = proclamation => {
-	return proclamation === 'death eater' ? { reds: 1, blues: 0 } : { reds: 0, blues: 1 };
+	return proclamation === 'death-eater' ? { reds: 1, blues: 0 } : { reds: 0, blues: 1 };
 };
 
 // (proclamation: Proclamation) => String ('R' | 'B')
 exports.proclamationToString = proclamation => {
-	return proclamation === 'death eater' ? 'R' : 'B';
+	return proclamation === 'death-eater' ? 'R' : 'B';
 };
 
 const text = (exports.text = (type, text, space) => ({ type, text, space }));
 
 // (hand: Hand) => String ('R*B*')
 exports.handToText = hand => {
-	const proclamationToString = proclamation => (proclamation === 'death eater' ? 'R' : 'B');
+	const proclamationToString = proclamation => (proclamation === 'death-eater' ? 'R' : 'B');
 
 	return handToProclamations(hand)
 		.map(proclamation => text(proclamation, proclamationToString(proclamation), false))

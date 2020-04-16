@@ -8,7 +8,7 @@ const SidebarGame = ({ game, socket }) => {
 
 		if (game.gameStatus === 'isStarted') {
 			classes += ' inprogress';
-		} else if (game.gameStatus === 'death eater') {
+		} else if (game.gameStatus === 'death-eater') {
 			classes += ' death-eater';
 		} else if (game.gameStatus === 'order') {
 			classes += ' order';
@@ -155,7 +155,7 @@ const SidebarGame = ({ game, socket }) => {
 					</div>
 					<div className="death-eater-count">
 						{_.range(1, 7).map(num => (
-							<div key={num} className={num <= game.enactedDeathEaterProclamationCount ? 'box death eater-box filled' : 'box death-eater-box unfilled'} />
+							<div key={num} className={num <= game.enactedDeathEaterProclamationCount ? 'box death-eater-box filled' : 'box death-eater-box unfilled'} />
 						))}
 					</div>
 					<div className="lower-row">

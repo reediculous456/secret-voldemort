@@ -30,7 +30,7 @@ module.exports = class EnhancedGameSummary {
 					return -1;
 				} else if (reds === 3) {
 					return turn;
-				} else if (enactedProclamation === 'death eater') {
+				} else if (enactedProclamation === 'death-eater') {
 					return step(turn + 1, reds + 1);
 				} else {
 					return step(turn + 1, reds);
@@ -71,7 +71,7 @@ module.exports = class EnhancedGameSummary {
 		if (this.lastTurn.execution === this.voldemortIndex) {
 			return this.loyaltyOf(identifier) === 'order';
 		} else if (this.lastTurn.headmasterId === this.voldemortIndex && this.lastTurn.votes.filter(v => v).length > this.playerSize / 2) {
-			return this.loyaltyOf(identifier) === 'death eater';
+			return this.loyaltyOf(identifier) === 'death-eater';
 		} else {
 			return this.loyaltyOf(identifier) === this.lastTurn.enactedProclamation;
 		}
@@ -81,8 +81,8 @@ module.exports = class EnhancedGameSummary {
 	loyaltyOf(identifier) {
 		const player = this.playerOf(identifier);
 
-		if (player.role === 'death eater' || player.role === 'voldemort') {
-			return 'death eater';
+		if (player.role === 'death-eater' || player.role === 'voldemort') {
+			return 'death-eater';
 		} else {
 			return 'order';
 		}

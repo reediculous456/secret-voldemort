@@ -66,9 +66,9 @@ const beginGame = game => {
 			_.shuffle(
 				_.range(0, 3)
 					.map(el => ({
-						cardName: 'death eater',
+						cardName: 'death-eater',
 						icon: el,
-						team: 'death eater'
+						team: 'death-eater'
 					}))
 					.slice(0, customGameSettings.deathEaterCount)
 			)
@@ -231,11 +231,11 @@ const beginGame = game => {
 				const { seatedPlayers } = game.private;
 				const { cardName } = player.role;
 
-				if (cardName === 'death eater') {
-					player.playersState[i].nameStatus = 'death eater';
+				if (cardName === 'death-eater') {
+					player.playersState[i].nameStatus = 'death-eater';
 
 					if (customGameSettings.deathEaterCount == 2) {
-						const otherDeathEater = seatedPlayers.find(play => play.role.cardName === 'death eater' && play.userName !== player.userName);
+						const otherDeathEater = seatedPlayers.find(play => play.role.cardName === 'death-eater' && play.userName !== player.userName);
 						const otherDeathEaterIndex = seatedPlayers.indexOf(otherDeathEater);
 
 						if (!otherDeathEater) {
@@ -252,7 +252,7 @@ const beginGame = game => {
 									},
 									{
 										text: 'death eater',
-										type: 'death eater'
+										type: 'death-eater'
 									},
 									{
 										text: ' in this game is '
@@ -267,10 +267,10 @@ const beginGame = game => {
 								]
 							});
 						}
-						player.playersState[otherDeathEaterIndex].nameStatus = 'death eater';
-						player.playersState[otherDeathEaterIndex].notificationStatus = 'death eater';
+						player.playersState[otherDeathEaterIndex].nameStatus = 'death-eater';
+						player.playersState[otherDeathEaterIndex].notificationStatus = 'death-eater';
 					} else if (customGameSettings.deathEaterCount == 3) {
-						const otherDeathEaters = seatedPlayers.filter(play => play.role.cardName === 'death eater' && play.userName !== player.userName);
+						const otherDeathEaters = seatedPlayers.filter(play => play.role.cardName === 'death-eater' && play.userName !== player.userName);
 
 						if (!game.general.disableGamechat) {
 							player.gameChats.push({
@@ -281,8 +281,8 @@ const beginGame = game => {
 										text: 'You see that the other '
 									},
 									{
-										text: 'death Eaters',
-										type: 'death eater'
+										text: 'death eaters',
+										type: 'death-eater'
 									},
 									{
 										text: ' in this game are '
@@ -309,10 +309,10 @@ const beginGame = game => {
 							});
 						}
 						otherDeathEaters.forEach(deathEaterPlayer => {
-							player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].nameStatus = 'death eater';
+							player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].nameStatus = 'death-eater';
 						});
 						otherDeathEaters.forEach(deathEaterPlayer => {
-							player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].notificationStatus = 'death eater';
+							player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].notificationStatus = 'death-eater';
 						});
 					}
 
@@ -345,7 +345,7 @@ const beginGame = game => {
 								{ text: '. They also see that you are a ' },
 								{
 									text: 'death eater',
-									type: 'death eater'
+									type: 'death-eater'
 								},
 								{ text: '.' }
 							);
@@ -354,7 +354,7 @@ const beginGame = game => {
 								{ text: '. They do not know you are a ' },
 								{
 									text: 'death eater',
-									type: 'death eater'
+									type: 'death-eater'
 								},
 								{ text: '.' }
 							);
@@ -369,7 +369,7 @@ const beginGame = game => {
 
 					if (customGameSettings.hitKnowsFas) {
 						if (customGameSettings.deathEaterCount == 1) {
-							const otherDeathEater = seatedPlayers.find(player => player.role.cardName === 'death eater');
+							const otherDeathEater = seatedPlayers.find(player => player.role.cardName === 'death-eater');
 
 							if (!game.general.disableGamechat) {
 								player.gameChats.push({
@@ -381,7 +381,7 @@ const beginGame = game => {
 										},
 										{
 											text: 'death eater',
-											type: 'death eater'
+											type: 'death-eater'
 										},
 										{
 											text: ' in this game is '
@@ -398,10 +398,10 @@ const beginGame = game => {
 									]
 								});
 							}
-							player.playersState[seatedPlayers.indexOf(otherDeathEater)].nameStatus = 'death eater';
-							player.playersState[seatedPlayers.indexOf(otherDeathEater)].notificationStatus = 'death eater';
+							player.playersState[seatedPlayers.indexOf(otherDeathEater)].nameStatus = 'death-eater';
+							player.playersState[seatedPlayers.indexOf(otherDeathEater)].notificationStatus = 'death-eater';
 						} else {
-							const otherDeathEaters = seatedPlayers.filter(play => play.role.cardName === 'death eater' && play.userName !== player.userName);
+							const otherDeathEaters = seatedPlayers.filter(play => play.role.cardName === 'death-eater' && play.userName !== player.userName);
 
 							if (!game.general.disableGamechat) {
 								player.gameChats.push({
@@ -412,8 +412,8 @@ const beginGame = game => {
 											text: 'You see that the other '
 										},
 										{
-											text: 'death Eaters',
-											type: 'death eater'
+											text: 'death eaters',
+											type: 'death-eater'
 										},
 										{
 											text: ' in this game are '
@@ -452,8 +452,8 @@ const beginGame = game => {
 								});
 							}
 							otherDeathEaters.forEach(deathEaterPlayer => {
-								player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].nameStatus = 'death eater';
-								player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].notificationStatus = 'death eater';
+								player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].nameStatus = 'death-eater';
+								player.playersState[seatedPlayers.indexOf(deathEaterPlayer)].notificationStatus = 'death-eater';
 							});
 						}
 					} else {
@@ -467,8 +467,8 @@ const beginGame = game => {
 									},
 									{
 										text:
-											customGameSettings.deathEaterCount == 1 ? '1 death eater' : customGameSettings.deathEaterCount == 2 ? '2 death Eaters' : '3 death Eaters',
-										type: 'death eater'
+											customGameSettings.deathEaterCount == 1 ? '1 death eater' : customGameSettings.deathEaterCount == 2 ? '2 death eaters' : '3 death eaters',
+										type: 'death-eater'
 									},
 									{
 										text: ', they know who you are.'

@@ -1,6 +1,6 @@
 // keep this updated with GameSummary schema
 
-// Jaina never votes for a death eater, kills a death eater
+// Jaina never votes for a death eater, kills a death-eater
 // Valeera shoots a order
 // Uther always votes for a death eater
 module.exports = {
@@ -17,7 +17,7 @@ module.exports = {
 		{
 			ministerId: 0,
 			headmasterId: 1,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			headmasterHand: {
 				reds: 2,
 				blues: 0
@@ -34,9 +34,9 @@ module.exports = {
 		{
 			ministerId: 1,
 			headmasterId: 3,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			investigationId: 4,
-			investigationClaim: 'death eater',
+			investigationClaim: 'death-eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
@@ -53,7 +53,7 @@ module.exports = {
 		{
 			ministerId: 2,
 			headmasterId: 0,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			specialElection: 1,
 			headmasterHand: {
 				reds: 1,
@@ -71,7 +71,7 @@ module.exports = {
 		{
 			ministerId: 1,
 			headmasterId: 6,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			execution: 3,
 			headmasterHand: {
 				reds: 1,
@@ -101,7 +101,7 @@ module.exports = {
 		{
 			ministerId: 6,
 			headmasterId: 2,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			execution: 2,
 			headmasterHand: {
 				reds: 2,
@@ -119,7 +119,7 @@ module.exports = {
 		{
 			ministerId: 0,
 			headmasterId: 5,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			headmasterHand: {
 				reds: 2,
 				blues: 0
@@ -146,7 +146,7 @@ module.exports = {
 		},
 		{
 			username: 'Malfurian',
-			role: 'death eater'
+			role: 'death-eater'
 		},
 		{
 			username: 'Thrall',
@@ -154,7 +154,7 @@ module.exports = {
 		},
 		{
 			username: 'Valeera',
-			role: 'death eater'
+			role: 'death-eater'
 		},
 		{
 			username: 'Anduin',

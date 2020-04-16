@@ -13,7 +13,7 @@ module.exports = {
 		{
 			ministerId: 0,
 			headmasterId: 7,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			_id: '595052626419ea7a9b545b53',
 			headmasterClaim: {
 				reds: 2,
@@ -61,9 +61,9 @@ module.exports = {
 		{
 			ministerId: 2,
 			headmasterId: 5,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			investigationId: 3,
-			investigationClaim: 'death eater',
+			investigationClaim: 'death-eater',
 			_id: '595052626419ea7a9b545b51',
 			headmasterHand: {
 				reds: 2,
@@ -94,7 +94,7 @@ module.exports = {
 		{
 			ministerId: 4,
 			headmasterId: 1,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			specialElection: 6,
 			_id: '595052626419ea7a9b545b4f',
 			headmasterHand: {
@@ -194,7 +194,7 @@ module.exports = {
 		{
 			ministerId: 3,
 			headmasterId: 6,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			_id: '595052626419ea7a9b545b47',
 			headmasterClaim: {
 				reds: 2,
@@ -210,7 +210,7 @@ module.exports = {
 		{
 			ministerId: 4,
 			headmasterId: 6,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			execution: 7,
 			_id: '595052626419ea7a9b545b46',
 			headmasterHand: {
@@ -272,7 +272,7 @@ module.exports = {
 		{
 			ministerId: 2,
 			headmasterId: 6,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			_id: '595052626419ea7a9b545b41',
 			votes: [false, false, true, false, false, false, false, false]
 		}
@@ -290,7 +290,7 @@ module.exports = {
 		},
 		{
 			username: 'sebastian',
-			role: 'death eater',
+			role: 'death-eater',
 			_id: '595052626419ea7a9b545b59'
 		},
 		{
@@ -315,7 +315,7 @@ module.exports = {
 		},
 		{
 			username: 'obama',
-			role: 'death eater',
+			role: 'death-eater',
 			_id: '595052626419ea7a9b545b54'
 		}
 	],

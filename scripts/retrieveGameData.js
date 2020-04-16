@@ -69,7 +69,7 @@ Game.find({})
 	.cursor()
 	.eachAsync(game => {
 		const playerCount = game.losingPlayers.length + game.winningPlayers.length;
-		const deathEatersWon = game.winningTeam === 'death eater';
+		const deathEatersWon = game.winningTeam === 'death-eater';
 		const gameDate = moment(new Date(game.date)).format('l');
 		const rebalanced = (game.rebalance6p && playerCount === 6) || (game.rebalance7p && playerCount === 7) || (game.rebalance9p && playerCount === 9);
 		const rebalanced9p2f = game.rebalance9p2f && playerCount === 9;

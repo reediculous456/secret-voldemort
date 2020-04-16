@@ -118,8 +118,8 @@ module.exports.completeGame = (game, winningTeamName) => {
 		timestamp: new Date(),
 		chat: [
 			{
-				text: winningTeamName === 'death eater' ? 'Death Eaters' : 'Order Members',
-				type: winningTeamName === 'death eater' ? 'death eater' : 'order'
+				text: winningTeamName === 'death-eater' ? 'Death Eaters' : 'Order Members',
+				type: winningTeamName === 'death-eater' ? 'death-eater' : 'order'
 			},
 			{ text: ' win the game.' }
 		]
@@ -135,7 +135,7 @@ module.exports.completeGame = (game, winningTeamName) => {
 			game.private.proclamations
 				.map(proclamationName => ({
 					text: proclamationName === 'order' ? 'B' : 'R',
-					type: proclamationName === 'order' ? 'order' : 'death eater'
+					type: proclamationName === 'order' ? 'order' : 'death-eater'
 				}))
 				.concat({
 					text: '.'
@@ -158,7 +158,7 @@ module.exports.completeGame = (game, winningTeamName) => {
 		}, 15000);
 	}
 
-	game.general.status = winningTeamName === 'death eater' ? 'Death Eaters win the game.' : 'Orders win the game.';
+	game.general.status = winningTeamName === 'death-eater' ? 'Death Eaters win the game.' : 'Order Members win the game.';
 	game.gameState.isCompleted = winningTeamName;
 	sendGameList();
 

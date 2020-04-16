@@ -745,7 +745,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 				},
 				{
 					text: `${newGame.customGameSettings.deckState.fas - newGame.customGameSettings.trackState.fas} death eater`,
-					type: 'death eater'
+					type: 'death-eater'
 				},
 				{
 					text: ' proclamations in the deck.'
@@ -770,7 +770,7 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 				},
 				{
 					text: `${newGame.customGameSettings.trackState.fas} death eater`,
-					type: 'death eater'
+					type: 'death-eater'
 				},
 				{
 					text: ' proclamations.'
@@ -929,7 +929,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'RRR',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: '.'
@@ -951,7 +951,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'RR',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: 'B',
@@ -977,7 +977,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: 'BB',
@@ -1038,7 +1038,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'RR',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: '.'
@@ -1060,7 +1060,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: 'B',
@@ -1096,7 +1096,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						return text;
 				}
 			case 'didSingleProclamationPeek':
-				if (data.claimState === 'order' || data.claimState === 'death eater') {
+				if (data.claimState === 'order' || data.claimState === 'death-eater') {
 					text = [
 						{
 							text: 'Minister '
@@ -1143,7 +1143,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'RRR',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: '.'
@@ -1165,7 +1165,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: 'B',
@@ -1173,7 +1173,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: '.'
@@ -1199,12 +1199,12 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: '.'
@@ -1226,12 +1226,12 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: 'B',
@@ -1257,7 +1257,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: 'BB',
@@ -1287,7 +1287,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: '.'
@@ -1313,7 +1313,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 							},
 							{
 								text: 'R',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: 'B',
@@ -1394,11 +1394,11 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					{ ministerId: playerIndex }
 				);
 				switch (data.claimState) {
-					case 'death eater':
+					case 'death-eater':
 						text.push(
 							{
 								text: 'death eater ',
-								type: 'death eater'
+								type: 'death-eater'
 							},
 							{
 								text: 'team.'
@@ -1547,7 +1547,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 					},
 					{
 						text: `${newGame.customGameSettings.deckState.fas - newGame.customGameSettings.trackState.fas} death eater`,
-						type: 'death eater'
+						type: 'death-eater'
 					},
 					{
 						text: ' proclamations in the deck.'
@@ -1572,7 +1572,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 					},
 					{
 						text: `${newGame.customGameSettings.trackState.fas} death eater`,
-						type: 'death eater'
+						type: 'death-eater'
 					},
 					{
 						text: ' proclamations.'
@@ -1889,8 +1889,8 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			}
 		}
 
-		if (/^(r|red|dea|d|death|death eater)$/i.exec(chat)) {
-			// console.log(chat, ' - ', 'death eater', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
+		if (/^(r|red|dea|d|death|death-eater)$/i.exec(chat)) {
+			// console.log(chat, ' - ', 'death-eater', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
 			if (
 				0 <= playerIndex <= 9 &&
 				(game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim === 'didSingleProclamationPeek' ||
@@ -1898,7 +1898,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			) {
 				const claimData = {
 					userName: user.userName,
-					claimState: 'death eater',
+					claimState: 'death-eater',
 					claim: game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim,
 					uid: data.uid
 				};
@@ -1958,7 +1958,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 						if (card === 'R' || card === 'B') {
 							changedChat.push({
 								text: card,
-								type: `${card === 'R' ? 'death eater' : 'order'}`
+								type: `${card === 'R' ? 'death-eater' : 'order'}`
 							});
 						}
 					}

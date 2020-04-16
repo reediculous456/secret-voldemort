@@ -125,9 +125,9 @@ export default () => {
 
 				testMinisterLegislation(0, { reds: 2, blues: 1 }, 'order', some({ reds: 2, blues: 1 }));
 
-				testHeadmasterLegislation(0, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
+				testHeadmasterLegislation(0, { reds: 2, blues: 0 }, some('death-eater'), some({ reds: 2, blues: 0 }));
 
-				testProclamationEnaction(0, 'death eater');
+				testProclamationEnaction(0, 'death-eater');
 
 				testExecution(0, null);
 
@@ -155,15 +155,15 @@ export default () => {
 					Range(0, 7).map(i => some(true))
 				);
 
-				testMinisterLegislation(1, { reds: 2, blues: 1 }, 'death eater', some({ reds: 2, blues: 1 }));
+				testMinisterLegislation(1, { reds: 2, blues: 1 }, 'death-eater', some({ reds: 2, blues: 1 }));
 
 				testHeadmasterLegislation(1, { reds: 1, blues: 1 }, some('order'), some({ reds: 2, blues: 0 }));
 
-				testProclamationEnaction(1, 'death eater');
+				testProclamationEnaction(1, 'death-eater');
 
 				testExecution(1, null);
 
-				testInvestigation(1, 4, some('death eater'));
+				testInvestigation(1, 4, some('death-eater'));
 			});
 
 			it('3', () => {
@@ -227,9 +227,9 @@ export default () => {
 
 				testMinisterLegislation(6, { reds: 2, blues: 1 }, 'order', some({ reds: 2, blues: 1 }));
 
-				testHeadmasterLegislation(6, { reds: 2, blues: 0 }, some('death eater'), some({ reds: 2, blues: 0 }));
+				testHeadmasterLegislation(6, { reds: 2, blues: 0 }, some('death-eater'), some({ reds: 2, blues: 0 }));
 
-				testProclamationEnaction(6, 'death eater');
+				testProclamationEnaction(6, 'death-eater');
 
 				testExecution(6, 2);
 
@@ -254,14 +254,14 @@ export default () => {
 
 				testMinisterLegislation(7, { reds: 2, blues: 1 }, 'order', none);
 
-				testHeadmasterLegislation(7, { reds: 2, blues: 0 }, some('death eater'), none);
+				testHeadmasterLegislation(7, { reds: 2, blues: 0 }, some('death-eater'), none);
 
 				testElection(
 					7,
 					List([true, false, null, null, true, true, true]).map(x => fromNullable(x))
 				);
 
-				testProclamationEnaction(7, 'death eater');
+				testProclamationEnaction(7, 'death-eater');
 
 				testExecution(7, null);
 

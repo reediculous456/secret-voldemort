@@ -25,7 +25,7 @@ module.exports = {
 		{
 			ministerId: 1,
 			headmasterId: 6,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			headmasterHand: {
 				reds: 2,
 				blues: 0
@@ -117,11 +117,11 @@ module.exports = {
 		},
 		{
 			username: 'Malfurian',
-			role: 'death eater'
+			role: 'death-eater'
 		},
 		{
 			username: 'Valeera',
-			role: 'death eater'
+			role: 'death-eater'
 		},
 		{
 			username: 'Anduin',

@@ -172,11 +172,11 @@ export default () => {
 		it('should track enacted proclamations', () => {
 			const getEnactedProclamation = turnNum => turns.get(turnNum).enactedProclamation;
 
-			expect(getEnactedProclamation(0)).toEqual(some('death eater'));
-			expect(getEnactedProclamation(1)).toEqual(some('death eater'));
-			expect(getEnactedProclamation(3)).toEqual(some('death eater'));
+			expect(getEnactedProclamation(0)).toEqual(some('death-eater'));
+			expect(getEnactedProclamation(1)).toEqual(some('death-eater'));
+			expect(getEnactedProclamation(3)).toEqual(some('death-eater'));
 			expect(getEnactedProclamation(5)).toEqual(none);
-			expect(getEnactedProclamation(7)).toEqual(some('death eater'));
+			expect(getEnactedProclamation(7)).toEqual(some('death-eater'));
 		});
 
 		it('should track minister hands', () => {
@@ -209,9 +209,9 @@ export default () => {
 			const ministerDiscard = turnNum => turns.get(turnNum).ministerDiscard;
 
 			expect(ministerDiscard(0)).toEqual(some('order'));
-			expect(ministerDiscard(1)).toEqual(some('death eater'));
+			expect(ministerDiscard(1)).toEqual(some('death-eater'));
 			expect(ministerDiscard(2)).toEqual(some('order'));
-			expect(ministerDiscard(3)).toEqual(some('death eater'));
+			expect(ministerDiscard(3)).toEqual(some('death-eater'));
 			expect(ministerDiscard(4)).toEqual(none);
 			expect(ministerDiscard(5)).toEqual(none);
 			expect(ministerDiscard(6)).toEqual(some('order'));
@@ -247,14 +247,14 @@ export default () => {
 		it('should track headmaster discard', () => {
 			const headmasterDiscard = turnNum => turns.get(turnNum).headmasterDiscard;
 
-			expect(headmasterDiscard(0)).toEqual(some('death eater'));
+			expect(headmasterDiscard(0)).toEqual(some('death-eater'));
 			expect(headmasterDiscard(1)).toEqual(some('order'));
 			expect(headmasterDiscard(2)).toEqual(some('order'));
 			expect(headmasterDiscard(3)).toEqual(some('order'));
 			expect(headmasterDiscard(4)).toEqual(none);
 			expect(headmasterDiscard(5)).toEqual(none);
-			expect(headmasterDiscard(6)).toEqual(some('death eater'));
-			expect(headmasterDiscard(7)).toEqual(some('death eater'));
+			expect(headmasterDiscard(6)).toEqual(some('death-eater'));
+			expect(headmasterDiscard(7)).toEqual(some('death-eater'));
 		});
 
 		it('should track executions', () => {
@@ -311,9 +311,9 @@ export default () => {
 			expect(game.loyaltyOf('Jaina')).toEqual(some('order'));
 			expect(game.loyaltyOf('Rexxar')).toEqual(some('order'));
 			expect(game.loyaltyOf('Anduin')).toEqual(some('order'));
-			expect(game.loyaltyOf('Malfurian')).toEqual(some('death eater'));
-			expect(game.loyaltyOf('Thrall')).toEqual(some('death eater'));
-			expect(game.loyaltyOf('Valeera')).toEqual(some('death eater'));
+			expect(game.loyaltyOf('Malfurian')).toEqual(some('death-eater'));
+			expect(game.loyaltyOf('Thrall')).toEqual(some('death-eater'));
+			expect(game.loyaltyOf('Valeera')).toEqual(some('death-eater'));
 		});
 
 		it('should track usernames', () => {
@@ -341,9 +341,9 @@ export default () => {
 			expect(game.roleOf('Jaina')).toEqual(some('order'));
 			expect(game.roleOf('Rexxar')).toEqual(some('order'));
 			expect(game.roleOf('Anduin')).toEqual(some('order'));
-			expect(game.roleOf('Malfurian')).toEqual(some('death eater'));
+			expect(game.roleOf('Malfurian')).toEqual(some('death-eater'));
 			expect(game.roleOf('Thrall')).toEqual(some('voldemort'));
-			expect(game.roleOf('Valeera')).toEqual(some('death eater'));
+			expect(game.roleOf('Valeera')).toEqual(some('death-eater'));
 		});
 
 		it('should track winners', () => {
@@ -357,7 +357,7 @@ export default () => {
 		});
 
 		it('should track winning team', () => {
-			expect(game.winningTeam).toBe('death eater');
+			expect(game.winningTeam).toBe('death-eater');
 		});
 
 		it('should track votes', () => {

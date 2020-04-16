@@ -147,7 +147,7 @@ const buildTurn = (prevTurnOpt, log, players, gameSetting) => {
 
 		const beforeTrack = prevTurn.afterTrack;
 		const afterTrack = {
-			reds: f(beforeTrack.reds, log.enactedProclamation, 'death eater'),
+			reds: f(beforeTrack.reds, log.enactedProclamation, 'death-eater'),
 			blues: f(beforeTrack.blues, log.enactedProclamation, 'order')
 		};
 

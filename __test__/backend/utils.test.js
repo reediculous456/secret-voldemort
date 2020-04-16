@@ -86,42 +86,42 @@ describe('handDiff', () => {
 });
 
 describe('handToProclamation', () => {
-	expect(handToProclamation({ reds: 1, blues: 0 })).toBe('death eater');
+	expect(handToProclamation({ reds: 1, blues: 0 })).toBe('death-eater');
 	expect(handToProclamation({ reds: 0, blues: 1 })).toBe('order');
 });
 
 describe('handToProclamations', () => {
-	expect(handToProclamations({ reds: 3, blues: 0 })).toImmutableEqual(List(['death eater', 'death eater', 'death eater']));
-	expect(handToProclamations({ reds: 2, blues: 1 })).toImmutableEqual(List(['death eater', 'death eater', 'order']));
-	expect(handToProclamations({ reds: 1, blues: 2 })).toImmutableEqual(List(['death eater', 'order', 'order']));
+	expect(handToProclamations({ reds: 3, blues: 0 })).toImmutableEqual(List(['death-eater', 'death-eater', 'death-eater']));
+	expect(handToProclamations({ reds: 2, blues: 1 })).toImmutableEqual(List(['death-eater', 'death-eater', 'order']));
+	expect(handToProclamations({ reds: 1, blues: 2 })).toImmutableEqual(List(['death-eater', 'order', 'order']));
 	expect(handToProclamations({ reds: 0, blues: 3 })).toImmutableEqual(List(['order', 'order', 'order']));
-	expect(handToProclamations({ reds: 2, blues: 0 })).toImmutableEqual(List(['death eater', 'death eater']));
-	expect(handToProclamations({ reds: 1, blues: 1 })).toImmutableEqual(List(['death eater', 'order']));
+	expect(handToProclamations({ reds: 2, blues: 0 })).toImmutableEqual(List(['death-eater', 'death-eater']));
+	expect(handToProclamations({ reds: 1, blues: 1 })).toImmutableEqual(List(['death-eater', 'order']));
 	expect(handToProclamations({ reds: 0, blues: 2 })).toImmutableEqual(List(['order', 'order']));
 });
 
 describe('proclamationToHand', () => {
 	expect(proclamationToHand('order')).toEqual({ reds: 0, blues: 1 });
-	expect(proclamationToHand('death eater')).toEqual({ reds: 1, blues: 0 });
+	expect(proclamationToHand('death-eater')).toEqual({ reds: 1, blues: 0 });
 });
 
 describe('handToText', () => {
 	expect(handToText({ reds: 3, blues: 0 })).toEqual([
-		text('death eater', 'R', false),
-		text('death eater', 'R', false),
-		text('death eater', 'R', false),
+		text('death-eater', 'R', false),
+		text('death-eater', 'R', false),
+		text('death-eater', 'R', false),
 		text('normal', '')
 	]);
 
 	expect(handToText({ reds: 2, blues: 1 })).toEqual([
-		text('death eater', 'R', false),
-		text('death eater', 'R', false),
+		text('death-eater', 'R', false),
+		text('death-eater', 'R', false),
 		text('order', 'B', false),
 		text('normal', '')
 	]);
 
 	expect(handToText({ reds: 1, blues: 2 })).toEqual([
-		text('death eater', 'R', false),
+		text('death-eater', 'R', false),
 		text('order', 'B', false),
 		text('order', 'B', false),
 		text('normal', '')
@@ -129,9 +129,9 @@ describe('handToText', () => {
 
 	expect(handToText({ reds: 0, blues: 3 })).toEqual([text('order', 'B', false), text('order', 'B', false), text('order', 'B', false), text('normal', '')]);
 
-	expect(handToText({ reds: 2, blues: 0 })).toEqual([text('death eater', 'R', false), text('death eater', 'R', false), text('normal', '')]);
+	expect(handToText({ reds: 2, blues: 0 })).toEqual([text('death-eater', 'R', false), text('death-eater', 'R', false), text('normal', '')]);
 
-	expect(handToText({ reds: 1, blues: 1 })).toEqual([text('death eater', 'R', false), text('order', 'B', false), text('normal', '')]);
+	expect(handToText({ reds: 1, blues: 1 })).toEqual([text('death-eater', 'R', false), text('order', 'B', false), text('normal', '')]);
 
 	expect(handToText({ reds: 0, blues: 2 })).toEqual([text('order', 'B', false), text('order', 'B', false), text('normal', '')]);
 });

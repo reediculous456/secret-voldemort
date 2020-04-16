@@ -12,7 +12,7 @@ module.exports = {
 		{
 			ministerId: 0,
 			headmasterId: 1,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
@@ -27,7 +27,7 @@ module.exports = {
 		{
 			ministerId: 1,
 			headmasterId: 2,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
@@ -42,7 +42,7 @@ module.exports = {
 		{
 			ministerId: 2,
 			headmasterId: 1,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			proclamationPeek: {
 				reds: 2,
 				blues: 1
@@ -61,7 +61,7 @@ module.exports = {
 		{
 			ministerId: 3,
 			headmasterId: 2,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			execution: 4,
 			headmasterHand: {
 				reds: 2,
@@ -77,7 +77,7 @@ module.exports = {
 		{
 			ministerId: 0,
 			headmasterId: 1,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			execution: 1,
 			headmasterHand: {
 				reds: 2,
@@ -140,7 +140,7 @@ module.exports = {
 			headmasterId: 0,
 			headmasterVeto: true,
 			ministerVeto: true,
-			enactedProclamation: 'death eater',
+			enactedProclamation: 'death-eater',
 			headmasterHand: {
 				reds: 1,
 				blues: 1
@@ -163,7 +163,7 @@ module.exports = {
 		},
 		{
 			username: 'Uther',
-			role: 'death eater'
+			role: 'death-eater'
 		},
 		{
 			username: 'Rexxar',
