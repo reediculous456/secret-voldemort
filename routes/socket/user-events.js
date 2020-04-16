@@ -954,7 +954,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								type: 'death-eater'
 							},
 							{
-								text: 'B',
+								text: 'R',
 								type: 'order'
 							},
 							{
@@ -976,7 +976,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims '
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
@@ -1059,11 +1059,11 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims '
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
-								text: 'B',
+								text: 'R',
 								type: 'order'
 							},
 							{
@@ -1164,15 +1164,15 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims to have peeked at '
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
-								text: 'B',
+								text: 'R',
 								type: 'order'
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
@@ -1194,16 +1194,16 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims to have peeked at '
 							},
 							{
-								text: 'B',
+								text: 'R',
 								type: 'order'
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
@@ -1225,16 +1225,16 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims to have peeked at '
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
-								text: 'B',
+								text: 'R',
 								type: 'order'
 							},
 							{
@@ -1256,7 +1256,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims to have peeked at '
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
@@ -1286,7 +1286,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								type: 'order'
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
@@ -1308,15 +1308,15 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims to have peeked at '
 							},
 							{
-								text: 'B',
+								text: 'R',
 								type: 'order'
 							},
 							{
-								text: 'R',
+								text: 'P',
 								type: 'death-eater'
 							},
 							{
-								text: 'B',
+								text: 'R',
 								type: 'order'
 							},
 							{
@@ -1698,7 +1698,7 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 	const cancellTourny = firstTableUid => {
 		const secondTableUid =
 			firstTableUid.charAt(firstTableUid.length - 1) === 'A'
-				? `${firstTableUid.slice(0, firstTableUid.length - 1)}B`
+				? `${firstTableUid.slice(0, firstTableUid.length - 1)}R`
 				: `${firstTableUid.slice(0, firstTableUid.length - 1)}A`;
 		const secondTable = games.find(game => game.general.uid === secondTableUid);
 
@@ -1955,10 +1955,10 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 
 					for (card of deck) {
 						card = card.toUpperCase();
-						if (card === 'R' || card === 'B') {
+						if (card === 'P' || card === 'R') {
 							changedChat.push({
 								text: card,
-								type: `${card === 'R' ? 'death-eater' : 'order'}`
+								type: `${card === 'P' ? 'death-eater' : 'order'}`
 							});
 						}
 					}
@@ -2661,7 +2661,7 @@ module.exports.handleSubscribeModChat = (socket, passport, game) => {
 	};
 	game.private.proclamations.forEach(proclamation => {
 		modOnlyChat.chat.push({
-			text: proclamation === 'order' ? 'B' : 'R',
+			text: proclamation === 'order' ? 'R' : 'P',
 			type: proclamation
 		});
 	});

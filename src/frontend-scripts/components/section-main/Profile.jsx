@@ -127,7 +127,7 @@ class ProfileWrapper extends React.Component {
 			},
 			cells: [
 				game.loyalty === 'order' ? 'Order Member' : 'Death Eater',
-				game.isRebalanced ? game.playerSize + 'R' : game.playerSize,
+				game.isRebalanced ? game.playerSize + 'P' : game.playerSize,
 				game.isWinner ? 'Win' : 'Loss',
 				this.formatDateString(game.date)
 			]

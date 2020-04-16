@@ -107,33 +107,33 @@ describe('proclamationToHand', () => {
 
 describe('handToText', () => {
 	expect(handToText({ reds: 3, blues: 0 })).toEqual([
-		text('death-eater', 'R', false),
-		text('death-eater', 'R', false),
-		text('death-eater', 'R', false),
+		text('death-eater', 'P', false),
+		text('death-eater', 'P', false),
+		text('death-eater', 'P', false),
 		text('normal', '')
 	]);
 
 	expect(handToText({ reds: 2, blues: 1 })).toEqual([
-		text('death-eater', 'R', false),
-		text('death-eater', 'R', false),
-		text('order', 'B', false),
+		text('death-eater', 'P', false),
+		text('death-eater', 'P', false),
+		text('order', 'R', false),
 		text('normal', '')
 	]);
 
 	expect(handToText({ reds: 1, blues: 2 })).toEqual([
-		text('death-eater', 'R', false),
-		text('order', 'B', false),
-		text('order', 'B', false),
+		text('death-eater', 'P', false),
+		text('order', 'R', false),
+		text('order', 'R', false),
 		text('normal', '')
 	]);
 
-	expect(handToText({ reds: 0, blues: 3 })).toEqual([text('order', 'B', false), text('order', 'B', false), text('order', 'B', false), text('normal', '')]);
+	expect(handToText({ reds: 0, blues: 3 })).toEqual([text('order', 'R', false), text('order', 'R', false), text('order', 'R', false), text('normal', '')]);
 
-	expect(handToText({ reds: 2, blues: 0 })).toEqual([text('death-eater', 'R', false), text('death-eater', 'R', false), text('normal', '')]);
+	expect(handToText({ reds: 2, blues: 0 })).toEqual([text('death-eater', 'P', false), text('death-eater', 'P', false), text('normal', '')]);
 
-	expect(handToText({ reds: 1, blues: 1 })).toEqual([text('death-eater', 'R', false), text('order', 'B', false), text('normal', '')]);
+	expect(handToText({ reds: 1, blues: 1 })).toEqual([text('death-eater', 'P', false), text('order', 'R', false), text('normal', '')]);
 
-	expect(handToText({ reds: 0, blues: 2 })).toEqual([text('order', 'B', false), text('order', 'B', false), text('normal', '')]);
+	expect(handToText({ reds: 0, blues: 2 })).toEqual([text('order', 'R', false), text('order', 'R', false), text('normal', '')]);
 });
 
 describe('capitalize', () => {

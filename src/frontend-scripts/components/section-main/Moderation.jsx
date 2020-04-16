@@ -784,7 +784,7 @@ export default class Moderation extends React.Component {
 						});
 					}}
 				>
-					Set R wins
+					Set P wins
 				</button>
 				<button
 					className={
@@ -799,7 +799,7 @@ export default class Moderation extends React.Component {
 						});
 					}}
 				>
-					Set R losses
+					Set P losses
 				</button>
 				<div className="toggle-containers">
 					<h4 className="ui header">Above actions apply only to non seasonal.</h4>

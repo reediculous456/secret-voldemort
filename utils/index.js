@@ -77,16 +77,16 @@ exports.proclamationToHand = proclamation => {
 	return proclamation === 'death-eater' ? { reds: 1, blues: 0 } : { reds: 0, blues: 1 };
 };
 
-// (proclamation: Proclamation) => String ('R' | 'B')
+// (proclamation: Proclamation) => String ('P' | 'R')
 exports.proclamationToString = proclamation => {
-	return proclamation === 'death-eater' ? 'R' : 'B';
+	return proclamation === 'death-eater' ? 'P' : 'R';
 };
 
 const text = (exports.text = (type, text, space) => ({ type, text, space }));
 
-// (hand: Hand) => String ('R*B*')
+// (hand: Hand) => String ('P*R*')
 exports.handToText = hand => {
-	const proclamationToString = proclamation => (proclamation === 'death-eater' ? 'R' : 'B');
+	const proclamationToString = proclamation => (proclamation === 'death-eater' ? 'P' : 'R');
 
 	return handToProclamations(hand)
 		.map(proclamation => text(proclamation, proclamationToString(proclamation), false))

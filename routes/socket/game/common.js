@@ -83,7 +83,7 @@ const shuffleProclamations = (module.exports.shuffleProclamations = (game, isSta
 	};
 	game.private.proclamations.forEach(proclamation => {
 		modOnlyChat.chat.push({
-			text: proclamation === 'order' ? 'B' : 'R',
+			text: proclamation === 'order' ? 'R' : 'P',
 			type: proclamation
 		});
 	});

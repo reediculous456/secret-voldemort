@@ -146,15 +146,15 @@ module.exports.selectProclamations = (passport, game, socket) => {
 							text: ' peeks and sees '
 						},
 						{
-							text: game.private.proclamations[0] === 'order' ? 'B' : 'R',
+							text: game.private.proclamations[0] === 'order' ? 'R' : 'P',
 							type: game.private.proclamations[0]
 						},
 						{
-							text: game.private.proclamations[1] === 'order' ? 'B' : 'R',
+							text: game.private.proclamations[1] === 'order' ? 'R' : 'P',
 							type: game.private.proclamations[1]
 						},
 						{
-							text: game.private.proclamations[2] === 'order' ? 'B' : 'R',
+							text: game.private.proclamations[2] === 'order' ? 'R' : 'P',
 							type: game.private.proclamations[2]
 						},
 						{
@@ -331,7 +331,7 @@ module.exports.selectOneProclamation = (passport, game) => {
 							text: ' peeks and sees '
 						},
 						{
-							text: game.private.proclamations[0] === 'order' ? 'B' : 'R',
+							text: game.private.proclamations[0] === 'order' ? 'R' : 'P',
 							type: game.private.proclamations[0]
 						},
 						{

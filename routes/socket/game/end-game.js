@@ -134,7 +134,7 @@ module.exports.completeGame = (game, winningTeamName) => {
 		].concat(
 			game.private.proclamations
 				.map(proclamationName => ({
-					text: proclamationName === 'order' ? 'B' : 'R',
+					text: proclamationName === 'order' ? 'R' : 'P',
 					type: proclamationName === 'order' ? 'order' : 'death-eater'
 				}))
 				.concat({
@@ -330,7 +330,7 @@ module.exports.completeGame = (game, winningTeamName) => {
 		if (game.general.tournyInfo.round === 1) {
 			const { uid } = game.general;
 			const tableUidLastLetter = uid.charAt(uid.length - 1);
-			const otherUid = tableUidLastLetter === 'A' ? `${uid.substr(0, uid.length - 1)}B` : `${uid.substr(0, uid.length - 1)}A`;
+			const otherUid = tableUidLastLetter === 'A' ? `${uid.substr(0, uid.length - 1)}R` : `${uid.substr(0, uid.length - 1)}A`;
 			const otherGame = games.find(g => g.general.uid === otherUid);
 
 			if (!otherGame || otherGame.gameState.isCompleted) {
