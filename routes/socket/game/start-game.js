@@ -47,7 +47,7 @@ const beginGame = game => {
 		{
 			cardName: 'voldemort',
 			icon: 0,
-			team: 'e'
+			team: 'death-eater'
 		}
 	]
 		.concat(
