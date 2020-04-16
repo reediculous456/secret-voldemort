@@ -90,22 +90,22 @@
 
 		.electiontracker {
 			position: absolute;
-			width: 3.85%;
-			height: 5.68%;
-			background-color: #2f2fbe;
+			width: 3%;
+			height: 4.3%;
+			background-color: #700c1a;
 			border-radius: 50%;
-			top: 41.36%;
-			left: 32.6%;
+			top: 43.35%;
+			left: 29.6%;
 			transition: all 2s;
 		}
 		.electiontracker.fail1 {
-			left: 42.46%;
+			left: 41.6%;
 		}
 		.electiontracker.fail2 {
-			left: 52.15%;
+			left: 53.6%;
 		}
 		.electiontracker.fail3 {
-			left: 62%;
+			left: 65.6%;
 		}
 		.track-flipper {
 			//height: 220px;
