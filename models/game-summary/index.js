@@ -25,11 +25,11 @@ const gameSummary = new Schema({
 			hashUid: String
 		}
 	],
-	libElo: {
+	ordElo: {
 		overall: Number,
 		season: Number
 	},
-	fasElo: {
+	deathElo: {
 		overall: Number,
 		season: Number
 	},
@@ -84,14 +84,14 @@ const gameSummary = new Schema({
 		voldemortZone: Number,
 		vetoZone: Number,
 		deathEaterCount: Number,
-		hitKnowsFas: Boolean,
+		volKnowsDeath: Boolean,
 		deckState: {
-			lib: Number,
-			fas: Number
+			ord: Number,
+			death: Number
 		},
 		trackState: {
-			lib: Number,
-			fas: Number
+			ord: Number,
+			death: Number
 		}
 	}
 });

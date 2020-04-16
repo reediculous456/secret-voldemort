@@ -136,7 +136,7 @@ const avg = (accounts, accessor) => accounts.reduce((prev, curr) => prev + acces
 module.exports.rateEloGame = (game, accounts, winningPlayerNames) => {
 	// ELO constants
 	const defaultELO = 1600;
-	const libAdjust = {
+	const ordAdjust = {
 		5: -19.253,
 		6: 20.637,
 		7: -17.282,
@@ -154,10 +154,10 @@ module.exports.rateEloGame = (game, accounts, winningPlayerNames) => {
 	// Construct some basic statistics for each team
 	const b = game.gameState.isCompleted === 'order' ? 1 : 0;
 	const size = game.private.seatedPlayers.length;
-	const averageRatingWinners = avg(winningAccounts, a => a.eloOverall || defaultELO) + b * libAdjust[size];
-	const averageRatingWinnersSeason = avg(winningAccounts, a => a.eloSeason || defaultELO) + b * libAdjust[size];
-	const averageRatingLosers = avg(loosingAccounts, a => a.eloOverall || defaultELO) + (1 - b) * libAdjust[size];
-	const averageRatingLosersSeason = avg(loosingAccounts, a => a.eloSeason || defaultELO) + (1 - b) * libAdjust[size];
+	const averageRatingWinners = avg(winningAccounts, a => a.eloOverall || defaultELO) + b * ordAdjust[size];
+	const averageRatingWinnersSeason = avg(winningAccounts, a => a.eloSeason || defaultELO) + b * ordAdjust[size];
+	const averageRatingLosers = avg(loosingAccounts, a => a.eloOverall || defaultELO) + (1 - b) * ordAdjust[size];
+	const averageRatingLosersSeason = avg(loosingAccounts, a => a.eloSeason || defaultELO) + (1 - b) * ordAdjust[size];
 	// Elo Formula
 	const k = size * (game.general.rainbowgame ? rk : nk); // non-rainbow games are capped at k/r
 	const winFactor = k / winningPlayerNames.length;

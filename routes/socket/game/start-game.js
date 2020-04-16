@@ -19,26 +19,26 @@ const beginGame = game => {
 		// Standard game, this object needs populating.
 		customGameSettings.voldemortZone = 3;
 		customGameSettings.vetoZone = 5;
-		customGameSettings.trackState = { lib: 0, fas: 0 };
-		customGameSettings.deckState = { lib: 6, fas: 11 };
+		customGameSettings.trackState = { ord: 0, death: 0 };
+		customGameSettings.deckState = { ord: 6, death: 11 };
 		if (game.general.type == 0) {
 			// 5-6 players
 			customGameSettings.deathEaterCount = 1;
-			customGameSettings.hitKnowsFas = true;
+			customGameSettings.volKnowsDeath = true;
 			customGameSettings.powers = [null, null, 'deckpeek', 'bullet', 'bullet'];
-			if (game.general.rebalance6p && game.publicPlayersState.length == 6) customGameSettings.trackState.fas = 1;
+			if (game.general.rebalance6p && game.publicPlayersState.length == 6) customGameSettings.trackState.death = 1;
 		} else if (game.general.type == 1) {
 			// 7-8 players
 			customGameSettings.deathEaterCount = 2;
-			customGameSettings.hitKnowsFas = false;
+			customGameSettings.volKnowsDeath = false;
 			customGameSettings.powers = [null, 'investigate', 'election', 'bullet', 'bullet'];
-			if (game.general.rebalance7p && game.publicPlayersState.length == 7) customGameSettings.deckState.fas = 10;
+			if (game.general.rebalance7p && game.publicPlayersState.length == 7) customGameSettings.deckState.death = 10;
 		} else {
 			// 9-10 players
 			customGameSettings.deathEaterCount = 3;
-			customGameSettings.hitKnowsFas = false;
+			customGameSettings.volKnowsDeath = false;
 			customGameSettings.powers = ['investigate', 'investigate', 'election', 'bullet', 'bullet'];
-			if (game.general.rebalance9p2f && game.publicPlayersState.length == 9) customGameSettings.deckState.fas = 10;
+			if (game.general.rebalance9p2f && game.publicPlayersState.length == 9) customGameSettings.deckState.death = 10;
 		}
 	}
 	shuffleProclamations(game, true);
@@ -52,7 +52,7 @@ const beginGame = game => {
 	]
 		.concat(
 			_.shuffle(
-				// With custom games, up to 8 libs can be in a game, but there are only 6 cards. Two are re-used in this case.
+				// With custom games, up to 8 ords can be in a game, but there are only 6 cards. Two are re-used in this case.
 				_.range(0, 8)
 					.map(el => ({
 						cardName: 'order',
@@ -151,39 +151,39 @@ const beginGame = game => {
 		sendInProgressModChatUpdate(game, modOnlyChat);
 	});
 
-	const libPlayers = game.private.seatedPlayers.filter(player => player.role.team === 'order');
-	const fasPlayers = game.private.seatedPlayers.filter(player => player.role.team !== 'order');
-	const lib = libPlayers.map(player => player.userName);
-	const fas = fasPlayers.map(player => player.userName);
-	const libElo = { overall: 1600, season: 1600 };
-	const fasElo = { overall: 1600, season: 1600 };
+	const ordPlayers = game.private.seatedPlayers.filter(player => player.role.team === 'order');
+	const deathPlayers = game.private.seatedPlayers.filter(player => player.role.team !== 'order');
+	const ord = ordPlayers.map(player => player.userName);
+	const death = deathPlayers.map(player => player.userName);
+	const ordElo = { overall: 1600, season: 1600 };
+	const deathElo = { overall: 1600, season: 1600 };
 	Account.find({
 		username: { $in: game.private.seatedPlayers.map(player => player.userName) }
 	}).then(accounts => {
-		libElo.overall =
-			lib.reduce(
+		ordElo.overall =
+			ord.reduce(
 				(prev, curr) =>
 					(accounts.find(account => account.username === curr).eloOverall ? accounts.find(account => account.username === curr).eloOverall : 1600) + prev,
 				0
-			) / lib.length;
-		libElo.season =
-			lib.reduce(
+			) / ord.length;
+		ordElo.season =
+			ord.reduce(
 				(prev, curr) =>
 					(accounts.find(account => account.username === curr).eloSeason ? accounts.find(account => account.username === curr).eloSeason : 1600) + prev,
 				0
-			) / lib.length;
-		fasElo.overall =
-			fas.reduce(
+			) / ord.length;
+		deathElo.overall =
+			death.reduce(
 				(prev, curr) =>
 					(accounts.find(account => account.username === curr).eloOverall ? accounts.find(account => account.username === curr).eloOverall : 1600) + prev,
 				0
-			) / fas.length;
-		fasElo.season =
-			fas.reduce(
+			) / death.length;
+		deathElo.season =
+			death.reduce(
 				(prev, curr) =>
 					(accounts.find(account => account.username === curr).eloSeason ? accounts.find(account => account.username === curr).eloSeason : 1600) + prev,
 				0
-			) / fas.length;
+			) / death.length;
 	});
 
 	game.private.summary = new GameSummaryBuilder(
@@ -202,8 +202,8 @@ const beginGame = game => {
 			role: p.role.cardName,
 			icon: p.role.icon
 		})),
-		libElo,
-		fasElo
+		ordElo,
+		deathElo
 	);
 
 	game.private.unSeatedGameChats = [
@@ -340,7 +340,7 @@ const beginGame = game => {
 					};
 
 					if (!game.general.disableGamechat) {
-						if (customGameSettings.hitKnowsFas) {
+						if (customGameSettings.volKnowsDeath) {
 							chat.chat.push(
 								{ text: '. They also see that you are a ' },
 								{
@@ -367,7 +367,7 @@ const beginGame = game => {
 				} else if (cardName === 'voldemort') {
 					player.playersState[seatedPlayers.indexOf(player)].nameStatus = 'voldemort';
 
-					if (customGameSettings.hitKnowsFas) {
+					if (customGameSettings.volKnowsDeath) {
 						if (customGameSettings.deathEaterCount == 1) {
 							const otherDeathEater = seatedPlayers.find(player => player.role.cardName === 'death-eater');
 

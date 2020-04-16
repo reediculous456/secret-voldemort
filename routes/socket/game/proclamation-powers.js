@@ -1179,9 +1179,9 @@ module.exports.executePlayer = game => {
 				(player, index) =>
 					index !== ministerIndex &&
 					!seatedPlayers[index].isDead &&
-					((!game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
-						(game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
-						(game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort'))
+					((!game.customGameSettings.deathCanShootVol && !(minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.deathCanShootVol && !(minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort')) ||
+						(game.customGameSettings.deathCanShootVol && minister.role.cardName === 'death-eater' && seatedPlayers[index].role.cardName === 'voldemort'))
 			)
 			.forEach(player => {
 				player.notificationStatus = 'notification';
@@ -1194,9 +1194,9 @@ module.exports.executePlayer = game => {
 					(player, i) =>
 						i !== ministerIndex &&
 						!seatedPlayers[i].isDead &&
-						((!game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
-							(game.customGameSettings.fasCanShootHit && !(minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
-							(game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort'))
+						((!game.customGameSettings.deathCanShootVol && !(minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.deathCanShootVol && !(minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort')) ||
+							(game.customGameSettings.deathCanShootVol && minister.role.cardName === 'death-eater' && seatedPlayers[i].role.cardName === 'voldemort'))
 				)
 				.map(player => seatedPlayers.indexOf(player))
 		];
@@ -1237,7 +1237,7 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 	if (
 		playerIndex === ministerIndex ||
 		selectedPlayer.isDead ||
-		(!game.customGameSettings.fasCanShootHit && minister.role.cardName === 'death-eater' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
+		(!game.customGameSettings.deathCanShootVol && minister.role.cardName === 'death-eater' && seatedPlayers[playerIndex].role.cardName === 'voldemort')
 	) {
 		return;
 	}
@@ -1368,11 +1368,11 @@ module.exports.selectPlayerToExecute = (passport, game, data, socket) => {
 						process.env.NODE_ENV === 'development' ? 100 : 2000
 					);
 				} else {
-					let libAlive = false;
+					let ordAlive = false;
 					seatedPlayers.forEach(p => {
-						if (p.role.cardName == 'order' && !p.isDead) libAlive = true;
+						if (p.role.cardName == 'order' && !p.isDead) ordAlive = true;
 					});
-					if (!libAlive) {
+					if (!ordAlive) {
 						const chat = {
 							timestamp: new Date(),
 							gameChat: true,

@@ -2,7 +2,7 @@ const AllGames = require('./allGames');
 const Account = require('../../models/account');
 const { CURRENTSEASONNUMBER } = require('../../src/frontend-scripts/node-constants');
 
-const libAdjust = {
+const ordAdjust = {
 	5: -19.253,
 	6: 20.637,
 	7: -17.282,
@@ -30,10 +30,10 @@ async function rate(game) {
 	const accounts = await Account.find({ username: { $in: playerNames } }, { eloOverall: 1, eloSeason: 1, username: 1 });
 	// Construct some basic statistics for each team
 	const b = game.winningTeam === 'order' ? 1 : 0;
-	const averageRatingWinners = avg(accounts, winningPlayerNames, a => a.eloOverall, 1600) + b * libAdjust[game.playerCount];
-	const averageRatingWinnersSeason = avg(accounts, winningPlayerNames, a => a.eloSeason, 1600) + b * libAdjust[game.playerCount];
-	const averageRatingLosers = avg(accounts, losingPlayerNames, a => a.eloOverall, 1600) + (1 - b) * libAdjust[game.playerCount];
-	const averageRatingLosersSeason = avg(accounts, losingPlayerNames, a => a.eloSeason, 1600) + (1 - b) * libAdjust[game.playerCount];
+	const averageRatingWinners = avg(accounts, winningPlayerNames, a => a.eloOverall, 1600) + b * ordAdjust[game.playerCount];
+	const averageRatingWinnersSeason = avg(accounts, winningPlayerNames, a => a.eloSeason, 1600) + b * ordAdjust[game.playerCount];
+	const averageRatingLosers = avg(accounts, losingPlayerNames, a => a.eloOverall, 1600) + (1 - b) * ordAdjust[game.playerCount];
+	const averageRatingLosersSeason = avg(accounts, losingPlayerNames, a => a.eloSeason, 1600) + (1 - b) * ordAdjust[game.playerCount];
 	// Hexi's Elo constants
 	const k = 64;
 	const winFactor = k / winningPlayerNames.length;

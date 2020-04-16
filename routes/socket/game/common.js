@@ -14,9 +14,9 @@ const shuffleProclamations = (module.exports.shuffleProclamations = (game, isSta
 
 	if (isStart) {
 		game.trackState.enactedProclamations = [];
-		if (game.customGameSettings.trackState.lib > 0) {
-			game.trackState.orderProclamationCount = game.customGameSettings.trackState.lib;
-			_.range(0, game.customGameSettings.trackState.lib).forEach(num => {
+		if (game.customGameSettings.trackState.ord > 0) {
+			game.trackState.orderProclamationCount = game.customGameSettings.trackState.ord;
+			_.range(0, game.customGameSettings.trackState.ord).forEach(num => {
 				game.trackState.enactedProclamations.push({
 					cardBack: 'order',
 					isFlipped: true,
@@ -24,9 +24,9 @@ const shuffleProclamations = (module.exports.shuffleProclamations = (game, isSta
 				});
 			});
 		}
-		if (game.customGameSettings.trackState.fas > 0) {
-			game.trackState.deathEaterProclamationCount = game.customGameSettings.trackState.fas;
-			_.range(0, game.customGameSettings.trackState.fas).forEach(num => {
+		if (game.customGameSettings.trackState.death > 0) {
+			game.trackState.deathEaterProclamationCount = game.customGameSettings.trackState.death;
+			_.range(0, game.customGameSettings.trackState.death).forEach(num => {
 				game.trackState.enactedProclamations.push({
 					cardBack: 'death-eater',
 					isFlipped: true,
@@ -36,12 +36,12 @@ const shuffleProclamations = (module.exports.shuffleProclamations = (game, isSta
 		}
 	}
 
-	const libCount = game.customGameSettings.deckState.lib - game.trackState.orderProclamationCount;
-	const fasCount = game.customGameSettings.deckState.fas - game.trackState.deathEaterProclamationCount;
+	const ordCount = game.customGameSettings.deckState.ord - game.trackState.orderProclamationCount;
+	const deathCount = game.customGameSettings.deckState.death - game.trackState.deathEaterProclamationCount;
 	game.private.proclamations = _.shuffle(
-		_.range(0, libCount)
+		_.range(0, ordCount)
 			.map(num => 'order')
-			.concat(_.range(0, fasCount).map(num => 'death-eater'))
+			.concat(_.range(0, deathCount).map(num => 'death-eater'))
 	);
 
 	game.gameState.undrawnProclamationCount = game.private.proclamations.length;
@@ -55,14 +55,14 @@ const shuffleProclamations = (module.exports.shuffleProclamations = (game, isSta
 					text: 'Deck shuffled: '
 				},
 				{
-					text: `${libCount} order`,
+					text: `${ordCount} order`,
 					type: 'order'
 				},
 				{
 					text: ' and '
 				},
 				{
-					text: `${fasCount} death eater`,
+					text: `${deathCount} death eater`,
 					type: 'death-eater'
 				},
 				{

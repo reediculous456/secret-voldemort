@@ -634,32 +634,32 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 		if (!(data.customGameSettings.voldemortZone >= 1) || data.customGameSettings.voldemortZone > 5) return;
 		if (
 			!data.customGameSettings.vetoZone ||
-			data.customGameSettings.vetoZone <= data.customGameSettings.trackState.fas ||
+			data.customGameSettings.vetoZone <= data.customGameSettings.trackState.death ||
 			data.customGameSettings.vetoZone > 5
 		) {
 			return;
 		}
 
-		// Ensure that there is never a fas majority at the start.
+		// Ensure that there is never a death majority at the start.
 		// Custom games should probably require a fixed player count, which will be in playerCounts[0] regardless.
 		if (!(data.customGameSettings.deathEaterCount >= 1) || data.customGameSettings.deathEaterCount + 1 > playerCounts[0] / 2) return;
 
 		// Ensure standard victory conditions can be met for both teams.
-		if (!(data.customGameSettings.deckState.lib >= 5) || data.customGameSettings.deckState.lib > 8) return;
-		if (!(data.customGameSettings.deckState.fas >= 6) || data.customGameSettings.deckState.fas > 19) return;
+		if (!(data.customGameSettings.deckState.ord >= 5) || data.customGameSettings.deckState.ord > 8) return;
+		if (!(data.customGameSettings.deckState.death >= 6) || data.customGameSettings.deckState.death > 19) return;
 
 		// Roundabout way of checking for null/undefined but not 0.
-		if (!(data.customGameSettings.trackState.lib >= 0) || data.customGameSettings.trackState.lib > 4) return;
-		if (!(data.customGameSettings.trackState.fas >= 0) || data.customGameSettings.trackState.fas > 5) return;
+		if (!(data.customGameSettings.trackState.ord >= 0) || data.customGameSettings.trackState.ord > 4) return;
+		if (!(data.customGameSettings.trackState.death >= 0) || data.customGameSettings.trackState.death > 5) return;
 
 		// Need at least 13 cards (11 on track plus two left-overs) to ensure that the deck does not run out.
-		if (data.customGameSettings.deckState.lib + data.customGameSettings.deckState.fas < 13) return;
+		if (data.customGameSettings.deckState.ord + data.customGameSettings.deckState.death < 13) return;
 
 		if (
-			!(data.customGameSettings.trackState.lib >= 0) ||
-			data.customGameSettings.trackState.lib > 4 ||
-			!(data.customGameSettings.trackState.fas >= 0) ||
-			data.customGameSettings.trackState.fas > 5
+			!(data.customGameSettings.trackState.ord >= 0) ||
+			data.customGameSettings.trackState.ord > 4 ||
+			!(data.customGameSettings.trackState.death >= 0) ||
+			data.customGameSettings.trackState.death > 5
 		) {
 			return;
 		}
@@ -737,14 +737,14 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 					text: 'There will be '
 				},
 				{
-					text: `${newGame.customGameSettings.deckState.lib - newGame.customGameSettings.trackState.lib} order`,
+					text: `${newGame.customGameSettings.deckState.ord - newGame.customGameSettings.trackState.ord} order`,
 					type: 'order'
 				},
 				{
 					text: ' and '
 				},
 				{
-					text: `${newGame.customGameSettings.deckState.fas - newGame.customGameSettings.trackState.fas} death eater`,
+					text: `${newGame.customGameSettings.deckState.death - newGame.customGameSettings.trackState.death} death eater`,
 					type: 'death-eater'
 				},
 				{
@@ -762,14 +762,14 @@ module.exports.handleAddNewGame = (socket, passport, data) => {
 					text: 'The game will start with '
 				},
 				{
-					text: `${newGame.customGameSettings.trackState.lib} order`,
+					text: `${newGame.customGameSettings.trackState.ord} order`,
 					type: 'order'
 				},
 				{
 					text: ' and '
 				},
 				{
-					text: `${newGame.customGameSettings.trackState.fas} death eater`,
+					text: `${newGame.customGameSettings.trackState.death} death eater`,
 					type: 'death-eater'
 				},
 				{
@@ -1539,14 +1539,14 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 						text: 'There will be '
 					},
 					{
-						text: `${newGame.customGameSettings.deckState.lib - newGame.customGameSettings.trackState.lib} order`,
+						text: `${newGame.customGameSettings.deckState.ord - newGame.customGameSettings.trackState.ord} order`,
 						type: 'order'
 					},
 					{
 						text: ' and '
 					},
 					{
-						text: `${newGame.customGameSettings.deckState.fas - newGame.customGameSettings.trackState.fas} death eater`,
+						text: `${newGame.customGameSettings.deckState.death - newGame.customGameSettings.trackState.death} death eater`,
 						type: 'death-eater'
 					},
 					{
@@ -1564,14 +1564,14 @@ module.exports.handleUpdatedRemakeGame = (passport, game, data, socket) => {
 						text: 'The game will start with '
 					},
 					{
-						text: `${newGame.customGameSettings.trackState.lib} order`,
+						text: `${newGame.customGameSettings.trackState.ord} order`,
 						type: 'order'
 					},
 					{
 						text: ' and '
 					},
 					{
-						text: `${newGame.customGameSettings.trackState.fas} death eater`,
+						text: `${newGame.customGameSettings.trackState.death} death eater`,
 						type: 'death-eater'
 					},
 					{
@@ -1872,7 +1872,7 @@ module.exports.handleAddNewGameChat = (socket, passport, data, game, modUserName
 			}
 		}
 
-		if (/^(b|blue|l|lib|order)$/i.exec(chat)) {
+		if (/^(b|blue|l|ord|order)$/i.exec(chat)) {
 			// console.log(chat, ' - ', 'order', ' - ', game.private.seatedPlayers[playerIndex].playersState[playerIndex].claim);
 			if (
 				0 <= playerIndex <= 9 &&

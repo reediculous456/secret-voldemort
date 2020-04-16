@@ -348,7 +348,7 @@ class Tracks extends React.Component {
 				let numFas = 0;
 				let hzStart = 3;
 				let vzPoint = 5;
-				let hitKnowsFas = false;
+				let volKnowsDeath = false;
 
 				if (gameInfo.customGameSettings.powers) {
 					// Only need to detect one property, either they're all there or none are.
@@ -367,13 +367,13 @@ class Tracks extends React.Component {
 					numFas = gameInfo.customGameSettings.deathEaterCount;
 					hzStart = gameInfo.customGameSettings.voldemortZone;
 					vzPoint = gameInfo.customGameSettings.vetoZone;
-					hitKnowsFas = gameInfo.customGameSettings.hitKnowsFas;
+					volKnowsDeath = gameInfo.customGameSettings.volKnowsDeath;
 				} else {
 					// Should only happen before a game starts, but as a precaution typical settings are used.
 					if (gameInfo.general.playerCount < 7) {
 						powers = ['None', 'None', 'Peek', 'Gun', 'Gun'];
 						numFas = 1;
-						hitKnowsFas = true;
+						volKnowsDeath = true;
 					} else if (gameInfo.general.playerCount < 9) {
 						powers = ['None', 'Inv', 'Elect', 'Gun', 'Gun'];
 						numFas = 2;
@@ -383,14 +383,14 @@ class Tracks extends React.Component {
 					}
 				}
 
-				const getHZ = pos => {
+				const getVZ = pos => {
 					if (pos < hzStart) return 'Off';
 					if (pos > hzStart) return 'On';
 					return 'Start';
 				};
 
 				return (
-					<div className="track bottom-track-back custom-fastrack-base">
+					<div className="track bottom-track-back custom-deathtrack-base">
 						<span
 							style={{
 								width: '92px',
@@ -398,7 +398,7 @@ class Tracks extends React.Component {
 								left: `${offX + 137}px`,
 								top: `${offY + 58}px`,
 								position: 'absolute',
-								backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(1)}.png)`
+								backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(1)}.png)`
 							}}
 						/>
 						<span
@@ -408,7 +408,7 @@ class Tracks extends React.Component {
 								left: `${offX + 229}px`,
 								top: `${offY + 58}px`,
 								position: 'absolute',
-								backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(2)}.png)`
+								backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(2)}.png)`
 							}}
 						/>
 						<span
@@ -418,7 +418,7 @@ class Tracks extends React.Component {
 								left: `${offX + 321}px`,
 								top: `${offY + 58}px`,
 								position: 'absolute',
-								backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(3)}.png)`
+								backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(3)}.png)`
 							}}
 						/>
 						<span
@@ -428,7 +428,7 @@ class Tracks extends React.Component {
 								left: `${offX + 413}px`,
 								top: `${offY + 58}px`,
 								position: 'absolute',
-								backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(4)}.png)`
+								backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(4)}.png)`
 							}}
 						/>
 						<span
@@ -438,73 +438,73 @@ class Tracks extends React.Component {
 								left: `${offX + 505}px`,
 								top: `${offY + 58}px`,
 								position: 'absolute',
-								backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(5)}.png)`
+								backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(5)}.png)`
 							}}
 						/>
 
 						<span
-							className="custom-fastrack-powerslot"
+							className="custom-deathtrack-powerslot"
 							style={{
 								left: `${offX + 58}px`,
 								top: `${offY + 58}px`,
-								backgroundImage: `url(../images/customtracks/fasPower${powers[0]}${hzStart <= 0 ? 'Light' : ''}.png)`
+								backgroundImage: `url(../images/customtracks/deathPower${powers[0]}${hzStart <= 0 ? 'Light' : ''}.png)`
 							}}
 						>
 							{vzPoint == 1 && (
-								<span className={'custom-fastrack-powerslot ' + (hzStart <= 0 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />
+								<span className={'custom-deathtrack-powerslot ' + (hzStart <= 0 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
 							)}
 						</span>
 						<span
-							className="custom-fastrack-powerslot"
+							className="custom-deathtrack-powerslot"
 							style={{
 								left: `${offX + 150}px`,
 								top: `${offY + 58}px`,
-								backgroundImage: `url(../images/customtracks/fasPower${powers[1]}${hzStart <= 1 ? 'Light' : ''}.png)`
+								backgroundImage: `url(../images/customtracks/deathPower${powers[1]}${hzStart <= 1 ? 'Light' : ''}.png)`
 							}}
 						>
 							{vzPoint == 2 && (
-								<span className={'custom-fastrack-powerslot ' + (hzStart <= 1 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />
+								<span className={'custom-deathtrack-powerslot ' + (hzStart <= 1 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
 							)}
 						</span>
 						<span
-							className="custom-fastrack-powerslot"
+							className="custom-deathtrack-powerslot"
 							style={{
 								left: `${offX + 242}px`,
 								top: `${offY + 58}px`,
-								backgroundImage: `url(../images/customtracks/fasPower${powers[2]}${hzStart <= 2 ? 'Light' : ''}.png)`
+								backgroundImage: `url(../images/customtracks/deathPower${powers[2]}${hzStart <= 2 ? 'Light' : ''}.png)`
 							}}
 						>
 							{vzPoint == 3 && (
-								<span className={'custom-fastrack-powerslot ' + (hzStart <= 2 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />
+								<span className={'custom-deathtrack-powerslot ' + (hzStart <= 2 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
 							)}
 						</span>
 						<span
-							className="custom-fastrack-powerslot"
+							className="custom-deathtrack-powerslot"
 							style={{
 								left: `${offX + 334}px`,
 								top: `${offY + 58}px`,
-								backgroundImage: `url(../images/customtracks/fasPower${powers[3]}${hzStart <= 3 ? 'Light' : ''}.png)`
+								backgroundImage: `url(../images/customtracks/deathPower${powers[3]}${hzStart <= 3 ? 'Light' : ''}.png)`
 							}}
 						>
 							{vzPoint == 4 && (
-								<span className={'custom-fastrack-powerslot ' + (hzStart <= 3 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />
+								<span className={'custom-deathtrack-powerslot ' + (hzStart <= 3 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
 							)}
 						</span>
 						<span
-							className="custom-fastrack-powerslot"
+							className="custom-deathtrack-powerslot"
 							style={{
 								left: `${offX + 426}px`,
 								top: `${offY + 58}px`,
-								backgroundImage: `url(../images/customtracks/fasPower${powers[4]}${hzStart <= 4 ? 'Light' : ''}.png)`
+								backgroundImage: `url(../images/customtracks/deathPower${powers[4]}${hzStart <= 4 ? 'Light' : ''}.png)`
 							}}
 						>
 							{vzPoint == 5 && (
-								<span className={'custom-fastrack-powerslot ' + (hzStart <= 4 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />
+								<span className={'custom-deathtrack-powerslot ' + (hzStart <= 4 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
 							)}
 						</span>
 						<span
-							className="custom-fastrack-powerslot"
-							style={{ left: `${offX + 518}px`, top: `${offY + 58}px`, backgroundImage: 'url(../images/customtracks/fasPowerEndGame.png)' }}
+							className="custom-deathtrack-powerslot"
+							style={{ left: `${offX + 518}px`, top: `${offY + 58}px`, backgroundImage: 'url(../images/customtracks/deathPowerEndGame.png)' }}
 						/>
 
 						<span
@@ -514,7 +514,7 @@ class Tracks extends React.Component {
 								left: `${offX + 336}px`,
 								top: `${offY + 60}px`,
 								position: 'absolute',
-								backgroundImage: 'url(../images/customtracks/fasTrackHZText.png)'
+								backgroundImage: 'url(../images/customtracks/deathTrackVZText.png)'
 							}}
 						/>
 
@@ -525,7 +525,7 @@ class Tracks extends React.Component {
 								left: `${offX + 220}px`,
 								top: `${offY + 186}px`,
 								position: 'absolute',
-								backgroundImage: `url(../images/customtracks/fasTrack${numFas}fas.png)`
+								backgroundImage: `url(../images/customtracks/deathTrack${numFas}death.png)`
 							}}
 						/>
 						<span
@@ -535,7 +535,7 @@ class Tracks extends React.Component {
 								left: `${offX + 220}px`,
 								top: `${offY + 196}px`,
 								position: 'absolute',
-								backgroundImage: `url(../images/customtracks/fasTrack${numFas > 1 ? 'Multi' : 'Single'}${hitKnowsFas ? 'Known' : 'Unknown'}.png)`
+								backgroundImage: `url(../images/customtracks/deathTrack${numFas > 1 ? 'Multi' : 'Single'}${volKnowsDeath ? 'Known' : 'Unknown'}.png)`
 							}}
 						/>
 					</div>

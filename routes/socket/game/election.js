@@ -995,23 +995,23 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 			];
 			let passedNicer = '';
 			if (passed[0] === 'order') {
-				if (passed[1] === 'order') passedNicer = 'BB';
-				else passedNicer = 'BR';
-			} else if (passed[1] === 'order') passedNicer = 'BR';
-			else passedNicer = 'RR';
+				if (passed[1] === 'order') passedNicer = 'RR';
+				else passedNicer = 'RP';
+			} else if (passed[1] === 'order') passedNicer = 'RP';
+			else passedNicer = 'PP';
 
 			if (minister.role.team === 'order') {
 				// order
 				if (discarded === 'order') {
 					if (track4blue) {
-						if (passedNicer === 'RR') {
+						if (passedNicer === 'PP') {
 							// tossed only blue on 4 blues
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Order',
-									situation: `got BRR with 4 blues on the track, and tossed the blue.`,
+									situation: `got RPP with 4 reds on the track, and tossed the red.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1020,14 +1020,14 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 								game,
 								'report'
 							);
-						} else if (passedNicer === 'BR') {
+						} else if (passedNicer === 'RP') {
 							// did not force 5th blue
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Order',
-									situation: `got BBR with 4 blues on the track, and did not force.`,
+									situation: `got RRP with 4 reds on the track, and did not force.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1038,14 +1038,14 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 							);
 						}
 					} else if (trackReds < 3) {
-						if (passedNicer === 'RR') {
+						if (passedNicer === 'PP') {
 							// tossed only blue with no benefit
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Order',
-									situation: `got BRR before HZ, and tossed the blue.`,
+									situation: `got RPP before VZ, and tossed the red.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1056,14 +1056,14 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 							);
 						}
 					} else if (trackReds === 5) {
-						if (passedNicer === 'RR') {
+						if (passedNicer === 'PP') {
 							// tossed blue in VZ
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Order',
-									situation: `got BRR during veto zone, and tossed the blue.`,
+									situation: `got RPP during veto zone, and tossed the red.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1072,14 +1072,14 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 								game,
 								'report'
 							);
-						} else if (passedNicer === 'BR' && track4blue) {
+						} else if (passedNicer === 'RP' && track4blue) {
 							// tossed blue in VZ
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Order',
-									situation: `got BBR during veto zone, and did not force 5th blue.`,
+									situation: `got RRP during veto zone, and did not force 5th red.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1095,14 +1095,14 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 				// death eater
 				if (discarded === 'death-eater') {
 					if (track4blue) {
-						if (passedNicer === 'BB' && headmaster.role.team !== 'order') {
-							// forced 5th blue on another fas
+						if (passedNicer === 'RR' && headmaster.role.team !== 'order') {
+							// forced 5th blue on another death
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Death Eater',
-									situation: `got BBR with 4 blues on the track, and forced blues on a death eater headmaster.`,
+									situation: `got RRP with 4 reds on the track, and forced reds on a death eater headmaster.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1111,14 +1111,14 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 								game,
 								'report'
 							);
-						} else if (passedNicer === 'BR' && headmaster.role.team === 'order') {
-							// offered 5th blue choice as fas
+						} else if (passedNicer === 'RP' && headmaster.role.team === 'order') {
+							// offered 5th blue choice as death
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Death Eater',
-									situation: `got BRR with 4 blues on the track, and offered choice to a order headmaster.`,
+									situation: `got RPP with 4 reds on the track, and offered choice to a order headmaster.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1129,14 +1129,14 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 							);
 						}
 					} else if (trackReds === 5) {
-						if (passedNicer === 'BB' && headmaster.role.team !== 'order') {
+						if (passedNicer === 'RR' && headmaster.role.team !== 'order') {
 							// forced 5th blue as hit
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Death Eater',
-									situation: `got BBR with 5 reds on the track, and forced blues on a death eater headmaster.`,
+									situation: `got RRP with 5 purples on the track, and forced reds on a death eater headmaster.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,
@@ -1145,14 +1145,14 @@ const selectMinisterProclamation = (passport, game, data, wasTimer, socket) => {
 								game,
 								'report'
 							);
-						} else if (passedNicer === 'BR' && headmaster.role.team === 'order') {
+						} else if (passedNicer === 'RP' && headmaster.role.team === 'order') {
 							// offered 5th blue choice as hit
 							makeReport(
 								{
 									player: minister.userName,
 									seat: ministerIndex + 1,
 									role: 'Death Eater',
-									situation: `got BRR with 5 reds on the track, and offered choice to a order headmaster.`,
+									situation: `got RPP with 5 purples on the track, and offered choice to a order headmaster.`,
 									election: game.general.electionCount,
 									title: game.general.name,
 									uid: game.general.uid,

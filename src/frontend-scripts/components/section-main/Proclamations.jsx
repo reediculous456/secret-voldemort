@@ -39,7 +39,7 @@ const Proclamations = props => {
 	const renderDiscard = () => {
 		const count =
 			(gameInfo.customGameSettings && gameInfo.customGameSettings.deckState
-				? gameInfo.customGameSettings.deckState.lib + gameInfo.customGameSettings.deckState.fas
+				? gameInfo.customGameSettings.deckState.ord + gameInfo.customGameSettings.deckState.death
 				: 17) -
 			(gameInfo.gameState.undrawnProclamationCount + gameInfo.trackState.orderProclamationCount + gameInfo.trackState.deathEaterProclamationCount);
 
@@ -55,7 +55,7 @@ const Proclamations = props => {
 	};
 	const discardedProclamationCount =
 		(gameInfo.customGameSettings && gameInfo.customGameSettings.deckState
-			? gameInfo.customGameSettings.deckState.lib + gameInfo.customGameSettings.deckState.fas
+			? gameInfo.customGameSettings.deckState.ord + gameInfo.customGameSettings.deckState.death
 			: 17) -
 		(gameInfo.gameState.undrawnProclamationCount + gameInfo.trackState.orderProclamationCount + gameInfo.trackState.deathEaterProclamationCount);
 

@@ -4,7 +4,7 @@ const buildEnhancedGameSummary = require('../../models/game-summary/buildEnhance
 const { CURRENTSEASONNUMBER } = require('../../src/frontend-scripts/node-constants');
 const mongoose = require('mongoose');
 
-const libAdjust = {
+const ordAdjust = {
 	5: -19.253,
 	6: 20.637,
 	7: -17.282,
@@ -86,10 +86,10 @@ async function rate(summary) {
 		weightedPlayerRank[i] = playerInfluence[i] * account.eloOverall;
 		weightedPlayerSeasonRank[i] = playerInfluence[i] * account.eloSeason;
 	}
-	const averageRatingWinners = avg(weightedPlayerRank.filter((_, i) => game.isWinner(i)._value)) + b * libAdjust[game.playerSize];
-	const averageRatingWinnersSeason = avg(weightedPlayerSeasonRank.filter((_, i) => game.isWinner(i)._value)) + b * libAdjust[game.playerSize];
-	const averageRatingLosers = avg(weightedPlayerRank.filter((_, i) => !game.isWinner(i)._value)) + (1 - b) * libAdjust[game.playerSize];
-	const averageRatingLosersSeason = avg(weightedPlayerSeasonRank.filter((_, i) => !game.isWinner(i)._value)) + (1 - b) * libAdjust[game.playerSize];
+	const averageRatingWinners = avg(weightedPlayerRank.filter((_, i) => game.isWinner(i)._value)) + b * ordAdjust[game.playerSize];
+	const averageRatingWinnersSeason = avg(weightedPlayerSeasonRank.filter((_, i) => game.isWinner(i)._value)) + b * ordAdjust[game.playerSize];
+	const averageRatingLosers = avg(weightedPlayerRank.filter((_, i) => !game.isWinner(i)._value)) + (1 - b) * ordAdjust[game.playerSize];
+	const averageRatingLosersSeason = avg(weightedPlayerSeasonRank.filter((_, i) => !game.isWinner(i)._value)) + (1 - b) * ordAdjust[game.playerSize];
 
 	// Elo Formula
 	const k = 64;

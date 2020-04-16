@@ -47,13 +47,13 @@ export default class Creategame extends React.Component {
 			customGameSettings: {
 				enabled: false,
 				// Valid powers: investigate, deckpeek, election, bullet; null for no power
-				powers: [null, null, null, null, null], // last "power" is always a fas victory
+				powers: [null, null, null, null, null], // last "power" is always a death victory
 				voldemortZone: 3, // 1-5
-				vetoZone: 5, // 1-5, must be larger than fas track state
+				vetoZone: 5, // 1-5, must be larger than death track state
 				deathEaterCount: 1, // 1-3, does not include hit
-				hitKnowsFas: false,
-				deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-				trackState: { lib: 0, fas: 0 }
+				volKnowsDeath: false,
+				deckState: { ord: 6, death: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+				trackState: { ord: 0, death: 0 }
 			}
 		};
 	}
@@ -423,14 +423,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: [null, null, null, null, null], // last "power" is always a fas victory
+						powers: [null, null, null, null, null], // last "power" is always a death victory
 						voldemortZone: 3, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 1, // 1-3, does not include hit
-						hitKnowsFas: false,
-						fasCanShootHit: false,
-						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: false,
+						deathCanShootVol: false,
+						deckState: { ord: 6, death: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 				break;
@@ -461,14 +461,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: [null, null, null, null, null], // last "power" is always a fas victory
+						powers: [null, null, null, null, null], // last "power" is always a death victory
 						voldemortZone: 3, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 1, // 1-3, does not include hit
-						hitKnowsFas: false,
-						fasCanShootHit: false,
-						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: false,
+						deathCanShootVol: false,
+						deckState: { ord: 6, death: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 				break;
@@ -499,14 +499,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: true,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: ['bullet', 'bullet', 'bullet', 'bullet', 'bullet'], // last "power" is always a fas victory
+						powers: ['bullet', 'bullet', 'bullet', 'bullet', 'bullet'], // last "power" is always a death victory
 						voldemortZone: 4, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 1, // 1-3, does not include hit
-						hitKnowsFas: false,
-						fasCanShootHit: false,
-						deckState: { lib: 6, fas: 13 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: false,
+						deathCanShootVol: false,
+						deckState: { ord: 6, death: 13 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 				break;
@@ -538,14 +538,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: [null, null, null, null, null], // last "power" is always a fas victory
+						powers: [null, null, null, null, null], // last "power" is always a death victory
 						voldemortZone: 3, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 1, // 1-3, does not include hit
-						hitKnowsFas: false,
-						fasCanShootHit: false,
-						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: false,
+						deathCanShootVol: false,
+						deckState: { ord: 6, death: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 				break;
@@ -577,14 +577,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: [null, null, null, null, null], // last "power" is always a fas victory
+						powers: [null, null, null, null, null], // last "power" is always a death victory
 						voldemortZone: 3, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 1, // 1-3, does not include hit
-						hitKnowsFas: false,
-						fasCanShootHit: false,
-						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: false,
+						deathCanShootVol: false,
+						deckState: { ord: 6, death: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 				break;
@@ -616,14 +616,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: [null, null, null, null, null], // last "power" is always a fas victory
+						powers: [null, null, null, null, null], // last "power" is always a death victory
 						voldemortZone: 3, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 1, // 1-3, does not include hit
-						hitKnowsFas: false,
-						fasCanShootHit: false,
-						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: false,
+						deathCanShootVol: false,
+						deckState: { ord: 6, death: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 				break;
@@ -655,14 +655,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: true,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: ['investigate', 'reverseinv', 'investigate', 'reverseinv', 'investigate'], // last "power" is always a fas victory
+						powers: ['investigate', 'reverseinv', 'investigate', 'reverseinv', 'investigate'], // last "power" is always a death victory
 						voldemortZone: 3, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 1, // 1-3, does not include hit
-						hitKnowsFas: false,
-						fasCanShootHit: false,
-						deckState: { lib: 6, fas: 15 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: false,
+						deathCanShootVol: false,
+						deckState: { ord: 6, death: 15 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 				break;
@@ -694,14 +694,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: true,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: ['bullet', 'bullet', 'bullet', 'bullet', 'bullet'], // last "power" is always a fas victory
+						powers: ['bullet', 'bullet', 'bullet', 'bullet', 'bullet'], // last "power" is always a death victory
 						voldemortZone: 4, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 2, // 1-3, does not include hit
-						hitKnowsFas: true,
-						fasCanShootHit: true,
-						deckState: { lib: 6, fas: 19 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: true,
+						deathCanShootVol: true,
+						deckState: { ord: 6, death: 19 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 				break;
@@ -733,14 +733,14 @@ export default class Creategame extends React.Component {
 					customGameSettings: {
 						enabled: false,
 						// Valid powers: investigate, deckpeek, election, bullet; null for no power
-						powers: [null, null, null, null, null], // last "power" is always a fas victory
+						powers: [null, null, null, null, null], // last "power" is always a death victory
 						voldemortZone: 3, // 1-5
-						vetoZone: 5, // 1-5, must be larger than fas track state
+						vetoZone: 5, // 1-5, must be larger than death track state
 						deathEaterCount: 1, // 1-3, does not include hit
-						hitKnowsFas: false,
-						fasCanShootHit: false,
-						deckState: { lib: 6, fas: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
-						trackState: { lib: 0, fas: 0 }
+						volKnowsDeath: false,
+						deathCanShootVol: false,
+						deckState: { ord: 6, death: 11 }, // includes tracks cards; 6 deck + 1 track = 5 in deck
+						trackState: { ord: 0, death: 0 }
 					}
 				});
 		}
@@ -770,28 +770,28 @@ export default class Creategame extends React.Component {
 
 	sliderDeckLib = val => {
 		const { customGameSettings } = this.state;
-		customGameSettings.deckState.lib = val[0];
+		customGameSettings.deckState.ord = val[0];
 		customGameSettings.enabled = true;
 		this.setState({ casualgame: true, customGameSettings });
 	};
 
 	sliderDeckFas = val => {
 		const { customGameSettings } = this.state;
-		customGameSettings.deckState.fas = val[0];
+		customGameSettings.deckState.death = val[0];
 		customGameSettings.enabled = true;
 		this.setState({ casualgame: true, customGameSettings });
 	};
 
 	sliderTrackLib = val => {
 		const { customGameSettings } = this.state;
-		customGameSettings.trackState.lib = val[0];
+		customGameSettings.trackState.ord = val[0];
 		customGameSettings.enabled = true;
 		this.setState({ casualgame: true, customGameSettings });
 	};
 
 	sliderTrackFas = val => {
 		const { customGameSettings } = this.state;
-		customGameSettings.trackState.fas = val[0];
+		customGameSettings.trackState.death = val[0];
 		customGameSettings.enabled = true;
 		this.setState({ casualgame: true, customGameSettings });
 	};
@@ -1065,8 +1065,8 @@ export default class Creategame extends React.Component {
 
 	renderDeck() {
 		const { customGameSettings } = this.state;
-		const numLib = customGameSettings.deckState.lib - customGameSettings.trackState.lib;
-		const numFas = customGameSettings.deckState.fas - customGameSettings.trackState.fas;
+		const numLib = customGameSettings.deckState.ord - customGameSettings.trackState.ord;
+		const numFas = customGameSettings.deckState.death - customGameSettings.trackState.death;
 		const rowWidth = Math.ceil((numLib + numFas) / 3);
 		const data = _.range(0, numLib)
 			.map((val, i) => {
@@ -1113,8 +1113,8 @@ export default class Creategame extends React.Component {
 		const numFas = customGameSettings.deathEaterCount;
 		const hzStart = customGameSettings.voldemortZone;
 		const vzPoint = customGameSettings.vetoZone;
-		const hitKnowsFas = customGameSettings.hitKnowsFas;
-		const getHZ = pos => {
+		const volKnowsDeath = customGameSettings.volKnowsDeath;
+		const getVZ = pos => {
 			if (pos < hzStart) return 'Off';
 			if (pos > hzStart) return 'On';
 			return 'Start';
@@ -1129,7 +1129,7 @@ export default class Creategame extends React.Component {
 					height: '220px',
 					width: '650px',
 					margin: 'auto',
-					backgroundImage: "url('../images/customtracks/fasTrack.png')" // eslint-disable-line
+					backgroundImage: "url('../images/customtracks/deathTrack.png')" // eslint-disable-line
 				}}
 			>
 				<span
@@ -1139,7 +1139,7 @@ export default class Creategame extends React.Component {
 						left: `${offX + 137}px`,
 						top: `${offY + 58}px`,
 						position: 'absolute',
-						backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(1)}.png)`
+						backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(1)}.png)`
 					}}
 				/>
 				<span
@@ -1149,7 +1149,7 @@ export default class Creategame extends React.Component {
 						left: `${offX + 229}px`,
 						top: `${offY + 58}px`,
 						position: 'absolute',
-						backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(2)}.png)`
+						backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(2)}.png)`
 					}}
 				/>
 				<span
@@ -1159,7 +1159,7 @@ export default class Creategame extends React.Component {
 						left: `${offX + 321}px`,
 						top: `${offY + 58}px`,
 						position: 'absolute',
-						backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(3)}.png)`
+						backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(3)}.png)`
 					}}
 				/>
 				<span
@@ -1169,7 +1169,7 @@ export default class Creategame extends React.Component {
 						left: `${offX + 413}px`,
 						top: `${offY + 58}px`,
 						position: 'absolute',
-						backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(4)}.png)`
+						backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(4)}.png)`
 					}}
 				/>
 				<span
@@ -1179,63 +1179,73 @@ export default class Creategame extends React.Component {
 						left: `${offX + 505}px`,
 						top: `${offY + 58}px`,
 						position: 'absolute',
-						backgroundImage: `url(../images/customtracks/fasTrackHZ${getHZ(5)}.png)`
+						backgroundImage: `url(../images/customtracks/deathTrackVZ${getVZ(5)}.png)`
 					}}
 				/>
 
 				<span
-					className="custom-fastrack-powerslot"
+					className="custom-deathtrack-powerslot"
 					style={{
 						left: `${offX + 58}px`,
 						top: `${offY + 58}px`,
-						backgroundImage: `url(../images/customtracks/fasPower${powers[0]}${hzStart <= 0 ? 'Light' : ''}.png)`
+						backgroundImage: `url(../images/customtracks/deathPower${powers[0]}${hzStart <= 0 ? 'Light' : ''}.png)`
 					}}
 				>
-					{vzPoint == 1 && <span className={'custom-fastrack-powerslot ' + (hzStart <= 0 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />}
+					{vzPoint == 1 && (
+						<span className={'custom-deathtrack-powerslot ' + (hzStart <= 0 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
+					)}
 				</span>
 				<span
-					className="custom-fastrack-powerslot"
+					className="custom-deathtrack-powerslot"
 					style={{
 						left: `${offX + 150}px`,
 						top: `${offY + 58}px`,
-						backgroundImage: `url(../images/customtracks/fasPower${powers[1]}${hzStart <= 1 ? 'Light' : ''}.png)`
+						backgroundImage: `url(../images/customtracks/deathPower${powers[1]}${hzStart <= 1 ? 'Light' : ''}.png)`
 					}}
 				>
-					{vzPoint == 2 && <span className={'custom-fastrack-powerslot ' + (hzStart <= 1 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />}
+					{vzPoint == 2 && (
+						<span className={'custom-deathtrack-powerslot ' + (hzStart <= 1 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
+					)}
 				</span>
 				<span
-					className="custom-fastrack-powerslot"
+					className="custom-deathtrack-powerslot"
 					style={{
 						left: `${offX + 242}px`,
 						top: `${offY + 58}px`,
-						backgroundImage: `url(../images/customtracks/fasPower${powers[2]}${hzStart <= 2 ? 'Light' : ''}.png)`
+						backgroundImage: `url(../images/customtracks/deathPower${powers[2]}${hzStart <= 2 ? 'Light' : ''}.png)`
 					}}
 				>
-					{vzPoint == 3 && <span className={'custom-fastrack-powerslot ' + (hzStart <= 2 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />}
+					{vzPoint == 3 && (
+						<span className={'custom-deathtrack-powerslot ' + (hzStart <= 2 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
+					)}
 				</span>
 				<span
-					className="custom-fastrack-powerslot"
+					className="custom-deathtrack-powerslot"
 					style={{
 						left: `${offX + 334}px`,
 						top: `${offY + 58}px`,
-						backgroundImage: `url(../images/customtracks/fasPower${powers[3]}${hzStart <= 3 ? 'Light' : ''}.png)`
+						backgroundImage: `url(../images/customtracks/deathPower${powers[3]}${hzStart <= 3 ? 'Light' : ''}.png)`
 					}}
 				>
-					{vzPoint == 4 && <span className={'custom-fastrack-powerslot ' + (hzStart <= 3 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />}
+					{vzPoint == 4 && (
+						<span className={'custom-deathtrack-powerslot ' + (hzStart <= 3 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
+					)}
 				</span>
 				<span
-					className="custom-fastrack-powerslot"
+					className="custom-deathtrack-powerslot"
 					style={{
 						left: `${offX + 426}px`,
 						top: `${offY + 58}px`,
-						backgroundImage: `url(../images/customtracks/fasPower${powers[4]}${hzStart <= 4 ? 'Light' : ''}.png)`
+						backgroundImage: `url(../images/customtracks/deathPower${powers[4]}${hzStart <= 4 ? 'Light' : ''}.png)`
 					}}
 				>
-					{vzPoint == 5 && <span className={'custom-fastrack-powerslot ' + (hzStart <= 4 ? 'custom-fastrack-vetozone-light' : 'custom-fastrack-vetozone')} />}
+					{vzPoint == 5 && (
+						<span className={'custom-deathtrack-powerslot ' + (hzStart <= 4 ? 'custom-deathtrack-vetozone-light' : 'custom-deathtrack-vetozone')} />
+					)}
 				</span>
 				<span
-					className="custom-fastrack-powerslot"
-					style={{ left: `${offX + 518}px`, top: `${offY + 58}px`, backgroundImage: 'url(../images/customtracks/fasPowerEndGame.png)' }}
+					className="custom-deathtrack-powerslot"
+					style={{ left: `${offX + 518}px`, top: `${offY + 58}px`, backgroundImage: 'url(../images/customtracks/deathPowerEndGame.png)' }}
 				/>
 				<span
 					style={{
@@ -1244,7 +1254,7 @@ export default class Creategame extends React.Component {
 						left: `${offX + 336}px`,
 						top: `${offY + 60}px`,
 						position: 'absolute',
-						backgroundImage: 'url(../images/customtracks/fasTrackHZText.png)'
+						backgroundImage: 'url(../images/customtracks/deathTrackVZText.png)'
 					}}
 				/>
 				<span
@@ -1254,7 +1264,7 @@ export default class Creategame extends React.Component {
 						left: `${offX + 220}px`,
 						top: `${offY + 186}px`,
 						position: 'absolute',
-						backgroundImage: `url(../images/customtracks/fasTrack${numFas}fas.png)`
+						backgroundImage: `url(../images/customtracks/deathTrack${numFas}death.png)`
 					}}
 				/>
 				<span
@@ -1264,7 +1274,7 @@ export default class Creategame extends React.Component {
 						left: `${offX + 220}px`,
 						top: `${offY + 196}px`,
 						position: 'absolute',
-						backgroundImage: `url(../images/customtracks/fasTrack${numFas > 1 ? 'Multi' : 'Single'}${hitKnowsFas ? 'Known' : 'Unknown'}.png)`
+						backgroundImage: `url(../images/customtracks/deathTrack${numFas > 1 ? 'Multi' : 'Single'}${volKnowsDeath ? 'Known' : 'Unknown'}.png)`
 					}}
 				/>
 			</div>
@@ -1272,14 +1282,14 @@ export default class Creategame extends React.Component {
 	}
 
 	renderCustomGames() {
-		const { hitKnowsFas } = this.state.customGameSettings;
+		const { volKnowsDeath } = this.state.customGameSettings;
 
 		const renderFas = () => {
 			return _.range(0, this.state.customGameSettings.deathEaterCount).map((val, i) => (
 				<div
 					key={i}
 					className="rolecard"
-					style={{ backgroundImage: hitKnowsFas ? `url('../images/cards/deatheater${val}.png')` : "url('../images/cards/secretrole.png')" }} // eslint-disable-line
+					style={{ backgroundImage: volKnowsDeath ? `url('../images/cards/deatheater${val}.png')` : "url('../images/cards/secretrole.png')" }} // eslint-disable-line
 				/>
 			));
 		};
@@ -1289,7 +1299,7 @@ export default class Creategame extends React.Component {
 				<div
 					key={i}
 					className="rolecard"
-					style={{ backgroundImage: hitKnowsFas ? `url('../images/cards/order${val % 6}.png')` : "url('../images/cards/secretrole.png')" }} // eslint-disable-line
+					style={{ backgroundImage: volKnowsDeath ? `url('../images/cards/order${val % 6}.png')` : "url('../images/cards/secretrole.png')" }} // eslint-disable-line
 				/>
 			));
 		};
@@ -1363,9 +1373,9 @@ export default class Creategame extends React.Component {
 							<Switch
 								className="create-game-switch"
 								onChange={checked => {
-									this.setState({ customGameSettings: { ...this.state.customGameSettings, hitKnowsFas: checked } });
+									this.setState({ customGameSettings: { ...this.state.customGameSettings, volKnowsDeath: checked } });
 								}}
-								checked={this.state.customGameSettings.hitKnowsFas}
+								checked={this.state.customGameSettings.volKnowsDeath}
 								onColor="#627cc8"
 								offColor="#444444"
 								uncheckedIcon={false}
@@ -1380,9 +1390,9 @@ export default class Creategame extends React.Component {
 							<Switch
 								className="create-game-switch"
 								onChange={checked => {
-									this.setState({ customGameSettings: { ...this.state.customGameSettings, fasCanShootHit: checked } });
+									this.setState({ customGameSettings: { ...this.state.customGameSettings, deathCanShootVol: checked } });
 								}}
-								checked={this.state.customGameSettings.fasCanShootHit}
+								checked={this.state.customGameSettings.deathCanShootVol}
 								onColor="#627cc8"
 								offColor="#444444"
 								uncheckedIcon={false}
@@ -1410,7 +1420,7 @@ export default class Creategame extends React.Component {
 								max={8}
 								defaultValue={[6]}
 								onChange={this.sliderDeckLib}
-								value={[this.state.customGameSettings.deckState.lib]}
+								value={[this.state.customGameSettings.deckState.ord]}
 								marks={{ 5: '5', 6: '6', 7: '7', 8: '8' }}
 							/>
 						</div>
@@ -1421,31 +1431,31 @@ export default class Creategame extends React.Component {
 								max={19}
 								defaultValue={[12]}
 								onChange={this.sliderDeckFas}
-								value={[this.state.customGameSettings.deckState.fas]}
+								value={[this.state.customGameSettings.deckState.death]}
 								marks={{ 10: '10', 11: '', 12: '', 13: '13', 14: '', 15: '', 16: '16', 17: '', 18: '', 19: '19' }}
 							/>
 						</div>
 					</div>
 					<div className="row">
 						<div className="eight wide column">
-							<h4 className="ui header">Starting lib proclamations</h4>
+							<h4 className="ui header">Starting ord proclamations</h4>
 							<Range
 								min={0}
 								max={2}
 								defaultValue={[0]}
 								onChange={this.sliderTrackLib}
-								value={[this.state.customGameSettings.trackState.lib]}
+								value={[this.state.customGameSettings.trackState.ord]}
 								marks={{ 0: '0', 1: '1', 2: '2' }}
 							/>
 						</div>
 						<div className="eight wide column">
-							<h4 className="ui header">Starting fas proclamations</h4>
+							<h4 className="ui header">Starting death proclamations</h4>
 							<Range
 								min={0}
 								max={2}
 								defaultValue={[0]}
 								onChange={this.sliderTrackFas}
-								value={[this.state.customGameSettings.trackState.fas]}
+								value={[this.state.customGameSettings.trackState.death]}
 								marks={{ 0: '0', 1: '1', 2: '2' }}
 							/>
 						</div>
@@ -1517,7 +1527,7 @@ export default class Creategame extends React.Component {
 			if (this.state.customGameSettings.deathEaterCount + 1 >= this.state.customGameSliderValue / 2) {
 				errs.push('There must be a order member majority when the game starts.');
 			}
-			if (this.state.customGameSettings.vetoZone <= this.state.customGameSettings.trackState.fas) {
+			if (this.state.customGameSettings.vetoZone <= this.state.customGameSettings.trackState.death) {
 				errs.push('Veto Zone cannot be active when the game starts.');
 			}
 		}

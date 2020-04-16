@@ -1,5 +1,5 @@
-const rateEloGame = (size, libElo, fasElo, libWin) => {
-	const libAdjust = {
+const rateEloGame = (size, ordElo, deathElo, ordWin) => {
+	const ordAdjust = {
 		5: -19.253,
 		6: 20.637,
 		7: -17.282,
@@ -8,18 +8,18 @@ const rateEloGame = (size, libElo, fasElo, libWin) => {
 		10: -31.539
 	};
 
-	const fasSize = () => {
+	const deathSize = () => {
 		if (size % 2 == 0) return size / 2 - 1;
 		return (size - 1) / 2;
 	};
 	const winSize = () => {
-		if (libWin) return size - fasSize();
-		return fasSize();
+		if (ordWin) return size - deathSize();
+		return deathSize();
 	};
 
-	const b = libWin ? 1 : 0;
-	const averageRatingWinners = (libWin ? libElo : fasElo) + b * libAdjust[size];
-	const averageRatingLosers = (libWin ? fasElo : libElo) + (1 - b) * libAdjust[size];
+	const b = ordWin ? 1 : 0;
+	const averageRatingWinners = (ordWin ? ordElo : deathElo) + b * ordAdjust[size];
+	const averageRatingLosers = (ordWin ? deathElo : ordElo) + (1 - b) * ordAdjust[size];
 
 	const k = size * 3;
 	const winFactor = k / winSize();
@@ -48,6 +48,6 @@ stdin.addListener('data', function(d) {
 
 /*
 Start the script with "node json-test"
-Enter query with "<players> <libelo> <faselo> <libwin>"
+Enter query with "<players> <ordelo> <deathelo> <ordwin>"
 Stop the script with ctrl+c (terminate shortcut)
 */
