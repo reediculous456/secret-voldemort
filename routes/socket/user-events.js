@@ -907,7 +907,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 			case 'wasMinister':
 				text = [
 					{
-						text: 'Minister of Magic'
+						text: 'Minister of Magic '
 					},
 					{
 						text: blindMode ? `${replacementNames[playerIndex]} {${playerIndex + 1}} ` : `${passport.user} {${playerIndex + 1}} `,
