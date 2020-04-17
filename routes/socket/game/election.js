@@ -160,7 +160,7 @@ const enactProclamation = (game, team, socket) => {
 				chat: [
 					{ text: 'A ' },
 					{
-						text: team === 'order' ? 'order member' : 'death eater',
+						text: team === 'order' ? 'order' : 'death eater',
 						type: team === 'order' ? 'order' : 'death-eater'
 					},
 					{
