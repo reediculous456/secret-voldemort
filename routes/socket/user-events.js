@@ -915,7 +915,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					}
 				];
 				switch (data.claimState) {
-					case 'rrr':
+					case 'ppp':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								ministerClaim: { reds: 3, blues: 0 }
@@ -928,7 +928,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims '
 							},
 							{
-								text: 'RRR',
+								text: 'PPP',
 								type: 'death-eater'
 							},
 							{
@@ -937,7 +937,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'rrb':
+					case 'ppr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								ministerClaim: { reds: 2, blues: 1 }
@@ -950,7 +950,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims '
 							},
 							{
-								text: 'RR',
+								text: 'PP',
 								type: 'death-eater'
 							},
 							{
@@ -963,7 +963,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'rbb':
+					case 'prr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								ministerClaim: { reds: 1, blues: 2 }
@@ -980,7 +980,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								type: 'death-eater'
 							},
 							{
-								text: 'BB',
+								text: 'RR',
 								type: 'order'
 							},
 							{
@@ -989,7 +989,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'bbb':
+					case 'rrr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								ministerClaim: { reds: 0, blues: 3 }
@@ -1002,7 +1002,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims '
 							},
 							{
-								text: 'BBB',
+								text: 'RRR',
 								type: 'order'
 							},
 							{
@@ -1024,7 +1024,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					}
 				];
 				switch (data.claimState) {
-					case 'rr':
+					case 'pp':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								headmasterClaim: { reds: 2, blues: 0 }
@@ -1037,7 +1037,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims '
 							},
 							{
-								text: 'RR',
+								text: 'PP',
 								type: 'death-eater'
 							},
 							{
@@ -1046,7 +1046,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'rb':
+					case 'pr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								headmasterClaim: { reds: 1, blues: 1 }
@@ -1072,7 +1072,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'bb':
+					case 'rr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								headmasterClaim: { reds: 0, blues: 2 }
@@ -1085,7 +1085,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims '
 							},
 							{
-								text: 'BB',
+								text: 'RR',
 								type: 'order'
 							},
 							{
