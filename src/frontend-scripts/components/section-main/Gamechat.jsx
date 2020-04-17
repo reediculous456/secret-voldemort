@@ -1090,7 +1090,7 @@ class Gamechat extends React.Component {
 											<p> As minister of magic, I peeked and saw... </p>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'rrr');
+													handleClaimButtonClick(e, 'ppp');
 												}}
 												className="ui button threedeatheater"
 											>
@@ -1098,7 +1098,7 @@ class Gamechat extends React.Component {
 											</button>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'rrb');
+													handleClaimButtonClick(e, 'ppr');
 												}}
 												className="ui button twodeatheateroneorder"
 											>
@@ -1106,7 +1106,7 @@ class Gamechat extends React.Component {
 											</button>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'rbb');
+													handleClaimButtonClick(e, 'prr');
 												}}
 												className="ui button twoorderonedeatheater"
 											>
@@ -1114,7 +1114,7 @@ class Gamechat extends React.Component {
 											</button>
 											<button
 												onClick={e => {
-													handleClaimButtonClick(e, 'bbb');
+													handleClaimButtonClick(e, 'rrr');
 												}}
 												className="ui button threeorder"
 											>

@@ -1129,7 +1129,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 					}
 				];
 				switch (data.claimState) {
-					case 'rrr':
+					case 'ppp':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								proclamationPeekClaim: { reds: 3, blues: 0 }
@@ -1142,7 +1142,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims to have peeked at '
 							},
 							{
-								text: 'RRR',
+								text: 'PPP',
 								type: 'death-eater'
 							},
 							{
@@ -1151,7 +1151,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'rbr':
+					case 'prp':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								proclamationPeekClaim: { reds: 2, blues: 1 }
@@ -1181,7 +1181,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'brr':
+					case 'rpp':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								proclamationPeekClaim: { reds: 2, blues: 1 }
@@ -1212,7 +1212,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'rrb':
+					case 'ppr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								proclamationPeekClaim: { reds: 2, blues: 1 }
@@ -1243,7 +1243,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'rbb':
+					case 'prr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								proclamationPeekClaim: { reds: 1, blues: 2 }
@@ -1260,7 +1260,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								type: 'death-eater'
 							},
 							{
-								text: 'BB',
+								text: 'RR',
 								type: 'order'
 							},
 							{
@@ -1269,7 +1269,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'bbr':
+					case 'rrp':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								proclamationPeekClaim: { reds: 1, blues: 2 }
@@ -1282,7 +1282,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims to have peeked at '
 							},
 							{
-								text: 'BB',
+								text: 'RR',
 								type: 'order'
 							},
 							{
@@ -1295,7 +1295,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'brb':
+					case 'rpr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								proclamationPeekClaim: { reds: 1, blues: 2 }
@@ -1325,7 +1325,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 						);
 
 						return text;
-					case 'bbb':
+					case 'rrr':
 						game.private.summary = game.private.summary.updateLog(
 							{
 								proclamationPeekClaim: { reds: 0, blues: 3 }
@@ -1338,7 +1338,7 @@ module.exports.handleAddNewClaim = (socket, passport, game, data) => {
 								text: 'claims to have peeked at '
 							},
 							{
-								text: 'BBB',
+								text: 'RRR',
 								type: 'order'
 							},
 							{
